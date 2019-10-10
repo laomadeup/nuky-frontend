@@ -1,4 +1,4 @@
-# nuky front-end
+# nuky
 
 ## Project setup
 ```
