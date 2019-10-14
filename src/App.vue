@@ -2,14 +2,20 @@
   <div id="app">
     <el-container>
       <el-header>
-        <app-header></app-header>
+        <div class="app-header">
+          <app-header></app-header>
+        </div>
       </el-header>
-      <el-main>
-        <app-main></app-main>
-      </el-main>
-      <el-footer>
-        <app-footer></app-footer>
-      </el-footer>
+      <el-scrollbar style="height: 100%">
+        <div class="app-main">
+          <el-main>
+            <app-main></app-main>
+          </el-main>
+          <el-footer>
+            <app-footer></app-footer>
+          </el-footer>
+        </div>
+      </el-scrollbar>
     </el-container>
   </div>
 </template>
@@ -27,7 +33,18 @@ export default {
 }
 </script>
 <style lang="stylus">
-#app
+body
+  overflow hidden
+
+.app-header
   max-width 1200px
   margin 0 auto
+
+.app-main
+  height 94.5vh
+  max-width 1200px
+  margin 0 auto
+
+.el-scrollbar .el-scrollbar__wrap
+  overflow-x: auto
 </style>

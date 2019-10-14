@@ -1,12 +1,13 @@
 <template>
-  <router-view></router-view>
+  <div>Github</div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'Github'
 }
 </script>
 
 <style scoped>
+
 </style>
