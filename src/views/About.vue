@@ -1,12 +1,13 @@
 <template>
-  <router-view></router-view>
+  <div>About.vue</div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'About'
 }
 </script>
 
 <style scoped>
+
 </style>
