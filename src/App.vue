@@ -41,7 +41,7 @@ body
   margin 0 auto
 
 .app-main
-  height 94.5vh
+  height calc(100vh - 60px)
   max-width 1200px
   margin 0 auto
 
