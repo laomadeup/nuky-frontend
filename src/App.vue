@@ -1,50 +1,24 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header>
-        <div class="app-header">
-          <app-header></app-header>
-        </div>
-      </el-header>
-      <el-scrollbar style="height: 100%">
-        <div class="app-main">
-          <el-main>
-            <app-main></app-main>
-          </el-main>
-          <el-footer>
-            <app-footer></app-footer>
-          </el-footer>
-        </div>
-      </el-scrollbar>
-    </el-container>
+    <div>
+      <b-button variant="success">
+        <fa-icon :icon="['fab', 'github']"/>
+        Button
+      </b-button>
+      <b-button variant="danger" size="lg">
+        <fa-icon :icon="['fab', 'github']" size="lg"/>
+        Button
+      </b-button>
+    </div>
   </div>
 </template>
+
 <script>
-import Header from './components/Header'
-import Main from './components/Main'
-import Footer from './components/Footer'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-export default {
-  components: {
-    appHeader: Header,
-    appMain: Main,
-    appFooter: Footer
-  }
-}
+export default {}
 </script>
+
 <style lang="stylus">
-body
-  overflow hidden
-
-.app-header
-  max-width 1200px
-  margin 0 auto
-
-.app-main
-  height calc(100vh - 60px)
-  max-width 1200px
-  margin 0 auto
-
-.el-scrollbar .el-scrollbar__wrap
-  overflow-x: auto
 </style>
