@@ -1,5 +1,5 @@
 <template>
-  <el-menu router :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+  <el-menu router :default-active="this.$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect">
     <el-menu-item index="/">Home</el-menu-item>
     <el-menu-item index="/articles">Articles</el-menu-item>
     <el-menu-item index="/github">Github</el-menu-item>
@@ -9,11 +9,9 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'HeaderMenu',
   data () {
-    return {
-      activeIndex: '/'
-    }
+    return {}
   },
   methods: {
     handleSelect (key, keyPath) {
