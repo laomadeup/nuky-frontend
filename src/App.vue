@@ -1,23 +1,25 @@
 <template>
   <div id="app">
-    <div>
-      <b-button variant="success">
-        <fa-icon :icon="['fab', 'github']"/>
-        Button
-      </b-button>
-      <b-button variant="danger" size="lg">
-        <fa-icon :icon="['fab', 'github']" size="lg"/>
-        Button
-      </b-button>
-    </div>
+    <app-header-menu></app-header-menu>
+    <app-body></app-body>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import HeaderMenu from '@/components/HeaderMenu'
+import MainBody from '@/components/MainBody'
+import Footer from '@/components/Footer'
 
-export default {}
+export default {
+  components: {
+    appHeaderMenu: HeaderMenu,
+    appBody: MainBody,
+    appFooter: Footer
+  }
+}
 </script>
 
 <style lang="stylus">
