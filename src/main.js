@@ -2,10 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import ElementUI from 'element-ui'
-import './plugins/element.js'
-
-Vue.use(ElementUI)
+import './plugins/bootstrap.js'
 
 Vue.config.productionTip = false
 
