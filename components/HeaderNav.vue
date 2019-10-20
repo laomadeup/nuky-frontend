@@ -9,6 +9,7 @@
         <b-nav-item
           v-for="(menu, index) in menus"
           :key="index"
+          class="mr-2"
           :to="menu.path"
           :active="menu.active"
           @click="activeMenu(index)"
@@ -26,8 +27,8 @@
             placeholder="Search"
           ></b-form-input>
           <b-button size="sm" class="my-2 my-sm-0" type="submit"
-            >Search</b-button
-          >
+            >Search
+          </b-button>
         </b-nav-form>
       </b-navbar-nav>
     </b-collapse>

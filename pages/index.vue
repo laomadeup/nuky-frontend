@@ -41,7 +41,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'app'
+}
 </script>
 
 <style scoped lang="stylus">
