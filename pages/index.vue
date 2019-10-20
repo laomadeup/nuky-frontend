@@ -5,7 +5,7 @@
         <header>
           <h4>A Good Way to Learn Vue.js</h4>
           <p>
-            <fa-icon :icon="['fas', 'calendar-alt']"></fa-icon>&nbsp;
+            <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
             <time>2019/10/18 22:20</time>
           </p>
         </header>
@@ -14,7 +14,7 @@
         </p>
         <section>
           <br />
-          <h4>评论</h4>
+          <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; 评论</h4>
           <article>
             <header>
               <h5>发表者：Galin</h5>

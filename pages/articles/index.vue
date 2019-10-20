@@ -1,5 +1,5 @@
 <template>
-  <nuxt-child />
+  <div>Articles</div>
 </template>
 
 <script>

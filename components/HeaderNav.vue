@@ -10,9 +10,9 @@
           v-for="(menu, index) in menus"
           :key="index"
           class="mr-2"
-          :to="menu.path"
+          :to="{ name: menu.routerName }"
           :active="menu.active"
-          @click="activeMenu(index)"
+          @click="activeMenu(menu.routerName)"
         >
           {{ menu.name }}
         </b-nav-item>
@@ -26,8 +26,8 @@
             class="mr-sm-2"
             placeholder="Search"
           ></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit"
-            >Search
+          <b-button size="sm" class="my-2 my-sm-0" type="submit">
+            Search
           </b-button>
         </b-nav-form>
       </b-navbar-nav>
@@ -37,10 +37,10 @@
 
 <script>
 const menus = [
-  { path: '/', name: 'Home', active: false },
-  { path: '/articles', name: 'Articles', active: false },
-  { path: '/photos', name: 'Photos', active: false },
-  { path: '/about', name: 'About Me', active: false }
+  { routerName: 'index', name: 'Home', active: false },
+  { routerName: 'articles', name: 'Articles', active: false },
+  { routerName: 'photos', name: 'Photos', active: false },
+  { routerName: 'about', name: 'About Me', active: false }
 ]
 
 export default {
@@ -50,19 +50,16 @@ export default {
       menus
     }
   },
-  mounted() {
+  beforeMount() {
     for (const menu of this.$data.menus) {
-      if (menu.path === this.$route.path) {
-        menu.active = true
-      }
+      menu.active = this.$route.name === menu.routerName
     }
   },
   methods: {
-    activeMenu(index) {
+    activeMenu(routerName) {
       for (const menu of this.$data.menus) {
-        menu.active = false
+        menu.active = routerName === menu.routerName
       }
-      this.$data.menus[index].active = true
     }
   }
 }
