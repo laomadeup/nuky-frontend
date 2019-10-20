@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <router-view></router-view>
+    <nuxt />
   </b-container>
 </template>
 
@@ -12,5 +12,5 @@ export default {
 
 <style scoped lang="stylus">
 .container
-  min-height calc(100vh - 196px )
+  min-height calc(100vh - 196px)
 </style>

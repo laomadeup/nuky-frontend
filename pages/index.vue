@@ -3,16 +3,18 @@
     <b-col :lg="12" :xl="8" class="divider">
       <article>
         <header>
-          <h3>article元素使用方法</h3>
+          <h4>A Good Way to Learn Vue.js</h4>
           <p>
-            <fa-icon :icon="['fas', 'calendar-alt']"></fa-icon>
-             发表日期：
-            <time pubdate="pubdate">2017/2/9</time>
+            <fa-icon :icon="['fas', 'calendar-alt']"></fa-icon>&nbsp;
+            <time>2019/10/18 22:20</time>
           </p>
         </header>
-        <p>此标签里显示的是article整个文章的主要内容，，下面的section元素里是对该文章的评论</p>
+        <p>
+          此标签里显示的是article整个文章的主要内容，，下面的section元素里是对该文章的评论
+        </p>
         <section>
-          <h3>评论</h3>
+          <br />
+          <h4>评论</h4>
           <article>
             <header>
               <h5>发表者：Galin</h5>
@@ -39,19 +41,16 @@
 </template>
 
 <script>
-export default {
-  name: 'Home'
-}
+export default {}
 </script>
 
 <style scoped lang="stylus">
 .divider
-  border-right 1px solid #CCC
+  border-right 1px solid #cccccc
 
 @media (max-width: 1200px)
   .divider
     border-right none
-    border-bottom 1px solid #CCC
+    border-bottom 1px solid #cccccc
     margin-bottom 20px
-
 </style>
