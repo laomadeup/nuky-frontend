@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header-nav />
-    <b-container>
+    <b-container class="app-main-container">
       <nuxt />
     </b-container>
     <app-footer />
@@ -23,6 +23,6 @@ export default {
 </script>
 
 <style lang="stylus">
-.container
+.app-main-container
   min-height calc(100vh - 196px)
 </style>
