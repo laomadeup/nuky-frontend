@@ -1,6 +1,12 @@
 <template>
-  <b-navbar toggleable="md" type="dark" variant="info" class="mb-4">
-    <b-navbar-brand href="#">Kyun's Blog</b-navbar-brand>
+  <b-navbar
+    id="app-nav"
+    toggleable="md"
+    type="dark"
+    variant="info"
+    class="mb-4"
+  >
+    <b-navbar-brand :to="{ name: 'index' }">Kyun's Blog</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -11,8 +17,6 @@
           :key="index"
           class="mr-2"
           :to="{ name: menu.routerName }"
-          :active="menu.active"
-          @click="activeMenu(menu.routerName)"
         >
           {{ menu.name }}
         </b-nav-item>
@@ -37,7 +41,6 @@
 
 <script>
 const menus = [
-  { routerName: 'index', name: 'Home', active: false },
   { routerName: 'articles', name: 'Articles', active: false },
   { routerName: 'photos', name: 'Photos', active: false },
   { routerName: 'about', name: 'About Me', active: false }
@@ -49,18 +52,6 @@ export default {
     return {
       menus
     }
-  },
-  beforeMount() {
-    for (const menu of this.$data.menus) {
-      menu.active = this.$route.name === menu.routerName
-    }
-  },
-  methods: {
-    activeMenu(routerName) {
-      for (const menu of this.$data.menus) {
-        menu.active = routerName === menu.routerName
-      }
-    }
   }
 }
 </script>
@@ -69,6 +60,10 @@ export default {
 .navbar
   padding-left 350px
   padding-right 350px
+
+#app-nav .nav-link.nuxt-link-active
+  color #b7ffde
+  font-weight 500
 
 @media (max-width: 1700px)
   .navbar
