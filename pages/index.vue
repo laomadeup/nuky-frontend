@@ -40,7 +40,7 @@ export default {
     return { articles: [] }
   },
   async asyncData({ $axios }) {
-    const { data } = await $axios.$get('/article/index')
+    const data = await $axios.$get('/article/index')
     return { articles: data }
   }
 }
