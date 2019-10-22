@@ -1,33 +1,26 @@
 <template>
   <b-row>
     <b-col :lg="12" :xl="8" class="divider">
-      <article>
+      <article v-for="(article, index) in articles" :key="index">
         <header>
-          <h4>A Good Way to Learn Vue.js</h4>
+          <h4>{{ article.title }}</h4>
           <p>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
-            <time>2019/10/18 22:20</time>
+            <time>{{ article.postDate }}</time>
           </p>
         </header>
         <p>
-          此标签里显示的是article整个文章的主要内容，，下面的section元素里是对该文章的评论
+          {{ article.content }}
         </p>
         <section>
           <br />
-          <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; 评论</h4>
-          <article>
+          <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
+          <article v-for="(comment, idx) in article.comments" :key="idx">
             <header>
-              <h5>发表者：Galin</h5>
-              <p>1小时前</p>
+              <h5>author：{{ comment.author }}</h5>
+              <p>{{ comment.postDate }}</p>
             </header>
-            <p>这篇文章很不错啊，顶一下！</p>
-          </article>
-          <article>
-            <header>
-              <h5>发表者：木木</h5>
-              <p>1小时前</p>
-            </header>
-            <p>这篇文章很不错啊，对article解释的很详细</p>
+            <p>{{ comment.content }}</p>
           </article>
         </section>
       </article>
@@ -42,7 +35,14 @@
 
 <script>
 export default {
-  layout: 'app'
+  layout: 'app',
+  data() {
+    return { articles: [] }
+  },
+  async asyncData({ $axios }) {
+    const { data } = await $axios.$get('/article/index')
+    return { articles: data }
+  }
 }
 </script>
 
