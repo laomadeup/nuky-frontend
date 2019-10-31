@@ -36,12 +36,10 @@
 <script>
 export default {
   layout: 'app',
-  data() {
-    return { articles: [] }
-  },
-  async asyncData({ $axios }) {
-    const data = await $axios.$get('/article/index')
-    return { articles: data }
+  computed: {
+    articles() {
+      return this.$store.state.article.recentArticles
+    }
   }
 }
 </script>

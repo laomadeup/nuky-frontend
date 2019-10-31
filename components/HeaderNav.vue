@@ -13,7 +13,7 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <b-nav-item
-          v-for="(menu, index) in menus"
+          v-for="(menu, index) in $store.state.navbar.menus"
           :key="index"
           class="mr-2"
           :to="{ name: menu.routerName }"
@@ -40,18 +40,10 @@
 </template>
 
 <script>
-const menus = [
-  { routerName: 'articles', name: 'Articles', active: false },
-  { routerName: 'photos', name: 'Photos', active: false },
-  { routerName: 'about', name: 'About Me', active: false }
-]
-
 export default {
   name: 'HeaderNav',
   data() {
-    return {
-      menus
-    }
+    return {}
   }
 }
 </script>
