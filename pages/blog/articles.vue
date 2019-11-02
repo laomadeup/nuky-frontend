@@ -1,10 +1,11 @@
 <template>
-  <div>About.vue</div>
+  <nuxt-child />
 </template>
 
 <script>
 export default {
-  layout: 'app'
+  name: 'BlogArticles',
+  layout: 'blog'
 }
 </script>
 

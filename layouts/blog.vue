@@ -11,8 +11,8 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import HeaderNav from '@/components/HeaderNav'
-import Footer from '@/components/Footer'
+import HeaderNav from '@/components/blog/HeaderNav'
+import Footer from '@/components/blog/Footer'
 
 export default {
   components: {

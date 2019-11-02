@@ -53,7 +53,7 @@ export default {
   },
 
   proxy: {
-    '/article/': 'http://localhost:8100'
+    '/api/': 'http://localhost:8080/'
   },
   /*
    ** Build configuration
