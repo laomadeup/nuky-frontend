@@ -1,10 +1,9 @@
 <template>
-  <div>About.vue</div>
+  <div>photos</div>
 </template>
 
 <script>
 export default {
-  name: 'BlogAbout',
   layout: 'blog'
 }
 </script>

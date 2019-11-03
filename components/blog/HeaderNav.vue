@@ -45,9 +45,9 @@ export default {
   data() {
     return {
       menus: [
-        { routerName: 'blog-articles', name: 'Articles' },
-        { routerName: 'blog-photos', name: 'Photos' },
-        { routerName: 'blog-about', name: 'About Me' }
+        { routerName: 'articles', name: 'Articles' },
+        { routerName: 'photos', name: 'Photos' },
+        { routerName: 'about', name: 'About Me' }
       ]
     }
   }

@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: 'BlogArticles',
   layout: 'blog'
 }
 </script>
