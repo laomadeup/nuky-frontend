@@ -41,11 +41,10 @@
 
 <script>
 export default {
-  name: 'HeaderNav',
+  name: 'Nav',
   data() {
     return {
       menus: [
-        { routerName: 'articles', name: 'Articles' },
         { routerName: 'photos', name: 'Photos' },
         { routerName: 'about', name: 'About Me' }
       ]

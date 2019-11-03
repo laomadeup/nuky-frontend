@@ -11,12 +11,12 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import HeaderNav from '@/components/blog/HeaderNav'
+import Nav from '@/components/blog/Nav'
 import Footer from '@/components/blog/Footer'
 
 export default {
   components: {
-    appHeaderNav: HeaderNav,
+    appHeaderNav: Nav,
     appFooter: Footer
   }
 }
