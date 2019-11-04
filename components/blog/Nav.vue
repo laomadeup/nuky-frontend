@@ -6,7 +6,7 @@
     variant="info"
     class="mb-4"
   >
-    <b-navbar-brand :to="{ name: 'index' }">Kyun's Blog</b-navbar-brand>
+    <b-navbar-brand>Kyun's Blog</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -17,6 +17,7 @@
           :key="index"
           class="mr-2"
           :to="{ name: menu.routerName }"
+          :exact="menu.exact"
         >
           {{ menu.name }}
         </b-nav-item>
@@ -45,8 +46,9 @@ export default {
   data() {
     return {
       menus: [
-        { routerName: 'photos', name: 'Photos' },
-        { routerName: 'about', name: 'About Me' }
+        { routerName: 'index', name: 'Index', exact: true },
+        { routerName: 'photos', name: 'Photos', exact: false },
+        { routerName: 'about', name: 'About Me', exact: false }
       ]
     }
   }
