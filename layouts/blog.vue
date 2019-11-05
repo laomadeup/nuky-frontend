@@ -1,9 +1,7 @@
 <template>
   <div>
     <app-header-nav />
-    <b-container class="app-main-container">
-      <nuxt />
-    </b-container>
+    <nuxt />
     <app-footer />
   </div>
 </template>
@@ -11,18 +9,15 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import Nav from '@/components/blog/Nav'
+import Navbar from '@/components/blog/Navbar'
 import Footer from '@/components/blog/Footer'
 
 export default {
   components: {
-    appHeaderNav: Nav,
+    appHeaderNav: Navbar,
     appFooter: Footer
   }
 }
 </script>
 
-<style lang="stylus">
-.app-main-container
-  min-height calc(100vh - 196px)
-</style>
+<style lang="stylus"></style>

@@ -1,11 +1,5 @@
 <template>
-  <b-navbar
-    id="app-nav"
-    toggleable="md"
-    type="dark"
-    variant="info"
-    class="mb-4"
-  >
+  <b-navbar id="app-nav" toggleable="md" type="dark" variant="info">
     <b-navbar-brand>Kyun's Blog</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -42,7 +36,7 @@
 
 <script>
 export default {
-  name: 'Nav',
+  name: 'Navbar',
   data() {
     return {
       menus: [
