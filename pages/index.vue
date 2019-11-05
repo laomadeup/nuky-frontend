@@ -3,9 +3,9 @@
     <b-col :lg="12" :xl="8" class="divider">
       <article v-for="(article, index) in articles" :key="index">
         <header>
-          <h4>{{ article.title }}</h4>
+          <h3>{{ article.title }}</h3>
           <p>
-            <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
+            <fa-icon class="text-info" :icon="['far', 'clock']" />&nbsp;
             <time>{{ new Date(article.postDate).toLocaleString() }}</time>
           </p>
         </header>
