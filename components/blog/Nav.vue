@@ -47,6 +47,7 @@ export default {
     return {
       menus: [
         { routerName: 'index', name: 'Home', exact: true },
+        { routerName: 'articles-page-number', name: 'Articles', exact: false },
         { routerName: 'photos', name: 'Photos', exact: false },
         { routerName: 'about', name: 'About Me', exact: false }
       ]
