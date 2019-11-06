@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container>
     <b-row>
       <b-col :lg="12" :xl="8" class="divider">
         <article v-for="(article, index) in articles" :key="index">
@@ -13,31 +13,26 @@
           <p>
             {{ article.content }}
           </p>
-          <section>
-            <br />
-            <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
-            <article v-for="(comment, idx) in article.comments" :key="idx">
-              <header>
-                <h5>author：{{ comment.user.name }}</h5>
-                <p>{{ new Date(comment.createDate).toLocaleString() }}</p>
-              </header>
-              <p>{{ comment.content }}</p>
-            </article>
-          </section>
         </article>
       </b-col>
       <b-col :lg="12" :xl="4">
-        <div>
-          <span>侧栏</span>
-        </div>
+        <article-aside />
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
+import ArticleAside from '@/components/blog/ArticleAside'
+
 export default {
-  layout: 'blog'
+  layout: 'blog',
+  comments: {
+    articleAside: ArticleAside
+  },
+  data() {
+    return { articles: [] }
+  }
 }
 </script>
 

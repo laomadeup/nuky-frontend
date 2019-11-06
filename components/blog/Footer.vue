@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="wrap">
+    <div class="wrap mt-3">
       <div class="foot-center">
         <span &nbsp;class="foot-info">
           <fa-icon :icon="['far', 'copyright']" />
@@ -36,7 +36,7 @@ export default {
   width 645px;
 
 .foot-border
-  border-right 1px solid #666666;
+  border-right 1px solid #cccccc;
   margin 0 8px;
 
 .foot-year

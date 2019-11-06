@@ -1,5 +1,11 @@
 <template>
-  <b-navbar id="app-nav" toggleable="md" type="dark" variant="info">
+  <b-navbar
+    id="app-nav"
+    class="mb-4"
+    toggleable="md"
+    type="dark"
+    variant="info"
+  >
     <b-navbar-brand>Kyun's Blog</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -41,7 +47,6 @@ export default {
     return {
       menus: [
         { routerName: 'index', name: 'Home', exact: true },
-        { routerName: 'articles-page-number', name: 'Articles', exact: false },
         { routerName: 'photos', name: 'Photos', exact: false },
         { routerName: 'about', name: 'About Me', exact: false }
       ]
