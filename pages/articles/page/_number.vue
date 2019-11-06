@@ -27,7 +27,7 @@ import ArticleAside from '@/components/blog/ArticleAside'
 
 export default {
   layout: 'blog',
-  comments: {
+  components: {
     articleAside: ArticleAside
   },
   data() {
