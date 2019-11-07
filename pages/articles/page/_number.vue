@@ -2,6 +2,7 @@
   <b-container>
     <b-row>
       <b-col :lg="12" :xl="8" class="divider">
+        <p v-if="articles.length === 0">Articles Null</p>
         <article v-for="(article, index) in articles" :key="index">
           <header>
             <h4>{{ article.title }}</h4>
@@ -32,6 +33,13 @@ export default {
   },
   data() {
     return { articles: [] }
+  },
+  async asyncData({ $axios, params }) {
+    const pageNumber = params.number ? params.number : 1
+    const { data } = await $axios.get(
+      '/api/article-api/article/page/' + pageNumber
+    )
+    return { articles: data.content }
   }
 }
 </script>

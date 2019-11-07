@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faGithub, faGithubSquare } from '@fortawesome/free-brands-svg-icons'
-import { faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
   faCopyright,
@@ -15,7 +15,8 @@ library.add(
   faClock,
   faCommentDots,
   faCopyright,
-  faEnvelope
+  faEnvelope,
+  faCalendarAlt
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

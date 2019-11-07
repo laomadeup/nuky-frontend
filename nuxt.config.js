@@ -65,5 +65,14 @@ export default {
     extend(config, ctx) {
       config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
     }
+  },
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'index',
+        path: '/',
+        component: '@/pages/articles/page/_number.vue'
+      })
+    }
   }
 }
