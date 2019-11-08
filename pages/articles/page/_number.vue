@@ -15,6 +15,7 @@
             {{ article.content }}
           </p>
         </article>
+        <article-page />
       </b-col>
       <b-col :lg="12" :xl="4">
         <article-aside />
@@ -25,11 +26,13 @@
 
 <script>
 import ArticleAside from '@/components/blog/ArticleAside'
+import Pagination from '@/components/blog/Pagination'
 
 export default {
   layout: 'blog',
   components: {
-    articleAside: ArticleAside
+    articleAside: ArticleAside,
+    articlePage: Pagination
   },
   data() {
     return { articles: [] }
@@ -47,6 +50,9 @@ export default {
 <style scoped lang="stylus">
 .divider
   border-right 1px solid #cccccc
+
+article
+  margin-bottom 30px
 
 @media (max-width: 1200px)
   .divider

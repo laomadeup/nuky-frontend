@@ -1,12 +1,18 @@
 <template>
   <div>
-    <span>侧栏</span>
+    <span>ArticleAside</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ArticleAside'
+  name: 'ArticleAside',
+  data() {
+    return { hotArticles: [] }
+  },
+  mounted() {
+    // async data from server
+  }
 }
 </script>
 
