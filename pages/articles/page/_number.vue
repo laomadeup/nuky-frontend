@@ -34,8 +34,10 @@ export default {
     articleAside: ArticleAside,
     articlePage: Pagination
   },
-  data() {
-    return { articles: this.$store.state.article.pageContent }
+  computed: {
+    articles() {
+      return this.$store.state.article.pageContent
+    }
   },
   async asyncData({ $axios, params, store }) {
     const pageNumber = params.number ? params.number : 1
