@@ -35,28 +35,34 @@ export default {
     articlePage: Pagination
   },
   data() {
-    return { articles: [] }
+    return { articles: this.$store.state.article.pageContent }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, params, store }) {
     const pageNumber = params.number ? params.number : 1
-    const { data } = await $axios.get(
-      '/api/article-api/article/page/' + pageNumber
+    const data = await $axios.$get(
+      '/api/article-api/articles/page/' + pageNumber
     )
-    return { articles: data.content }
+    // update page info
+    store.dispatch('article/setpageContent', data)
+    return {}
   }
 }
 </script>
 
 <style scoped lang="stylus">
+border-color-gray = #cccccc
+
 .divider
-  border-right 1px solid #cccccc
+  border-right 1px solid border-color-gray
 
 article
-  margin-bottom 30px
+  margin-bottom: 30px
+  border-bottom: 1px solid border-color-gray
+  padding-bottom: 20px
 
 @media (max-width: 1200px)
   .divider
     border-right none
-    border-bottom 1px solid #cccccc
+    border-bottom 1px solid border-color-gray
     margin-bottom 20px
 </style>

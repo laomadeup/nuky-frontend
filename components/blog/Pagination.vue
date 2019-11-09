@@ -1,24 +1,29 @@
 <template>
   <b-pagination-nav
-    base-url="/article/page/"
-    :number-of-pages="totlePage"
+    :number-of-pages="totalPages"
     :link-gen="linkGen"
+    :value="pageNumber"
     align="center"
-    aria-controls="my-table"
   ></b-pagination-nav>
 </template>
 
 <script>
 export default {
   name: 'Pagination',
-  data() {
-    return {
-      totlePage: 100
+  computed: {
+    totalPages() {
+      return this.$store.state.pagination.totalPages
+    },
+    pageNumber() {
+      return this.$store.state.pagination.pageNumber
     }
   },
   methods: {
-    linkGen(pageNum) {
-      return `/articles/page/${pageNum}`
+    linkGen(pageNumber) {
+      return {
+        name: 'articles-page-number',
+        params: { number: pageNumber }
+      }
     }
   }
 }

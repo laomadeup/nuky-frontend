@@ -1,15 +1,23 @@
 export const state = () => ({
-  recentArticles: []
+  pageContent: []
 })
 
 export const mutations = {
-  setRecentArticles(state, recentArticles) {
-    state.recentArticles = recentArticles
+  setpageContent(state, pageContent) {
+    state.pageContent = pageContent
   }
 }
 
 export const actions = {
-  setRecentArticles: ({ commit }, recentArticles) => {
-    commit('setRecentArticles', recentArticles)
+  setpageContent: (context, { content, totalPages, pageable }) => {
+    context.commit('setpageContent', content)
+    context.dispatch(
+      'pagination/setPageInfo',
+      {
+        totalPages,
+        pageNumber: pageable.pageNumber + 1
+      },
+      { root: true }
+    )
   }
 }
