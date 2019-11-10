@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  layout: 'blog',
+  layout: 'AppBlogArticle',
   data() {
     return {
       article: null

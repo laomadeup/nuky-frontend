@@ -61,7 +61,7 @@ export default {
   padding-right 350px
 
 #app-nav .nav-link.nuxt-link-active
-  color #ffffff
+  color white
   font-weight 500
 
 @media (max-width: 1700px)

@@ -1,26 +1,19 @@
 <template>
-  <footer>
-    <div class="wrap mt-3">
-      <div class="foot-center">
-        <span &nbsp;class="foot-info">
-          <fa-icon :icon="['far', 'copyright']" />
-          <span class="foot-year">2019</span>
-          <span class="foot-title">Kyun's Blog</span>
-        </span>
-        <span class="foot-border"></span>
-        <span class="foot-contact">
-          <fa-icon class="text-warning" :icon="['far', 'envelope']" />
-          <a href="mailto:admin@iamkyun.com">admin@iamkyun.com</a>
-        </span>
-        <span class="foot-border"></span>
-        <span class="foot-contact">
-          <fa-icon class="text-secondary" :icon="['fab', 'github']" />
-          <a tagert="_blank" href="https://github.com/iamkyun">iamKyun</a>
-        </span>
-        <span class="foot-border"></span>
-        <span class="foot-number">粤ICP备15106619号</span>
-      </div>
-    </div>
+  <footer class="flex-box mt-3 mb-3 pt-3">
+    <section>
+      <fa-icon :icon="['far', 'copyright']" />
+      <span>2019</span>
+      <span>Kyun's Blog</span>
+    </section>
+    <section>
+      <fa-icon class="text-warning" :icon="['far', 'envelope']" />
+      <a href="mailto:admin@iamkyun.com">admin@iamkyun.com</a>
+    </section>
+    <section>
+      <fa-icon class="text-secondary" :icon="['fab', 'github']" />
+      <a tagert="_blank" href="https://github.com/iamkyun">iamKyun</a>
+    </section>
+    <section>粤ICP备15106619号</section>
   </footer>
 </template>
 
@@ -29,31 +22,40 @@ export default {
   name: 'Footer'
 }
 </script>
-
 <style scoped lang="stylus">
-.foot-center
-  margin 20px auto;
-  width 645px;
+@import "~assets/styuls/colors"
 
-.foot-border
-  border-right 1px solid #cccccc;
-  margin 0 8px;
+.flex-box
+  display flex
+  flex-wrap wrap
+  justify-content center
+  align-content center
+  border-top: 1px solid #ccc;
 
-.foot-year
-  font-weight 700;
-  height 20px;
-  line-height 20px;
+.flex-box > section
+  margin-top 5px
+  text-align center
+  padding 0 10px
+
+  &:not(:first-child)
+    border-left 1px solid $border-color-gray
 
 
-.foot-title
-  font-weight 700;
-  font-style italic;
-  height 20px;
-  line-height 20px;
+@media (max-width: 768px)
+  .flex-box > section
+    border-left none
+    flex 0 0 50%
 
-.foot-contact a:hover
-  color #008ec2;
+    &:nth-child(odd)
+      border-left none
 
-.foot-number
-  color #666666;
+    &:nth-child(even)
+      border-left 1px solid $border-color-gray
+
+@media (max-width: 414px)
+  .flex-box > section
+    flex 0 0 100%
+
+    &:nth-child(even)
+      border-left none
 </style>

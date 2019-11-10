@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <span>ArticleAside</span>
-  </div>
+  <span>ArticleAside</span>
 </template>
 
 <script>
@@ -16,4 +14,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="stylus"></style>
