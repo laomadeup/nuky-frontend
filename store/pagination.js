@@ -14,8 +14,8 @@ export const actions = {
   setPageInfo({ commit }, pageInfo) {
     commit('setPageInfo', pageInfo)
   },
-  async pagedQuery(context, { axios, queryURL, contentAction }) {
-    const data = await axios.$get(queryURL)
+  async pagedQuery(context, { queryURL, contentAction }) {
+    const data = await this.$axios.$get(queryURL)
     context.dispatch(contentAction, data.content, { root: true })
     // update page info
     context.commit('setPageInfo', {

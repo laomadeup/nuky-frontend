@@ -37,11 +37,11 @@ export default {
     }
   },
   async asyncData({ $axios, params, store }) {
+    // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
     await store.dispatch('pagination/pagedQuery', {
-      axios: $axios,
       queryURL: '/api/article-api/articles/page/' + pageNumber,
-      contentAction: 'article/setpageContent'
+      contentAction: 'article/setPageContent'
     })
     return {}
   }

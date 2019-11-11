@@ -17,7 +17,7 @@
         <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
         <article v-for="(comment, idx) in article.comments" :key="idx">
           <header>
-            <h5>author：{{ comment.user.name }}</h5>
+            <h5>author：{{ comment.user.username }}</h5>
             <p>{{ new Date(comment.createDate).toLocaleString() }}</p>
           </header>
           <p>{{ comment.content }}</p>
