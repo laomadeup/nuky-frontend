@@ -1,12 +1,6 @@
 const Mock = require('mockjs')
 const Random = Mock.Random
 
-router.render = (req, res) => {
-  res.jsonp({
-    body: res.locals.data
-  })
-}
-
 module.exports = function() {
   return { articles }
 }
