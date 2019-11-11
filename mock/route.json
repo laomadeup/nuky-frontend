@@ -1,0 +1,4 @@
+{
+  "/api/article-api/articles/page/:number": "/articles?_page=:number&_limit=5",
+  "/api/article-api/article/:id": "/articles?id=:id"
+}
