@@ -36,7 +36,7 @@ export default {
       return this.$store.state.article.pageContent
     }
   },
-  async asyncData({ $axios, params, store }) {
+  async asyncData({ params, store }) {
     // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
     await store.dispatch('pagination/pagedQuery', {

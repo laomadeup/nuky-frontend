@@ -4,6 +4,6 @@ export const mutations = {}
 
 export const actions = {
   async nuxtServerInit({ dispatch }) {
-    await dispatch('article/loadPopularArticles')
+    await dispatch('article/getPopularArticles')
   }
 }

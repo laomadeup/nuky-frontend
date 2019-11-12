@@ -15,13 +15,27 @@
       <section>
         <br />
         <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
-        <article v-for="(comment, idx) in article.comments" :key="idx">
-          <header>
-            <h5>author：{{ comment.user.username }}</h5>
-            <p>{{ new Date(comment.createDate).toLocaleString() }}</p>
-          </header>
-          <p>{{ comment.content }}</p>
-        </article>
+        <b-card v-for="(comment, cIndex) in article.comments" :key="cIndex">
+          <b-media>
+            <span class="mt-0 comment-user comment-user-main"
+              >{{ comment.user.username }} :</span
+            >
+            <p class="ml-4">{{ comment.content }}</p>
+
+            <b-media
+              v-for="(ccomment, ccIndex) in comment.comments"
+              :key="ccIndex"
+              class="ml-4 mt-1"
+            >
+              <span class="mt-0 comment-user comment-user-minor"
+                >{{ ccomment.user.username }} :</span
+              >
+              <p class="ml-4">
+                {{ ccomment.content }}
+              </p>
+            </b-media>
+          </b-media>
+        </b-card>
       </section>
     </article>
   </div>
@@ -32,14 +46,12 @@ export default {
   layout: 'AppBlogArticle',
   data() {
     return {
-      article: null
+      article: this.$store.state.article.article
     }
   },
-  async asyncData({ $axios, params }) {
-    const { data: article } = await $axios.get(
-      '/api/article-api/article/' + params.id
-    )
-    return { article }
+  async asyncData({ params, store }) {
+    await store.dispatch('article/getArticle', { id: params.id })
+    return {}
   },
   validate({ params }) {
     // params.id must be number
@@ -48,4 +60,16 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="stylus">
+@import "~assets/styuls/colors"
+
+.comment-user
+  cursor pointer
+  font-weight bold
+  &:hover
+    color $title-hover
+  &.comment-user-main
+    font-size 18px
+  &.comment-user-minor
+    font-size 16px
+</style>

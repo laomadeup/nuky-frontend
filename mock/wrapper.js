@@ -9,22 +9,19 @@ function wrap(req, res) {
   if (isPagedQuery(req)) {
     console.log('wrapper : pageRes')
     pageRes(req, res)
+  } else {
+    res.jsonp(res.locals.data)
   }
 }
 
 function pageRes(req, res) {
-  const url = req.url
-  const queryString = url.substring(url.indexOf('?') + 1)
+  const queryString = req.url.substring(req.url.indexOf('?') + 1)
   const queries = require('querystring').parse(queryString)
-  const curPage = Number(queries[PAGE_FLAG])
-  const pageable = { pageNumber: curPage - 1 }
   const totalCount = res.get('X-Total-Count')
-  const data = res.locals.data
-  const totalPages = Math.ceil(totalCount / PAGE_LIMIT)
   res.jsonp({
-    content: data,
-    totalPages,
-    pageable
+    content: res.locals.data,
+    totalPages: Math.ceil(totalCount / PAGE_LIMIT),
+    pageable: { pageNumber: Number(queries[PAGE_FLAG]) - 1 }
   })
 }
 
