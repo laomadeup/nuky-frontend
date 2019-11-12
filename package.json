@@ -10,7 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "mock": "json-server --routes mock/route.json -p 8080 mock/mockdb.js"
+    "mock": "node mock/server.js"
   },
   "dependencies": {
     "nuxt": "^2.0.0",
