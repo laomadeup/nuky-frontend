@@ -1,4 +1,5 @@
 const PAGE_FLAG = '_page'
+const PAGE_LIMIT = 5
 
 function isPagedQuery(req) {
   return req.url.includes(PAGE_FLAG)
@@ -7,17 +8,22 @@ function isPagedQuery(req) {
 function wrap(req, res) {
   if (isPagedQuery(req)) {
     console.log('wrapper : pageRes')
-    pageRes(res)
+    pageRes(req, res)
   }
 }
 
-function pageRes(res) {
-  // res.getHeaders()['x-total-count']
+function pageRes(req, res) {
+  const url = req.url
+  const queryString = url.substring(url.indexOf('?') + 1)
+  const queries = require('querystring').parse(queryString)
+  const curPage = Number(queries[PAGE_FLAG])
+  const totalCount = res.get('X-Total-Count')
   const data = res.locals.data
+  const totalPages = Math.ceil(totalCount / PAGE_LIMIT)
   res.jsonp({
     content: data,
-    totalPages: 3,
-    curPage: 1
+    totalPages,
+    curPage
   })
 }
 
