@@ -1,29 +1,35 @@
 <template>
   <div>
-    <p v-if="articles.length === 0">Articles Null</p>
-    <article
-      v-for="(article, index) in articles"
-      :key="index"
-      class="article-page-item"
-    >
-      <header>
-        <nuxt-link
-          class="link-title"
-          tag="h4"
-          :to="{ name: 'article-id', params: { id: article.id } }"
-        >
-          {{ article.title }}
-        </nuxt-link>
+    <div v-if="articles.length === 0">
+      Nothing here...
+      <br />
+      <nuxt-link :to="{ name: 'index' }">back to home page>></nuxt-link>
+    </div>
+    <div v-else>
+      <article
+        v-for="(article, index) in articles"
+        :key="index"
+        class="article-page-item"
+      >
+        <header>
+          <nuxt-link
+            class="link-title"
+            tag="h4"
+            :to="{ name: 'article-id', params: { id: article.id } }"
+          >
+            {{ article.title }}
+          </nuxt-link>
+          <p>
+            <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
+            <time>{{ new Date(article.postDate).toLocaleString() }}</time>
+          </p>
+        </header>
         <p>
-          <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
-          <time>{{ new Date(article.postDate).toLocaleString() }}</time>
+          {{ article.content }}
         </p>
-      </header>
-      <p>
-        {{ article.content }}
-      </p>
-    </article>
-    <article-page />
+      </article>
+      <article-page />
+    </div>
   </div>
 </template>
 
