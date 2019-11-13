@@ -1,10 +1,14 @@
 <template>
   <div>
     <p v-if="articles.length === 0">Articles Null</p>
-    <article v-for="(article, index) in articles" :key="index">
+    <article
+      v-for="(article, index) in articles"
+      :key="index"
+      class="article-page-item"
+    >
       <header>
         <nuxt-link
-          class="article-title"
+          class="link-title"
           tag="h4"
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
@@ -49,15 +53,5 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import "~assets/styuls/colors"
-
-article
-  margin-bottom: 30px
-  border-bottom: 1px solid $border-color-gray
-  padding-bottom: 20px
-
-.article-title
-  cursor pointer
-  &:hover
-    color $title-hover
+@import "~assets/style/article/main"
 </style>

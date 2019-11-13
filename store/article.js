@@ -1,6 +1,6 @@
 export const state = () => ({
   pageContent: [],
-  popularArticles: [],
+  popularArticles: { fetchTime: null, data: [] },
   article: null
 })
 
@@ -8,8 +8,9 @@ export const mutations = {
   setPageContent(state, pageContent) {
     state.pageContent = pageContent
   },
-  setPopularArticles(state, popularArticles) {
-    state.popularArticles = popularArticles
+  setPopularArticles(state, data) {
+    state.popularArticles.fetchTime = new Date().getTime()
+    state.popularArticles.data = data
   },
   setArticle(state, article) {
     state.article = article

@@ -3,10 +3,10 @@
     <app-header-nav />
     <b-container>
       <b-row>
-        <b-col :md="12" :lg="6" :xl="8">
+        <b-col :md="12" :lg="7" :xl="8">
           <nuxt />
         </b-col>
-        <b-col :md="12" :lg="6" :xl="4" class="divider">
+        <b-col :md="12" :lg="5" :xl="4" class="divider">
           <article-aside />
         </b-col>
       </b-row>
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import "~assets/styuls/colors"
+@import "~assets/style/common/colors"
 
 .divider
   border-left 1px solid $border-color-gray

@@ -23,7 +23,7 @@ export default {
 }
 </script>
 <style scoped lang="stylus">
-@import "~assets/styuls/colors"
+@import "~assets/style/common/colors"
 
 .flex-box
   display flex
