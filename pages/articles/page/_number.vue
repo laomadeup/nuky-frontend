@@ -53,5 +53,14 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import "~assets/style/article/main"
+@import "~assets/style/common/colors"
+.article-page-item
+  margin-bottom 30px
+  border-bottom 1px solid $border-color-gray
+  padding-bottom 20px
+
+.link-title
+  cursor pointer
+  &:hover
+    color $title-hover
 </style>
