@@ -1,22 +1,13 @@
-# nuky
+# Nuky
 
-> My riveting Nuxt.js project
+> blog app based on Nuxt.js(frontend) and Spring Cloud(backend)
 
-## Build Setup
+### Run dev env
 
 ``` bash
-# install dependencies
-$ npm run install
+# simulate backend data
+$ npm run mock
 
-# serve with hot reload at localhost:3000
+# start up server
 $ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
