@@ -1,5 +1,6 @@
 {
   "/api/article-api/articles/page/:number": "/articles?_page=:number&_limit=5",
   "/api/article-api/article/:id": "/articles/:id",
-  "/api/article-api/articles/popular": "/articles?_start=0&_end=10"
+  "/api/article-api/articles/popular": "/articles?_start=0&_end=10",
+  "/api/article-api/comment/articleComent/:id/page/:number": "/articleComments?articleId=:id&_page=:number&_limit=5"
 }
