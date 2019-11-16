@@ -25,8 +25,15 @@ export const actions = {
     const data = await this.$axios.$get('/api/article-api/articles/popular')
     commit('setPopularArticles', data)
   },
-  async getArticle({ commit }, { id }) {
+  async getArticle({ commit }, id) {
     const data = await this.$axios.$get('/api/article-api/article/' + id)
     commit('setArticle', data)
+  },
+  async pagedQueryArticles(context, pageNumber) {
+    const data = await this.$axios.$get(
+      `/api/article-api/articles/page/${pageNumber}`
+    )
+    context.dispatch('pagination/setPageInfo', data, { root: true })
+    context.commit('setPageContent', data.content)
   }
 }

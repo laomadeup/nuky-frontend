@@ -11,16 +11,10 @@ export const mutations = {
 }
 
 export const actions = {
-  setPageInfo({ commit }, pageInfo) {
-    commit('setPageInfo', pageInfo)
-  },
-  async pagedQuery(context, { queryURL, contentAction }) {
-    const data = await this.$axios.$get(queryURL)
-    context.dispatch(contentAction, data.content, { root: true })
-    // update page info
-    context.commit('setPageInfo', {
-      totalPages: data.totalPages,
-      pageNumber: data.pageable.pageNumber + 1
+  setPageInfo({ commit }, { totalPages, pageable }) {
+    commit('setPageInfo', {
+      totalPages,
+      pageNumber: pageable.pageNumber + 1
     })
   }
 }

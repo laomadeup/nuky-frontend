@@ -49,11 +49,7 @@ export default {
   async asyncData({ params, store }) {
     // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
-    await store.dispatch('pagination/pagedQuery', {
-      queryURL: '/api/article-api/articles/page/' + pageNumber,
-      contentAction: 'article/setPageContent'
-    })
-    return {}
+    await store.dispatch('article/pagedQueryArticles', pageNumber)
   }
 }
 </script>
