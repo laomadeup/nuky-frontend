@@ -33,7 +33,9 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    // Doc: https://www.npmjs.com/package/@nuxtjs/moment
+    '@nuxtjs/moment'
   ],
   /*
    ** Nuxt.js modules
@@ -66,6 +68,9 @@ export default {
       config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
     }
   },
+  /**
+   * router config
+   */
   router: {
     extendRoutes(routes, resolve) {
       routes.push({
@@ -74,5 +79,12 @@ export default {
         component: '@/pages/articles/page/_number.vue'
       })
     }
+  },
+  /**
+   * moment.js config
+   */
+  moment: {
+    defaultLocale: 'en',
+    locales: ['zh-hk', 'zh-tw', 'ja', 'zh-cn']
   }
 }

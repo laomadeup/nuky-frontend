@@ -2,27 +2,11 @@
   <section>
     <br />
     <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
-    <b-card v-for="(comment, cIndex) in comments" :key="cIndex" class="mb-2">
-      <b-media>
-        <span class="mt-0 comment-user comment-user-main">
-          {{ comment.user.username }} :
-        </span>
-        <p class="ml-4">{{ comment.content }}</p>
-
-        <b-media
-          v-for="(ccomment, ccIndex) in comment.comments"
-          :key="ccIndex"
-          class="ml-4 mt-1"
-        >
-          <span class="mt-0 comment-user comment-user-minor">
-            {{ ccomment.user.username }} :
-          </span>
-          <p class="ml-4">
-            {{ ccomment.content }}
-          </p>
-        </b-media>
-      </b-media>
-    </b-card>
+    <div v-for="(comment, cIndex) in comments" :key="cIndex">
+      <span> {{ comment.user.username }}</span>
+      <span> {{ $moment(comment.createDate).fromNow() }}</span>
+      <p class="ml-4">{{ comment.content }}</p>
+    </div>
   </section>
 </template>
 
@@ -40,13 +24,38 @@ export default {
   },
   data() {
     return {
-      comments: this.$store.state.comment.comments
+      pageNumber: 0,
+      totalPages: 0,
+      comments: []
     }
   },
   async mounted() {
-    await this.$store.dispatch('comment/loadComments', this.articleId)
+    await this.loadComments()
+  },
+  methods: {
+    async loadComments() {
+      const { content, pageable, totalPages } = await this.$axios.$get(
+        `/api/article-api/comment/articleComments/${this.articleId}/page/${this
+          .pageNumber + 1}`
+      )
+      this.comments.push(...content)
+      this.pageNumber = pageable.pageNumber + 1
+      this.totalPages = totalPages
+    }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="stylus">
+@import "~assets/style/common/colors"
+
+.comment-user
+  cursor pointer
+  font-weight bold
+  &:hover
+    color $title-hover
+  &.comment-user-main
+    font-size 18px
+  &.comment-user-minor
+    font-size 16px
+</style>

@@ -1,19 +1,19 @@
 const Mock = require('mockjs')
 const Random = Mock.Random
+const moment = require('moment')
 const articleSize = 27
 
 module.exports = function() {
-  return { articles, articleComments }
+  return { articles, articleComments, replyComments }
 }
 
 const articles = (() => {
   const articles = []
-
   for (let i = 1; i <= articleSize; i++) {
     const article = {
       id: i,
       title: Random.sentence(5, 10),
-      postDate: new Date(Random.datetime()).getTime(),
+      postDate: moment(Random.datetime()).format(),
       content: Random.paragraph(5, 8),
       comments: []
     }
@@ -27,58 +27,66 @@ const articles = (() => {
 const articleComments = (() => {
   const articleComments = []
   let commentId = 1000
-  let replyCommentId = 10000
   for (let i = 1; i <= articleSize; i++) {
     const thisGenComments = []
     const commentSize = Math.floor(Math.random() * 10)
     for (let j = 0; j < commentSize; j++) {
+      const isReplayThisComment = Math.ceil(Math.random() * 3) % 1 === 0
+      let replyCommentSize = Math.ceil(Math.random() * 10) + 5
+      if (!isReplayThisComment) {
+        replyCommentSize = 0
+      }
       const comment = {
         id: commentId++,
         articleId: i,
         user: { username: Random.name() },
-        createDate: new Date(Random.datetime()).getTime(),
+        createDate: moment(Random.datetime()).format(),
         content: Random.sentence(5, 15),
-        replyComments: []
+        replyCommentSize
       }
       thisGenComments.push(comment)
     }
-    // replay replyComments
-    for (let j = 0; j < thisGenComments.length; j++) {
-      const isReplayThisComment = Math.ceil(Math.random() * 3) % 1 === 0
-      if (!isReplayThisComment) {
-        continue
-      }
 
-      const articleComentId = thisGenComments[j].id
-      const commentSize = Math.ceil(Math.random() * 10) + 5
-      for (let k = 0; k < commentSize; k++) {
-        const replyComment = {
-          id: replyCommentId,
-          user: { username: Random.name() },
-          createDate: new Date(Random.datetime()).getTime(),
-          content: Random.sentence(5, 15),
-          replyTo: articleComentId
-        }
-        thisGenComments[j].replyComments.push(replyComment)
-        replyCommentId++
-
-        const isReplayThisComent = Math.ceil(Math.random() * 4) % 1 === 0
-        if (!isReplayThisComent) {
-          continue
-        }
-
-        const replyLastComment = {
-          id: replyCommentId,
-          user: { username: Random.name() },
-          createDate: new Date(Random.datetime()).getTime(),
-          content: Random.sentence(5, 15),
-          replyTo: replyCommentId - 1
-        }
-        thisGenComments[j].replyComments.push(replyLastComment)
-        replyCommentId++
-      }
-    }
     articleComments.push(...thisGenComments)
   }
   return articleComments
+})()
+
+const replyComments = (() => {
+  const replyCommentArray = []
+  let replyCommentId = 10000
+  // replay replyComments
+  for (let j = 0; j < articleComments.length; j++) {
+    const articleComentId = articleComments[j].id
+    const commentSize = articleComments[j].replyCommentSize
+    for (let k = 0; k < commentSize; k++) {
+      const replyComment = {
+        id: articleComments,
+        commentId: articleComentId,
+        user: { username: Random.name() },
+        createDate: moment(Random.datetime()).format(),
+        content: Random.sentence(5, 15),
+        replyTo: articleComentId
+      }
+      replyCommentArray.push(replyComment)
+      replyCommentId++
+
+      const isReplayThisComent = Math.ceil(Math.random() * 4) % 1 === 0
+      if (!isReplayThisComent) {
+        continue
+      }
+
+      const replyLastComment = {
+        id: replyCommentId,
+        belongCommentId: articleComentId,
+        user: { username: Random.name() },
+        createDate: moment(Random.datetime()).format(),
+        content: Random.sentence(5, 15),
+        replyTo: replyCommentId - 1
+      }
+      replyCommentArray.push(replyLastComment)
+      replyCommentId++
+    }
+  }
+  return replyCommentArray
 })()

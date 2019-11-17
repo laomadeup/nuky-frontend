@@ -7,7 +7,9 @@
           <h4>{{ article.title }}</h4>
           <p>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
-            <time>{{ new Date(article.postDate).toLocaleString() }}</time>
+            <time>
+              {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
+            </time>
           </p>
         </header>
         <p>
@@ -28,11 +30,12 @@ export default {
   },
   data() {
     return {
-      article: this.$store.state.article.article
+      article: null
     }
   },
-  async asyncData({ params, store }) {
-    await store.dispatch('article/getArticle', params.id)
+  async asyncData({ params, store, $axios }) {
+    const data = await $axios.$get(`/api/article-api/article/${params.id}`)
+    return { article: data }
   },
   validate({ params }) {
     // params.id must be number
@@ -41,16 +44,4 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import "~assets/style/common/colors"
-
-.comment-user
-  cursor pointer
-  font-weight bold
-  &:hover
-    color $title-hover
-  &.comment-user-main
-    font-size 18px
-  &.comment-user-minor
-    font-size 16px
-</style>
+<style scoped lang="stylus"></style>

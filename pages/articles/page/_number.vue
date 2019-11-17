@@ -21,35 +21,54 @@
           </nuxt-link>
           <p>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
-            <time>{{ new Date(article.postDate).toLocaleString() }}</time>
+            <time>
+              {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
+            </time>
           </p>
         </header>
         <p>
           {{ article.content }}
         </p>
       </article>
-      <article-page />
+      <b-pagination-nav
+        :number-of-pages="totalPages"
+        :link-gen="linkGen"
+        :value="pageNumber"
+        align="center"
+      ></b-pagination-nav>
     </div>
   </div>
 </template>
 
 <script>
-import Pagination from '@/components/blog/Pagination'
-
 export default {
   layout: 'AppBlogArticle',
-  components: {
-    articlePage: Pagination
-  },
-  computed: {
-    articles() {
-      return this.$store.state.article.pageContent
+  data() {
+    return {
+      pageNumber: 0,
+      totalPages: 0,
+      articles: []
     }
   },
-  async asyncData({ params, store }) {
+  async asyncData({ params, store, $axios }) {
     // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
-    await store.dispatch('article/pagedQueryArticles', pageNumber)
+    const { content, totalPages, pageable } = await $axios.$get(
+      `/api/article-api/articles/page/${pageNumber}`
+    )
+    return {
+      articles: content,
+      totalPages,
+      pageNumber: pageable.pageNumber + 1
+    }
+  },
+  methods: {
+    linkGen(pageNumber) {
+      return {
+        name: 'articles-page-number',
+        params: { number: pageNumber }
+      }
+    }
   }
 }
 </script>
