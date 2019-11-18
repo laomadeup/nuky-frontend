@@ -14,7 +14,7 @@ const articles = (() => {
       id: i,
       title: Random.sentence(5, 10),
       postDate: moment(Random.datetime()).format(),
-      content: Random.paragraph(5, 8),
+      content: Random.paragraph(20, 25),
       comments: []
     }
 

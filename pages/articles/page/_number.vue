@@ -26,9 +26,17 @@
             </time>
           </p>
         </header>
-        <p>
+        <div class="article-body">
           {{ article.content }}
-        </p>
+        </div>
+        <div class="article-show-all link-title">
+          <nuxt-link
+            tag="span"
+            :to="{ name: 'article-id', params: { id: article.id } }"
+          >
+            --- Show more ---
+          </nuxt-link>
+        </div>
       </article>
       <b-pagination-nav
         :number-of-pages="totalPages"
@@ -79,6 +87,16 @@ export default {
   margin-bottom 30px
   border-bottom 1px solid $border-color-gray
   padding-bottom 20px
+
+.article-body
+  max-height 12.2rem
+  overflow hidden
+
+.article-show-all
+  text-align center
+  height 2rem
+  line-height 2rem
+  color $title
 
 .link-title
   cursor pointer
