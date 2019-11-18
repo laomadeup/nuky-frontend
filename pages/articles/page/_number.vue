@@ -31,7 +31,7 @@
         <div class="article-body">
           <div>{{ article.content }}</div>
         </div>
-        <div v-if="article.showMore" class="article-show-all link-title">
+        <div v-show="article.showMore" class="article-show-all link-title">
           <nuxt-link
             tag="span"
             :to="{ name: 'article-id', params: { id: article.id } }"
@@ -66,6 +66,9 @@ export default {
     const { content, totalPages, pageable } = await $axios.$get(
       `/api/article-api/articles/page/${pageNumber}`
     )
+    for (const item of content) {
+      item.showMore = false
+    }
     return {
       articles: content,
       totalPages,
@@ -73,24 +76,18 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.getHeight()
-    })
+    const articleBoxes = this.$refs.articleBox
+    for (const articleBox of articleBoxes) {
+      this.articles[articleBox.getAttribute('index')].showMore =
+        articleBox.querySelector('.article-body').children[0].clientHeight >
+        articleBox.querySelector('.article-body').clientHeight
+    }
   },
   methods: {
     linkGen(pageNumber) {
       return {
         name: 'articles-page-number',
         params: { number: pageNumber }
-      }
-    },
-    getHeight() {
-      //  获取遍历 this.items 每个div 元素的宽度  offsetWidth;
-      const articleBoxes = this.$refs.articleBox
-      for (const articleBox of articleBoxes) {
-        this.articles[articleBox.getAttribute('index')].showMore =
-          articleBox.querySelector('.article-body').children[0].clientHeight >
-          articleBox.querySelector('.article-body').clientHeight
       }
     }
   }
