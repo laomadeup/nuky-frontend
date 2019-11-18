@@ -9,7 +9,9 @@
       <article
         v-for="(article, index) in articles"
         :key="index"
+        ref="articleBox"
         class="article-page-item"
+        :index="index"
       >
         <header>
           <nuxt-link
@@ -27,9 +29,9 @@
           </p>
         </header>
         <div class="article-body">
-          {{ article.content }}
+          <div>{{ article.content }}</div>
         </div>
-        <div class="article-show-all link-title">
+        <div v-if="article.showMore" class="article-show-all link-title">
           <nuxt-link
             tag="span"
             :to="{ name: 'article-id', params: { id: article.id } }"
@@ -70,11 +72,25 @@ export default {
       pageNumber: pageable.pageNumber + 1
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.getHeight()
+    })
+  },
   methods: {
     linkGen(pageNumber) {
       return {
         name: 'articles-page-number',
         params: { number: pageNumber }
+      }
+    },
+    getHeight() {
+      //  获取遍历 this.items 每个div 元素的宽度  offsetWidth;
+      const articleBoxes = this.$refs.articleBox
+      for (const articleBox of articleBoxes) {
+        this.articles[articleBox.getAttribute('index')].showMore =
+          articleBox.querySelector('.article-body').children[0].clientHeight >
+          articleBox.querySelector('.article-body').clientHeight
       }
     }
   }
