@@ -5,7 +5,8 @@ import { faGithub, faGithubSquare } from '@fortawesome/free-brands-svg-icons'
 import {
   faCalendarAlt,
   faCommentDots,
-  faFireAlt
+  faFireAlt,
+  faCaretDown
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
@@ -21,7 +22,8 @@ library.add(
   faCopyright,
   faEnvelope,
   faCalendarAlt,
-  faFireAlt
+  faFireAlt,
+  faCaretDown
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

@@ -1,13 +1,59 @@
 <template>
-  <section>
-    <br />
+  <div>
     <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
-    <div v-for="(comment, cIndex) in comments" :key="cIndex">
-      <span> {{ comment.user.username }}</span>
-      <span> {{ $moment(comment.createDate).fromNow() }}</span>
-      <p class="ml-4">{{ comment.content }}</p>
-    </div>
-  </section>
+    <ul
+      v-for="(comment, cIndex) in comments"
+      :key="cIndex"
+      class="list-unstyled"
+    >
+      <b-media tag="li">
+        <template v-slot:aside>
+          <b-img blank blank-color="#abc" width="48" alt="placeholder"></b-img>
+        </template>
+        <div class="comment-main mb-2">
+          <span class="comment-user mr-2">
+            {{ comment.user.username }}
+          </span>
+          <span class="comment-time">
+            {{ $moment(comment.createDate).fromNow() }}
+          </span>
+          <p class="mb-0">
+            {{ comment.content }}
+          </p>
+        </div>
+        <b-media v-for="(reply, rIndex) in comment.replies" :key="rIndex">
+          <template v-slot:aside>
+            <b-img
+              blank
+              blank-color="#ccc"
+              width="32"
+              alt="placeholder"
+              class="mt-2"
+            ></b-img>
+          </template>
+          <div class="mt-1 mb-2">
+            <span class="comment-user mr-2">
+              {{ reply.user.username }}
+            </span>
+            <span class="comment-time">
+              {{ $moment(reply.createDate).fromNow() }}
+            </span>
+
+            <p class="mb-0">
+              {{ reply.content }}
+            </p>
+          </div>
+        </b-media>
+        <div
+          v-if="comment.hasReply"
+          class="view-reply"
+          @click="loadReply(comment.id)"
+        >
+          <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
+        </div>
+      </b-media>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -41,6 +87,9 @@ export default {
       this.comments.push(...content)
       this.pageNumber = pageable.pageNumber + 1
       this.totalPages = totalPages
+    },
+    loadReply(commentId) {
+      console.log('loading reply comment : ', commentId)
     }
   }
 }
@@ -48,14 +97,20 @@ export default {
 
 <style scoped lang="stylus">
 @import "~assets/style/common/colors"
+@import "~assets/style/common/public"
+.comment-main
+  min-height 48px
 
 .comment-user
-  cursor pointer
   font-weight bold
-  &:hover
-    color $title-hover
-  &.comment-user-main
-    font-size 18px
-  &.comment-user-minor
-    font-size 16px
+
+.comment-time
+  color $lignt-text-color
+
+.view-reply
+  link()
+  link-hover()
+
+  &::after
+    content ' View reply'
 </style>

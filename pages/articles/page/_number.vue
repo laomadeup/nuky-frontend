@@ -31,14 +31,13 @@
         <div class="article-body">
           <div>{{ article.content }}</div>
         </div>
-        <div v-show="article.showMore" class="article-show-all link-title">
-          <nuxt-link
-            tag="span"
-            :to="{ name: 'article-id', params: { id: article.id } }"
-          >
-            --- Show more ---
-          </nuxt-link>
-        </div>
+        <nuxt-link
+          v-show="article.showMore"
+          class="article-show-all"
+          tag="div"
+          :to="{ name: 'article-id', params: { id: article.id } }"
+        >
+        </nuxt-link>
       </article>
       <b-pagination-nav
         :number-of-pages="totalPages"
@@ -96,6 +95,8 @@ export default {
 
 <style scoped lang="stylus">
 @import "~assets/style/common/colors"
+@import "~assets/style/common/public"
+
 .article-page-item
   margin-bottom 30px
   border-bottom 1px solid $border-color-gray
@@ -109,10 +110,13 @@ export default {
   text-align center
   height 2rem
   line-height 2rem
-  color $title
+  link()
+  link-hover()
+  &:hover
+    background-color #CCCCCC33
+  &::before
+    content '--- SHOW MORE ---'
 
 .link-title
-  cursor pointer
-  &:hover
-    color $title-hover
+  link-hover()
 </style>

@@ -56,7 +56,7 @@ export default {
   text-overflow ellipsis
   white-space nowrap
   &:hover
-    color $title-hover
+    color $link-hover-color
     text-decoration-line underline
   &:last-child
     border-bottom 1px solid #cccccc
