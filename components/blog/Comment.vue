@@ -8,14 +8,23 @@
     >
       <b-media tag="li">
         <template v-slot:aside>
-          <b-img blank blank-color="#abc" width="48" alt="placeholder"></b-img>
+          <b-img-lazy
+            width="48"
+            blank
+            blank-color="#abc"
+            alt="avatar"
+            :src="comment.user.avatar"
+          ></b-img-lazy>
         </template>
         <div class="comment-main mb-2">
           <span class="comment-user mr-2">
             {{ comment.user.username }}
           </span>
           <span class="comment-time">
-            {{ $moment(comment.createDate).fromNow() }}
+            <fa-icon class="align-middle" :icon="['far', 'clock']" size="xs" />
+            <span class="align-middle">
+              {{ $moment(comment.createDate).fromNow() }}
+            </span>
           </span>
           <p class="mb-0">
             {{ comment.content }}
@@ -23,20 +32,28 @@
         </div>
         <b-media v-for="(reply, rIndex) in comment.replies" :key="rIndex">
           <template v-slot:aside>
-            <b-img
-              blank
-              blank-color="#ccc"
+            <b-img-lazy
               width="32"
-              alt="placeholder"
+              blank
+              blank-color="#abc"
+              alt="avatar"
               class="mt-2"
-            ></b-img>
+              :src="reply.user.avatar"
+            ></b-img-lazy>
           </template>
           <div class="mt-1 mb-2">
             <span class="comment-user mr-2">
               {{ reply.user.username }}
             </span>
             <span class="comment-time">
-              {{ $moment(reply.createDate).fromNow() }}
+              <fa-icon
+                class="align-middle"
+                :icon="['far', 'clock']"
+                size="xs"
+              />
+              <span class="align-middle">
+                {{ $moment(reply.createDate).fromNow() }}
+              </span>
             </span>
 
             <p class="mb-0">
@@ -47,7 +64,7 @@
         <div
           v-if="comment.hasReply"
           class="view-reply"
-          @click="loadReply(comment.id)"
+          @click="loadReply(comment)"
         >
           <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
         </div>
@@ -84,12 +101,22 @@ export default {
         `/api/article-api/comment/articleComments/${this.articleId}/page/${this
           .pageNumber + 1}`
       )
+      for (const item of content) {
+        item.pageNumber = 0
+      }
       this.comments.push(...content)
       this.pageNumber = pageable.pageNumber + 1
       this.totalPages = totalPages
     },
-    loadReply(commentId) {
-      console.log('loading reply comment : ', commentId)
+    async loadReply(comment) {
+      const { content, pageable, totalPages } = await this.$axios.$get(
+        `/api/article-api/comment/replyComments/${
+          comment.id
+        }/page/${comment.pageNumber + 1}`
+      )
+      comment.pageNumber = pageable.pageNumber + 1
+      comment.hasReply = comment.pageNumber < totalPages
+      comment.replies.push(...content)
     }
   }
 }

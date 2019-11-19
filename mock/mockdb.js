@@ -35,7 +35,10 @@ const articleComments = (() => {
       const comment = {
         id: commentId++,
         articleId: i,
-        user: { username: Random.name() },
+        user: {
+          username: Random.name(),
+          avatar: Random.image('48x48', Random.color())
+        },
         createDate: moment(Random.datetime()).format(),
         content: Random.sentence(5, 15),
         hasReply: isReplayThisComment,
@@ -79,7 +82,10 @@ function Conment(id, articleComentId, replyCommentId) {
   return {
     id,
     commentId: articleComentId,
-    user: { username: Random.name() },
+    user: {
+      username: Random.name(),
+      avatar: Random.image('32x32', Random.color())
+    },
     createDate: moment(Random.datetime()).format(),
     content: Random.sentence(5, 15),
     replyTo: replyCommentId != null ? replyCommentId : articleComentId
