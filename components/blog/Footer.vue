@@ -14,6 +14,7 @@
       <a tagert="_blank" href="https://github.com/iamkyun">iamKyun</a>
     </section>
     <section>粤ICP备15106619号</section>
+    <div id="bottomMark"></div>
   </footer>
 </template>
 

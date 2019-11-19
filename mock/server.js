@@ -1,4 +1,6 @@
 const jsonServer = require('json-server')
+const pause = require('connect-pause')
+
 const server = jsonServer.create()
 const db = require('./mockdb')
 const wrapper = require('./wrapper')
@@ -12,7 +14,7 @@ router.render = (req, res) => {
 }
 
 server.use(jsonServer.rewriter(routes))
-
+server.use(pause(config.delay))
 server.use(middlewares)
 server.use(router)
 server.listen(config.port, () => {

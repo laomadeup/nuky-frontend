@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div id="topMark"></div>
     <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
     <ul
       v-for="(comment, cIndex) in comments"
@@ -29,6 +30,26 @@
           <p class="mb-0">
             {{ comment.content }}
           </p>
+        </div>
+        <div
+          v-if="comment.hasReply && !comment.isShowReply"
+          class="view-reply"
+          @click="loadReply(comment)"
+        >
+          <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
+        </div>
+        <div
+          v-if="comment.hasReply && comment.isShowReply"
+          class="hide-reply"
+          @click="hideReply(comment)"
+        >
+          <fa-icon class="mr-2" :icon="['fas', 'caret-up']" />
+        </div>
+        <div
+          v-show="comment.isLoddingReply"
+          class="text-center justify-content-center"
+        >
+          <b-spinner variant="info"></b-spinner>
         </div>
         <b-media v-for="(reply, rIndex) in comment.replies" :key="rIndex">
           <template v-slot:aside>
@@ -61,15 +82,11 @@
             </p>
           </div>
         </b-media>
-        <div
-          v-if="comment.hasReply"
-          class="view-reply"
-          @click="loadReply(comment)"
-        >
-          <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
-        </div>
       </b-media>
     </ul>
+    <div v-show="isLoddingComents" class="text-center justify-content-center">
+      <b-spinner variant="info"></b-spinner>
+    </div>
   </div>
 </template>
 
@@ -89,34 +106,59 @@ export default {
     return {
       pageNumber: 0,
       totalPages: 0,
-      comments: []
+      comments: [],
+      isLoddingComents: false
     }
   },
   async mounted() {
+    window.addEventListener('scroll', this.handleScroll)
     await this.loadComments()
   },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
+    handleScroll() {
+      if (this.pageNumber === this.totalPages) {
+        return
+      }
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop
+      const windowHeight =
+        document.documentElement.clientHeight || document.body.clientHeight
+      const scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight
+      if (scrollTop + windowHeight >= scrollHeight) {
+        this.loadComments()
+      }
+    },
     async loadComments() {
+      this.isLoddingComents = true
       const { content, pageable, totalPages } = await this.$axios.$get(
         `/api/article-api/comment/articleComments/${this.articleId}/page/${this
           .pageNumber + 1}`
       )
       for (const item of content) {
-        item.pageNumber = 0
+        item.isShowReply = false
+        item.isLoddingReply = false
       }
       this.comments.push(...content)
       this.pageNumber = pageable.pageNumber + 1
       this.totalPages = totalPages
+      this.isLoddingComents = false
     },
     async loadReply(comment) {
-      const { content, pageable, totalPages } = await this.$axios.$get(
-        `/api/article-api/comment/replyComments/${
-          comment.id
-        }/page/${comment.pageNumber + 1}`
+      comment.isLoddingReply = true
+      const content = await this.$axios.$get(
+        `/api/article-api/comment/replyComments/${comment.id}`
       )
-      comment.pageNumber = pageable.pageNumber + 1
-      comment.hasReply = comment.pageNumber < totalPages
+      comment.isShowReply = true
       comment.replies.push(...content)
+      comment.isLoddingReply = false
+    },
+    hideReply(comment) {
+      comment.replies = []
+      comment.isShowReply = false
     }
   }
 }
@@ -134,10 +176,13 @@ export default {
 .comment-time
   color $lignt-text-color
 
-.view-reply
+.view-reply,.hide-reply
   link()
   link-hover()
 
-  &::after
+.view-reply::after
     content ' View reply'
+
+.hide-reply::after
+    content ' Hide reply'
 </style>
