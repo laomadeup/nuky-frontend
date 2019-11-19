@@ -15,6 +15,7 @@ const articles = (() => {
       title: Random.sentence(5, 10),
       postDate: moment(Random.datetime()).format(),
       content: Random.paragraph(20, 25),
+      commentAmount: Math.floor(Math.random() * 15),
       comments: []
     }
 
@@ -27,21 +28,21 @@ const articles = (() => {
 const articleComments = (() => {
   const articleComments = []
   let commentId = 1000
-  for (let i = 1; i <= articleSize; i++) {
+  for (let i = 0; i < articles.length; i++) {
+    const article = articles[i]
     const thisGenComments = []
-    const commentSize = Math.floor(Math.random() * 10)
-    for (let j = 0; j < commentSize; j++) {
-      const isReplayThisComment = Math.ceil(Math.random() * 3) % 3 === 0
+    for (let j = 0; j < article.commentAmount; j++) {
+      const hasReply = Math.ceil(Math.random() * 5) % 2 === 0
       const comment = {
         id: commentId++,
-        articleId: i,
+        articleId: article.id,
         user: {
           username: Random.name(),
           avatar: Random.image('48x48', Random.color())
         },
         createDate: moment(Random.datetime()).format(),
         content: Random.sentence(5, 15),
-        hasReply: isReplayThisComment,
+        hasReply,
         replies: []
       }
       thisGenComments.push(comment)
@@ -69,7 +70,7 @@ const replyComments = (() => {
         const replyLastComment = new Conment(
           replyCommentId++,
           articleComentId,
-          replyComment.id
+          replyComment
         )
         replyCommentArray.push(replyLastComment)
       }
@@ -78,7 +79,7 @@ const replyComments = (() => {
   return replyCommentArray
 })()
 
-function Conment(id, articleComentId, replyCommentId) {
+function Conment(id, articleComentId, replyComment) {
   return {
     id,
     commentId: articleComentId,
@@ -88,6 +89,6 @@ function Conment(id, articleComentId, replyCommentId) {
     },
     createDate: moment(Random.datetime()).format(),
     content: Random.sentence(5, 15),
-    replyTo: replyCommentId != null ? replyCommentId : articleComentId
+    replyComment
   }
 }

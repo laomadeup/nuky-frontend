@@ -16,7 +16,10 @@
           {{ article.content }}
         </p>
       </article>
-      <app-comment :article-id="article.id"></app-comment>
+      <app-comment
+        :article-id="article.id"
+        :comment-amount="article.commentAmount"
+      ></app-comment>
     </div>
   </div>
 </template>

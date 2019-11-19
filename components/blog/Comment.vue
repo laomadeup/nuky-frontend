@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div id="topMark"></div>
-    <h4><fa-icon :icon="['fas', 'comment-dots']" />&nbsp; Comments</h4>
+    <h4><fa-icon :icon="['fas', 'comment-dots']" /> Comment</h4>
+    <p class="comment-amount mb-2">total {{ commentAmount }} comments</p>
+    <div v-if="comments.length === 0">No one comment yet</div>
     <ul
       v-for="(comment, cIndex) in comments"
       :key="cIndex"
       class="list-unstyled"
     >
-      <b-media tag="li">
+      <b-media :id="'comment-' + comment.id" tag="li">
         <template v-slot:aside>
           <b-img-lazy
             width="48"
@@ -17,30 +18,30 @@
             :src="comment.user.avatar"
           ></b-img-lazy>
         </template>
-        <div class="comment-main mb-2">
+        <section class="comment-main mb-2">
           <span class="comment-user mr-2">
             {{ comment.user.username }}
           </span>
           <span class="comment-time">
-            <fa-icon class="align-middle" :icon="['far', 'clock']" size="xs" />
-            <span class="align-middle">
+            <fa-icon :icon="['far', 'clock']" size="xs" />
+            <span>
               {{ $moment(comment.createDate).fromNow() }}
             </span>
           </span>
           <p class="mb-0">
             {{ comment.content }}
           </p>
-        </div>
+        </section>
         <div
           v-if="comment.hasReply && !comment.isShowReply"
-          class="view-reply"
+          class="reply-link view-reply"
           @click="loadReply(comment)"
         >
           <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
         </div>
         <div
           v-if="comment.hasReply && comment.isShowReply"
-          class="hide-reply"
+          class="reply-link hide-reply"
           @click="hideReply(comment)"
         >
           <fa-icon class="mr-2" :icon="['fas', 'caret-up']" />
@@ -51,7 +52,11 @@
         >
           <b-spinner variant="info"></b-spinner>
         </div>
-        <b-media v-for="(reply, rIndex) in comment.replies" :key="rIndex">
+        <b-media
+          v-for="(reply, rIndex) in comment.replies"
+          :id="'comment-' + reply.id"
+          :key="rIndex"
+        >
           <template v-slot:aside>
             <b-img-lazy
               width="32"
@@ -62,25 +67,27 @@
               :src="reply.user.avatar"
             ></b-img-lazy>
           </template>
-          <div class="mt-1 mb-2">
+          <section class="mt-1 mb-2">
             <span class="comment-user mr-2">
               {{ reply.user.username }}
             </span>
             <span class="comment-time">
-              <fa-icon
-                class="align-middle"
-                :icon="['far', 'clock']"
-                size="xs"
-              />
-              <span class="align-middle">
+              <fa-icon :icon="['far', 'clock']" size="xs" />
+              <span>
                 {{ $moment(reply.createDate).fromNow() }}
               </span>
             </span>
 
             <p class="mb-0">
+              <a
+                v-if="reply.replyComment"
+                :href="'#comment-' + reply.replyComment.id"
+              >
+                @{{ reply.replyComment.user.username }} :
+              </a>
               {{ reply.content }}
             </p>
-          </div>
+          </section>
         </b-media>
       </b-media>
     </ul>
@@ -100,6 +107,10 @@ export default {
       isValid(value) {
         return value != null
       }
+    },
+    commentAmount: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -119,7 +130,11 @@ export default {
   },
   methods: {
     handleScroll() {
-      if (this.pageNumber === this.totalPages) {
+      if (
+        this.commentAmount === 0 ||
+        this.pageNumber === this.totalPages ||
+        this.isLoddingComents
+      ) {
         return
       }
       const scrollTop =
@@ -167,6 +182,10 @@ export default {
 <style scoped lang="stylus">
 @import "~assets/style/common/colors"
 @import "~assets/style/common/public"
+
+.comment-amount
+  color $lignt-text-color
+
 .comment-main
   min-height 48px
 
@@ -176,7 +195,7 @@ export default {
 .comment-time
   color $lignt-text-color
 
-.view-reply,.hide-reply
+.reply-link
   link()
   link-hover()
 

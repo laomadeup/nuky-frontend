@@ -1,5 +1,5 @@
 const PAGE_FLAG = '_page'
-const PAGE_LIMIT = 5
+const PAGE_LIMIT_FLAG = '_limit'
 
 function isPagedQuery(req) {
   return req.url.includes(PAGE_FLAG)
@@ -20,7 +20,7 @@ function pageRes(req, res) {
   const totalCount = res.get('X-Total-Count')
   res.jsonp({
     content: res.locals.data,
-    totalPages: Math.ceil(totalCount / PAGE_LIMIT),
+    totalPages: Math.ceil(totalCount / Number(queries[PAGE_LIMIT_FLAG])),
     pageable: { pageNumber: Number(queries[PAGE_FLAG]) - 1 }
   })
 }
