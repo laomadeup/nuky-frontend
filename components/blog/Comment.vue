@@ -3,7 +3,7 @@
     <h4><fa-icon :icon="['fas', 'comment-dots']" /> Comment</h4>
     <p class="comment-amount mb-2">Total {{ commentAmount }} comments</p>
     <div v-if="comments.length === 0">No one comment yet</div>
-    <ul v-for="comment in comments" :key="comment.id">
+    <ul v-for="comment in comments" :key="comment.id" class="pl-0">
       <b-media :id="'comment-' + comment.id" tag="li">
         <template v-slot:aside>
           <b-img-lazy
