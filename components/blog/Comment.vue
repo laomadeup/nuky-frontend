@@ -1,13 +1,9 @@
 <template>
   <div>
     <h4><fa-icon :icon="['fas', 'comment-dots']" /> Comment</h4>
-    <p class="comment-amount mb-2">total {{ commentAmount }} comments</p>
+    <p class="comment-amount mb-2">Total {{ commentAmount }} comments</p>
     <div v-if="comments.length === 0">No one comment yet</div>
-    <ul
-      v-for="(comment, cIndex) in comments"
-      :key="cIndex"
-      class="list-unstyled"
-    >
+    <ul v-for="comment in comments" :key="comment.id">
       <b-media :id="'comment-' + comment.id" tag="li">
         <template v-slot:aside>
           <b-img-lazy
@@ -33,18 +29,14 @@
           </p>
         </section>
         <div
-          v-if="comment.hasReply && !comment.isShowReply"
-          class="reply-link view-reply"
-          @click="loadReply(comment)"
+          v-if="comment.hasReply"
+          :class="comment.isShowReply ? 'hide-reply' : 'view-reply'"
+          @click="toggleReply(comment)"
         >
-          <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
-        </div>
-        <div
-          v-if="comment.hasReply && comment.isShowReply"
-          class="reply-link hide-reply"
-          @click="hideReply(comment)"
-        >
-          <fa-icon class="mr-2" :icon="['fas', 'caret-up']" />
+          <fa-icon
+            class="mr-2"
+            :icon="['fas', comment.isShowReply ? 'caret-up' : 'caret-down']"
+          />
         </div>
         <div
           v-show="comment.isLoddingReply"
@@ -53,9 +45,10 @@
           <b-spinner variant="info"></b-spinner>
         </div>
         <b-media
-          v-for="(reply, rIndex) in comment.replies"
+          v-for="reply in comment.replies"
           :id="'comment-' + reply.id"
-          :key="rIndex"
+          :key="reply.id"
+          class="comment-hint"
         >
           <template v-slot:aside>
             <b-img-lazy
@@ -82,6 +75,7 @@
               <a
                 v-if="reply.replyComment"
                 :href="'#comment-' + reply.replyComment.id"
+                @click="commentHint(reply.replyComment.id)"
               >
                 @{{ reply.replyComment.user.username }} :
               </a>
@@ -98,6 +92,14 @@
 </template>
 
 <script>
+const keyframes = (() => {
+  const fr = []
+  for (let i = 0; i <= 10; i++) {
+    fr.push({ opacity: 1 - i / 10 })
+  }
+  return fr
+})()
+
 export default {
   name: 'Comment',
   props: {
@@ -162,18 +164,30 @@ export default {
       this.totalPages = totalPages
       this.isLoddingComents = false
     },
-    async loadReply(comment) {
-      comment.isLoddingReply = true
-      const content = await this.$axios.$get(
-        `/api/article-api/comment/replyComments/${comment.id}`
-      )
-      comment.isShowReply = true
-      comment.replies.push(...content)
-      comment.isLoddingReply = false
+    async toggleReply(comment) {
+      if (comment.isShowReply) {
+        comment.replies = []
+      } else {
+        comment.isLoddingReply = true
+        const content = await this.$axios.$get(
+          `/api/article-api/comment/replyComments/${comment.id}`
+        )
+        comment.replies.push(...content)
+        comment.isLoddingReply = false
+      }
+      comment.isShowReply = !comment.isShowReply
     },
-    hideReply(comment) {
-      comment.replies = []
-      comment.isShowReply = false
+    commentHint(id) {
+      const el = document.querySelector(`#comment-${id}`)
+      // anime
+      this.$anime({
+        targets: [el],
+        easing: 'easeInOutSine',
+        keyframes,
+        direction: 'alternate',
+        loop: 4,
+        duration: 400
+      })
     }
   }
 }
@@ -195,7 +209,7 @@ export default {
 .comment-time
   color $lignt-text-color
 
-.reply-link
+.view-reply,.hide-reply
   link()
   link-hover()
 

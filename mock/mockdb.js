@@ -65,7 +65,7 @@ const replyComments = (() => {
       const replyComment = new Conment(replyCommentId++, articleComentId)
       replyCommentArray.push(replyComment)
 
-      const isReplayThisComent = Math.ceil(Math.random() * 5) % 5 === 0
+      const isReplayThisComent = Math.ceil(Math.random() * 2) % 2 === 0
       if (isReplayThisComent) {
         const replyLastComment = new Conment(
           replyCommentId++,
