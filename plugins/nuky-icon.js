@@ -7,7 +7,8 @@ import {
   faCommentDots,
   faFireAlt,
   faCaretDown,
-  faCaretUp
+  faCaretUp,
+  faTags
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
@@ -25,7 +26,8 @@ library.add(
   faCalendarAlt,
   faFireAlt,
   faCaretDown,
-  faCaretUp
+  faCaretUp,
+  faTags
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

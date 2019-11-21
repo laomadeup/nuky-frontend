@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/nuky-bootstrap', '~/plugins/vue-inject.js'],
+  plugins: ['~/plugins/nuky-icon', '~/plugins/vue-inject.js'],
   /*
    ** Nuxt.js dev-modules
    */
