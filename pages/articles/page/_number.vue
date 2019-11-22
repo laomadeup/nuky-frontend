@@ -37,6 +37,7 @@
           tag="div"
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
+          --- SHOW MORE ---
         </nuxt-link>
       </article>
       <b-pagination-nav
@@ -93,30 +94,31 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import "~assets/style/common/colors"
-@import "~assets/style/common/public"
+<style scoped lang="scss">
+@import '~assets/style/common/public';
 
-.article-page-item
-  margin-bottom 30px
-  border-bottom 1px solid $border-color-gray
-  padding-bottom 20px
+.article-page-item {
+  margin-bottom: 30px;
+  border-bottom: 1px solid gray('400');
+  padding-bottom: 20px;
+}
 
-.article-body
-  max-height 12.2rem
-  overflow hidden
+.article-body {
+  max-height: 12.2rem;
+  overflow: hidden;
+}
 
-.article-show-all
-  text-align center
-  height 2rem
-  line-height 2rem
-  link()
-  link-hover()
-  &:hover
-    background-color #CCCCCC33
-  &::before
-    content '--- SHOW MORE ---'
+.article-show-all {
+  text-align: center;
+  height: 2rem;
+  line-height: 2rem;
+  @include link(color('cyan'));
+  &:hover {
+    background-color: rgba(204, 204, 204, 0.2);
+  }
+}
 
-.link-title
-  link-hover()
+.link-title {
+  @include link(gray('800'));
+}
 </style>

@@ -54,32 +54,29 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-.navbar
-  padding-left 350px
-  padding-right 350px
+<style scoped lang="scss">
+@mixin nuky-navbar($var) {
+  padding-left: $var;
+  padding-right: $var;
+}
 
-#app-nav .nav-link.nuxt-link-active
-  color white
-  font-weight 500
+#app-nav .nav-link.nuxt-link-active {
+  color: white;
+  font-weight: 500;
+}
 
-@media (max-width: 1700px)
-  .navbar
-    padding-left 200px
-    padding-right 200px
+#app-nav.navbar {
+  @include nuky-navbar(350px);
+  @media (max-width: 1700px) {
+    @include nuky-navbar(200px);
+  }
 
-@media (max-width: 1500px)
-  .navbar
-    padding-left 150px
-    padding-right 150px
+  @media (max-width: 1500px) {
+    @include nuky-navbar(100px);
+  }
 
-@media (max-width: 1500px)
-  .navbar
-    padding-left 50px
-    padding-right 50px
-
-@media (max-width: 1200px)
-  .navbar
-    padding-left 20px
-    padding-right 20px
+  @media (max-width: 1200px) {
+    @include nuky-navbar(20px);
+  }
+}
 </style>

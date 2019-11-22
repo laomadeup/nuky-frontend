@@ -17,8 +17,4 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@include media-breakpoint-only(xs) {
-
- }
-</style>
+<style scoped lang="scss"></style>

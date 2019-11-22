@@ -31,15 +31,18 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import "~assets/style/common/colors"
+<style scoped lang="scss">
+@import '~assets/style/common/public';
 
-.divider
-  border-left 1px solid $border-color-gray
-  padding-left 20px
-  margin-bottom 50px
+.divider {
+  border-left: 1px solid $gray-300;
+  padding-left: 20px;
+  margin-bottom: 50px;
+}
 
-@media (max-width: 992px)
-  .divider
-    display none
+@media (max-width: 992px) {
+  .divider {
+    display: none;
+  }
+}
 </style>

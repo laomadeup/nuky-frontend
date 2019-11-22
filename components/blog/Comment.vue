@@ -193,29 +193,35 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import "~assets/style/common/colors"
-@import "~assets/style/common/public"
+<style scoped lang="scss">
+@import '~assets/style/common/public';
 
-.comment-amount
-  color $lignt-text-color
+.comment-amount {
+  color: $gray-800;
+}
 
-.comment-main
-  min-height 48px
+.comment-main {
+  min-height: 48px;
+}
 
-.comment-user
-  font-weight bold
+.comment-user {
+  font-weight: bold;
+}
 
-.comment-time
-  color $lignt-text-color
+.view-reply,
+.hide-reply {
+  @include link();
+}
 
-.view-reply,.hide-reply
-  link()
-  link-hover()
+.comment-time {
+  color: $gray-800;
+}
 
-.view-reply::after
-    content ' View reply'
+.view-reply::after {
+  content: ' View reply';
+}
 
-.hide-reply::after
-    content ' Hide reply'
+.hide-reply::after {
+  content: ' Hide reply';
+}
 </style>

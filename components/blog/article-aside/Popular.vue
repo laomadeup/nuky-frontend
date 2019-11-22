@@ -46,19 +46,24 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import "~assets/style/common/colors"
+<style scoped lang="scss">
+@import '~assets/style/common/public';
 
-.popular-item
-  cursor pointer
-  border-top 1px solid $border-color-gray
-  line-height 1.4rem
-  overflow  hidden
-  text-overflow ellipsis
-  white-space nowrap
-  &:hover
-    color $link-hover-color
-    text-decoration-line underline
-  &:last-child
-    border-bottom 1px solid $border-color-gray
+.popular-item {
+  cursor: pointer;
+  border-top: 1px solid $gray-300;
+  line-height: 1.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popular-item:hover {
+  color: $link-hover-color;
+  text-decoration-line: underline;
+}
+
+.popular-item:last-child {
+  border-bottom: 1px solid $gray-300;
+}
 </style>

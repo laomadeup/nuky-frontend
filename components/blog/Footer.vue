@@ -23,40 +23,49 @@ export default {
   name: 'Footer'
 }
 </script>
-<style scoped lang="stylus">
-@import "~assets/style/common/colors"
+<style scoped lang="scss">
+@import '~assets/style/common/public';
 
-.flex-box
-  display flex
-  flex-wrap wrap
-  justify-content center
-  align-content center
-  border-top: 1px solid #ccc;
+.flex-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  border-top: 1px solid $gray-300;
+}
 
-.flex-box > section
-  margin-top 5px
-  text-align center
-  padding 0 10px
+.flex-box > section {
+  margin-top: 5px;
+  text-align: center;
+  padding: 0 10px;
+}
 
-  &:not(:first-child)
-    border-left 1px solid $border-color-gray
+.flex-box > section:not(:first-child) {
+  border-left: 1px solid $gray-300;
+}
 
+@media (max-width: 768px) {
+  .flex-box > section {
+    border-left: none;
+    flex: 0 0 50%;
+  }
 
-@media (max-width: 768px)
-  .flex-box > section
-    border-left none
-    flex 0 0 50%
+  .flex-box > section:nth-child(odd) {
+    border-left: none;
+  }
 
-    &:nth-child(odd)
-      border-left none
+  .flex-box > section:nth-child(even) {
+    border-left: 1px solid $gray-300;
+  }
+}
 
-    &:nth-child(even)
-      border-left 1px solid $border-color-gray
+@media (max-width: 414px) {
+  .flex-box > section {
+    flex: 0 0 100%;
+  }
 
-@media (max-width: 414px)
-  .flex-box > section
-    flex 0 0 100%
-
-    &:nth-child(even)
-      border-left none
+  .flex-box > section:nth-child(even) {
+    border-left: none;
+  }
+}
 </style>

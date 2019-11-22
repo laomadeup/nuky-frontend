@@ -9,7 +9,8 @@ module.exports = {
     // for JetBrains editor
     alias: {
       '@': path.resolve(__dirname),
-      assets: path.resolve(__dirname, './assets')
+      assets: path.resolve(__dirname, './assets'),
+      '~assets': path.resolve(__dirname, './assets')
     }
   }
 }
