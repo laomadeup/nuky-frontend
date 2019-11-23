@@ -12,24 +12,25 @@
             </time>
           </p>
         </header>
-        <p>
-          {{ article.content }}
-        </p>
+        <article-content :content="article.content" />
       </article>
-      <app-comment
+      <article-comment
         :article-id="article.id"
         :comment-amount="article.commentAmount"
-      ></app-comment>
+      ></article-comment>
     </div>
   </div>
 </template>
 
 <script>
-import Comment from '@/components/blog/Comment'
+import ArticleComment from '@/components/blog/ArticleComment'
+import ArticleContent from '@/components/blog/ArticleContent'
+
 export default {
   layout: 'AppBlogArticle',
   components: {
-    appComment: Comment
+    ArticleComment,
+    ArticleContent
   },
   data() {
     return {

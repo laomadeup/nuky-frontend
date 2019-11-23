@@ -29,7 +29,7 @@
           </p>
         </header>
         <div class="article-body">
-          <div>{{ article.content }}</div>
+          <article-content :content="article.content" />
         </div>
         <nuxt-link
           v-show="article.showMore"
@@ -51,8 +51,13 @@
 </template>
 
 <script>
+import ArticleContent from '@/components/blog/ArticleContent'
+
 export default {
   layout: 'AppBlogArticle',
+  components: {
+    ArticleContent
+  },
   data() {
     return {
       pageNumber: 0,
@@ -113,6 +118,7 @@ export default {
   height: 2rem;
   line-height: 2rem;
   @include link(color('cyan'));
+
   &:hover {
     background-color: rgba(204, 204, 204, 0.2);
   }

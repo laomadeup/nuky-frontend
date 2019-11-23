@@ -7,6 +7,24 @@ module.exports = function() {
   return { articles, articleComments, replyComments }
 }
 
+const buildArticleConente = () => {
+  let content = ''
+  // 1st paragraph
+  content += '<h3>' + Random.sentence(5, 10) + '</h3>'
+  content += '<p>' + Random.paragraph(10, 15) + '</p>'
+  // 2nd paragraph
+  content += '<h3>' + Random.sentence(5, 10) + '</h3>'
+  content +=
+    ' <pre><div class="hljs"><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello world!"</span>); } </code></div></pre> '
+
+  content += '<h3>' + Random.sentence(5, 10) + '</h3>'
+  // 3rd paragraph
+  content +=
+    ' <table> <thead> <tr> <th>First Header</th> <th>Second Header</th> </tr> </thead> <tbody> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> </tbody> </table> '
+
+  return content
+}
+
 const articles = (() => {
   const articles = []
   for (let i = 1; i <= articleSize; i++) {
@@ -14,7 +32,7 @@ const articles = (() => {
       id: i,
       title: Random.sentence(5, 10),
       postDate: moment(Random.datetime()).format(),
-      content: Random.paragraph(20, 25),
+      content: buildArticleConente(),
       commentAmount: Math.floor(Math.random() * 15),
       comments: []
     }

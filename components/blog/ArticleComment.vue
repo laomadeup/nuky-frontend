@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-4">
     <h4><fa-icon :icon="['fas', 'comment-dots']" /> Comment</h4>
     <p class="comment-amount mb-2">Total {{ commentAmount }} comments</p>
     <div v-if="comments.length === 0">No one comment yet</div>
@@ -28,7 +28,7 @@
             {{ comment.content }}
           </p>
         </section>
-        <div
+        <span
           v-if="comment.hasReply"
           :class="comment.isShowReply ? 'hide-reply' : 'view-reply'"
           @click="toggleReply(comment)"
@@ -37,7 +37,7 @@
             class="mr-2"
             :icon="['fas', comment.isShowReply ? 'caret-up' : 'caret-down']"
           />
-        </div>
+        </span>
         <div
           v-show="comment.isLoddingReply"
           class="text-center justify-content-center"
