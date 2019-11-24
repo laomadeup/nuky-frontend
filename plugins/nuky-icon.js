@@ -8,12 +8,14 @@ import {
   faFireAlt,
   faCaretDown,
   faCaretUp,
-  faTags
+  faTags,
+  faEye
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
   faCopyright,
-  faEnvelope
+  faEnvelope,
+  faThumbsUp
 } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
@@ -27,7 +29,9 @@ library.add(
   faFireAlt,
   faCaretDown,
   faCaretUp,
-  faTags
+  faTags,
+  faEye,
+  faThumbsUp
 )
 
 Vue.component('fa-icon', FontAwesomeIcon)

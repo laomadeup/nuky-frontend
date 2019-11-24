@@ -10,35 +10,41 @@
         v-for="(article, index) in articles"
         :key="index"
         ref="articleBox"
-        class="article-page-item"
+        class="article-page-item mb-4 pb-3"
         :index="index"
       >
         <header>
           <nuxt-link
             class="link-title"
-            tag="h4"
+            tag="h3"
             :to="{ name: 'article-id', params: { id: article.id } }"
           >
             {{ article.title }}
           </nuxt-link>
-          <p>
+        </header>
+        <p class="article-description">
+          {{ article.description }}
+        </p>
+        <footer class="mt-2">
+          <span>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
             <time>
               {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
             </time>
-          </p>
-        </header>
-        <div class="article-body">
-          <article-content :content="article.content" />
-        </div>
-        <nuxt-link
-          v-show="article.showMore"
-          class="article-show-all"
-          tag="div"
-          :to="{ name: 'article-id', params: { id: article.id } }"
-        >
-          --- SHOW MORE ---
-        </nuxt-link>
+          </span>
+          <span>
+            <fa-icon class="text-info" :icon="['fas', 'eye']" />
+            <span>{{ article.views }}</span>
+          </span>
+          <span>
+            <fa-icon class="text-primary" :icon="['far', 'thumbs-up']" />
+            <span>{{ article.likes }}</span>
+          </span>
+          <span>
+            <fa-icon class="text-warning" :icon="['fas', 'comment-dots']" />
+            <span>{{ article.commentAmount }}</span>
+          </span>
+        </footer>
       </article>
       <b-pagination-nav
         :number-of-pages="totalPages"
@@ -51,13 +57,8 @@
 </template>
 
 <script>
-import ArticleContent from '@/components/blog/ArticleContent'
-
 export default {
   layout: 'AppBlogArticle',
-  components: {
-    ArticleContent
-  },
   data() {
     return {
       pageNumber: 0,
@@ -80,14 +81,6 @@ export default {
       pageNumber: pageable.pageNumber + 1
     }
   },
-  mounted() {
-    const articleBoxes = this.$refs.articleBox
-    for (const articleBox of articleBoxes) {
-      this.articles[articleBox.getAttribute('index')].showMore =
-        articleBox.querySelector('.article-body').children[0].clientHeight >
-        articleBox.querySelector('.article-body').clientHeight
-    }
-  },
   methods: {
     linkGen(pageNumber) {
       return {
@@ -103,28 +96,34 @@ export default {
 @import '~assets/style/common/public';
 
 .article-page-item {
-  margin-bottom: 30px;
   border-bottom: 1px solid gray('400');
-  padding-bottom: 20px;
 }
 
-.article-body {
-  max-height: 12.2rem;
+p.article-description {
+  height: 3rem;
+  line-height: 1.5rem;
   overflow: hidden;
-}
-
-.article-show-all {
-  text-align: center;
-  height: 2rem;
-  line-height: 2rem;
-  @include link(color('cyan'));
+  color: gray('700');
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 
   &:hover {
-    background-color: rgba(204, 204, 204, 0.2);
+    cursor: pointer;
   }
 }
 
 .link-title {
+  font-size: 1.25rem;
   @include link(gray('800'));
+}
+
+footer * {
+  vertical-align: middle;
+}
+
+footer span {
+  margin-right: 10px;
 }
 </style>

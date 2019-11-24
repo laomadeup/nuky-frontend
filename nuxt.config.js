@@ -29,8 +29,7 @@ export default {
    */
   plugins: [
     '~/plugins/nuky-icon',
-    '~/plugins/vue-inject.js',
-    { src: '~/plugins/vue-mavon-editor', ssr: false }
+    '~/plugins/vue-inject.js'
   ],
   /*
    ** Nuxt.js dev-modules

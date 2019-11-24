@@ -32,8 +32,11 @@ const articles = (() => {
       id: i,
       title: Random.sentence(5, 10),
       postDate: moment(Random.datetime()).format(),
+      description: Random.paragraph(5, 10),
       content: buildArticleConente(),
       commentAmount: Math.floor(Math.random() * 15),
+      views: Math.floor(Math.random() * 15),
+      likes: Math.floor(Math.random() * 15),
       comments: []
     }
 
