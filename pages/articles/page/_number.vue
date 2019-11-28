@@ -33,15 +33,15 @@
             </time>
           </span>
           <span>
-            <fa-icon class="text-info" :icon="['fas', 'eye']" />
-            <span>{{ article.views }}</span>
-          </span>
-          <span>
             <fa-icon class="text-primary" :icon="['far', 'thumbs-up']" />
             <span>{{ article.likes }}</span>
           </span>
           <span>
-            <fa-icon class="text-warning" :icon="['fas', 'comment-dots']" />
+            <fa-icon class="text-secondary" :icon="['fas', 'eye']" />
+            <span>{{ article.views }}</span>
+          </span>
+          <span>
+            <fa-icon class="text-secondary" :icon="['fas', 'comment-dots']" />
             <span>{{ article.commentAmount }}</span>
           </span>
         </footer>
