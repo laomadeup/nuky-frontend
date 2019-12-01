@@ -17,7 +17,7 @@
       <article-comment
         :article-id="article.id"
         :comment-amount="article.commentAmount"
-      ></article-comment>
+      />
     </div>
   </div>
 </template>

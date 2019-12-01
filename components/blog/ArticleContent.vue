@@ -1,10 +1,8 @@
 <template>
-  <div class="article-content" v-html="content"></div>
+  <div class="article-content" v-text="content"></div>
 </template>
 
 <script>
-import 'highlight.js/styles/github.css'
-
 export default {
   name: 'ArticleContent',
   props: {

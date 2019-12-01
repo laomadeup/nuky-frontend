@@ -51,7 +51,7 @@
         :link-gen="linkGen"
         :value="pageNumber"
         align="center"
-      ></b-pagination-nav>
+      />
     </div>
   </div>
 </template>

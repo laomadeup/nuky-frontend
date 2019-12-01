@@ -1,10 +1,16 @@
 <template>
-  <div>About.vue</div>
+  <div>
+    <editor />
+  </div>
 </template>
 
 <script>
+import editor from '@/components/editor'
+
 export default {
-  layout: 'AppBlog'
+  components: {
+    editor
+  }
 }
 </script>
 
