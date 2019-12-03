@@ -1,6 +1,6 @@
 <template>
   <div>
-    <editor />
+    <editor :content="content" />
   </div>
 </template>
 
@@ -10,6 +10,9 @@ import editor from '@/components/editor'
 export default {
   components: {
     editor
+  },
+  data() {
+    return { content: '<p>Content</p>' }
   }
 }
 </script>

@@ -27,7 +27,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/fontawesome.js', '~/plugins/vue-inject.js'],
+  plugins: [
+    '~/plugins/fontawesome.js',
+    '~/plugins/vue-inject.js',
+    '~/plugins/ckeditor.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
