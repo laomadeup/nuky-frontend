@@ -1,10 +1,6 @@
 <template>
   <div>
-    <ckeditor
-      v-model="editorData"
-      :editor="editor"
-      :config="editorConfig"
-    ></ckeditor>
+    <ckeditor :value="value" :editor="editor" :config="editorConfig" />
   </div>
 </template>
 
@@ -18,7 +14,7 @@ export default {
     ckeditor: CKEditor.component
   },
   props: {
-    content: {
+    value: {
       type: String,
       default: ''
     }
@@ -26,11 +22,10 @@ export default {
   data() {
     return {
       editor: ClassicEditor,
-      editorData: this.content,
-      editorConfig: {
-        // The configuration of the editor.
-      }
+      editorConfig: {}
     }
   }
 }
 </script>
+
+<style scoped></style>
