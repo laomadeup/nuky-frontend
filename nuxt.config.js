@@ -30,7 +30,7 @@ export default {
   plugins: [
     '~/plugins/fontawesome.js',
     '~/plugins/vue-inject.js',
-    '~/plugins/ckeditor.js'
+    { src: '~/plugins/nuky-editor', mode: 'client' }
   ],
   /*
    ** Nuxt.js dev-modules
