@@ -1,3 +1,7 @@
+import path from 'path'
+import CKEditorWebpackPlugin from '@ckeditor/ckeditor5-dev-webpack-plugin'
+import { styles } from '@ckeditor/ckeditor5-dev-utils'
+
 export default {
   mode: 'universal',
   /*
@@ -65,11 +69,36 @@ export default {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {
-      config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
+    transpile: [/ckeditor5-[^/\\]+[/\\]src[/\\].+\.js$/],
+    plugins: [
+      new CKEditorWebpackPlugin({
+        language: 'en'
+      })
+    ],
+    postcss: styles.getPostCssConfig({
+      minify: true,
+      themeImporter: {
+        themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
+      }
+    }),
+    extend(config, { isClient }) {
+      config.devtool = isClient ? 'eval-source-map' : 'inline-source-map'
+
+      const filesRuleIndex = config.module.rules.findIndex((item) => {
+        return `${item.test}` === '/\\.(png|jpe?g|gif|svg|webp)$/i'
+      })
+      if (filesRuleIndex !== -1) {
+        config.module.rules[filesRuleIndex].test = /\.(png|jpe?g|gif|webp)$/
+        const svgRule = config.module.rules[filesRuleIndex]
+        svgRule.test = /\.svg/
+        svgRule.exclude = svgRule.exclude || []
+        svgRule.exclude.push(path.join(__dirname, 'node_modules', '@ckeditor'))
+        config.module.rules.push(svgRule)
+      }
+      config.module.rules.push({
+        test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+        use: ['raw-loader']
+      })
     }
   },
   /**
