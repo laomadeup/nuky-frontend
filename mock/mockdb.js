@@ -1,5 +1,4 @@
-const Mock = require('mockjs')
-const Random = Mock.Random
+const { Random } = require('mockjs')
 const moment = require('moment')
 const articleSize = 27
 
@@ -10,17 +9,20 @@ module.exports = function() {
 const buildArticleConente = () => {
   let content = ''
   // 1st paragraph
-  content += '<h3>' + Random.sentence(5, 10) + '</h3>'
+  content += '<h4>1.Intorducion</h4>'
   content += '<p>' + Random.paragraph(10, 15) + '</p>'
+  content +=
+    '<p><code>Test</code><mark class="marker-pink">JavaScript Code</mark><mark class="marker-green">Java Code</mark></p>'
   // 2nd paragraph
-  content += '<h3>' + Random.sentence(5, 10) + '</h3>'
-  content +=
-    ' <pre><div class="hljs"><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello world!"</span>); } </code></div></pre> '
-
-  content += '<h3>' + Random.sentence(5, 10) + '</h3>'
+  content += '<br><h4>2.Code</h4>'
+  content += '<blockquote><p>JavaScript Code</p></blockquote>'
+  content += `<pre><code class="language-javascript line-numbers match-braces rainbow-braces">function test(){\n  console.log('test', 123);\n}</code></pre>`
+  content += '<blockquote><p>Java Code</p></blockquote>'
+  content += `<pre><code class="language-java line-numbers match-braces rainbow-braces">public static void main(String[] args){\n  System.out.println("Test");\n}</code></pre>`
   // 3rd paragraph
+  content += '<br><h4>3.Table</h4>'
   content +=
-    ' <table> <thead> <tr> <th>First Header</th> <th>Second Header</th> </tr> </thead> <tbody> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> </tbody> </table> '
+    '<figure class="table"><table><thead><tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th></tr></thead><tbody><tr><td>ggg</td><td>ggg</td><td>ggg</td><td>ggg</td><td>ggg</td></tr><tr><td>sdq</td><td>qwe</td><td>das</td><td>dasd</td><td>qwe</td></tr></tbody></table></figure>'
 
   return content
 }

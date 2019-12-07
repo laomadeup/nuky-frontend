@@ -27,7 +27,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~/assets/style/common/main.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -81,6 +81,18 @@ export default {
         themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
       }
     }),
+    babel: {
+      plugins: [
+        [
+          'prismjs',
+          {
+            languages: ['javascript', 'css', 'markup', 'java', 'bash', 'sql'],
+            plugins: ['line-numbers', 'copy-to-clipboard', 'show-language'],
+            css: true
+          }
+        ]
+      ]
+    },
     extend(config, { isClient }) {
       config.devtool = isClient ? 'eval-source-map' : 'inline-source-map'
 

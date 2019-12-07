@@ -46,21 +46,6 @@ export default {
 
 @media (max-width: 768px) {
   .flex-box > section {
-    border-left: none;
-    flex: 0 0 50%;
-  }
-
-  .flex-box > section:nth-child(odd) {
-    border-left: none;
-  }
-
-  .flex-box > section:nth-child(even) {
-    border-left: 1px solid $gray-300;
-  }
-}
-
-@media (max-width: 414px) {
-  .flex-box > section {
     flex: 0 0 100%;
   }
 

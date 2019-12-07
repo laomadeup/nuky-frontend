@@ -14,6 +14,9 @@
         </header>
         <article-content :content="article.content" />
       </article>
+      <div class="divider mt-5 mb-5 ml-3 mr-3">
+        <span class="pl-4 pr-4">END</span>
+      </div>
       <article-comment
         :article-id="article.id"
         :comment-amount="article.commentAmount"
@@ -48,4 +51,17 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.divider {
+  height: 0;
+  border-top: 1px solid #cccccc;
+  text-align: center;
+
+  span {
+    color: #888888;
+    position: relative;
+    top: -14px;
+    background-color: #ffffff;
+  }
+}
+</style>

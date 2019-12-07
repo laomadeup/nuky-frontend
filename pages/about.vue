@@ -1,12 +1,16 @@
 <template>
-  <client-only><nuky-editor v-model="content"/></client-only>
+  <client-only>
+    <nuky-editor v-model="content" />
+  </client-only>
 </template>
 
 <script>
 export default {
   layout: 'AppBlog',
   data() {
-    return { content: null }
+    return {
+      content: null
+    }
   }
 }
 </script>
