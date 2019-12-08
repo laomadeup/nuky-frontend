@@ -10,7 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "mock": "nodemon mock/server.js"
+    "mock": "nodemon --exec babel-node mock/server.js"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-adapter-ckfinder": "^16.0.0",
@@ -52,6 +52,10 @@
     "raw-loader": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.6",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/moment": "^1.4.0",

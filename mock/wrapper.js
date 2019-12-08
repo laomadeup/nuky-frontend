@@ -1,6 +1,5 @@
 const PAGE_FLAG = '_page'
 const PAGE_LIMIT_FLAG = '_limit'
-
 function isPagedQuery(req) {
   return req.url.includes(PAGE_FLAG)
 }
@@ -25,4 +24,4 @@ function pageRes(req, res) {
   })
 }
 
-module.exports = wrap
+export default wrap

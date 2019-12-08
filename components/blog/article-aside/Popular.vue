@@ -26,22 +26,10 @@
 </template>
 
 <script>
-const oneHourMilliseconds = 60 * 60 * 1000
-
 export default {
   name: 'Popular',
   data() {
-    return { popularArticles: this.$store.state.article.popularArticles.data }
-  },
-  async mounted() {
-    // async data from server if data deprecated
-    if (
-      new Date().getTime() -
-        this.$store.state.article.popularArticles.fetchTime >
-      oneHourMilliseconds
-    ) {
-      await this.$store.dispatch('article/getPopularArticles')
-    }
+    return { popularArticles: this.$store.state.article.popularArticles }
   }
 }
 </script>

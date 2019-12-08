@@ -1,12 +1,12 @@
-const jsonServer = require('json-server')
-const pause = require('connect-pause')
+import jsonServer from 'json-server'
+import pause from 'connect-pause'
+import data from './mockdb'
+import wrapper from './wrapper'
+import config from './config.json'
+import routes from './route.json'
 
 const server = jsonServer.create()
-const db = require('./mockdb')
-const wrapper = require('./wrapper')
-const config = require('./config.json')
-const routes = require('./route.json')
-const router = jsonServer.router(db())
+const router = jsonServer.router(data)
 const middlewares = jsonServer.defaults()
 
 router.render = (req, res) => {
