@@ -26,13 +26,6 @@ import Font from '@ckeditor/ckeditor5-font/src/font'
 import Table from '@ckeditor/ckeditor5-table/src/table'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
-const getLanguageClass = (language) => {
-  const fixedClass = 'line-numbers match-braces'
-  return language == null
-    ? fixedClass
-    : 'language-' + language.trim() + ' ' + fixedClass
-}
-
 const defaultConfig = {
   plugins: [
     Essentials,
@@ -102,38 +95,31 @@ const defaultConfig = {
     languages: [
       {
         language: 'plaintext',
-        label: 'Plain text',
-        class: getLanguageClass()
+        label: 'Plain text'
       },
       {
         language: 'java',
-        label: 'Java',
-        class: getLanguageClass('java')
+        label: 'Java'
       },
       {
         language: 'javascript',
-        label: 'JavaScript',
-        class: getLanguageClass('javascript')
+        label: 'JavaScript'
       },
       {
         language: 'Markup',
-        label: 'HTML/XML',
-        class: getLanguageClass('markup')
+        label: 'HTML/XML'
       },
       {
         language: 'sql',
-        label: 'Sql',
-        class: getLanguageClass('sql')
+        label: 'Sql'
       },
       {
         language: 'bash',
-        label: 'Bash',
-        class: getLanguageClass('bash')
+        label: 'Bash'
       },
       {
         language: 'css',
-        label: 'CSS',
-        class: getLanguageClass('css')
+        label: 'CSS'
       }
     ]
   },

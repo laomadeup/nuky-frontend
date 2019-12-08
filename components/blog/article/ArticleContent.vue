@@ -16,6 +16,12 @@ export default {
     }
   },
   mounted() {
+    // add clesses for Prism : line-numbers match-braces rainbow-braces
+    const codeEles = document.querySelectorAll('code[class*="language-"]')
+    const classes = ['line-numbers', 'match-braces', 'rainbow-braces']
+    for (const codeEle of codeEles) {
+      codeEle.classList.add(...classes)
+    }
     Prism.highlightAll()
   }
 }

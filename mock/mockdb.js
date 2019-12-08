@@ -16,9 +16,9 @@ const buildArticleConente = () => {
   // 2nd paragraph
   content += '<br><h4>2.Code</h4>'
   content += '<blockquote><p>JavaScript Code</p></blockquote>'
-  content += `<pre><code class="language-javascript line-numbers match-braces rainbow-braces">function test(){\n  console.log('test', 123);\n}</code></pre>`
+  content += `<pre><code class="language-javascript">function test(){\n  console.log('test', 123);\n}</code></pre>`
   content += '<blockquote><p>Java Code</p></blockquote>'
-  content += `<pre><code class="language-java line-numbers match-braces rainbow-braces">public static void main(String[] args){\n  System.out.println("Test");\n}</code></pre>`
+  content += `<pre><code class="language-java">public static void main(String[] args){\n  System.out.println("Test");\n}</code></pre>`
   // 3rd paragraph
   content += '<br><h4>3.Table</h4>'
   content +=

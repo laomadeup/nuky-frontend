@@ -22,9 +22,13 @@
             {{ article.title }}
           </nuxt-link>
         </header>
-        <p class="article-description">
+        <nuxt-link
+          tag="p"
+          class="article-description"
+          :to="{ name: 'article-id', params: { id: article.id } }"
+        >
           {{ article.description }}
-        </p>
+        </nuxt-link>
         <footer class="mt-2">
           <span>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
@@ -59,13 +63,6 @@
 <script>
 export default {
   layout: 'AppBlogArticle',
-  data() {
-    return {
-      pageNumber: 0,
-      totalPages: 0,
-      articles: []
-    }
-  },
   async asyncData({ params, store, $axios }) {
     // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
@@ -79,6 +76,13 @@ export default {
       articles: content,
       totalPages,
       pageNumber: pageable.pageNumber + 1
+    }
+  },
+  data() {
+    return {
+      pageNumber: 0,
+      totalPages: 0,
+      articles: []
     }
   },
   methods: {

@@ -13,7 +13,9 @@
       <fa-icon class="text-secondary" :icon="['fab', 'github']" />
       <a tagert="_blank" href="https://github.com/iamkyun">iamKyun</a>
     </section>
-    <section>粤ICP备15106619号</section>
+    <section>
+      <span>粤ICP备15106619号</span>
+    </section>
     <div id="bottomMark"></div>
   </footer>
 </template>
@@ -32,25 +34,29 @@ export default {
   justify-content: center;
   align-content: center;
   border-top: 1px solid $gray-300;
-}
 
-.flex-box > section {
-  margin-top: 5px;
-  text-align: center;
-  padding: 0 10px;
-}
+  & > section {
+    margin-top: 5px;
+    text-align: center;
+    padding: 0 10px;
 
-.flex-box > section:not(:first-child) {
-  border-left: 1px solid $gray-300;
+    & > * {
+      vertical-align: middle;
+    }
+
+    &:not(:first-child) {
+      border-left: 1px solid $gray-300;
+    }
+  }
 }
 
 @media (max-width: 768px) {
   .flex-box > section {
     flex: 0 0 100%;
-  }
 
-  .flex-box > section:nth-child(even) {
-    border-left: none;
+    & > section:nth-child(even) {
+      border-left: none;
+    }
   }
 }
 </style>

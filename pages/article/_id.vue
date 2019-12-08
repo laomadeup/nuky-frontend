@@ -4,7 +4,7 @@
     <div v-else>
       <article>
         <header>
-          <h4>{{ article.title }}</h4>
+          <h3>{{ article.title }}</h3>
           <p>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
             <time>
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import ArticleComment from '@/components/blog/ArticleComment'
-import ArticleContent from '@/components/blog/ArticleContent'
+import ArticleComment from '@/components/blog/article/ArticleComment'
+import ArticleContent from '@/components/blog/article/ArticleContent'
 
 export default {
   layout: 'AppBlogArticle',
@@ -35,14 +35,14 @@ export default {
     ArticleComment,
     ArticleContent
   },
+  async asyncData({ params, store, $axios }) {
+    const data = await $axios.$get(`/api/article-api/article/${params.id}`)
+    return { article: data }
+  },
   data() {
     return {
       article: null
     }
-  },
-  async asyncData({ params, store, $axios }) {
-    const data = await $axios.$get(`/api/article-api/article/${params.id}`)
-    return { article: data }
   },
   validate({ params }) {
     // params.id must be number
