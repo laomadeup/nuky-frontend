@@ -7,9 +7,8 @@
     <category-item
       v-for="category in categories"
       :key="category.id"
-      :sub-categories="category.subCategories"
-      :name="category.name"
-      :layer="category.layer"
+      :item="category"
+      :depth="0"
     >
     </category-item>
   </div>

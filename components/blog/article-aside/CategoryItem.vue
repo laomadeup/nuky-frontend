@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div :class="categoryItemClass">{{ name }}</div>
+    <div class="category-item pb-1 pt-1" :style="categoryIndent">
+      {{ item.name }} ({{ item.amount }})
+    </div>
     <category-item
-      v-for="subCategory in subCategories"
+      v-for="subCategory in item.subCategories"
       :key="subCategory.id"
-      :sub-categories="subCategory.subCategories"
-      :name="subCategory.name"
-      :layer="subCategory.layer"
+      :item="subCategory"
+      :depth="depth + 1"
     >
     </category-item>
   </div>
@@ -19,25 +20,25 @@ export default {
   name: 'CategoryItem',
   components: { CategoryItem },
   props: {
-    subCategories: {
-      type: Array,
+    item: {
+      type: Object,
       default: null
     },
-    name: {
-      type: String,
-      default: null
-    },
-    layer: {
+    depth: {
       type: Number,
-      default: 1
+      default: 0
     }
   },
   computed: {
-    categoryItemClass() {
-      return `pl-${(this.layer - 1) * 2}`
+    categoryIndent() {
+      return `padding-left:${this.depth * 20}px`
     }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.category-item {
+  line-height: 1.4rem;
+}
+</style>

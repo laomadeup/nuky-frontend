@@ -8,6 +8,7 @@ function createSubCategories(parent) {
       id: parent.id * 10 + i,
       name: Random.word(3, 8),
       subCategories: [],
+      amount: Math.ceil(Math.random() * 12) + 1,
       layer: parent.layer + 1
     }
     parent.subCategories.push(category)
@@ -24,6 +25,7 @@ const categories = (() => {
       id: i,
       name: Random.word(3, 8),
       subCategories: [],
+      amount: Math.ceil(Math.random() * 12) + 1,
       layer: 1
     }
     categories.push(category)
