@@ -20,7 +20,7 @@ function createSubCategories(parent) {
 
 const categories = (() => {
   const categories = []
-  for (let i = 1; i < 5; i++) {
+  for (let i = 1; i < 4; i++) {
     const category = {
       id: i,
       name: Random.word(3, 8),

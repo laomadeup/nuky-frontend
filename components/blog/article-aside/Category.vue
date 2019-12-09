@@ -4,13 +4,15 @@
       <fa-icon class="text-success" :icon="['fas', 'tags']" />
       Categories
     </h5>
-    <category-item
-      v-for="category in categories"
-      :key="category.id"
-      :item="category"
-      :depth="0"
-    >
-    </category-item>
+    <div class="p-2 category-area">
+      <category-item
+        v-for="category in categories"
+        :key="category.id"
+        :item="category"
+        :depth="0"
+      >
+      </category-item>
+    </div>
   </div>
 </template>
 
@@ -25,4 +27,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.category-area {
+  border-bottom: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+}
+</style>

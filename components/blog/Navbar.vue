@@ -27,11 +27,13 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
           <b-form-input
+            v-model="keyword"
             size="sm"
             class="mr-sm-2"
+            :state="searchInputState"
             placeholder="Search"
           ></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">
+          <b-button size="sm" class="my-2 my-sm-0" @click="searchByKeyword">
             Search
           </b-button>
         </b-nav-form>
@@ -45,10 +47,26 @@ export default {
   name: 'Navbar',
   data() {
     return {
+      keyword: '',
+      searchInputState: null,
       menus: [
         { routerName: 'index', name: 'Home', exact: true },
         { routerName: 'about', name: 'About Me', exact: false }
       ]
+    }
+  },
+  methods: {
+    searchByKeyword() {
+      if (this.keyword == null || this.keyword === '') {
+        this.searchInputState = false
+      } else {
+        this.$router.push({
+          name: 'search-keyword-value',
+          param: {
+            value: this.keyword
+          }
+        })
+      }
     }
   }
 }

@@ -16,7 +16,7 @@
       <b-popover
         :target="'pop-' + article.id"
         triggers="hover"
-        placement="bottom"
+        placement="top"
         variant="dark"
       >
         {{ article.title }}
