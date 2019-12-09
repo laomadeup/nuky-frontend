@@ -1,18 +1,18 @@
 const { Random } = require('mockjs')
 const MAX_LAYER = 3
 
-function createSubCatetories(parent) {
+function createSubCategories(parent) {
   const num = Math.ceil(Math.random() * 2) + 1
   for (let i = 1; i < num; i++) {
     const category = {
       id: parent.id * 10 + i,
       name: Random.word(3, 8),
-      subCatetories: [],
+      subCategories: [],
       layer: parent.layer + 1
     }
-    parent.subCatetories.push(category)
+    parent.subCategories.push(category)
     if (MAX_LAYER !== category.layer) {
-      createSubCatetories(category)
+      createSubCategories(category)
     }
   }
 }
@@ -23,11 +23,11 @@ const categories = (() => {
     const category = {
       id: i,
       name: Random.word(3, 8),
-      subCatetories: [],
+      subCategories: [],
       layer: 1
     }
     categories.push(category)
-    createSubCatetories(category)
+    createSubCategories(category)
   }
   return categories
 })()
