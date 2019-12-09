@@ -1,7 +1,7 @@
 <template>
   <div>
     <popular />
-    <category class="mt-4" />
+    <category class="mt-5" />
   </div>
 </template>
 
@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped></style>
