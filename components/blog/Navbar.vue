@@ -61,9 +61,9 @@ export default {
         this.searchInputState = false
       } else {
         this.$router.push({
-          name: 'search-keyword-value',
-          param: {
-            value: this.keyword
+          name: 'search-keyword',
+          params: {
+            keyword: this.keyword
           }
         })
       }

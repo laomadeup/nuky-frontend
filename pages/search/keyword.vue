@@ -1,5 +1,5 @@
 <template>
-  <div>serach by keyword : {{ this.$route.params.value }}</div>
+  <div>serach by keyword : {{ this.$route.params.keyword }}</div>
 </template>
 
 <script>
