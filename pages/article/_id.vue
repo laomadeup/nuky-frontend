@@ -5,12 +5,15 @@
       <article>
         <header>
           <h3>{{ article.title }}</h3>
-          <p>
-            <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
-            <time>
-              {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
-            </time>
-          </p>
+          <article-info :tags="article.tags"></article-info>
+          <section>
+            <p>
+              <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
+              <time>
+                {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
+              </time>
+            </p>
+          </section>
         </header>
         <article-content :content="article.content" />
       </article>
@@ -28,12 +31,14 @@
 <script>
 import ArticleComment from '@/components/blog/article/ArticleComment'
 import ArticleContent from '@/components/blog/article/ArticleContent'
+import ArticleInfo from '@/components/blog/article/ArticleInfo'
 
 export default {
   layout: 'AppBlogArticle',
   components: {
     ArticleComment,
-    ArticleContent
+    ArticleContent,
+    ArticleInfo
   },
   async asyncData({ params, store, $axios }) {
     const data = await $axios.$get(`/api/article-api/article/${params.id}`)

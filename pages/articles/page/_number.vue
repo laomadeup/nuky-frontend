@@ -29,18 +29,7 @@
         >
           {{ article.description }}
         </nuxt-link>
-        <section>
-          <b-badge
-            v-for="tag in article.tags"
-            :key="tag.id"
-            pill
-            :to="{ name: 'search-tag-id', params: { id: tag.id } }"
-            :variant="getRamdomTagColor()"
-            class="mr-1"
-          >
-            {{ tag.name }}
-          </b-badge>
-        </section>
+        <article-info :tags="article.tags"></article-info>
         <section class="artcile-footer mt-1">
           <span>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
@@ -73,8 +62,13 @@
 </template>
 
 <script>
+import ArticleInfo from '@/components/blog/article/ArticleInfo'
+
 export default {
   layout: 'AppBlogArticle',
+  components: {
+    ArticleInfo
+  },
   async asyncData({ params, store, $axios }) {
     // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
@@ -103,18 +97,6 @@ export default {
         name: 'articles-page-number',
         params: { number: pageNumber }
       }
-    },
-    getRamdomTagColor() {
-      const colors = [
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'info',
-        'dark'
-      ]
-      return colors[Math.floor(Math.random() * colors.length)]
     }
   }
 }
