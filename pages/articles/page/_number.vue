@@ -10,7 +10,7 @@
         v-for="(article, index) in articles"
         :key="index"
         ref="articleBox"
-        class="article-page-item mb-4 pb-3"
+        class="article-page-item mb-4 pb-2"
         :index="index"
       >
         <header>
@@ -24,12 +24,24 @@
         </header>
         <nuxt-link
           tag="p"
-          class="article-description"
+          class="article-description mb-1"
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
           {{ article.description }}
         </nuxt-link>
-        <footer class="mt-2">
+        <section>
+          <b-badge
+            v-for="tag in article.tags"
+            :key="tag.id"
+            pill
+            :to="{ name: 'search-tag-id', params: { id: tag.id } }"
+            :variant="getRamdomTagColor()"
+            class="mr-1"
+          >
+            {{ tag.name }}
+          </b-badge>
+        </section>
+        <section class="artcile-footer mt-1">
           <span>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
             <time>
@@ -48,7 +60,7 @@
             <fa-icon class="text-secondary" :icon="['fas', 'comment-dots']" />
             <span>{{ article.commentAmount }}</span>
           </span>
-        </footer>
+        </section>
       </article>
       <b-pagination-nav
         :number-of-pages="totalPages"
@@ -91,6 +103,18 @@ export default {
         name: 'articles-page-number',
         params: { number: pageNumber }
       }
+    },
+    getRamdomTagColor() {
+      const colors = [
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'dark'
+      ]
+      return colors[Math.floor(Math.random() * colors.length)]
     }
   }
 }
@@ -123,11 +147,11 @@ p.article-description {
   @include link(gray('800'));
 }
 
-footer * {
+.artcile-footer * {
   vertical-align: middle;
 }
 
-footer span {
+.artcile-footer span {
   margin-right: 10px;
 }
 </style>

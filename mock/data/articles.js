@@ -1,6 +1,13 @@
 const { Random } = require('mockjs')
 const moment = require('moment')
 const articleSize = 30
+const tags = (function() {
+  const tags = []
+  for (let i = 1; i <= 15; i++) {
+    tags.push({ id: i, name: Random.word(3, 6) })
+  }
+  return tags
+})()
 
 const buildArticleConente = () => {
   let content = ''
@@ -23,6 +30,15 @@ const buildArticleConente = () => {
   return content
 }
 
+const genRamdomTags = () => {
+  const ramdomTags = []
+  const number = Math.floor(Math.random() * 3)
+  for (let i = 0; i < number; i++) {
+    ramdomTags.push(tags[Math.floor(Math.random() * tags.length)])
+  }
+  return ramdomTags
+}
+
 const articles = (() => {
   const articles = []
   for (let i = 1; i <= articleSize; i++) {
@@ -35,6 +51,7 @@ const articles = (() => {
       commentAmount: Math.floor(Math.random() * 15),
       views: Math.floor(Math.random() * 15),
       likes: Math.floor(Math.random() * 15),
+      tags: genRamdomTags(),
       comments: []
     }
 
