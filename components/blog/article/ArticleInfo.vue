@@ -5,7 +5,7 @@
       <nuxt-link
         class="category-name"
         tag="span"
-        :to="{ name: 'search-category-id', params: { id: 1 }"
+        :to="{ name: 'search-category-id', params: { id: 1 } }"
         >Development</nuxt-link
       >
     </span>
