@@ -1,15 +1,17 @@
 <template>
-  <section class="mb-1">
-    <span class="category mr-3">
-      <fa-icon class="text-secondary" :icon="['fas', 'folder-open']" />
-      <nuxt-link
-        class="category-name ml-1 mr-1"
-        tag="span"
-        :to="{ name: 'search-category-id', params: { id: category.id } }"
-        >{{ category.name }}</nuxt-link
-      >
+  <section class="mb-1 clearfix">
+    <span class="category mr-3" title="Category">
+      <fa-icon class="text-secondary icon" :icon="icon" />
+      <span @mouseover="mouseoverIcon" @mouseleave="mouseleaveIcon">
+        <nuxt-link
+          class="category-name ml-1 mr-1"
+          tag="span"
+          :to="{ name: 'search-category-id', params: { id: category.id } }"
+          >{{ category.name }}</nuxt-link
+        >
+      </span>
     </span>
-    <tag-badge :tags="tags" />
+    <tag-badge class="tag" :tags="tags" title="Tags" />
   </section>
 </template>
 
@@ -28,13 +30,40 @@ export default {
       type: Object,
       default: null
     }
+  },
+  data() {
+    return { icon: ['fas', 'folder'] }
+  },
+  methods: {
+    mouseoverIcon() {
+      this.icon = ['fas', 'folder-open']
+      console.log(this.icon)
+    },
+    mouseleaveIcon() {
+      this.icon = ['fas', 'folder']
+      console.log(this.icon)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.clearfix:after {
+  content: ' ';
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.tag {
+  float: right;
+}
+
 .category {
+  float: left;
   color: #666666;
+  min-width: 120px;
+  display: inline-block;
 
   .category-name {
     cursor: pointer;
@@ -44,6 +73,10 @@ export default {
     &:hover {
       border-color: #aaaaaa;
     }
+  }
+
+  .icon {
+    min-width: 18px;
   }
 }
 </style>

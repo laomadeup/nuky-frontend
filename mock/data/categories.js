@@ -1,45 +1,24 @@
 const categories = [
   {
     id: 1,
-    name: 'Development',
+    name: 'Programing',
     subCategories: [
       {
         id: 11,
-        name: 'Programing',
-        subCategories: [
-          {
-            id: 111,
-            name: 'Basic',
-            subCategories: [],
-            layer: 3
-          },
-          {
-            id: 112,
-            name: 'Framework',
-            subCategories: [],
-            layer: 3
-          }
-        ],
+        name: 'Algorithm',
+        subCategories: [],
         layer: 2
       },
       {
         id: 12,
-        name: 'Database',
-        subCategories: [
-          {
-            id: 31,
-            name: 'MySQL',
-            subCategories: [],
-            amount: 1,
-            layer: 3
-          },
-          {
-            id: 32,
-            name: 'Oracle',
-            subCategories: [],
-            layer: 3
-          }
-        ],
+        name: 'Framework',
+        subCategories: [],
+        layer: 2
+      },
+      {
+        id: 13,
+        name: 'Experience',
+        subCategories: [],
         layer: 2
       }
     ],
@@ -47,22 +26,42 @@ const categories = [
   },
   {
     id: 2,
-    name: 'Operations',
+    name: 'Database',
     subCategories: [
       {
         id: 21,
+        name: 'MySQL',
+        subCategories: [],
+        amount: 1,
+        layer: 3
+      },
+      {
+        id: 22,
+        name: 'Oracle',
+        subCategories: [],
+        layer: 3
+      }
+    ],
+    layer: 2
+  },
+  {
+    id: 3,
+    name: 'Operations',
+    subCategories: [
+      {
+        id: 31,
         name: 'Linux',
         subCategories: [],
         layer: 2
       },
       {
-        id: 22,
+        id: 32,
         name: 'Docker',
         subCategories: [],
         layer: 2
       },
       {
-        id: 23,
+        id: 33,
         name: 'Application',
         subCategories: [],
         layer: 2
@@ -71,7 +70,7 @@ const categories = [
     layer: 1
   },
   {
-    id: 3,
+    id: 4,
     name: 'Others',
     subCategories: [],
     layer: 1

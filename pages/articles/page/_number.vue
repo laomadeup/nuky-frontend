@@ -31,21 +31,21 @@
         </nuxt-link>
         <article-info :tags="article.tags" :category="article.category" />
         <section class="artcile-footer mt-1">
-          <span>
+          <span title="Post Time">
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
             <time>
               {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
             </time>
           </span>
-          <span>
+          <span title="Likes">
             <fa-icon class="text-primary" :icon="['far', 'thumbs-up']" />
             <span>{{ article.likes }}</span>
           </span>
-          <span>
+          <span title="Views">
             <fa-icon class="text-secondary" :icon="['fas', 'eye']" />
             <span>{{ article.views }}</span>
           </span>
-          <span>
+          <span title="Comments">
             <fa-icon class="text-secondary" :icon="['fas', 'comment-dots']" />
             <span>{{ article.commentAmount }}</span>
           </span>
