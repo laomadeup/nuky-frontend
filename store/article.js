@@ -1,6 +1,7 @@
 export const state = () => ({
   popularArticles: [],
-  categories: []
+  categories: [],
+  tags: []
 })
 
 export const mutations = {
@@ -9,6 +10,9 @@ export const mutations = {
   },
   setCategories(state, data) {
     state.categories = data
+  },
+  setTags(state, data) {
+    state.tags = data
   }
 }
 
@@ -20,5 +24,9 @@ export const actions = {
   async getCategories({ commit }) {
     const data = await this.$axios.$get('/api/article-api/categories')
     commit('setCategories', data)
+  },
+  async getTags({ commit }) {
+    const data = await this.$axios.$get('/api/article-api/tags')
+    commit('setTags', data)
   }
 }

@@ -9,6 +9,7 @@ import {
   faCaretDown,
   faCaretUp,
   faTags,
+  faFolderOpen,
   faEye
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -30,6 +31,7 @@ library.add(
   faCaretDown,
   faCaretUp,
   faTags,
+  faFolderOpen,
   faEye,
   faThumbsUp
 )

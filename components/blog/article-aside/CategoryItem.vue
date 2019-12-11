@@ -5,9 +5,8 @@
         class="category-name pb-1 pl-1"
         tag="span"
         :to="{ name: 'search-category-id', params: { id: item.id } }"
+        >{{ item.name }}</nuxt-link
       >
-        {{ item.name }}
-      </nuxt-link>
       <span>({{ item.amount }})</span>
     </div>
     <div class="pl-1">

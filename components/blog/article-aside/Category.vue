@@ -1,10 +1,10 @@
 <template>
   <div>
     <h5>
-      <fa-icon class="text-success" :icon="['fas', 'tags']" />
+      <fa-icon class="text-success" :icon="['fas', 'folder-open']" />
       Categories
     </h5>
-    <div class="p-2 category-area">
+    <div class="p-2 content-area">
       <category-item
         v-for="category in categories"
         :key="category.id"
@@ -27,9 +27,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.category-area {
-  border-bottom: 1px solid #dee2e6;
-  border-top: 1px solid #dee2e6;
-}
-</style>
+<style scoped lang="scss"></style>
