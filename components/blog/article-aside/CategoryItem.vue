@@ -2,7 +2,7 @@
   <div>
     <div class="category-item pb-1 pt-1" :style="categoryIndent">
       <nuxt-link
-        class="category-name pb-1 pl-1"
+        class="category-name pb-1 ml-1"
         tag="span"
         :to="{ name: 'search-category-id', params: { id: item.id } }"
         >{{ item.name }}</nuxt-link
