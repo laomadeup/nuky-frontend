@@ -1,3 +1,4 @@
+import { categories } from './categories'
 const { Random } = require('mockjs')
 const moment = require('moment')
 const articleSize = 30
@@ -65,6 +66,7 @@ const articles = (() => {
       views: Math.floor(Math.random() * 15),
       likes: Math.floor(Math.random() * 15),
       tags: genRamdomTags(),
+      category: categories[Math.floor(Math.random() * categories.length)],
       comments: []
     }
 

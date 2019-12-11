@@ -1,12 +1,11 @@
 <template>
   <section class="mb-1">
-    <span class="mr-3" style="color: #666666"
-      >Category :
+    <span class="category mr-3 ">
       <nuxt-link
-        class="category-name"
+        class="category-name pl-1 pr-1"
         tag="span"
-        :to="{ name: 'search-category-id', params: { id: 1 } }"
-        >Development</nuxt-link
+        :to="{ name: 'search-category-id', params: { id: category.id } }"
+        >{{ category.name }}</nuxt-link
       >
     </span>
     <b-badge
@@ -39,6 +38,10 @@ export default {
     tags: {
       type: Array,
       default: null
+    },
+    category: {
+      type: Object,
+      default: null
     }
   },
   methods: {
@@ -54,13 +57,18 @@ export default {
   font-weight: 600;
 }
 
-.category-name {
-  cursor: pointer;
-  transition: border-bottom 0.25s;
-  border-bottom: 2px solid #ffffff;
+.category {
+  color: #666666;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
 
-  &:hover {
-    border-color: #aaaaaa;
+  .category-name {
+    cursor: pointer;
+    transition: background-color 0.25s;
+
+    &:hover {
+      background-color: #aaaaaa;
+    }
   }
 }
 </style>

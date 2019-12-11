@@ -5,7 +5,7 @@
       <article>
         <header>
           <h3>{{ article.title }}</h3>
-          <article-info :tags="article.tags"></article-info>
+          <article-info :tags="article.tags" :category="article.category" />
           <section>
             <p>
               <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;

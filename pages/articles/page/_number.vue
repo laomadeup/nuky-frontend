@@ -29,7 +29,7 @@
         >
           {{ article.description }}
         </nuxt-link>
-        <article-info :tags="article.tags"></article-info>
+        <article-info :tags="article.tags" :category="article.category" />
         <section class="artcile-footer mt-1">
           <span>
             <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
