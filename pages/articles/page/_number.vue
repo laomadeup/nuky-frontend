@@ -13,21 +13,15 @@
         class="article-page-item mb-4 pb-2"
         :index="index"
       >
-        <header>
-          <nuxt-link
-            class="link-title"
-            tag="h3"
-            :to="{ name: 'article-id', params: { id: article.id } }"
-          >
-            {{ article.title }}
-          </nuxt-link>
-        </header>
         <nuxt-link
-          tag="p"
-          class="article-description mb-1"
+          tag="section"
+          class="article-description"
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
-          {{ article.description }}
+          <header>
+            <h3 class="link-title">{{ article.title }}</h3>
+          </header>
+          <p class="mb-1">{{ article.description }}</p>
         </nuxt-link>
         <article-info :tags="article.tags" :category="article.category" />
         <section class="artcile-footer mt-1">
@@ -107,33 +101,36 @@ export default {
 
 .article-page-item {
   border-bottom: 1px solid gray('400');
-}
+  cursor: pointer;
 
-p.article-description {
-  height: 3rem;
-  line-height: 1.5rem;
-  overflow: hidden;
-  color: gray('700');
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  .article-description {
+    .link-title {
+      font-size: 1.25rem;
+      color: gray('800');
+    }
 
-  &:hover {
-    cursor: pointer;
+    &:hover .link-title {
+      color: $blue;
+    }
+
+    p {
+      height: 3rem;
+      line-height: 1.5rem;
+      overflow: hidden;
+      color: gray('700');
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
-}
 
-.link-title {
-  font-size: 1.25rem;
-  @include link(gray('800'));
-}
+  .artcile-footer * {
+    vertical-align: middle;
+  }
 
-.artcile-footer * {
-  vertical-align: middle;
-}
-
-.artcile-footer span {
-  margin-right: 10px;
+  .artcile-footer span {
+    margin-right: 10px;
+  }
 }
 </style>

@@ -20,7 +20,8 @@ const buildArticleConente = () => {
   // 3rd paragraph
   content += '<br><h4>3.Table</h4>'
   content +=
-    '<figure class="table"><table><thead><tr><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th></tr></thead><tbody><tr><td>ggg</td><td>ggg</td><td>ggg</td><td>ggg</td><td>ggg</td></tr><tr><td>sdq</td><td>qwe</td><td>das</td><td>dasd</td><td>qwe</td></tr></tbody></table></figure>'
+    '<figure class="table"><table><thead><tr><th>First Name</th><th>Last' +
+    ' Name</th><th>Age</th></tr></thead><tbody><tr><td>Dickerson</td><td>Macdonald</td><td>40</td></tr><tr><td>Larsen</td><td>Shaw</td><td>21</td></tr><tr><td>Geneva</td><td>Wilson</td><td>89</td></tr><tr><td>Jami</td><td>Carney</td><td>38</td></tr></tbody></table></figure>'
 
   return content
 }

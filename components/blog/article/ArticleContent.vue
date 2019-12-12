@@ -16,13 +16,28 @@ export default {
     }
   },
   mounted() {
-    // add clesses for Prism : line-numbers match-braces rainbow-braces
-    const codeEles = document.querySelectorAll('code[class*="language-"]')
-    const classes = ['line-numbers', 'match-braces', 'rainbow-braces']
-    for (const codeEle of codeEles) {
-      codeEle.classList.add(...classes)
-    }
+    // add classes for Prism : line-numbers match-braces rainbow-braces
+    this.addClassesForElements('code[class*="language-"]', [
+      'line-numbers',
+      'match-braces',
+      'rainbow-braces'
+    ])
     Prism.highlightAll()
+    // add classes for tables
+    this.addClassesForElements('figure.table>table', [
+      'table',
+      'table-striped',
+      'table-bordered',
+      'table-hover'
+    ])
+  },
+  methods: {
+    addClassesForElements(selecor, classes) {
+      const codeEles = document.querySelectorAll(selecor)
+      for (const codeEle of codeEles) {
+        codeEle.classList.add(...classes)
+      }
+    }
   }
 }
 </script>
