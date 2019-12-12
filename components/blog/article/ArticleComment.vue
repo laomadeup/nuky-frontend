@@ -1,90 +1,61 @@
 <template>
   <div class="mt-4">
-    <h4><fa-icon :icon="['fas', 'comment-dots']" /> Comment</h4>
+    <h4>
+      <fa-icon :icon="['fas', 'comment-dots']" />
+      Comment
+    </h4>
     <p class="comment-amount mb-2">Total {{ commentAmount }} comments</p>
     <div v-if="comments.length === 0">No one comment yet</div>
-    <ul v-for="comment in comments" :key="comment.id" class="pl-0">
-      <b-media :id="'comment-' + comment.id" tag="li">
-        <template v-slot:aside>
-          <b-img-lazy
-            width="48"
-            blank
-            blank-color="#abc"
-            alt="avatar"
-            :src="comment.user.avatar"
-          ></b-img-lazy>
-        </template>
-        <section class="comment-main mb-2">
-          <span class="comment-user mr-2">
-            {{ comment.user.username }}
-          </span>
-          <span class="comment-time">
-            <fa-icon :icon="['far', 'clock']" size="xs" />
-            <span>
-              {{ $moment(comment.createDate).fromNow() }}
-            </span>
-          </span>
-          <p class="mb-0">
-            {{ comment.content }}
-          </p>
-        </section>
-        <span
-          v-if="comment.hasReply"
-          :class="comment.isShowReply ? 'hide-reply' : 'view-reply'"
-          @click="toggleReply(comment)"
-        >
-          <fa-icon
-            class="mr-2"
-            :icon="['fas', comment.isShowReply ? 'caret-up' : 'caret-down']"
-          />
+    <b-media
+      v-for="comment in comments"
+      :id="'comment-' + comment.id"
+      :key="comment.id"
+      class="mb-2"
+    >
+      <template v-slot:aside>
+        <b-img-lazy
+          width="48"
+          blank
+          blank-color="#abc"
+          alt="avatar"
+          :src="comment.user.avatar"
+        ></b-img-lazy>
+      </template>
+      <section class="comment-main mb-2">
+        <span class="comment-user mr-2">
+          {{ comment.user.username }}
         </span>
-        <div
-          v-show="comment.isLoddingReply"
-          class="text-center justify-content-center"
-        >
-          <b-spinner variant="info"></b-spinner>
-        </div>
-        <b-media
-          v-for="reply in comment.replies"
-          :id="'comment-' + reply.id"
-          :key="reply.id"
-          class="comment-hint"
-        >
-          <template v-slot:aside>
-            <b-img-lazy
-              width="32"
-              blank
-              blank-color="#abc"
-              alt="avatar"
-              class="mt-2"
-              :src="reply.user.avatar"
-            ></b-img-lazy>
-          </template>
-          <section class="mt-1 mb-2">
-            <span class="comment-user mr-2">
-              {{ reply.user.username }}
-            </span>
-            <span class="comment-time">
-              <fa-icon :icon="['far', 'clock']" size="xs" />
-              <span>
-                {{ $moment(reply.createDate).fromNow() }}
-              </span>
-            </span>
-
-            <p class="mb-0">
-              <a
-                v-if="reply.replyComment"
-                :href="'#comment-' + reply.replyComment.id"
-                @click="commentHint(reply.replyComment.id)"
-              >
-                @{{ reply.replyComment.user.username }} :
-              </a>
-              {{ reply.content }}
-            </p>
-          </section>
-        </b-media>
-      </b-media>
-    </ul>
+        <span class="comment-time">
+          <fa-icon :icon="['far', 'clock']" size="xs" />
+          <span>
+            {{ $moment(comment.createDate).fromNow() }}
+          </span>
+        </span>
+        <section class="mb-0">
+          <div class="reply-comment">
+            <a
+              v-if="comment.replyToComment"
+              class="reply-link"
+              :href="'#comment-' + comment.replyToComment.id"
+              @click="commentHint(comment.replyToComment.id)"
+            >
+              @{{ comment.replyToComment.username }} :
+            </a>
+            {{ comment.content }}
+            <div v-if="comment.replyToComment" class="reply-popup p-2">
+              {{ comment.replyToComment.content }}
+            </div>
+          </div>
+        </section>
+      </section>
+    </b-media>
+    <span
+      v-show="!isLoddingComents && !(totalPages === pageNumber)"
+      class="more-comments mt-1"
+      @click="loadComments()"
+    >
+      <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
+    </span>
     <div v-show="isLoddingComents" class="text-center justify-content-center">
       <b-spinner variant="info"></b-spinner>
     </div>
@@ -124,58 +95,19 @@ export default {
     }
   },
   async mounted() {
-    window.addEventListener('scroll', this.handleScroll)
     await this.loadComments()
   },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
   methods: {
-    handleScroll() {
-      if (
-        this.commentAmount === 0 ||
-        this.pageNumber === this.totalPages ||
-        this.isLoddingComents
-      ) {
-        return
-      }
-      const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop
-      const windowHeight =
-        document.documentElement.clientHeight || document.body.clientHeight
-      const scrollHeight =
-        document.documentElement.scrollHeight || document.body.scrollHeight
-      if (scrollTop + windowHeight >= scrollHeight) {
-        this.loadComments()
-      }
-    },
     async loadComments() {
       this.isLoddingComents = true
       const { content, pageable, totalPages } = await this.$axios.$get(
         `/api/article-api/comment/articleComments/${this.articleId}/page/${this
           .pageNumber + 1}`
       )
-      for (const item of content) {
-        item.isShowReply = false
-        item.isLoddingReply = false
-      }
       this.comments.push(...content)
       this.pageNumber = pageable.pageNumber + 1
       this.totalPages = totalPages
       this.isLoddingComents = false
-    },
-    async toggleReply(comment) {
-      if (comment.isShowReply) {
-        comment.replies = []
-      } else {
-        comment.isLoddingReply = true
-        const content = await this.$axios.$get(
-          `/api/article-api/comment/replyComments/${comment.id}`
-        )
-        comment.replies.push(...content)
-        comment.isLoddingReply = false
-      }
-      comment.isShowReply = !comment.isShowReply
     },
     commentHint(id) {
       const el = document.querySelector(`#comment-${id}`)
@@ -202,26 +134,41 @@ export default {
 
 .comment-main {
   min-height: 48px;
+
+  .comment-user {
+    font-weight: bold;
+  }
+
+  .comment-time {
+    color: $gray-800;
+  }
+
+  .reply-comment {
+    display: inline-block;
+    position: relative;
+
+    .reply-popup {
+      display: none;
+      background: #ffffee;
+      border-radius: 5px;
+      max-width: 500px;
+      border: 1px solid #aaa;
+      position: absolute;
+      top: 30px;
+      left: 0;
+    }
+
+    .reply-link:hover + .reply-popup {
+      display: block;
+    }
+  }
 }
 
-.comment-user {
-  font-weight: bold;
-}
-
-.view-reply,
-.hide-reply {
+.more-comments {
   @include link();
 }
 
-.comment-time {
-  color: $gray-800;
-}
-
-.view-reply::after {
-  content: ' View reply';
-}
-
-.hide-reply::after {
-  content: ' Hide reply';
+.more-comments::after {
+  content: ' More Comments';
 }
 </style>

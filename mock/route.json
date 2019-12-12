@@ -3,7 +3,6 @@
   "/api/article-api/article/:id": "/articles/:id",
   "/api/article-api/articles/popular": "/articles?_start=0&_end=10",
   "/api/article-api/comment/articleComments/:articleId/page/:number": "/articleComments?articleId=:articleId&_page=:number&_limit=10",
-  "/api/article-api/comment/replyComments/:commentId": "/replyComments?commentId=:commentId",
   "/api/article-api/categories": "/categories",
   "/api/article-api/tags": "/tags"
 }
