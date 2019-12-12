@@ -37,11 +37,9 @@ export default {
   methods: {
     mouseoverIcon() {
       this.icon = ['fas', 'folder-open']
-      console.log(this.icon)
     },
     mouseleaveIcon() {
       this.icon = ['fas', 'folder']
-      console.log(this.icon)
     }
   }
 }
