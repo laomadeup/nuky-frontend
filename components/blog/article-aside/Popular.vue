@@ -5,7 +5,7 @@
       Popular
     </h5>
     <nuxt-link
-      v-for="(article, index) in popularArticles"
+      v-for="(article, index) in this.$store.state.article.popularArticles"
       :id="'pop-' + article.id"
       :key="index"
       class="mb-0 pb-2 pt-2 pl-2 popular-item"
@@ -29,7 +29,7 @@
 export default {
   name: 'Popular',
   data() {
-    return { popularArticles: this.$store.state.article.popularArticles }
+    return {}
   }
 }
 </script>

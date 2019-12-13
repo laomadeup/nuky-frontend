@@ -6,7 +6,7 @@
     </h5>
     <div class="p-2 content-area">
       <category-item
-        v-for="category in categories"
+        v-for="category in this.$store.state.article.categories"
         :key="category.id"
         :item="category"
         :depth="0"
@@ -22,7 +22,7 @@ export default {
   name: 'Category',
   components: { CategoryItem },
   data() {
-    return { categories: this.$store.state.article.categories }
+    return {}
   }
 }
 </script>
