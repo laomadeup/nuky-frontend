@@ -9,7 +9,7 @@ function markReply(articleComments) {
     const isThisReply = Math.floor(Math.random() * 4) === 0
     if (isThisReply) {
       const replayIndex = Math.ceil(Math.random() * i - 1)
-      articleComments[i].replyToComment = {
+      articleComments[i].replyComment = {
         id: articleComments[replayIndex].id,
         username: articleComments[replayIndex].user.username,
         content: articleComments[replayIndex].content

@@ -22,30 +22,34 @@
         ></b-img-lazy>
       </template>
       <section class="comment-main mb-2">
-        <span class="comment-user mr-2">
-          {{ comment.user.username }}
-        </span>
-        <span class="comment-time">
-          <fa-icon :icon="['far', 'clock']" size="xs" />
-          <span>
-            {{ $moment(comment.createDate).fromNow() }}
+        <section class="comment-info">
+          <span v-if="comment.replyComment" class="reply-popup hide p-2">
+            {{ comment.replyComment.content }}
           </span>
-        </span>
+          <span class="comment-user mr-2">
+            {{ comment.user.username }}
+          </span>
+          <span class="comment-time">
+            <fa-icon :icon="['far', 'clock']" size="xs" />
+            <span>
+              {{ $moment(comment.createDate).fromNow() }}
+            </span>
+          </span>
+        </section>
         <section class="mb-0">
-          <div class="reply-comment">
+          <p>
             <a
-              v-if="comment.replyToComment"
+              v-if="comment.replyComment"
               class="reply-link"
-              :href="'#comment-' + comment.replyToComment.id"
-              @click="commentHint(comment.replyToComment.id)"
+              :href="'#comment-' + comment.replyComment.id"
+              @click="commentHint(comment.replyComment.id)"
+              @mouseenter="showPopup(comment.id)"
+              @mouseout="hidePopup(comment.id)"
             >
-              @{{ comment.replyToComment.username }} :
+              @{{ comment.replyComment.username }} :
             </a>
             {{ comment.content }}
-            <div v-if="comment.replyToComment" class="reply-popup p-2">
-              {{ comment.replyToComment.content }}
-            </div>
-          </div>
+          </p>
         </section>
       </section>
     </b-media>
@@ -121,6 +125,21 @@ export default {
         loop: 4,
         duration: 400
       })
+    },
+    showPopup(id) {
+      const el = document.querySelector(`#comment-${id} .reply-popup`)
+      el.classList.remove('hide')
+      this.$anime({
+        targets: [el],
+        opacity: 1,
+        duration: 300,
+        easing: 'easeOutCirc'
+      })
+    },
+    hidePopup(id) {
+      const el = document.querySelector(`#comment-${id} .reply-popup`)
+      el.classList.add('hide')
+      el.style.opacity = 0
     }
   }
 }
@@ -135,32 +154,32 @@ export default {
 
 .comment-main {
   min-height: 48px;
-  position: relative;
 
-  .comment-user {
-    font-weight: bold;
-  }
+  .comment-info {
+    position: relative;
 
-  .comment-time {
-    color: $gray-800;
-  }
-
-  .reply-comment {
-    display: inline-block;
-
-    .reply-popup {
-      display: none;
-      background-color: ivory;
-      border-radius: 10px;
-      max-width: 500px;
-      border: 1px solid #aaa;
-      position: absolute;
-      top: -50px;
-      left: 0;
+    .comment-user {
+      font-weight: bold;
     }
 
-    .reply-link:hover + .reply-popup {
+    .comment-time {
+      color: $gray-800;
+    }
+    .reply-popup {
+      background-color: ivory;
+      opacity: 0;
+      color: #282828;
+      border-radius: 10px;
+      max-width: 500px;
+      border: 1px solid #aaaaaa;
+      position: absolute;
+      bottom: 0;
+      left: 0;
       display: block;
+
+      &.hide {
+        display: none;
+      }
     }
   }
 }
