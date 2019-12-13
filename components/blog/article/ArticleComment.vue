@@ -55,6 +55,7 @@
       @click="loadComments()"
     >
       <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
+      More Comments
     </span>
     <div v-show="isLoddingComents" class="text-center justify-content-center">
       <b-spinner variant="info"></b-spinner>
@@ -134,6 +135,7 @@ export default {
 
 .comment-main {
   min-height: 48px;
+  position: relative;
 
   .comment-user {
     font-weight: bold;
@@ -145,16 +147,15 @@ export default {
 
   .reply-comment {
     display: inline-block;
-    position: relative;
 
     .reply-popup {
       display: none;
-      background: #ffffee;
-      border-radius: 5px;
+      background-color: ivory;
+      border-radius: 10px;
       max-width: 500px;
       border: 1px solid #aaa;
       position: absolute;
-      top: 30px;
+      top: -50px;
       left: 0;
     }
 
@@ -166,9 +167,5 @@ export default {
 
 .more-comments {
   @include link();
-}
-
-.more-comments::after {
-  content: ' More Comments';
 }
 </style>

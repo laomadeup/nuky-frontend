@@ -40,7 +40,7 @@ export default {
     ArticleContent,
     ArticleInfo
   },
-  async asyncData({ params, store, $axios }) {
+  async asyncData({ params, $axios }) {
     const data = await $axios.$get(`/api/article-api/article/${params.id}`)
     return { article: data }
   },
