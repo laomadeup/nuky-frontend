@@ -11,13 +11,15 @@ import {
   faTags,
   faFolder,
   faFolderOpen,
-  faEye
+  faStar,
+  faBookOpen,
+  faHeart,
+  faHeartBroken
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
   faCopyright,
-  faEnvelope,
-  faThumbsUp
+  faEnvelope
 } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
@@ -34,8 +36,10 @@ library.add(
   faTags,
   faFolder,
   faFolderOpen,
-  faEye,
-  faThumbsUp
+  faBookOpen,
+  faStar,
+  faHeart,
+  faHeartBroken
 )
 config.autoAddCss = false
 Vue.component('fa-icon', FontAwesomeIcon)

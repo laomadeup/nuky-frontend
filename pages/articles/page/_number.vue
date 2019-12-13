@@ -32,11 +32,11 @@
             </time>
           </span>
           <span title="Likes">
-            <fa-icon class="text-primary" :icon="['far', 'thumbs-up']" />
+            <fa-icon class="text-warning" :icon="['fas', 'star']" />
             <span>{{ article.likes }}</span>
           </span>
           <span title="Views">
-            <fa-icon class="text-secondary" :icon="['fas', 'eye']" />
+            <fa-icon class="text-secondary" :icon="['fas', 'book-open']" />
             <span>{{ article.views }}</span>
           </span>
           <span title="Comments">

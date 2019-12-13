@@ -22,22 +22,22 @@
         ></b-img-lazy>
       </template>
       <section class="comment-main mb-2">
-        <section class="comment-info">
+        <section class="comment-header">
           <span v-if="comment.replyComment" class="reply-popup hide p-2">
             {{ comment.replyComment.content }}
           </span>
           <span class="comment-user mr-2">
             {{ comment.user.username }}
           </span>
-          <span class="comment-time">
+          <span class="comment-time mr-2">
             <fa-icon :icon="['far', 'clock']" size="xs" />
             <span>
               {{ $moment(comment.createDate).fromNow() }}
             </span>
           </span>
         </section>
-        <section class="mb-0">
-          <p>
+        <section class="comment-body">
+          <p class="mb-1">
             <a
               v-if="comment.replyComment"
               class="reply-link"
@@ -50,6 +50,15 @@
             </a>
             {{ comment.content }}
           </p>
+        </section>
+        <section class="comment-footer">
+          <span>
+            <fa-icon class="text-danger" :icon="['fas', 'heart']" />
+            <fa-icon class="text-secondary" :icon="['fas', 'heart-broken']" />
+          </span>
+          <span class="text-secondary comment-replay-btn">
+            <span>REPLY</span>
+          </span>
         </section>
       </section>
     </b-media>
@@ -155,7 +164,7 @@ export default {
 .comment-main {
   min-height: 48px;
 
-  .comment-info {
+  .comment-header {
     position: relative;
 
     .comment-user {
@@ -180,6 +189,13 @@ export default {
       &.hide {
         display: none;
       }
+    }
+  }
+
+  .comment-footer {
+    .comment-replay-btn {
+      font-weight: 500;
+      font-size: 0.8rem;
     }
   }
 }
