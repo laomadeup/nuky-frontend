@@ -1,9 +1,0 @@
-@import '~bootstrap/scss/bootstrap';
-
-@mixin link($my-link-color:$purple) {
-  color: $my-link-color;
-  &:hover {
-    cursor: pointer;
-    color: $blue;
-  }
-}

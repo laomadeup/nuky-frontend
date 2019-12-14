@@ -26,7 +26,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import '~assets/style/common/public';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 
 .flex-box {
   display: flex;

@@ -4,11 +4,11 @@
       <fa-icon :icon="['fas', 'comment-dots']" />
       Comment
     </h4>
-    <p class="comment-amount mb-2">Total {{ commentAmount }} comments</p>
-    <div v-if="comments.length === 0">No one comment yet</div>
+    <p class="comment-amount mb-2">{{ commentAmount }} comments</p>
+    <div v-if="comments.length === 0">No one commented yet</div>
     <b-media
       v-for="comment in comments"
-      :id="'comment-' + comment.id"
+      :id="`comment-${comment.id}`"
       :key="comment.id"
       class="mb-2"
     >
@@ -41,7 +41,7 @@
             <a
               v-if="comment.replyComment"
               class="reply-link"
-              :href="'#comment-' + comment.replyComment.id"
+              :href="`#comment-${comment.replyComment.id}`"
               @click="commentHint(comment.replyComment.id)"
               @mouseenter="showPopup(comment.id)"
               @mouseout="hidePopup(comment.id)"
@@ -52,13 +52,29 @@
           </p>
         </section>
         <section class="comment-footer">
-          <span>
-            <fa-icon class="text-danger" :icon="['fas', 'heart']" />
-            <fa-icon class="text-secondary" :icon="['fas', 'heart-broken']" />
+          <span class="comment-like">
+            <span :id="`comment-like-${comment.id}`" class="comment-btn">
+              <fa-icon class="text-secondary icon" :icon="['fas', 'heart']" />
+            </span>
           </span>
-          <span class="text-secondary comment-replay-btn">
-            <span>REPLY</span>
+          <span class="comment-dislike">
+            <span :id="`comment-dislike-${comment.id}`" class="comment-btn">
+              <fa-icon
+                class="text-secondary icon"
+                :icon="['fas', 'heart-broken']"
+              />
+            </span>
           </span>
+          <span class="ml-2 comment-replay-btn text-secondary">REPLY</span>
+          <b-tooltip variant="danger" :target="`comment-like-${comment.id}`">
+            Like
+          </b-tooltip>
+          <b-tooltip
+            variant="secondary"
+            :target="`comment-dislike-${comment.id}`"
+          >
+            Dislike
+          </b-tooltip>
         </section>
       </section>
     </b-media>
@@ -155,10 +171,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~assets/style/common/public';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 
 .comment-amount {
-  color: $gray-800;
+  font-size: 1.2rem;
+  color: $gray-600;
 }
 
 .comment-main {
@@ -174,10 +192,11 @@ export default {
     .comment-time {
       color: $gray-800;
     }
+
     .reply-popup {
       background-color: ivory;
       opacity: 0;
-      color: #282828;
+      color: $gray-900;
       border-radius: 10px;
       max-width: 500px;
       border: 1px solid #aaaaaa;
@@ -192,8 +211,41 @@ export default {
     }
   }
 
+  .comment-body {
+    .reply-link {
+      text-decoration: none;
+    }
+  }
+
   .comment-footer {
+    .comment-like,
+    .comment-dislike {
+      display: inline-block;
+      width: 3rem;
+
+      .comment-btn {
+        cursor: pointer;
+      }
+    }
+
+    .comment-like {
+      .comment-btn:hover {
+        .icon {
+          color: $danger !important;
+        }
+      }
+    }
+
+    .comment-dislike {
+      .comment-btn:hover {
+        .icon {
+          color: $dark !important;
+        }
+      }
+    }
+
     .comment-replay-btn {
+      cursor: pointer;
       font-weight: 500;
       font-size: 0.8rem;
     }
@@ -201,6 +253,12 @@ export default {
 }
 
 .more-comments {
-  @include link();
+  cursor: pointer;
+  font-weight: 500;
+  color: $gray-600;
+
+  &:hover {
+    color: $blue;
+  }
 }
 </style>

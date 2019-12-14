@@ -14,7 +14,9 @@ router.render = (req, res) => {
 }
 
 server.use(jsonServer.rewriter(routes))
-server.use(pause(config.delay))
+if (config.delay && config.delay > 0) {
+  server.use(pause(config.delay))
+}
 server.use(middlewares)
 server.use(router)
 server.listen(config.port, () => {

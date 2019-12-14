@@ -15,13 +15,13 @@
       >
         <nuxt-link
           tag="section"
-          class="article-description"
+          class="article-body"
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
           <header>
-            <h3 class="link-title">{{ article.title }}</h3>
+            <h3 class="article-title">{{ article.title }}</h3>
           </header>
-          <p class="mb-1">{{ article.description }}</p>
+          <p class="article-description mb-1">{{ article.description }}</p>
         </nuxt-link>
         <article-info :tags="article.tags" :category="article.category" />
         <section class="artcile-footer mt-1">
@@ -97,27 +97,29 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~assets/style/common/public';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 
 .article-page-item {
-  border-bottom: 1px solid gray('400');
-  cursor: pointer;
+  border-bottom: 1px solid $gray-400;
 
-  .article-description {
-    .link-title {
+  .article-body {
+    cursor: pointer;
+
+    .article-title {
       font-size: 1.25rem;
-      color: gray('800');
+      color: $gray-800;
     }
 
-    &:hover .link-title {
+    &:hover .article-title {
       color: $blue;
     }
 
-    p {
+    .article-description {
       height: 3rem;
       line-height: 1.5rem;
       overflow: hidden;
-      color: gray('700');
+      color: $gray-700;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
