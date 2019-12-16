@@ -1,6 +1,7 @@
 import path from 'path'
 import CKEditorWebpackPlugin from '@ckeditor/ckeditor5-dev-webpack-plugin'
 import { styles } from '@ckeditor/ckeditor5-dev-utils'
+import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'universal',
@@ -8,7 +9,8 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: "kyun's blog",
+    titleTemplate: '%s - ' + process.env.npm_package_name,
+    title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -27,15 +29,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    '~/assets/style/common/main.scss',
-    '@fortawesome/fontawesome/styles.css'
-  ],
+  css: ['~/assets/style/common/main.scss', 'vuetify/src/styles/styles.sass'],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/fontawesome.js',
     '~/plugins/vue-inject.js',
     { src: '~/plugins/nuky-editor', mode: 'client' }
   ],
@@ -46,16 +44,17 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://www.npmjs.com/package/@nuxtjs/moment
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    '@nuxtjs/vuetify'
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Axios module configuration
@@ -64,7 +63,28 @@ export default {
   axios: {
     proxy: true // Can be also an object with default options
   },
-
+  /*
+   ** vuetify module configuration
+   ** https://github.com/nuxt-community/vuetify-module
+   */
+  vuetify: {
+    customVariables: ['~/assets/variables.scss'],
+    theme: {
+      dark: true,
+      themes: {
+        dark: {
+          primary: colors.blue.darken2,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+        }
+      }
+    }
+    // default icons: 'mdi'
+  },
   proxy: {
     '/api/': 'http://localhost:8080/'
   },

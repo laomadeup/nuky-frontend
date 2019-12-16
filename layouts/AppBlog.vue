@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Navbar from '@/components/blog/Navbar'
 import Footer from '@/components/blog/Footer'
 
@@ -19,5 +17,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>

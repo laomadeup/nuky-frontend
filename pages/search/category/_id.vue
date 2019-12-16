@@ -7,5 +7,3 @@ export default {
   layout: 'AppBlog'
 }
 </script>
-
-<style scoped lang="scss"></style>

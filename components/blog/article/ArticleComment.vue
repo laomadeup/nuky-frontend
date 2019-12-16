@@ -297,9 +297,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-
 .comment-amount {
   font-size: 0.8rem;
   vertical-align: middle;
@@ -317,7 +314,7 @@ export default {
   }
 
   .comment-time {
-    color: $gray-800;
+    color: map-get($grey, lighten-4);
   }
 
   .reply-popup {
@@ -411,6 +408,17 @@ export default {
   border-radius: 0;
   overflow-y: auto !important;
 
+  .comment-input-border {
+    height: 2px;
+    width: 0;
+    max-width: 100%;
+    background: #000;
+    position: relative;
+    top: -2px;
+    margin: 0 auto;
+    transition: width 0.35s ease-in-out;
+  }
+
   &:focus {
     box-shadow: none;
 
@@ -427,28 +435,19 @@ textarea.comment-input {
 
   &::-webkit-scrollbar-track {
     background: $gray-200;
-    &:hover {
-      background: $gray-300;
-    }
   }
 
   &::-webkit-scrollbar-thumb {
     background: $gray-500;
-    &:hover {
-      background: $gray-600;
-    }
   }
-}
 
-.comment-input-border {
-  height: 2px;
-  width: 0;
-  max-width: 100%;
-  background: #000;
-  position: relative;
-  top: -2px;
-  margin: 0 auto;
-  transition: width 0.35s ease-in-out;
+  &::-webkit-scrollbar-track:hover {
+    background: $gray-300;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $gray-600;
+  }
 }
 
 #reply-mark {
