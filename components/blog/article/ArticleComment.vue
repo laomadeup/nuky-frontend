@@ -17,12 +17,12 @@
                 fade
                 @dismissed="replyAlertDismissed"
               >
-                <b-badge variant="danger">Replying @</b-badge>
+                <b-badge variant="danger">Replying</b-badge>
                 <b-badge
                   variant="primary"
-                  :href="`#comment-${newComment.replyCommentId}`"
+                  href="#"
                   @click="commentHint(newComment.replyCommentId)"
-                  >{{ newComment.replyUsername }}
+                  >@{{ newComment.replyUsername }}
                 </b-badge>
               </b-alert>
               <b-form-textarea
@@ -32,7 +32,7 @@
                 placeholder="Enter your comment..."
                 max-rows="10"
                 required
-              ></b-form-textarea>
+              />
               <div class="comment-input-border"></div>
             </b-col>
           </b-row>
@@ -82,7 +82,7 @@
             blank-color="#abc"
             alt="avatar"
             :src="comment.user.avatar"
-          ></b-img-lazy>
+          />
         </template>
         <section class="comment-main mb-2">
           <section class="comment-header">
@@ -101,16 +101,17 @@
           </section>
           <section class="comment-body">
             <p class="mb-1">
-              <a
+              <b-badge
                 v-if="comment.replyComment"
+                variant="primary"
                 class="reply-link"
-                :href="`#comment-${comment.replyComment.id}`"
+                href="#"
                 @click="commentHint(comment.replyComment.id)"
                 @mouseenter="showPopup(comment.id)"
                 @mouseout="hidePopup(comment.id)"
               >
-                @{{ comment.replyComment.username }} :
-              </a>
+                @{{ comment.replyComment.username }}
+              </b-badge>
               {{ comment.content }}
             </p>
           </section>
@@ -127,7 +128,7 @@
                 v-show="comment.like > 0"
                 class="number"
                 v-text="comment.like"
-              ></span>
+              />
             </span>
             <span class="comment-dislike">
               <span
@@ -144,7 +145,7 @@
                 v-show="comment.dislike > 0"
                 class="number"
                 v-text="comment.dislike"
-              ></span>
+              />
             </span>
             <span
               class="ml-1 comment-replay-btn text-secondary"
@@ -238,6 +239,8 @@ export default {
     },
     commentHint(id) {
       const el = document.querySelector(`#comment-${id}`)
+      const scrollHeight = el.getBoundingClientRect().top + window.scrollY - 200
+      window.scrollTo(0, scrollHeight)
       // anime
       this.$anime({
         targets: [el],
@@ -318,7 +321,7 @@ export default {
   }
 
   .reply-popup {
-    background-color: ivory;
+    background-color: $gray-100;
     opacity: 0;
     color: $gray-900;
     border-radius: 10px;
@@ -337,7 +340,8 @@ export default {
 
 .comment-body {
   .reply-link {
-    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
   }
 }
 
