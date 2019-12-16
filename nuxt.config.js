@@ -72,6 +72,7 @@ export default {
    ** Build configuration
    */
   build: {
+    extractCSS: true,
     transpile: [/ckeditor5-[^/\\]+[/\\]src[/\\].+\.js$/],
     plugins: [
       new CKEditorWebpackPlugin({
@@ -127,6 +128,9 @@ export default {
         component: '@/pages/articles/page/_number.vue'
       })
     }
+  },
+  render: {
+    resourceHints: false
   },
   /**
    * moment.js config

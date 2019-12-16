@@ -16,6 +16,11 @@ export default {
     Popular,
     Category,
     Tag
+  },
+  mounted() {
+    this.$store.dispatch('article/getPopularArticles')
+    this.$store.dispatch('article/getCategories')
+    this.$store.dispatch('article/getTags')
   }
 }
 </script>

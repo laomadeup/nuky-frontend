@@ -1,68 +1,179 @@
 <template>
-  <div class="mt-4">
-    <h4>
-      <fa-icon :icon="['fas', 'comment-dots']" />
-      Comment
-    </h4>
-    <p class="comment-amount mb-2">Total {{ commentAmount }} comments</p>
-    <div v-if="comments.length === 0">No one comment yet</div>
-    <b-media
-      v-for="comment in comments"
-      :id="'comment-' + comment.id"
-      :key="comment.id"
-      class="mb-2"
-    >
-      <template v-slot:aside>
-        <b-img-lazy
-          width="48"
-          blank
-          blank-color="#abc"
-          alt="avatar"
-          :src="comment.user.avatar"
-        ></b-img-lazy>
-      </template>
-      <section class="comment-main mb-2">
-        <section class="comment-info">
-          <span v-if="comment.replyComment" class="reply-popup hide p-2">
-            {{ comment.replyComment.content }}
-          </span>
-          <span class="comment-user mr-2">
-            {{ comment.user.username }}
-          </span>
-          <span class="comment-time">
-            <fa-icon :icon="['far', 'clock']" size="xs" />
-            <span>
-              {{ $moment(comment.createDate).fromNow() }}
+  <div>
+    <div class="mt-5">
+      <h4 id="scroll-mark">
+        <fa-icon :icon="['fas', 'feather-alt']" />
+        Add a Comment
+      </h4>
+      <b-container fluid>
+        <b-form @submit.prevent="onSubmitComment">
+          <b-row>
+            <b-col class="mb-2">
+              <b-alert
+                id="reply-mark"
+                variant="info"
+                :show="showReplyAlert"
+                dismissible
+                fade
+                @dismissed="replyAlertDismissed"
+              >
+                <b-badge variant="danger">Replying @</b-badge>
+                <b-badge
+                  variant="primary"
+                  :href="`#comment-${newComment.replyCommentId}`"
+                  @click="commentHint(newComment.replyCommentId)"
+                  >{{ newComment.replyUsername }}
+                </b-badge>
+              </b-alert>
+              <b-form-textarea
+                id="comment-content-textarea"
+                v-model="newComment.content"
+                class="comment-input"
+                placeholder="Enter your comment..."
+                max-rows="10"
+                required
+              ></b-form-textarea>
+              <div class="comment-input-border"></div>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col md="8" sm="12" class="mb-2">
+              <fa-icon
+                class="mr-2 comment-input-icon"
+                :icon="['fas', 'user-secret']"
+              />
+              <b-form-input
+                v-model="newComment.username"
+                required
+                class="comment-input pl-4"
+                placeholder="Enter your name..."
+              ></b-form-input>
+              <div class="comment-input-border"></div>
+            </b-col>
+            <b-col md="4" sm="12">
+              <b-button block type="submit" variant="info">
+                <fa-icon class="mr-2" :icon="['fas', 'paper-plane']" />
+                SUBMIT
+              </b-button>
+            </b-col>
+          </b-row>
+        </b-form>
+      </b-container>
+    </div>
+    <div class="mt-5">
+      <h4 class="mb-4">
+        <fa-icon :icon="['fas', 'comment-dots']" />
+        Comments
+        <b-badge class="comment-amount" variant="secondary">
+          {{ commentAmount }}
+        </b-badge>
+      </h4>
+      <div v-if="comments.length === 0">No one commented yet</div>
+      <b-media
+        v-for="comment in comments"
+        :id="`comment-${comment.id}`"
+        :key="comment.id"
+        class="mb-2"
+      >
+        <template v-slot:aside>
+          <b-img-lazy
+            width="48"
+            blank
+            blank-color="#abc"
+            alt="avatar"
+            :src="comment.user.avatar"
+          ></b-img-lazy>
+        </template>
+        <section class="comment-main mb-2">
+          <section class="comment-header">
+            <span v-if="comment.replyComment" class="reply-popup hide p-2">
+              {{ comment.replyComment.content }}
             </span>
-          </span>
-        </section>
-        <section class="mb-0">
-          <p>
-            <a
-              v-if="comment.replyComment"
-              class="reply-link"
-              :href="'#comment-' + comment.replyComment.id"
-              @click="commentHint(comment.replyComment.id)"
-              @mouseenter="showPopup(comment.id)"
-              @mouseout="hidePopup(comment.id)"
+            <span class="comment-user mr-2">
+              {{ comment.user.username }}
+            </span>
+            <span class="comment-time mr-2">
+              <fa-icon :icon="['far', 'clock']" size="sm" />
+              <span>
+                {{ $moment(comment.createDate).fromNow() }}
+              </span>
+            </span>
+          </section>
+          <section class="comment-body">
+            <p class="mb-1">
+              <a
+                v-if="comment.replyComment"
+                class="reply-link"
+                :href="`#comment-${comment.replyComment.id}`"
+                @click="commentHint(comment.replyComment.id)"
+                @mouseenter="showPopup(comment.id)"
+                @mouseout="hidePopup(comment.id)"
+              >
+                @{{ comment.replyComment.username }} :
+              </a>
+              {{ comment.content }}
+            </p>
+          </section>
+          <section class="comment-footer">
+            <span class="comment-like">
+              <span
+                :id="`comment-like-${comment.id}`"
+                class="comment-btn"
+                @click="like(comment.id)"
+              >
+                <fa-icon class="text-secondary icon" :icon="['fas', 'heart']" />
+              </span>
+              <span
+                v-show="comment.like > 0"
+                class="number"
+                v-text="comment.like"
+              ></span>
+            </span>
+            <span class="comment-dislike">
+              <span
+                :id="`comment-dislike-${comment.id}`"
+                class="comment-btn"
+                @click="dislike(comment.id)"
+              >
+                <fa-icon
+                  class="text-secondary icon"
+                  :icon="['fas', 'heart-broken']"
+                />
+              </span>
+              <span
+                v-show="comment.dislike > 0"
+                class="number"
+                v-text="comment.dislike"
+              ></span>
+            </span>
+            <span
+              class="ml-1 comment-replay-btn text-secondary"
+              @click="reply(comment.id, comment.user.username)"
+              >REPLY</span
             >
-              @{{ comment.replyComment.username }} :
-            </a>
-            {{ comment.content }}
-          </p>
+            <b-tooltip variant="danger" :target="`comment-like-${comment.id}`">
+              Like
+            </b-tooltip>
+            <b-tooltip
+              variant="secondary"
+              :target="`comment-dislike-${comment.id}`"
+            >
+              Dislike
+            </b-tooltip>
+          </section>
         </section>
-      </section>
-    </b-media>
-    <span
-      v-show="!isLoddingComents && !(totalPages === pageNumber)"
-      class="more-comments mt-1"
-      @click="loadComments()"
-    >
-      <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
-      More Comments
-    </span>
-    <div v-show="isLoddingComents" class="text-center justify-content-center">
-      <b-spinner variant="info"></b-spinner>
+      </b-media>
+      <span
+        v-show="!isLoddingComents && !(totalPages === pageNumber)"
+        class="more-comments mt-1"
+        @click="loadComments()"
+      >
+        <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
+        More Comments
+      </span>
+      <div v-show="isLoddingComents" class="text-center justify-content-center">
+        <b-spinner variant="info"></b-spinner>
+      </div>
     </div>
   </div>
 </template>
@@ -96,7 +207,18 @@ export default {
       pageNumber: 0,
       totalPages: 0,
       comments: [],
-      isLoddingComents: false
+      isLoddingComents: false,
+      newComment: {
+        username: null,
+        replyCommentId: null,
+        replyUsername: null,
+        content: ''
+      }
+    }
+  },
+  computed: {
+    showReplyAlert() {
+      return this.newComment.replyCommentId != null
     }
   },
   async mounted() {
@@ -123,7 +245,7 @@ export default {
         keyframes,
         direction: 'alternate',
         loop: 4,
-        duration: 400
+        duration: 320
       })
     },
     showPopup(id) {
@@ -140,51 +262,196 @@ export default {
       const el = document.querySelector(`#comment-${id} .reply-popup`)
       el.classList.add('hide')
       el.style.opacity = 0
+    },
+    scrollToCommentArea() {
+      const scrollHeight =
+        document.getElementById('scroll-mark').getBoundingClientRect().top +
+        window.scrollY -
+        200
+      window.scrollTo(0, scrollHeight)
+    },
+    onSubmitComment() {
+      console.log(this.newComment)
+    },
+    reply(id, username) {
+      this.newComment.replyCommentId = id
+      this.newComment.replyUsername = username
+      document.getElementById('comment-content-textarea').focus()
+      this.scrollToCommentArea()
+    },
+    replyAlertDismissed() {
+      this.newComment.replyCommentId = null
+      this.newComment.replyUsername = null
+    },
+    like(id) {
+      console.log(`like comment : %c ${id}`, 'color:#f00;')
+    },
+    dislike(id) {
+      console.log(`dislike comment : %c ${id}`, 'color:#f0f;')
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-@import '~assets/style/common/public';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 
 .comment-amount {
-  color: $gray-800;
+  font-size: 0.8rem;
+  vertical-align: middle;
 }
 
 .comment-main {
   min-height: 48px;
+}
 
-  .comment-info {
-    position: relative;
+.comment-header {
+  position: relative;
 
-    .comment-user {
-      font-weight: bold;
-    }
+  .comment-user {
+    font-weight: bold;
+  }
 
-    .comment-time {
-      color: $gray-800;
-    }
-    .reply-popup {
-      background-color: ivory;
-      opacity: 0;
-      color: #282828;
-      border-radius: 10px;
-      max-width: 500px;
-      border: 1px solid #aaaaaa;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      display: block;
+  .comment-time {
+    color: $gray-800;
+  }
 
-      &.hide {
-        display: none;
-      }
+  .reply-popup {
+    background-color: ivory;
+    opacity: 0;
+    color: $gray-900;
+    border-radius: 10px;
+    max-width: 500px;
+    border: 1px solid #aaaaaa;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+
+    &.hide {
+      display: none;
     }
   }
 }
 
+.comment-body {
+  .reply-link {
+    text-decoration: none;
+  }
+}
+
+.comment-footer {
+  color: $gray-600;
+
+  .comment-like,
+  .comment-dislike {
+    display: inline-block;
+    min-width: 3.5rem;
+
+    .comment-btn {
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    .number {
+      vertical-align: middle;
+      font-size: 0.8rem;
+      line-height: 1.5rem;
+      height: 1.5rem;
+      display: inline-block;
+    }
+  }
+
+  .comment-like {
+    .comment-btn:hover {
+      .icon {
+        color: $danger !important;
+      }
+    }
+  }
+
+  .comment-dislike {
+    .comment-btn:hover {
+      .icon {
+        color: $dark !important;
+      }
+    }
+  }
+
+  .comment-replay-btn {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
+}
+
 .more-comments {
-  @include link();
+  cursor: pointer;
+  font-weight: 500;
+  color: $gray-600;
+
+  &:hover {
+    color: $blue;
+  }
+}
+
+.comment-input-icon {
+  position: absolute;
+  height: calc(100% - 2px);
+}
+
+.comment-input {
+  border: none;
+  border-bottom: 2px solid $gray-500;
+  border-radius: 0;
+  overflow-y: auto !important;
+
+  &:focus {
+    box-shadow: none;
+
+    & + .comment-input-border {
+      width: 100%;
+    }
+  }
+}
+
+textarea.comment-input {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $gray-200;
+    &:hover {
+      background: $gray-300;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $gray-500;
+    &:hover {
+      background: $gray-600;
+    }
+  }
+}
+
+.comment-input-border {
+  height: 2px;
+  width: 0;
+  max-width: 100%;
+  background: #000;
+  position: relative;
+  top: -2px;
+  margin: 0 auto;
+  transition: width 0.35s ease-in-out;
+}
+
+#reply-mark {
+  display: inline-block;
+  padding: 6px 40px 6px 10px;
+  ::v-deep .close {
+    padding: 6px 10px;
+  }
 }
 </style>

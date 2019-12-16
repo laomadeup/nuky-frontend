@@ -5,8 +5,8 @@
       Popular
     </h5>
     <nuxt-link
-      v-for="(article, index) in popularArticles"
-      :id="'pop-' + article.id"
+      v-for="(article, index) in this.$store.state.article.popularArticles"
+      :id="`pop-${article.id}`"
       :key="index"
       class="mb-0 pb-2 pt-2 pl-2 popular-item"
       tag="p"
@@ -14,10 +14,10 @@
     >
       {{ article.title }}
       <b-popover
-        :target="'pop-' + article.id"
+        :target="`pop-${article.id}`"
         triggers="hover"
-        placement="top"
-        variant="dark"
+        placement="left"
+        variant="danger"
       >
         {{ article.title }}
       </b-popover>
@@ -29,13 +29,14 @@
 export default {
   name: 'Popular',
   data() {
-    return { popularArticles: this.$store.state.article.popularArticles }
+    return {}
   }
 }
 </script>
 
 <style scoped lang="scss">
-@import '~assets/style/common/public';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 
 .popular-item {
   cursor: pointer;
@@ -47,7 +48,7 @@ export default {
 }
 
 .popular-item:hover {
-  color: $link-hover-color;
+  color: $info;
   text-decoration-line: underline;
 }
 

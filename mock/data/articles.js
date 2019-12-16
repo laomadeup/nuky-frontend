@@ -2,6 +2,7 @@ import { Random } from 'mockjs'
 import moment from 'moment'
 import { categories } from './categories'
 import { tags } from './tags'
+
 const articleSize = 30
 
 const buildArticleConente = () => {
@@ -39,17 +40,18 @@ const genRamdomTags = () => {
 const articles = (() => {
   const articles = []
   for (let i = 1; i <= articleSize; i++) {
+    const category = categories[Math.floor(Math.random() * categories.length)]
     const article = {
       id: i,
       title: Random.sentence(5, 10),
       postDate: moment(Random.datetime()).format(),
-      description: Random.paragraph(5, 10),
+      description: Random.paragraph(2),
       content: buildArticleConente(),
       commentAmount: Math.floor(Math.random() * 25) + 10,
       views: Math.floor(Math.random() * 15),
       likes: Math.floor(Math.random() * 15),
       tags: genRamdomTags(),
-      category: categories[Math.floor(Math.random() * categories.length)],
+      category: { id: category.id, name: category.name },
       comments: []
     }
 
@@ -59,4 +61,12 @@ const articles = (() => {
   return articles
 })()
 
-export { articles }
+const popularArticles = (() => {
+  return articles
+    .filter((value, index) => index < 10)
+    .map((value) => {
+      return { id: value.id, title: value.title }
+    })
+})()
+
+export { articles, popularArticles }

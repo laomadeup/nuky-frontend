@@ -33,7 +33,15 @@ export const articleComments = (() => {
           avatar: Random.image('48x48', Random.color())
         },
         createDate: moment(Random.datetime()).format(),
-        content: Random.sentence(5, 15)
+        content: Random.sentence(5, 15),
+        like:
+          Math.floor(Math.random() * 4) === 0
+            ? Math.floor(Math.random() * 15) + 3
+            : 0,
+        dislike:
+          Math.floor(Math.random() * 4) === 0
+            ? Math.floor(Math.random() * 5)
+            : 0
       }
       thisArticleComments.push(comment)
     }

@@ -5,7 +5,7 @@
       Tags
     </h5>
     <div class="p-2 content-area">
-      <tag-badge :tags="tags" />
+      <tag-badge :tags="this.$store.state.article.tags" />
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   name: 'Tag',
   components: { TagBadge },
   data() {
-    return { tags: this.$store.state.article.tags }
+    return {}
   }
 }
 </script>
