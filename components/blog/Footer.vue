@@ -6,17 +6,14 @@
       <span>Kyun's Blog</span>
     </section>
     <section>
-      <fa-icon class="text-warning" :icon="['far', 'envelope']" />
+      <fa-icon :icon="['far', 'envelope']" />
       <a href="mailto:admin@iamkyun.com">admin@iamkyun.com</a>
     </section>
     <section>
-      <fa-icon class="text-secondary" :icon="['fab', 'github']" />
+      <fa-icon :icon="['fab', 'github']" />
       <a tagert="_blank" href="https://github.com/iamkyun">iamKyun</a>
     </section>
-    <section>
-      <span>粤ICP备15106619号</span>
-    </section>
-    <div id="bottomMark"></div>
+    <section><span>粤ICP备15106619号</span></section>
   </footer>
 </template>
 
@@ -37,16 +34,24 @@ export default {
   border-top: 1px solid $gray-300;
 
   & > section {
+    line-height: 100%;
+    height: 100%;
+    color: $gray-700;
     margin-top: 5px;
     text-align: center;
     padding: 0 10px;
 
-    & > * {
-      vertical-align: middle;
-    }
-
     &:not(:first-child) {
-      border-left: 1px solid $gray-300;
+      border-left: 1px solid $gray-500;
+    }
+  }
+
+  a {
+    color: $gray-700;
+
+    &:hover {
+      text-decoration: none;
+      color: $primary;
     }
   }
 }
