@@ -1,18 +1,12 @@
 <template>
-  <div>
+  <v-app>
     <app-header-nav />
-    <b-container>
-      <b-row>
-        <b-col :md="12" :lg="7" :xl="8">
-          <nuxt />
-        </b-col>
-        <b-col :md="12" :lg="5" :xl="4" class="divider">
-          <article-aside />
-        </b-col>
-      </b-row>
-    </b-container>
+    <v-content>
+      <nuxt />
+      <article-aside />
+    </v-content>
     <app-footer />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -28,19 +22,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-@import '~vuetify/src/styles/styles';
-
-.divider {
-  border-left: 1px solid map-get($grey, linghten-3);
-  padding-left: 20px;
-  margin-bottom: 50px;
-}
-
-@media (max-width: 992px) {
-  .divider {
-    display: none;
-  }
-}
-</style>

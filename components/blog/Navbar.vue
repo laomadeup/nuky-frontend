@@ -1,61 +1,66 @@
 <template>
-  <b-navbar
-    id="app-nav"
-    class="mb-4"
-    toggleable="md"
-    type="dark"
-    variant="info"
-  >
-    <b-navbar-brand>Kyun's Blog</b-navbar-brand>
+  <nav>
+    <v-app-bar
+      :clipped-left="$vuetify.breakpoint.mdAndUp"
+      color="blue lighten-1"
+      app
+    >
+      <v-app-bar-nav-icon
+        v-show="$vuetify.breakpoint.mdAndDown"
+        @click.stop="toggleDrawer"
+      />
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <v-toolbar-title class="ml-2 mr-2 pl-4 pr-4">
+        <span>Kyun's Blog</span>
+      </v-toolbar-title>
+      <v-spacer />
+      <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="mdi-magnify"
+        label="Search"
+        class="hidden-sm-and-down"
+      />
+    </v-app-bar>
 
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-item
-          v-for="(menu, index) in menus"
-          :key="index"
-          class="mr-2"
-          :to="{ name: menu.routerName }"
-          :exact="menu.exact"
-        >
-          {{ menu.name }}
-        </b-nav-item>
-      </b-navbar-nav>
-
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input
-            v-model="keyword"
-            size="sm"
-            class="mr-sm-2"
-            :state="searchInputState"
-            placeholder="Search"
-          ></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" @click="searchByKeyword">
-            Search
-          </b-button>
-        </b-nav-form>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.mdAndUp"
+      app
+    >
+      <v-list dense nav>
+        <v-list-item-group color="primary">
+          <v-list-item v-for="(menu, i) in menus" :key="i" :to="menu.router">
+            <v-list-item-icon>
+              <v-icon v-text="menu.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="menu.name"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+  </nav>
 </template>
 
 <script>
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      keyword: '',
-      searchInputState: null,
-      menus: [
-        { routerName: 'index', name: 'Home', exact: true },
-        { routerName: 'about', name: 'About Me', exact: false }
-      ]
-    }
-  },
+  data: () => ({
+    keyword: '',
+    searchInputState: null,
+    menus: [
+      { router: 'index', name: 'Home', exact: true, icon: 'mdi-home' },
+      { router: 'about', name: 'About', exact: false, icon: 'mdi-help-circle' }
+    ],
+    drawer: null
+  }),
   methods: {
+    toggleDrawer() {
+      this.drawer = !this.drawer
+    },
     searchByKeyword() {
       if (this.keyword == null || this.keyword === '') {
         this.searchInputState = false
@@ -71,31 +76,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-@mixin nuky-navbar($var) {
-  padding-left: $var;
-  padding-right: $var;
-}
-
-#app-nav .nav-link.nuxt-link-active {
-  color: white;
-  font-weight: 500;
-}
-
-#app-nav.navbar {
-  @include nuky-navbar(350px);
-
-  @media (max-width: 1700px) {
-    @include nuky-navbar(200px);
-  }
-
-  @media (max-width: 1500px) {
-    @include nuky-navbar(100px);
-  }
-
-  @media (max-width: 1200px) {
-    @include nuky-navbar(20px);
-  }
-}
-</style>

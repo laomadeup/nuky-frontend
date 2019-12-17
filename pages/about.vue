@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    <h3>Test</h3>
+    <p>Test Test Test Test Test</p>
+  </div>
 </template>
 
 <script>
