@@ -50,7 +50,7 @@ export default {
 
     &:hover {
       text-decoration: none;
-      color: var(--v-primary-base);
+      color: map-get($blue, base);
     }
   }
 }

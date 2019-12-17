@@ -369,7 +369,7 @@ export default {
   .comment-like {
     .comment-btn:hover {
       .icon {
-        color: var(--v-danger-base) !important;
+        color: map-get($red, base) !important;
       }
     }
   }
@@ -377,7 +377,7 @@ export default {
   .comment-dislike {
     .comment-btn:hover {
       .icon {
-        color: var(--v-secondary-base) !important;
+        color: map-get($grey, lighten-1) !important;
       }
     }
   }

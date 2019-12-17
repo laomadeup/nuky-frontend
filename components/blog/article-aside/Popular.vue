@@ -47,7 +47,7 @@ export default {
 }
 
 .popular-item:hover {
-  color: var(--v-info-base);
+  color: map-get($blue, linghten-3);
   text-decoration-line: underline;
 }
 

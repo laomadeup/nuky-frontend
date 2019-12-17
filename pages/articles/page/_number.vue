@@ -111,7 +111,7 @@ export default {
     }
 
     &:hover .article-title {
-      color: var(--v-info-base);
+      color: map-get($blue, linghten-3);
     }
 
     .article-description {
