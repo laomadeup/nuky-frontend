@@ -30,11 +30,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import '~vuetify/src/styles/styles';
 
 .divider {
-  border-left: 1px solid $gray-300;
+  border-left: 1px solid map-get($grey, linghten-3);
   padding-left: 20px;
   margin-bottom: 50px;
 }

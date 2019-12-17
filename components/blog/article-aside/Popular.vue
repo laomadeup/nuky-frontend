@@ -35,12 +35,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import '~vuetify/src/styles/styles';
 
 .popular-item {
   cursor: pointer;
-  border-top: 1px solid $gray-300;
+  border-top: 1px solid map-get($grey, linghten-3);
   line-height: 1.4rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -48,11 +47,11 @@ export default {
 }
 
 .popular-item:hover {
-  color: $info;
+  color: var(--v-info-base);
   text-decoration-line: underline;
 }
 
 .popular-item:last-child {
-  border-bottom: 1px solid $gray-300;
+  border-bottom: 1px solid map-get($grey, linghten-3);
 }
 </style>

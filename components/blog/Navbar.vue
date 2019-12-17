@@ -85,6 +85,7 @@ export default {
 
 #app-nav.navbar {
   @include nuky-navbar(350px);
+
   @media (max-width: 1700px) {
     @include nuky-navbar(200px);
   }

@@ -59,14 +59,14 @@ export default {
 <style scoped lang="scss">
 .divider {
   height: 0;
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid #ccc;
   text-align: center;
 
   span {
-    color: #888888;
+    color: #888;
     position: relative;
     top: -14px;
-    background-color: #ffffff;
+    background-color: #fff;
   }
 }
 </style>

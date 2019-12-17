@@ -23,35 +23,34 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import '~vuetify/src/styles/styles';
 
 .flex-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  border-top: 1px solid $gray-300;
+  border-top: 1px solid map-get($grey, linghten-3);
 
   & > section {
     line-height: 100%;
     height: 100%;
-    color: $gray-700;
+    color: map-get($grey, darken-3);
     margin-top: 5px;
     text-align: center;
     padding: 0 10px;
 
     &:not(:first-child) {
-      border-left: 1px solid $gray-500;
+      border-left: 1px solid map-get($grey, darken-1);
     }
   }
 
   a {
-    color: $gray-700;
+    color: map-get($grey, darken-3);
 
     &:hover {
       text-decoration: none;
-      color: $primary;
+      color: var(--v-primary-base);
     }
   }
 }

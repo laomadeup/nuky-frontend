@@ -2,6 +2,7 @@ import path from 'path'
 import CKEditorWebpackPlugin from '@ckeditor/ckeditor5-dev-webpack-plugin'
 import { styles } from '@ckeditor/ckeditor5-dev-utils'
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
 
 export default {
   mode: 'universal',
@@ -29,7 +30,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~/assets/style/common/main.scss', 'vuetify/src/styles/styles.sass'],
+  css: ['~/assets/style/common/main.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -43,6 +44,8 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    // Doc: https://github.com/nuxt-community/stylelint-module
+    '@nuxtjs/stylelint-module',
     // Doc: https://www.npmjs.com/package/@nuxtjs/moment
     '@nuxtjs/moment',
     '@nuxtjs/vuetify'
@@ -56,6 +59,9 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  stylelint: {
+    fix: true
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -68,22 +74,7 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
-    // default icons: 'mdi'
+    customVariables: ['~/assets/variables.scss']
   },
   proxy: {
     '/api/': 'http://localhost:8080/'

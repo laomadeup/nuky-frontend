@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.clearfix:after {
+.clearfix::after {
   content: ' ';
   display: block;
   height: 0;
@@ -59,17 +59,17 @@ export default {
 
 .category {
   float: left;
-  color: #666666;
+  color: #666;
   min-width: 120px;
   display: inline-block;
 
   .category-name {
     cursor: pointer;
     transition: border-bottom 0.25s;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #fff;
 
     &:hover {
-      border-color: #aaaaaa;
+      border-color: #aaa;
     }
   }
 

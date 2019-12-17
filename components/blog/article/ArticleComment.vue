@@ -297,6 +297,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '~vuetify/src/styles/styles';
+
 .comment-amount {
   font-size: 0.8rem;
   vertical-align: middle;
@@ -318,12 +320,12 @@ export default {
   }
 
   .reply-popup {
-    background-color: $gray-100;
+    background-color: map-get($grey, lighten-5);
     opacity: 0;
-    color: $gray-900;
+    color: map-get($grey, darken-4);
     border-radius: 10px;
     max-width: 500px;
-    border: 1px solid #aaaaaa;
+    border: 1px solid #aaa;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -343,7 +345,7 @@ export default {
 }
 
 .comment-footer {
-  color: $gray-600;
+  color: map-get($grey, darken-1);
 
   .comment-like,
   .comment-dislike {
@@ -367,7 +369,7 @@ export default {
   .comment-like {
     .comment-btn:hover {
       .icon {
-        color: $danger !important;
+        color: var(--v-danger-base) !important;
       }
     }
   }
@@ -375,7 +377,7 @@ export default {
   .comment-dislike {
     .comment-btn:hover {
       .icon {
-        color: $dark !important;
+        color: var(--v-secondary-base) !important;
       }
     }
   }
@@ -390,10 +392,10 @@ export default {
 .more-comments {
   cursor: pointer;
   font-weight: 500;
-  color: $gray-600;
+  color: map-get($grey, darken-3);
 
   &:hover {
-    color: $blue;
+    color: var(---info-base);
   }
 }
 
@@ -404,7 +406,7 @@ export default {
 
 .comment-input {
   border: none;
-  border-bottom: 2px solid $gray-500;
+  border-bottom: 2px solid map-get($grey, darken-2);
   border-radius: 0;
   overflow-y: auto !important;
 
@@ -434,25 +436,26 @@ textarea.comment-input {
   }
 
   &::-webkit-scrollbar-track {
-    background: $gray-200;
+    background: map-get($grey, darken-1);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: $gray-500;
+    background: map-get($grey, darken-3);
   }
 
   &::-webkit-scrollbar-track:hover {
-    background: $gray-300;
+    background: map-get($grey, darken-2);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: $gray-600;
+    background: map-get($grey, darken-4);
   }
 }
 
 #reply-mark {
   display: inline-block;
   padding: 6px 40px 6px 10px;
+
   ::v-deep .close {
     padding: 6px 10px;
   }

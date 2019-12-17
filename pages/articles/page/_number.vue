@@ -97,29 +97,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import '~vuetify/src/styles/styles';
 
 .article-page-item {
-  border-bottom: 1px solid $gray-400;
+  border-bottom: 1px solid map-get($grey, linghten-4);
 
   .article-body {
     cursor: pointer;
 
     .article-title {
       font-size: 1.25rem;
-      color: $gray-800;
+      color: map-get($grey, darken-4);
     }
 
     &:hover .article-title {
-      color: $blue;
+      color: var(--v-info-base);
     }
 
     .article-description {
       height: 3rem;
       line-height: 1.5rem;
       overflow: hidden;
-      color: $gray-700;
+      color: map-get($grey, darken-3);
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
