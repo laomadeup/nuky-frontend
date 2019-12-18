@@ -1,8 +1,8 @@
 <template>
   <div>
     <popular />
-    <category class="mt-4" />
-    <tag class="mt-4" />
+    <category class="mt-10" />
+    <tag class="mt-10" />
   </div>
 </template>
 
@@ -24,10 +24,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-::v-deep .content-area {
-  border-bottom: 1px solid #dee2e6;
-  border-top: 1px solid #dee2e6;
-}
-</style>

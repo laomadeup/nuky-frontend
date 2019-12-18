@@ -1,10 +1,8 @@
 <template>
   <div>
-    <h5>
-      <fa-icon class="text-success" :icon="['fas', 'folder-open']" />
-      Categories
-    </h5>
-    <div class="p-2 content-area">
+    <h3><v-icon color="green">mdi-folder-multiple</v-icon> Categories</h3>
+    <v-divider class="my-2" />
+    <div class="p-2">
       <category-item
         v-for="category in this.$store.state.article.categories"
         :key="category.id"
@@ -13,6 +11,7 @@
       >
       </category-item>
     </div>
+    <v-divider class="my-2" />
   </div>
 </template>
 

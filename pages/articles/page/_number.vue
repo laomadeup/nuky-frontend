@@ -26,24 +26,25 @@
         <article-info :tags="article.tags" :category="article.category" />
         <section class="artcile-footer mt-1">
           <span title="Post Time">
-            <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
-            <time>
+            <v-icon>mdi-calendar</v-icon>
+            <time class="middle">
               {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
             </time>
           </span>
           <span title="Likes">
-            <fa-icon class="text-warning" :icon="['fas', 'star']" />
-            <span>{{ article.likes }}</span>
+            <v-icon class="yellow--text text--darken-2">mdi-star</v-icon>
+            <span class="middle">{{ article.likes }}</span>
           </span>
           <span title="Views">
-            <fa-icon class="text-secondary" :icon="['fas', 'book-open']" />
-            <span>{{ article.views }}</span>
+            <v-icon>mdi-cursor-default-click-outline</v-icon>
+            <span class="middle">{{ article.views }}</span>
           </span>
           <span title="Comments">
-            <fa-icon class="text-secondary" :icon="['fas', 'comment-dots']" />
-            <span>{{ article.commentAmount }}</span>
+            <v-icon>mdi-comment-multiple</v-icon>
+            <span class="middle">{{ article.commentAmount }}</span>
           </span>
         </section>
+        <v-divider class="mt-4" />
       </article>
       <b-pagination-nav
         :number-of-pages="totalPages"
@@ -112,18 +113,16 @@ export default {
 @import '~vuetify/src/styles/styles';
 
 .article-page-item {
-  border-bottom: 1px solid map-get($grey, linghten-4);
-
   .article-body {
     cursor: pointer;
 
     .article-title {
       font-size: 1.25rem;
-      color: map-get($grey, darken-4);
+      color: map-get($grey, darken-2);
     }
 
     &:hover .article-title {
-      color: map-get($blue, linghten-3);
+      color: map-get($blue, darken-1);
     }
 
     .article-description {
@@ -136,14 +135,18 @@ export default {
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-  }
 
-  .artcile-footer * {
-    vertical-align: middle;
+    &:hover .article-description {
+      color: map-get($grey, darken-1);
+    }
   }
 
   .artcile-footer span {
     margin-right: 10px;
+  }
+
+  .artcile-footer .middle {
+    vertical-align: middle;
   }
 }
 </style>

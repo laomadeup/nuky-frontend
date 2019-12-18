@@ -2,7 +2,7 @@
   <v-app>
     <app-header-nav />
     <v-content>
-      <nuxt />
+      <nuxt class="pa-4" />
     </v-content>
     <app-footer />
   </v-app>

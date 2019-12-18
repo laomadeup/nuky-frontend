@@ -52,7 +52,7 @@ export default {
   .category-name {
     cursor: pointer;
     transition: border-bottom 0.25s;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #fafafa;
 
     &:hover {
       border-color: #aaa;

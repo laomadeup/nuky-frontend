@@ -1,13 +1,17 @@
 <template>
   <div>
-    <h3>Test</h3>
-    <p>Test Test Test Test Test</p>
+    <article-aside />
   </div>
 </template>
 
 <script>
+import ArticleAside from '@/components/blog/ArticleAside'
+
 export default {
   layout: 'AppBlog',
+  components: {
+    ArticleAside
+  },
   data() {
     return {}
   },

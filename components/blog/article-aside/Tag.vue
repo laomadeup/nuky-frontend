@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h5>
-      <fa-icon class="text-info" :icon="['fas', 'tags']" />
-      Tags
-    </h5>
+    <h3><v-icon color="light-blue">mdi-tag-multiple</v-icon> Tags</h3>
+    <v-divider class="my-2" />
     <div class="p-2 content-area">
       <tag-badge :tags="this.$store.state.article.tags" />
     </div>
+    <v-divider class="my-2" />
   </div>
 </template>
 

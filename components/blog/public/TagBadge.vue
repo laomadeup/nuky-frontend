@@ -1,27 +1,31 @@
 <template>
   <span>
-    <b-badge
+    <v-chip
       v-for="tag in tags"
       :key="tag.id"
-      pill
+      class="ml-1 font-weight-medium"
+      x-small
       :to="{ name: 'search-tag-id', params: { id: tag.id } }"
-      :variant="getRamdomTagColor()"
-      class="tag mr-1"
+      :color="getRamdomTagColor() + ' darken-1'"
+      text-color="white"
+      link
     >
       {{ tag.name }}
-    </b-badge>
+    </v-chip>
   </span>
 </template>
 
 <script>
 const tagColors = [
-  'primary',
-  'secondary',
-  'success',
-  'danger',
-  'warning',
-  'info',
-  'dark'
+  'pink',
+  'purple',
+  'indigo',
+  'cyan',
+  'teal',
+  'green',
+  'lime',
+  'orange',
+  'brown'
 ]
 export default {
   name: 'TagBadge',
@@ -38,9 +42,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.tag {
-  font-weight: 600;
-}
-</style>

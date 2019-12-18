@@ -1,18 +1,24 @@
 <template>
-  <section class="mb-1 clearfix">
-    <span class="category mr-3" title="Category">
-      <fa-icon class="text-secondary icon" :icon="icon" />
-      <span @mouseover="mouseoverIcon" @mouseleave="mouseleaveIcon">
-        <nuxt-link
-          class="category-name ml-1 mr-1"
-          tag="span"
-          :to="{ name: 'search-category-id', params: { id: category.id } }"
-          >{{ category.name }}</nuxt-link
-        >
-      </span>
-    </span>
-    <tag-badge class="tag" :tags="tags" title="Tags" />
-  </section>
+  <v-container class="py-0">
+    <v-row class="pa-0">
+      <v-col class="pa-0">
+        <span class="category mr-3" title="Category">
+          <v-icon color="grey">{{ icon }}</v-icon>
+          <span @mouseover="mouseoverIcon" @mouseleave="mouseleaveIcon">
+            <nuxt-link
+              class="category-name mx-1"
+              tag="span"
+              :to="{ name: 'search-category-id', params: { id: category.id } }"
+              >{{ category.name }}</nuxt-link
+            >
+          </span>
+        </span>
+      </v-col>
+      <v-col class="pa-0">
+        <tag-badge class="float-right" :tags="tags" title="Tags" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -32,49 +38,34 @@ export default {
     }
   },
   data() {
-    return { icon: ['fas', 'folder'] }
+    return { icon: 'mdi-folder' }
   },
   methods: {
     mouseoverIcon() {
-      this.icon = ['fas', 'folder-open']
+      this.icon = 'mdi-folder-open'
     },
     mouseleaveIcon() {
-      this.icon = ['fas', 'folder']
+      this.icon = 'mdi-folder'
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.clearfix::after {
-  content: ' ';
-  display: block;
-  height: 0;
-  clear: both;
-}
-
-.tag {
-  float: right;
-}
-
 .category {
-  float: left;
   color: #666;
   min-width: 120px;
-  display: inline-block;
 
   .category-name {
     cursor: pointer;
     transition: border-bottom 0.25s;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #fafafa;
+    position: relative;
+    top: 2px;
 
     &:hover {
       border-color: #aaa;
     }
-  }
-
-  .icon {
-    min-width: 18px;
   }
 }
 </style>
