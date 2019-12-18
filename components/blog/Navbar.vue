@@ -2,7 +2,8 @@
   <nav>
     <v-app-bar
       :clipped-left="$vuetify.breakpoint.mdAndUp"
-      color="blue lighten-1"
+      color="primary"
+      flat
       app
     >
       <v-app-bar-nav-icon
@@ -10,33 +11,79 @@
         @click.stop="toggleDrawer"
       />
 
-      <v-toolbar-title class="ml-2 mr-2 pl-4 pr-4">
+      <v-toolbar-title class="white--text mx-2 px-4">
         <span>Kyun's Blog</span>
       </v-toolbar-title>
       <v-spacer />
-      <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        label="Search"
-        class="hidden-sm-and-down"
-      />
+      <v-row align="right" style="max-width: 500px;">
+        <v-col cols="8">
+          <v-text-field
+            dense
+            flat
+            dark
+            rounded
+            solo-inverted
+            hide-details
+            single-line
+            prepend-inner-icon="mdi-magnify"
+            label="Search"
+            class="hidden-sm-and-down"
+            color="primary"
+          />
+        </v-col>
+        <v-col cols="4">
+          <v-btn rounded color="grey lighten-3">Search</v-btn>
+        </v-col>
+      </v-row>
     </v-app-bar>
 
     <v-navigation-drawer
       v-model="drawer"
       :clipped="$vuetify.breakpoint.mdAndUp"
+      width="300"
+      color="grey lighten-4"
       app
     >
-      <v-list dense nav>
-        <v-list-item-group color="primary">
-          <v-list-item v-for="(menu, i) in menus" :key="i" :to="menu.router">
+      <v-list>
+        <v-row justify="center">
+          <v-avatar size="80">
+            <img src="/avatar.jpg" alt="Kyun" />
+          </v-avatar>
+        </v-row>
+
+        <v-list-item dense @click="() => {}">
+          <v-list-item-icon>
+            <v-icon>mdi-github-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>iamKyun</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item dense @click="() => {}">
+          <v-list-item-icon>
+            <v-icon>mdi-email</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>admin@iamkyun.com</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-divider class="my-2" />
+
+      <v-list nav>
+        <v-list-item-group v-model="menu" color="primary">
+          <v-list-item
+            v-for="(menu, i) in menus"
+            :key="i"
+            :to="{ name: menu.router }"
+            :exact="menu.exact"
+          >
             <v-list-item-icon>
-              <v-icon v-text="menu.icon"></v-icon>
+              <v-icon v-text="menu.icon" />
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title v-text="menu.name"></v-list-item-title>
+              <v-list-item-title v-text="menu.name" />
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -51,6 +98,7 @@ export default {
   data: () => ({
     keyword: '',
     searchInputState: null,
+    menu: 1,
     menus: [
       { router: 'index', name: 'Home', exact: true, icon: 'mdi-home' },
       { router: 'about', name: 'About', exact: false, icon: 'mdi-help-circle' }
