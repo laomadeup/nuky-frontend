@@ -15,7 +15,7 @@
         <span>Kyun's Blog</span>
       </v-toolbar-title>
       <v-spacer />
-      <v-row align="right" style="max-width: 500px;">
+      <v-row style="max-width: 500px;">
         <v-col cols="8">
           <v-text-field
             dense
@@ -51,7 +51,7 @@
           </v-avatar>
         </v-row>
 
-        <v-list-item dense @click="() => {}">
+        <v-list-item dense href="https://github.com/iamkyun">
           <v-list-item-icon>
             <v-icon>mdi-github-circle</v-icon>
           </v-list-item-icon>
@@ -59,7 +59,7 @@
             <v-list-item-title>iamKyun</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item dense @click="() => {}">
+        <v-list-item dense href="mailto:admin@iamkyun.com">
           <v-list-item-icon>
             <v-icon>mdi-email</v-icon>
           </v-list-item-icon>
