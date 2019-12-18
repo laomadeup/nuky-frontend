@@ -51,7 +51,7 @@
           </v-avatar>
         </v-row>
 
-        <v-list-item dense href="https://github.com/iamkyun">
+        <v-list-item dense href="https://github.com/iamkyun" target="_blank">
           <v-list-item-icon>
             <v-icon>mdi-github-circle</v-icon>
           </v-list-item-icon>
