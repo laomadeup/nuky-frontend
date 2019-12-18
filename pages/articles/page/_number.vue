@@ -92,6 +92,18 @@ export default {
         params: { number: pageNumber }
       }
     }
+  },
+  head() {
+    return {
+      title: this.pageNumber === 1 ? 'Home' : 'Articles',
+      meta: [
+        {
+          hid: 'Articles',
+          name: 'Articles',
+          content: 'Articles'
+        }
+      ]
+    }
   }
 }
 </script>

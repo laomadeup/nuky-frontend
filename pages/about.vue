@@ -10,6 +10,18 @@ export default {
   layout: 'AppBlog',
   data() {
     return {}
+  },
+  head() {
+    return {
+      title: 'About',
+      meta: [
+        {
+          hid: 'About',
+          name: 'About',
+          content: 'About'
+        }
+      ]
+    }
   }
 }
 </script>

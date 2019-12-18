@@ -49,6 +49,18 @@ export default {
       article: null
     }
   },
+  head() {
+    return {
+      title: this.article.title,
+      meta: [
+        {
+          hid: 'Article',
+          name: 'Article',
+          content: this.article.title
+        }
+      ]
+    }
+  },
   validate({ params }) {
     // params.id must be number
     return /^\d+$/.test(params.id)
