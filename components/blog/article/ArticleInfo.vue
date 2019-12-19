@@ -1,24 +1,22 @@
 <template>
-  <v-container class="py-0">
-    <v-row class="pa-0">
-      <v-col class="pa-0">
-        <span class="category mr-3" title="Category">
-          <v-icon color="grey">{{ icon }}</v-icon>
-          <span @mouseover="mouseoverIcon" @mouseleave="mouseleaveIcon">
-            <nuxt-link
-              class="category-name mx-1"
-              tag="span"
-              :to="{ name: 'search-category-id', params: { id: category.id } }"
-              >{{ category.name }}</nuxt-link
-            >
-          </span>
+  <v-row class="mx-0">
+    <v-col class="pa-0">
+      <span class="category mr-3" title="Category">
+        <v-icon color="grey">{{ icon }}</v-icon>
+        <span @mouseover="mouseoverIcon" @mouseleave="mouseleaveIcon">
+          <nuxt-link
+            class="category-name mx-1"
+            tag="span"
+            :to="{ name: 'search-category-id', params: { id: category.id } }"
+            >{{ category.name }}</nuxt-link
+          >
         </span>
-      </v-col>
-      <v-col class="pa-0">
-        <tag-badge class="float-right" :tags="tags" title="Tags" />
-      </v-col>
-    </v-row>
-  </v-container>
+      </span>
+    </v-col>
+    <v-col class="pa-0">
+      <tag-badge class="float-right" :tags="tags" title="Tags" />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -52,6 +50,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '~vuetify/src/styles/styles';
+
 .category {
   color: #666;
   min-width: 120px;
@@ -59,12 +59,12 @@ export default {
   .category-name {
     cursor: pointer;
     transition: border-bottom 0.25s;
-    border-bottom: 2px solid #fafafa;
+    border-bottom: 2px solid map-get($grey, lighten-5);
     position: relative;
     top: 2px;
 
     &:hover {
-      border-color: #aaa;
+      border-color: map-get($grey, base);
     }
   }
 }

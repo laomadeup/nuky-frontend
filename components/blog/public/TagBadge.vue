@@ -1,18 +1,16 @@
 <template>
-  <span>
+  <v-chip-group dark multiple column class="font-weight-medium">
     <v-chip
       v-for="tag in tags"
       :key="tag.id"
-      class="ml-1 font-weight-medium"
       x-small
       :to="{ name: 'search-tag-id', params: { id: tag.id } }"
-      :color="getRamdomTagColor() + ' darken-1'"
-      text-color="white"
+      :color="getRamdomTagColor() + ' darken-2'"
       link
     >
       {{ tag.name }}
     </v-chip>
-  </span>
+  </v-chip-group>
 </template>
 
 <script>

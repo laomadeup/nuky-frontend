@@ -46,16 +46,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '~vuetify/src/styles/styles';
+
 .category-item {
   line-height: 1.4rem;
 
   .category-name {
     cursor: pointer;
     transition: border-bottom 0.25s;
-    border-bottom: 2px solid #fafafa;
+    border-bottom: 2px solid map-get($grey, lighten-4);
 
     &:hover {
-      border-color: #aaa;
+      border-color: map-get($grey, base);
     }
   }
 }

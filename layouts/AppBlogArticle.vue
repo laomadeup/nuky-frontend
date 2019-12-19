@@ -1,18 +1,21 @@
 <template>
   <v-app>
-    <app-header-nav />
+    <app-header-nav>
+      <template v-slot:rightNavDrawer="slotProps">
+        <v-navigation-drawer
+          v-model="slotProps.rightDrawer"
+          color="grey lighten-4"
+          right
+          app
+          clipped
+          width="500"
+        >
+          <article-aside class="pt-5 pl-5" />
+        </v-navigation-drawer>
+      </template>
+    </app-header-nav>
     <v-content>
-      <v-container class="pa-4">
-        <v-row>
-          <v-col md="12" lg="7" xl="8">
-            <nuxt />
-          </v-col>
-          <v-col md="0" lg="5" xl="4" class="hidden-md-and-down">
-            <v-divider vertical class="float-left" />
-            <article-aside class="ml-5" />
-          </v-col>
-        </v-row>
-      </v-container>
+      <nuxt class="app-content pa-5" />
     </v-content>
     <app-footer />
   </v-app>
@@ -31,3 +34,10 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.app-content {
+  height: calc(100vh - 98px);
+  overflow-y: auto;
+}
+</style>

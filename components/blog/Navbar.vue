@@ -2,13 +2,13 @@
   <nav>
     <v-app-bar
       :clipped-left="$vuetify.breakpoint.mdAndUp"
+      :clipped-right="$vuetify.breakpoint.mdAndUp"
       color="primary"
-      flat
       app
     >
       <v-app-bar-nav-icon
         v-show="$vuetify.breakpoint.mdAndDown"
-        @click.stop="toggleDrawer"
+        @click.stop="toggleLeftDrawer"
       />
 
       <v-toolbar-title class="white--text mx-2 px-4">
@@ -38,11 +38,12 @@
     </v-app-bar>
 
     <v-navigation-drawer
-      v-model="drawer"
+      v-model="leftDrawer"
       :clipped="$vuetify.breakpoint.mdAndUp"
-      width="300"
+      width="250"
       color="grey lighten-4"
       app
+      class="pt-5"
     >
       <v-list>
         <v-row justify="center">
@@ -89,6 +90,8 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
+
+    <slot name="rightNavDrawer" :rightDrawer="rightDrawer"></slot>
   </nav>
 </template>
 
@@ -103,11 +106,15 @@ export default {
       { router: 'index', name: 'Home', exact: true, icon: 'mdi-home' },
       { router: 'about', name: 'About', exact: false, icon: 'mdi-help-circle' }
     ],
-    drawer: null
+    leftDrawer: null,
+    rightDrawer: null
   }),
   methods: {
-    toggleDrawer() {
-      this.drawer = !this.drawer
+    toggleLeftDrawer() {
+      this.leftDrawer = !this.leftDrawer
+    },
+    toggleRightDrawer() {
+      this.rightDrawer = !this.rightDrawer
     },
     searchByKeyword() {
       if (this.keyword == null || this.keyword === '') {
