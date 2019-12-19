@@ -27,31 +27,26 @@
         <section class="artcile-footer mt-1">
           <span title="Post Time">
             <v-icon>mdi-calendar</v-icon>
-            <time class="middle">
+            <time class="align-text-top">
               {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
             </time>
           </span>
           <span title="Likes">
             <v-icon class="yellow--text text--darken-2">mdi-star</v-icon>
-            <span class="middle">{{ article.likes }}</span>
+            <span class="align-text-top">{{ article.likes }}</span>
           </span>
           <span title="Views">
             <v-icon>mdi-cursor-default-click-outline</v-icon>
-            <span class="middle">{{ article.views }}</span>
+            <span class="align-text-top">{{ article.views }}</span>
           </span>
           <span title="Comments">
             <v-icon>mdi-comment-multiple</v-icon>
-            <span class="middle">{{ article.commentAmount }}</span>
+            <span class="align-text-top">{{ article.commentAmount }}</span>
           </span>
         </section>
         <v-divider class="mt-4" />
       </article>
-      <b-pagination-nav
-        :number-of-pages="totalPages"
-        :link-gen="linkGen"
-        :value="pageNumber"
-        align="center"
-      />
+      <v-pagination v-model="pageNumber" :length="totalPages" @input="toPage" />
     </div>
   </div>
 </template>
@@ -81,17 +76,17 @@ export default {
   },
   data() {
     return {
-      pageNumber: 0,
+      pageNumber: 1,
       totalPages: 0,
       articles: []
     }
   },
   methods: {
-    linkGen(pageNumber) {
-      return {
+    toPage() {
+      this.$router.push({
         name: 'articles-page-number',
-        params: { number: pageNumber }
-      }
+        params: { number: this.pageNumber }
+      })
     }
   },
   head() {
@@ -145,8 +140,8 @@ export default {
     margin-right: 10px;
   }
 
-  .artcile-footer .middle {
-    vertical-align: middle;
+  .artcile-footer .align-text-top {
+    vertical-align: text-top;
   }
 }
 </style>

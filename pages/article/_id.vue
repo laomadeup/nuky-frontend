@@ -8,7 +8,7 @@
           <article-info :tags="article.tags" :category="article.category" />
           <section>
             <p>
-              <fa-icon :icon="['fas', 'calendar-alt']" />&nbsp;
+              <v-icon>mdi-calendar</v-icon>
               <time>
                 {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
               </time>
@@ -69,6 +69,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '~assets/style/common/main.scss';
+
 .divider {
   height: 0;
   border-top: 1px solid #ccc;

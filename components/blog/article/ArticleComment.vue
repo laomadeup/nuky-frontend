@@ -2,30 +2,33 @@
   <div>
     <div class="mt-5">
       <h4 id="scroll-mark">
-        <fa-icon :icon="['fas', 'feather-alt']" />
+        <v-icon>mdi-feather</v-icon>
         Add a Comment
       </h4>
-      <b-container fluid>
-        <b-form @submit.prevent="onSubmitComment">
-          <b-row>
-            <b-col class="mb-2">
-              <b-alert
+      <v-container>
+        <v-form @submit.prevent="onSubmitComment">
+          <v-row>
+            <v-col class="mb-2">
+              <v-alert
                 id="reply-mark"
-                variant="info"
+                dense
                 :show="showReplyAlert"
                 dismissible
                 fade
                 @dismissed="replyAlertDismissed"
               >
-                <b-badge variant="danger">Replying</b-badge>
-                <b-badge
-                  variant="primary"
+                <v-chip x-small color="red" text-color="white" link
+                  >Replying</v-chip
+                >
+                <v-chip
+                  color="blue"
+                  x-small
                   href="#"
                   @click="commentHint(newComment.replyCommentId)"
                   >@{{ newComment.replyUsername }}
-                </b-badge>
-              </b-alert>
-              <b-form-textarea
+                </v-chip>
+              </v-alert>
+              <v-textarea
                 id="comment-content-textarea"
                 v-model="newComment.content"
                 class="comment-input"
@@ -34,35 +37,32 @@
                 required
               />
               <div class="comment-input-border"></div>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col md="8" sm="12" class="mb-2">
-              <fa-icon
-                class="mr-2 comment-input-icon"
-                :icon="['fas', 'user-secret']"
-              />
-              <b-form-input
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col md="8" sm="12" class="mb-2">
+              <v-icon>mdi-account-card-details-outline</v-icon>
+              <v-text-field
                 v-model="newComment.username"
-                required
-                class="comment-input pl-4"
+                label="Filled"
                 placeholder="Enter your name..."
-              ></b-form-input>
+                filled
+              />
               <div class="comment-input-border"></div>
-            </b-col>
-            <b-col md="4" sm="12">
-              <b-button block type="submit" variant="info">
-                <fa-icon class="mr-2" :icon="['fas', 'paper-plane']" />
+            </v-col>
+            <v-col md="4" sm="12">
+              <v-btn block type="submit" variant="info">
                 SUBMIT
-              </b-button>
-            </b-col>
-          </b-row>
-        </b-form>
-      </b-container>
+                <v-icon>mdi-feather</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
+      </v-container>
     </div>
     <div class="mt-5">
       <h4 class="mb-4">
-        <fa-icon :icon="['fas', 'comment-dots']" />
+        <v-icon>mdi-comment-multiple-outline</v-icon>
         Comments
         <b-badge class="comment-amount" variant="secondary">
           {{ commentAmount }}
@@ -93,7 +93,7 @@
               {{ comment.user.username }}
             </span>
             <span class="comment-time mr-2">
-              <fa-icon :icon="['far', 'clock']" size="sm" />
+              <v-icon>mdi-clock</v-icon>
               <span>
                 {{ $moment(comment.createDate).fromNow() }}
               </span>
@@ -101,7 +101,7 @@
           </section>
           <section class="comment-body">
             <p class="mb-1">
-              <b-badge
+              <v-chip
                 v-if="comment.replyComment"
                 variant="primary"
                 class="reply-link"
@@ -111,7 +111,7 @@
                 @mouseout="hidePopup(comment.id)"
               >
                 @{{ comment.replyComment.username }}
-              </b-badge>
+              </v-chip>
               {{ comment.content }}
             </p>
           </section>
@@ -122,7 +122,12 @@
                 class="comment-btn"
                 @click="like(comment.id)"
               >
-                <fa-icon class="text-secondary icon" :icon="['fas', 'heart']" />
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-icon color="red" v-on="on">mdi-heart</v-icon>
+                  </template>
+                  <span>Tooltip</span>
+                </v-tooltip>
               </span>
               <span
                 v-show="comment.like > 0"
@@ -136,10 +141,12 @@
                 class="comment-btn"
                 @click="dislike(comment.id)"
               >
-                <fa-icon
-                  class="text-secondary icon"
-                  :icon="['fas', 'heart-broken']"
-                />
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-icon color="dark" v-on="on">mdi-heart-broken</v-icon>
+                  </template>
+                  <span>Tooltip</span>
+                </v-tooltip>
               </span>
               <span
                 v-show="comment.dislike > 0"
@@ -152,15 +159,6 @@
               @click="reply(comment.id, comment.user.username)"
               >REPLY</span
             >
-            <b-tooltip variant="danger" :target="`comment-like-${comment.id}`">
-              Like
-            </b-tooltip>
-            <b-tooltip
-              variant="secondary"
-              :target="`comment-dislike-${comment.id}`"
-            >
-              Dislike
-            </b-tooltip>
           </section>
         </section>
       </b-media>
@@ -169,11 +167,11 @@
         class="more-comments mt-1"
         @click="loadComments()"
       >
-        <fa-icon class="mr-2" :icon="['fas', 'caret-down']" />
+        <v-icon>mdi-menu-down</v-icon>
         More Comments
       </span>
-      <div v-show="isLoddingComents" class="text-center justify-content-center">
-        <b-spinner variant="info"></b-spinner>
+      <div v-show="isLoddingComents" class="text-center">
+        <v-progress-circular indeterminate color="primary" />
       </div>
     </div>
   </div>

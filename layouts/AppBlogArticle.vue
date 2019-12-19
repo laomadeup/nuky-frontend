@@ -7,7 +7,7 @@
           <v-col md="12" lg="7" xl="8">
             <nuxt />
           </v-col>
-          <v-col md="12" lg="5" xl="4">
+          <v-col md="0" lg="5" xl="4" class="hidden-md-and-down">
             <v-divider vertical class="float-left" />
             <article-aside class="ml-5" />
           </v-col>
