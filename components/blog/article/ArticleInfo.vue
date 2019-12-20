@@ -1,6 +1,6 @@
 <template>
   <v-row class="mx-0">
-    <v-col class="pa-0">
+    <v-col cols="12" md="4" sm="4" class="pa-0">
       <span class="category mr-3" title="Category">
         <v-icon color="grey">{{ icon }}</v-icon>
         <span @mouseover="mouseoverIcon" @mouseleave="mouseleaveIcon">
@@ -13,8 +13,8 @@
         </span>
       </span>
     </v-col>
-    <v-col class="pa-0">
-      <tag-badge class="float-right" :tags="tags" title="Tags" />
+    <v-col cols="12" md="8" sm="8" class="pa-0">
+      <tag-badge class="float-none float-sm-right" :tags="tags" title="Tags" />
     </v-col>
   </v-row>
 </template>

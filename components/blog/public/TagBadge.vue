@@ -1,12 +1,17 @@
 <template>
-  <v-chip-group dark multiple column class="font-weight-medium">
+  <v-chip-group
+    multiple
+    :column="$vuetify.breakpoint.smAndUp"
+    class="app-chips"
+  >
     <v-chip
       v-for="tag in tags"
       :key="tag.id"
-      x-small
+      small
       :to="{ name: 'search-tag-id', params: { id: tag.id } }"
       :color="getRamdomTagColor() + ' darken-2'"
       link
+      class="font-weight-medium"
     >
       {{ tag.name }}
     </v-chip>
@@ -40,3 +45,14 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.app-chips.theme--light.v-chip-group .v-chip {
+  color: white !important;
+}
+
+.v-chip.v-size--small {
+  height: 18px;
+  line-height: 18px;
+}
+</style>

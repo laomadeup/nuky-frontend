@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nuxt --inspect node_modules/.bin/nuxt --hostname 0.0.0.0 --port 80",
     "build": "nuxt build",
-    "start": "nuxt start --port 80",
+    "start": "nuxt start --hostname 0.0.0.0 --port 80",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "mock": "nodemon --exec babel-node mock/server.js"
