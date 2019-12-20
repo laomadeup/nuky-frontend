@@ -4,6 +4,7 @@
       :clipped-left="$vuetify.breakpoint.mdAndUp"
       :clipped-right="$vuetify.breakpoint.mdAndUp"
       color="primary"
+      hide-on-scroll
       app
     >
       <v-app-bar-nav-icon
@@ -32,7 +33,9 @@
           />
         </v-col>
         <v-col cols="4">
-          <v-btn rounded color="grey lighten-3">Search</v-btn>
+          <v-btn class="hidden-sm-and-down" rounded color="grey lighten-3">
+            Search</v-btn
+          >
         </v-col>
       </v-row>
     </v-app-bar>
@@ -90,8 +93,6 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-
-    <slot name="rightNavDrawer" :rightDrawer="rightDrawer"></slot>
   </nav>
 </template>
 
@@ -106,15 +107,11 @@ export default {
       { router: 'index', name: 'Home', exact: true, icon: 'mdi-home' },
       { router: 'about', name: 'About', exact: false, icon: 'mdi-help-circle' }
     ],
-    leftDrawer: null,
-    rightDrawer: null
+    leftDrawer: null
   }),
   methods: {
     toggleLeftDrawer() {
       this.leftDrawer = !this.leftDrawer
-    },
-    toggleRightDrawer() {
-      this.rightDrawer = !this.rightDrawer
     },
     searchByKeyword() {
       if (this.keyword == null || this.keyword === '') {

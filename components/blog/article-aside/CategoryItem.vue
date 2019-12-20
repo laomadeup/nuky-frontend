@@ -54,7 +54,7 @@ export default {
   .category-name {
     cursor: pointer;
     transition: border-bottom 0.25s;
-    border-bottom: 2px solid map-get($grey, lighten-4);
+    border-bottom: 2px solid map-get($grey, lighten-5);
 
     &:hover {
       border-color: map-get($grey, base);
