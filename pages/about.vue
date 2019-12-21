@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <article-aside />
-  </div>
+  <client-only>
+    <nuky-editor />
+  </client-only>
 </template>
 
 <script>
-import ArticleAside from '@/components/blog/ArticleAside'
+import NukyEditor from '@/components/NukyEditor'
 
 export default {
   layout: 'AppBlog',
   components: {
-    ArticleAside
+    NukyEditor
   },
   data() {
     return {}

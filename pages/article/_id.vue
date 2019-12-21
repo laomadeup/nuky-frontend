@@ -3,22 +3,24 @@
     <div v-if="article.id == null">Article Not Found</div>
     <div v-else>
       <article>
-        <header>
-          <h3>{{ article.title }}</h3>
-          <article-info :tags="article.tags" :category="article.category" />
+        <header class="mb-4">
+          <h2>{{ article.title }}</h2>
+          <article-info
+            class="my-2"
+            :tags="article.tags"
+            :category="article.category"
+          />
           <section>
-            <p>
-              <v-icon>mdi-calendar</v-icon>
-              <time>
-                {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
-              </time>
-            </p>
+            <v-icon>mdi-calendar</v-icon>
+            <time style="vertical-align: text-top;">
+              {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
+            </time>
           </section>
         </header>
         <article-content :content="article.content" />
       </article>
-      <div class="divider mt-5 mb-5 ml-3 mr-3">
-        <span class="pl-4 pr-4">END</span>
+      <div class="divider my-12 mx-5">
+        <span class="px-6">END</span>
       </div>
       <article-comment
         :article-id="article.id"
@@ -69,18 +71,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~assets/style/common/main.scss';
+@import '~vuetify/src/styles/styles';
+@import '~assets/style/common/main';
 
 .divider {
   height: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid map-get($grey, lighten-2);
   text-align: center;
 
   span {
-    color: #888;
+    color: map-get($grey, base);
     position: relative;
     top: -14px;
-    background-color: #fff;
+    background-color: map-get($grey, lighten-5);
   }
 }
 </style>

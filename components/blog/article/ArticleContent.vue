@@ -1,9 +1,12 @@
 <template>
-  <!--  eslint-disable-next-line -->
-  <div class="ck-content" v-html="content"></div>
+  <div class="editor-content">
+    <!--  eslint-disable-next-line -->
+    <div class="ck-content" v-html="content"></div>
+  </div>
 </template>
 
 <script>
+import '@ckeditor/ckeditor5-editor-classic/theme/classiceditor.css'
 import Prism from 'prismjs'
 import 'prism-themes/themes/prism-darcula.css'
 
@@ -23,13 +26,6 @@ export default {
       'rainbow-braces'
     ])
     Prism.highlightAll()
-    // add classes for tables
-    this.addClassesForElements('figure.table>table', [
-      'table',
-      'table-striped',
-      'table-bordered',
-      'table-hover'
-    ])
   },
   methods: {
     addClassesForElements(selecor, classes) {
@@ -43,7 +39,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.ck-content::v-deep pre {
-  font-size: 0.85rem;
-}
+@import '~assets/style/common/editor-content.scss';
 </style>

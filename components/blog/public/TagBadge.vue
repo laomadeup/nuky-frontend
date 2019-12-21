@@ -1,9 +1,5 @@
 <template>
-  <v-chip-group
-    multiple
-    :column="$vuetify.breakpoint.smAndUp"
-    class="app-chips"
-  >
+  <span>
     <v-chip
       v-for="tag in tags"
       :key="tag.id"
@@ -11,11 +7,12 @@
       :to="{ name: 'search-tag-id', params: { id: tag.id } }"
       :color="getRamdomTagColor() + ' darken-2'"
       link
-      class="font-weight-medium"
+      dark
+      class="ml-1 font-weight-medium"
     >
       {{ tag.name }}
     </v-chip>
-  </v-chip-group>
+  </span>
 </template>
 
 <script>
@@ -47,12 +44,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.app-chips.theme--light.v-chip-group .v-chip {
-  color: white !important;
-}
-
 .v-chip.v-size--small {
   height: 18px;
   line-height: 18px;
+}
+
+.v-chip.v-size--small:hover {
+  filter: brightness(90%);
 }
 </style>

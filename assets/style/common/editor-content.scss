@@ -1,0 +1,23 @@
+.editor-content::v-deep {
+  p {
+    margin-bottom: 0.75rem;
+  }
+
+  code {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  blockquote {
+    p {
+      margin-bottom: 2px !important;
+    }
+  }
+
+  .ck-content {
+    .table {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}

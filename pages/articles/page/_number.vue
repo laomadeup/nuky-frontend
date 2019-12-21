@@ -19,30 +19,59 @@
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
           <header>
-            <h3 class="article-title">{{ article.title }}</h3>
+            <h4 class="title grey--text text--darken-4">
+              {{ article.title }}
+            </h4>
           </header>
-          <p class="article-description mb-1">{{ article.description }}</p>
+          <p class="article-description my-2">{{ article.description }}</p>
         </nuxt-link>
         <article-info :tags="article.tags" :category="article.category" />
-        <section class="artcile-footer mt-1">
-          <span title="Post Time">
-            <v-icon>mdi-calendar</v-icon>
-            <time class="align-text-top">
-              {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
-            </time>
-          </span>
-          <span title="Likes">
-            <v-icon class="yellow--text text--darken-2">mdi-star</v-icon>
-            <span class="align-text-top">{{ article.likes }}</span>
-          </span>
-          <span title="Views">
-            <v-icon>mdi-cursor-default-click-outline</v-icon>
-            <span class="align-text-top">{{ article.views }}</span>
-          </span>
-          <span title="Comments">
-            <v-icon>mdi-comment-multiple</v-icon>
-            <span class="align-text-top">{{ article.commentAmount }}</span>
-          </span>
+        <section class="artcile-footer my-2">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <span v-on="on">
+                <v-icon small>mdi-calendar</v-icon>
+                <time class="verticalalign-middle">
+                  {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
+                </time>
+              </span>
+            </template>
+            <span>Post Time</span>
+          </v-tooltip>
+
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <span v-on="on">
+                <v-icon small class="yellow--text text--darken-2"
+                  >mdi-star</v-icon
+                >
+                <span class="verticalalign-middle">{{ article.likes }}</span>
+              </span>
+            </template>
+            <span>Likes</span>
+          </v-tooltip>
+
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <span v-on="on">
+                <v-icon small>mdi-book-open-page-variant</v-icon>
+                <span class="verticalalign-middle">{{ article.views }}</span>
+              </span>
+            </template>
+            <span>Views</span>
+          </v-tooltip>
+
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <span v-on="on">
+                <v-icon small>mdi-comment-multiple</v-icon>
+                <span class="verticalalign-middle">{{
+                  article.commentAmount
+                }}</span>
+              </span>
+            </template>
+            <span>Comments</span>
+          </v-tooltip>
         </section>
         <v-divider class="mt-4" />
       </article>
@@ -111,15 +140,6 @@ export default {
   .article-body {
     cursor: pointer;
 
-    .article-title {
-      font-size: 1.25rem;
-      color: map-get($grey, darken-2);
-    }
-
-    &:hover .article-title {
-      color: map-get($blue, darken-1);
-    }
-
     .article-description {
       height: 3rem;
       line-height: 1.5rem;
@@ -131,17 +151,24 @@ export default {
       -webkit-box-orient: vertical;
     }
 
-    &:hover .article-description {
-      color: map-get($grey, darken-1);
+    &:hover {
+      .article-description {
+        color: map-get($grey, darken-1);
+      }
+
+      .title {
+        color: map-get($blue, lighten-1) !important;
+        text-decoration: underline !important;
+      }
     }
   }
 
-  .artcile-footer span {
-    margin-right: 10px;
-  }
+  .artcile-footer {
+    font-size: 0.85rem;
 
-  .artcile-footer .align-text-top {
-    vertical-align: text-top;
+    span {
+      margin-right: 10px;
+    }
   }
 }
 </style>

@@ -1,14 +1,16 @@
 <template>
   <div>
-    <ckeditor v-model="editorData" :editor="editor" :config="editorConfig" />
+    <div class="editor-content">
+      <ckeditor v-model="editorData" :editor="editor" :config="editorConfig" />
+    </div>
 
-    <b-container class="mt-2">
-      <b-row>
-        <b-col cols="2" offset="5">
-          <b-button variant="primary" block @click="save()">Save</b-button>
-        </b-col>
-      </b-row>
-    </b-container>
+    <v-container class="mt-2">
+      <v-row>
+        <v-col cols="2" offset="5">
+          <v-btn variant="primary" block @click="save()">Save</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -42,3 +44,7 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+@import '~assets/style/common/editor-content.scss';
+</style>

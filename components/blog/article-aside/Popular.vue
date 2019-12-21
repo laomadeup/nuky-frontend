@@ -1,9 +1,13 @@
 <template>
   <div>
-    <h3><v-icon color="red">mdi-fire</v-icon> Popular</h3>
+    <h3>
+      <v-icon class="verticalalign-text-bottom" color="red">mdi-fire</v-icon>
+      Popular
+    </h3>
     <div
       v-for="(article, index) in this.$store.state.article.popularArticles"
       :key="index"
+      :title="article.title"
     >
       <v-divider class="my-2" />
       <nuxt-link

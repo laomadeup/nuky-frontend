@@ -2,19 +2,15 @@ html {
   overflow-y: auto;
 }
 
-p {
-  margin: 0;
-}
-
 ::-webkit-scrollbar {
-  width: 6px !important;
-  height: 6px !important;
+  width: 7px !important;
+  height: 7px !important;
   background: #ccc !important;
   cursor: pointer !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1976d2 !important;
+  background: dodgerblue !important;
   cursor: pointer !important;
 }
 
@@ -24,13 +20,21 @@ p {
 }
 
 ::-webkit-scrollbar:hover {
-  background: #bbb !important;
+  background: #ddd !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1b65bf !important;
+  background: #1c83ec !important;
 }
 
 ::-webkit-scrollbar-track:hover {
-  background: #bbb !important;
+  background: #ddd !important;
+}
+
+.verticalalign-middle {
+  vertical-align: middle !important;
+}
+
+.verticalalign-text-bottom {
+  vertical-align: text-bottom !important;
 }
