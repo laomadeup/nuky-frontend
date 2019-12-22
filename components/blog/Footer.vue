@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    color="grey lighten-3"
+    color="grey lighten-2"
     class="grey--text text--darken-1 subtitle-2 d-flex justify-center justify-sm-end"
   >
     <span> &copy;2019 Kyun's Blog </span>

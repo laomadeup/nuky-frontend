@@ -12,7 +12,7 @@
           />
           <section>
             <v-icon>mdi-calendar</v-icon>
-            <time style="vertical-align: text-top;">
+            <time class="verticalalign-text-top">
               {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
             </time>
           </section>

@@ -1,3 +1,5 @@
+import faker from 'faker'
+
 const categories = [
   {
     id: 1,
@@ -84,7 +86,7 @@ function setAmount(category) {
       amount += setAmount(subCategory)
     }
   } else {
-    amount = Math.ceil(Math.random() * 3)
+    amount = faker.random.number({ min: 1, max: 3 })
   }
   category.amount = amount
   return amount

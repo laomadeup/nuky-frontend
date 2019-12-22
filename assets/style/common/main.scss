@@ -1,40 +1,61 @@
 html {
   overflow-y: auto;
+
+  &::-webkit-scrollbar-thumb {
+    background: dodgerblue !important;
+    cursor: pointer !important;
+
+    &:hover {
+      background: #1c83ec !important;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+    background: #ccc !important;
+    cursor: pointer !important;
+
+    &:hover {
+      background: #ddd !important;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ccc !important;
+    cursor: pointer !important;
+
+    &:hover {
+      background: #ddd !important;
+    }
+  }
 }
 
-::-webkit-scrollbar {
-  width: 7px !important;
-  height: 7px !important;
-  background: #ccc !important;
-  cursor: pointer !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background: dodgerblue !important;
-  cursor: pointer !important;
-}
-
-::-webkit-scrollbar-track {
-  background: #ccc !important;
-  cursor: pointer !important;
-}
-
-::-webkit-scrollbar:hover {
-  background: #ddd !important;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #1c83ec !important;
-}
-
-::-webkit-scrollbar-track:hover {
-  background: #ddd !important;
+.verticalalign-baseline {
+  vertical-align: baseline !important;
 }
 
 .verticalalign-middle {
   vertical-align: middle !important;
 }
 
+.verticalalign-text-top {
+  vertical-align: text-top !important;
+}
+
 .verticalalign-text-bottom {
   vertical-align: text-bottom !important;
+}
+
+.verticalalign-bottom {
+  vertical-align: bottom !important;
+}
+
+.app-chip.v-chip.v-size--small {
+  height: 18px;
+  line-height: 18px;
+}
+
+.app-chip.v-chip.v-size--small:hover {
+  filter: brightness(90%);
 }

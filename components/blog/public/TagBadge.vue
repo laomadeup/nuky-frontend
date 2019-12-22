@@ -8,7 +8,7 @@
       :color="getRamdomTagColor() + ' darken-2'"
       link
       dark
-      class="ml-1 font-weight-medium"
+      class="app-chip ml-1 font-weight-medium"
     >
       {{ tag.name }}
     </v-chip>
@@ -42,14 +42,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.v-chip.v-size--small {
-  height: 18px;
-  line-height: 18px;
-}
-
-.v-chip.v-size--small:hover {
-  filter: brightness(90%);
-}
-</style>

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="mt-5">
-      <h4 id="scroll-mark">
-        <v-icon>mdi-feather</v-icon>
+      <h2 id="scroll-mark" class="headline">
+        <v-icon color="primary" large>mdi-message-draw</v-icon>
         Add a Comment
-      </h4>
+      </h2>
       <v-container>
         <v-form @submit.prevent="onSubmitComment">
           <v-row>
@@ -18,12 +18,11 @@
                 @dismissed="replyAlertDismissed"
               >
                 <v-chip x-small color="red" text-color="white" link
-                  >Replying</v-chip
-                >
+                  >Replying
+                </v-chip>
                 <v-chip
                   color="blue"
                   x-small
-                  href="#"
                   @click="commentHint(newComment.replyCommentId)"
                   >@{{ newComment.replyUsername }}
                 </v-chip>
@@ -31,12 +30,10 @@
               <v-textarea
                 id="comment-content-textarea"
                 v-model="newComment.content"
-                class="comment-input"
                 placeholder="Enter your comment..."
                 max-rows="10"
                 required
               />
-              <div class="comment-input-border"></div>
             </v-col>
           </v-row>
           <v-row>
@@ -48,7 +45,6 @@
                 placeholder="Enter your name..."
                 filled
               />
-              <div class="comment-input-border"></div>
             </v-col>
             <v-col md="4" sm="12">
               <v-btn block type="submit" variant="info">
@@ -60,108 +56,139 @@
         </v-form>
       </v-container>
     </div>
+
+    <!-- Comments -->
     <div class="mt-5">
-      <h4 class="mb-4">
-        <v-icon>mdi-comment-multiple-outline</v-icon>
-        Comments
-        <b-badge class="comment-amount" variant="secondary">
-          {{ commentAmount }}
-        </b-badge>
-      </h4>
-      <div v-if="comments.length === 0">No one commented yet</div>
-      <b-media
-        v-for="comment in comments"
-        :id="`comment-${comment.id}`"
-        :key="comment.id"
-        class="mb-2"
-      >
-        <template v-slot:aside>
-          <b-img-lazy
-            width="48"
-            blank
-            blank-color="#abc"
-            alt="avatar"
-            :src="comment.user.avatar"
-          />
+      <v-badge color="red">
+        <template v-slot:badge>
+          <span>{{ commentAmount }}</span>
         </template>
-        <section class="comment-main mb-2">
-          <section class="comment-header">
-            <span v-if="comment.replyComment" class="reply-popup hide p-2">
-              {{ comment.replyComment.content }}
-            </span>
-            <span class="comment-user mr-2">
-              {{ comment.user.username }}
-            </span>
-            <span class="comment-time mr-2">
-              <v-icon>mdi-clock</v-icon>
-              <span>
-                {{ $moment(comment.createDate).fromNow() }}
-              </span>
-            </span>
-          </section>
-          <section class="comment-body">
-            <p class="mb-1">
-              <v-chip
-                v-if="comment.replyComment"
-                variant="primary"
-                class="reply-link"
-                href="#"
-                @click="commentHint(comment.replyComment.id)"
-                @mouseenter="showPopup(comment.id)"
-                @mouseout="hidePopup(comment.id)"
+        <h2 class="headline mb-4">
+          <v-icon color="primary" large>mdi-comment-text-multiple</v-icon>
+          Comments
+        </h2>
+      </v-badge>
+
+      <div v-if="comments.length === 0">No one commented yet</div>
+      <v-container class="py-0">
+        <v-row
+          v-for="comment in comments"
+          :id="`comment-${comment.id}`"
+          :key="comment.id"
+          class="mb-2"
+        >
+          <v-col cols="2" sm="1" class="pa-0">
+            <v-avatar width="48" :color="comment.user.avatar">
+              <v-icon dark>mdi-account-circle</v-icon>
+            </v-avatar>
+          </v-col>
+          <v-col cols="10" sm="11" class="pa-0">
+            <section class="comment-main mb-2">
+              <section class="comment-header">
+                <span
+                  v-if="comment.replyComment"
+                  class="reply-popup blue-grey lighten-5 hide py-2 px-4"
+                >
+                  {{ comment.replyComment.content }}
+                </span>
+                <span class="font-weight-medium mr-2">
+                  {{ comment.user.username }}
+                </span>
+              </section>
+              <section>
+                <p class="mb-1">
+                  <v-chip
+                    v-if="comment.replyComment"
+                    small
+                    class="app-chip verticalalign-text-top"
+                    color="primary"
+                    @click="commentHint(comment.replyComment.id)"
+                    @mouseenter="showPopup(comment.id)"
+                    @mouseout="hidePopup(comment.id)"
+                  >
+                    <v-icon x-small>mdi-at</v-icon>
+                    {{ comment.replyComment.username }}
+                  </v-chip>
+                  {{ comment.content }}
+                </p>
+              </section>
+              <section
+                class="d-inline-block comment-footer grey--text text--darken-1"
               >
-                @{{ comment.replyComment.username }}
-              </v-chip>
-              {{ comment.content }}
-            </p>
-          </section>
-          <section class="comment-footer">
-            <span class="comment-like">
-              <span
-                :id="`comment-like-${comment.id}`"
-                class="comment-btn"
-                @click="like(comment.id)"
-              >
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-icon color="red" v-on="on">mdi-heart</v-icon>
-                  </template>
-                  <span>Tooltip</span>
-                </v-tooltip>
-              </span>
-              <span
-                v-show="comment.like > 0"
-                class="number"
-                v-text="comment.like"
-              />
-            </span>
-            <span class="comment-dislike">
-              <span
-                :id="`comment-dislike-${comment.id}`"
-                class="comment-btn"
-                @click="dislike(comment.id)"
-              >
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-icon color="dark" v-on="on">mdi-heart-broken</v-icon>
-                  </template>
-                  <span>Tooltip</span>
-                </v-tooltip>
-              </span>
-              <span
-                v-show="comment.dislike > 0"
-                class="number"
-                v-text="comment.dislike"
-              />
-            </span>
-            <span
-              class="ml-1 comment-replay-btn text-secondary"
-              @click="reply(comment.id, comment.user.username)"
-              >REPLY</span
-            >
-          </section>
-        </section>
-      </b-media>
+                <section class="d-inline-block thumb-number">
+                  <span>
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <v-btn
+                          text
+                          icon
+                          small
+                          dark
+                          color="blue lighten-1"
+                          v-on="on"
+                          @click="like(comment.id)"
+                        >
+                          <v-icon small>mdi-thumb-up</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>like</span>
+                    </v-tooltip>
+                  </span>
+                  <span
+                    v-show="comment.like > 0"
+                    class="caption"
+                    v-text="formatNumber(comment.like)"
+                  />
+                </section>
+                <section class="d-inline-block thumb-number">
+                  <span>
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <v-btn
+                          text
+                          icon
+                          small
+                          dark
+                          color="red lighten-1"
+                          @click="dislike(comment.id)"
+                          v-on="on"
+                        >
+                          <v-icon small>mdi-thumb-down</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>dislike</span>
+                    </v-tooltip>
+                  </span>
+                  <span
+                    v-show="comment.dislike > 0"
+                    class="caption"
+                    v-text="formatNumber(comment.dislike)"
+                  />
+                </section>
+                <section class="d-inline-block mx-2">
+                  <v-btn
+                    dark
+                    text
+                    x-small
+                    color="grey darken-1"
+                    class="body-2 font-weight-medium"
+                    @click="reply(comment.id, comment.user.username)"
+                    >REPLY</v-btn
+                  >
+                </section>
+                <section class="d-inline-block">
+                  <v-icon small class="verticalalign-text-bottom"
+                    >mdi-clock</v-icon
+                  >
+                  <span class="body-2 verticalalign-bottom">
+                    {{ $moment(comment.createDate).fromNow() }}
+                  </span>
+                </section>
+              </section>
+            </section>
+          </v-col>
+        </v-row>
+      </v-container>
       <span
         v-show="!isLoddingComents && !(totalPages === pageNumber)"
         class="more-comments mt-1"
@@ -178,6 +205,8 @@
 </template>
 
 <script>
+import { format } from 'd3-format'
+
 const keyframes = (() => {
   const fr = []
   for (let i = 0; i <= 10; i++) {
@@ -207,6 +236,11 @@ export default {
       totalPages: 0,
       comments: [],
       isLoddingComents: false,
+      scrollOptions: {
+        duration: 500,
+        easing: 'linear',
+        offset: 100
+      },
       newComment: {
         username: null,
         replyCommentId: null,
@@ -235,18 +269,25 @@ export default {
       this.totalPages = totalPages
       this.isLoddingComents = false
     },
+    formatNumber(number) {
+      return format('.2~s')(number)
+    },
     commentHint(id) {
-      const el = document.querySelector(`#comment-${id}`)
-      const scrollHeight = el.getBoundingClientRect().top + window.scrollY - 200
-      window.scrollTo(0, scrollHeight)
-      // anime
-      this.$anime({
-        targets: [el],
-        easing: 'easeInOutSine',
-        keyframes,
-        direction: 'alternate',
-        loop: 4,
-        duration: 320
+      // scroll to target
+      const $$anime = this.$anime
+      this.$vuetify.goTo(`#comment-${id}`, this.scrollOptions).then(function() {
+        // anime
+        $$anime({
+          targets: [document.querySelector(`#comment-${id}`)],
+          easing: 'easeInOutSine',
+          keyframes,
+          direction: 'alternate',
+          loop: 4,
+          duration: 320,
+          complete() {
+            document.querySelector(`#comment-${id}`).style.opacity = 1
+          }
+        })
       })
     },
     showPopup(id) {
@@ -264,21 +305,14 @@ export default {
       el.classList.add('hide')
       el.style.opacity = 0
     },
-    scrollToCommentArea() {
-      const scrollHeight =
-        document.getElementById('scroll-mark').getBoundingClientRect().top +
-        window.scrollY -
-        200
-      window.scrollTo(0, scrollHeight)
-    },
     onSubmitComment() {
       console.log(this.newComment)
     },
     reply(id, username) {
+      this.$vuetify.goTo('#scroll-mark', this.scrollOptions)
       this.newComment.replyCommentId = id
       this.newComment.replyUsername = username
       document.getElementById('comment-content-textarea').focus()
-      this.scrollToCommentArea()
     },
     replyAlertDismissed() {
       this.newComment.replyCommentId = null
@@ -297,11 +331,6 @@ export default {
 <style scoped lang="scss">
 @import '~vuetify/src/styles/styles';
 
-.comment-amount {
-  font-size: 0.8rem;
-  vertical-align: middle;
-}
-
 .comment-main {
   min-height: 48px;
 }
@@ -309,21 +338,11 @@ export default {
 .comment-header {
   position: relative;
 
-  .comment-user {
-    font-weight: bold;
-  }
-
-  .comment-time {
-    color: map-get($grey, lighten-4);
-  }
-
   .reply-popup {
-    background-color: map-get($grey, lighten-5);
     opacity: 0;
-    color: map-get($grey, darken-4);
-    border-radius: 10px;
+    border-radius: 5px;
     max-width: 500px;
-    border: 1px solid #aaa;
+    border: 1px solid map-get($blue-grey, lighten-3) !important;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -335,55 +354,9 @@ export default {
   }
 }
 
-.comment-body {
-  .reply-link {
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-}
-
 .comment-footer {
-  color: map-get($grey, darken-1);
-
-  .comment-like,
-  .comment-dislike {
-    display: inline-block;
-    min-width: 3.5rem;
-
-    .comment-btn {
-      cursor: pointer;
-      vertical-align: middle;
-    }
-
-    .number {
-      vertical-align: middle;
-      font-size: 0.8rem;
-      line-height: 1.5rem;
-      height: 1.5rem;
-      display: inline-block;
-    }
-  }
-
-  .comment-like {
-    .comment-btn:hover {
-      .icon {
-        color: map-get($red, base) !important;
-      }
-    }
-  }
-
-  .comment-dislike {
-    .comment-btn:hover {
-      .icon {
-        color: map-get($grey, lighten-1) !important;
-      }
-    }
-  }
-
-  .comment-replay-btn {
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.8rem;
+  .thumb-number {
+    min-width: 3.6rem;
   }
 }
 
@@ -400,32 +373,6 @@ export default {
 .comment-input-icon {
   position: absolute;
   height: calc(100% - 2px);
-}
-
-.comment-input {
-  border: none;
-  border-bottom: 2px solid map-get($grey, darken-2);
-  border-radius: 0;
-  overflow-y: auto !important;
-
-  .comment-input-border {
-    height: 2px;
-    width: 0;
-    max-width: 100%;
-    background: #000;
-    position: relative;
-    top: -2px;
-    margin: 0 auto;
-    transition: width 0.35s ease-in-out;
-  }
-
-  &:focus {
-    box-shadow: none;
-
-    & + .comment-input-border {
-      width: 100%;
-    }
-  }
 }
 
 textarea.comment-input {

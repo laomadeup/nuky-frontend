@@ -1,8 +1,7 @@
 <template>
   <nav>
     <v-app-bar
-      :clipped-left="$vuetify.breakpoint.mdAndUp"
-      :clipped-right="$vuetify.breakpoint.mdAndUp"
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
       color="primary"
       hide-on-scroll
       app
@@ -42,7 +41,7 @@
 
     <v-navigation-drawer
       v-model="leftDrawer"
-      :clipped="$vuetify.breakpoint.mdAndUp"
+      :clipped="$vuetify.breakpoint.lgAndUp"
       width="250"
       color="grey lighten-4"
       app
