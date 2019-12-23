@@ -6,7 +6,7 @@
         <v-icon color="primary" large>mdi-message-draw</v-icon>
         Add a Comment
       </h2>
-      <v-container>
+      <v-container class="px-0">
         <v-form
           id="comment-form"
           ref="form"
@@ -95,7 +95,7 @@
           v-for="comment in comments"
           :id="`comment-${comment.id}`"
           :key="comment.id"
-          class="mb-2"
+          class="mb-2 px-3"
         >
           <v-col cols="2" sm="1" class="pa-0">
             <v-avatar width="48" :color="comment.user.avatar">
