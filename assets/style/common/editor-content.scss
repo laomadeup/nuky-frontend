@@ -4,8 +4,11 @@
   }
 
   code {
-    box-shadow: none;
     padding: 0;
+
+    &[class*="language-"] {
+      box-shadow: none;
+    }
   }
 
   blockquote {

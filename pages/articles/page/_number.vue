@@ -31,7 +31,7 @@
             <template v-slot:activator="{ on }">
               <span v-on="on">
                 <v-icon small>mdi-calendar</v-icon>
-                <time class="verticalalign-middle">
+                <time class="verticalalign-text-top">
                   {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
                 </time>
               </span>
@@ -45,7 +45,7 @@
                 <v-icon small class="yellow--text text--darken-2"
                   >mdi-star</v-icon
                 >
-                <span class="verticalalign-middle">{{ article.likes }}</span>
+                <span class="verticalalign-text-top">{{ article.likes }}</span>
               </span>
             </template>
             <span>Likes</span>
@@ -55,7 +55,7 @@
             <template v-slot:activator="{ on }">
               <span v-on="on">
                 <v-icon small>mdi-book-open-page-variant</v-icon>
-                <span class="verticalalign-middle">{{ article.views }}</span>
+                <span class="verticalalign-text-top">{{ article.views }}</span>
               </span>
             </template>
             <span>Views</span>
@@ -65,7 +65,7 @@
             <template v-slot:activator="{ on }">
               <span v-on="on">
                 <v-icon small>mdi-comment-multiple</v-icon>
-                <span class="verticalalign-middle">{{
+                <span class="verticalalign-text-top">{{
                   article.commentAmount
                 }}</span>
               </span>

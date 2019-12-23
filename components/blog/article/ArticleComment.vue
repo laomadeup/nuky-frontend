@@ -1,14 +1,21 @@
 <template>
   <div>
+    <!-- comment addition area -->
     <div class="mt-5">
       <h2 id="scroll-mark" class="headline">
         <v-icon color="primary" large>mdi-message-draw</v-icon>
         Add a Comment
       </h2>
       <v-container>
-        <v-form @submit.prevent="onSubmitComment">
-          <v-row>
-            <v-col class="mb-2">
+        <v-form
+          id="comment-form"
+          ref="form"
+          v-model="newComment.valid"
+          :lazy-validation="true"
+          @submit.prevent="submitComment"
+        >
+          <v-row class="ma-0">
+            <v-col class="ma-0 pt-0">
               <v-alert
                 id="reply-mark"
                 dense
@@ -27,29 +34,42 @@
                   >@{{ newComment.replyUsername }}
                 </v-chip>
               </v-alert>
-              <v-textarea
-                id="comment-content-textarea"
-                v-model="newComment.content"
-                placeholder="Enter your comment..."
-                max-rows="10"
-                required
-              />
             </v-col>
           </v-row>
-          <v-row>
-            <v-col md="8" sm="12" class="mb-2">
-              <v-icon>mdi-account-card-details-outline</v-icon>
+          <v-row class="ma-0">
+            <v-col class="ma-0 pt-0">
+              <v-textarea
+                id="comment-content-textarea"
+                label="Enter your comment..."
+                :value="newComment.content"
+                rows="1"
+                auto-grow
+                clearable
+                :counter="500"
+                prepend-inner-icon="mdi-comment-text-outline"
+                :rules="[inputRules.required, inputRules.maxCharacters(500)]"
+              ></v-textarea>
+            </v-col>
+          </v-row>
+          <v-row class="ma-0">
+            <v-col lg="10" md="9" sm="8" cols="12" class="ma-0 pt-0">
               <v-text-field
-                v-model="newComment.username"
-                label="Filled"
-                placeholder="Enter your name..."
-                filled
+                prepend-inner-icon="mdi-comment-account-outline"
+                :value="newComment.username"
+                :rules="[inputRules.required, inputRules.maxCharacters(20)]"
+                label="Enter your name..."
+                :counter="20"
               />
             </v-col>
-            <v-col md="4" sm="12">
-              <v-btn block type="submit" variant="info">
+            <v-col lg="2" md="3" sm="4" cols="12" class="ma-0">
+              <v-btn
+                form="comment-form"
+                type="submit"
+                :disabled="!newComment.valid"
+                color="success"
+                block
+              >
                 SUBMIT
-                <v-icon>mdi-feather</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -137,7 +157,7 @@
                   <span
                     v-show="comment.like > 0"
                     class="caption"
-                    v-text="formatNumber(comment.like)"
+                    v-text="formatWithSIPrefix(comment.like)"
                   />
                 </section>
                 <section class="d-inline-block thumb-number">
@@ -162,7 +182,7 @@
                   <span
                     v-show="comment.dislike > 0"
                     class="caption"
-                    v-text="formatNumber(comment.dislike)"
+                    v-text="formatWithSIPrefix(comment.dislike)"
                   />
                 </section>
                 <section class="d-inline-block ml-2 mr-4">
@@ -242,10 +262,22 @@ export default {
         offset: 100
       },
       newComment: {
+        valid: true,
         username: null,
         replyCommentId: null,
         replyUsername: null,
         content: ''
+      },
+      inputRules: {
+        required: (value) => !!value || 'Required.',
+        maxCharacters: (maxCharacters) => {
+          return (value) => {
+            return (
+              (value || '').length <= maxCharacters ||
+              `Max ${maxCharacters} characters`
+            )
+          }
+        }
       }
     }
   },
@@ -269,7 +301,7 @@ export default {
       this.totalPages = totalPages
       this.isLoddingComents = false
     },
-    formatNumber(number) {
+    formatWithSIPrefix(number) {
       return formatPrefix('.1~', number)(number)
     },
     commentHint(id) {
@@ -305,8 +337,8 @@ export default {
       el.classList.add('hide')
       el.style.opacity = 0
     },
-    onSubmitComment() {
-      console.log(this.newComment)
+    submitComment() {
+      this.$refs.form.validate()
     },
     reply(id, username) {
       this.$vuetify.goTo('#scroll-mark', this.scrollOptions)
