@@ -165,7 +165,7 @@
                     v-text="formatNumber(comment.dislike)"
                   />
                 </section>
-                <section class="d-inline-block mx-2">
+                <section class="d-inline-block ml-2 mr-4">
                   <v-btn
                     dark
                     text
@@ -205,7 +205,7 @@
 </template>
 
 <script>
-import { format } from 'd3-format'
+import { formatPrefix } from 'd3-format'
 
 const keyframes = (() => {
   const fr = []
@@ -270,7 +270,7 @@ export default {
       this.isLoddingComents = false
     },
     formatNumber(number) {
-      return format('.2~s')(number)
+      return formatPrefix('.1~', number)(number)
     },
     commentHint(id) {
       // scroll to target
@@ -356,7 +356,7 @@ export default {
 
 .comment-footer {
   .thumb-number {
-    min-width: 3.6rem;
+    min-width: 4.4rem;
   }
 }
 
@@ -373,28 +373,6 @@ export default {
 .comment-input-icon {
   position: absolute;
   height: calc(100% - 2px);
-}
-
-textarea.comment-input {
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: map-get($grey, darken-1);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: map-get($grey, darken-3);
-  }
-
-  &::-webkit-scrollbar-track:hover {
-    background: map-get($grey, darken-2);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: map-get($grey, darken-4);
-  }
 }
 
 #reply-mark {

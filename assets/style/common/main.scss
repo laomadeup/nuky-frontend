@@ -1,15 +1,6 @@
 html {
   overflow-y: auto;
 
-  &::-webkit-scrollbar-thumb {
-    background: dodgerblue !important;
-    cursor: pointer !important;
-
-    &:hover {
-      background: #1c83ec !important;
-    }
-  }
-
   &::-webkit-scrollbar {
     width: 7px !important;
     height: 7px !important;
@@ -17,7 +8,16 @@ html {
     cursor: pointer !important;
 
     &:hover {
-      background: #ddd !important;
+      background: #bbb !important;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #999 !important;
+    cursor: pointer !important;
+
+    &:hover {
+      background: #888 !important;
     }
   }
 
@@ -26,7 +26,7 @@ html {
     cursor: pointer !important;
 
     &:hover {
-      background: #ddd !important;
+      background: #bbb !important;
     }
   }
 }

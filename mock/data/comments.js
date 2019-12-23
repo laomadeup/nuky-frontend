@@ -55,8 +55,8 @@ export const articleComments = (() => {
         },
         createDate: moment(faker.date.past(1)).format(),
         content: faker.lorem.sentences(),
-        like: faker.random.number({ min: 0, max: 1500 }),
-        dislike: faker.random.number({ min: 0, max: 150 })
+        like: faker.random.number({ min: 10, max: 16000 }),
+        dislike: faker.random.number({ min: 0, max: 999 })
       }
       thisArticleComments.push(comment)
     }
