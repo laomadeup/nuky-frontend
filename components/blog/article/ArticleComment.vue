@@ -3,7 +3,7 @@
     <!-- comment addition area -->
     <div class="mt-5">
       <h2 id="scroll-mark" class="headline">
-        <v-icon color="primary" large>mdi-message-draw</v-icon>
+        <v-icon color="grey" large>mdi-message-draw</v-icon>
         Add a Comment
       </h2>
       <v-container class="px-0">
@@ -15,11 +15,11 @@
           :lazy-validation="true"
           @submit.prevent="submitComment"
         >
-          <v-row>
+          <v-row class="mb-2">
             <v-chip
-              v-show="showReplyAlert"
+              v-show="showReplyChip"
               small
-              color="primary"
+              color="info"
               close
               @click:close="replyAlertDismissed"
               @click="commentHint(newComment.replyCommentId)"
@@ -31,7 +31,7 @@
               {{ newComment.replyUsername }}
             </v-chip>
           </v-row>
-          <v-row>
+          <v-row class="mb-2">
             <v-textarea
               id="comment-content-textarea"
               v-model="newComment.content"
@@ -44,7 +44,7 @@
               :rules="[inputRules.required, inputRules.maxCharacters(500)]"
             ></v-textarea>
           </v-row>
-          <v-row>
+          <v-row class="mb-2">
             <v-text-field
               v-model="newComment.username"
               prepend-inner-icon="mdi-comment-account-outline"
@@ -75,7 +75,7 @@
           <span>{{ commentAmount }}</span>
         </template>
         <h2 class="headline mb-4">
-          <v-icon color="primary" large>mdi-comment-text-multiple</v-icon>
+          <v-icon color="grey" large>mdi-comment-text-multiple</v-icon>
           Comments
         </h2>
       </v-badge>
@@ -269,7 +269,7 @@ export default {
     }
   },
   computed: {
-    showReplyAlert() {
+    showReplyChip() {
       return this.newComment.replyCommentId != null
     }
   },
@@ -342,7 +342,6 @@ export default {
       }
     },
     reply(id, username) {
-      this.$vuetify.goTo('#scroll-mark', this.scrollOptions)
       this.newComment.replyCommentId = id
       this.newComment.replyUsername = username
       document.getElementById('comment-content-textarea').focus()
