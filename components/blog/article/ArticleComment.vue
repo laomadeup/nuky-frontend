@@ -3,7 +3,7 @@
     <!-- comment addition area -->
     <div class="mt-5">
       <h2 id="scroll-mark" class="headline">
-        <v-icon color="grey" large>mdi-message-draw</v-icon>
+        <v-icon color="grey" large>mdi-draw</v-icon>
         Add a Comment
       </h2>
       <v-container class="px-0">
@@ -12,24 +12,26 @@
           ref="form"
           v-model="newComment.valid"
           class="px-4"
-          :lazy-validation="true"
           @submit.prevent="submitComment"
         >
           <v-row class="mb-2">
-            <v-chip
-              v-show="showReplyChip"
-              small
-              color="info"
-              close
-              @click:close="replyAlertDismissed"
-              @click="commentHint(newComment.replyCommentId)"
-            >
-              <v-avatar left>
-                <v-icon small>mdi-reply-circle</v-icon>
-              </v-avatar>
-              <v-icon x-small>mdi-at</v-icon>
-              {{ newComment.replyUsername }}
-            </v-chip>
+            <v-tooltip right>
+              <template v-slot:activator="{ on }">
+                <v-chip
+                  v-show="showReplyChip"
+                  small
+                  color="info"
+                  close
+                  @click:close="replyAlertDismissed"
+                  @click="commentHint(newComment.replyCommentId)"
+                  v-on="on"
+                >
+                  <v-icon small>mdi-at</v-icon>
+                  {{ newComment.replyUsername }}
+                </v-chip>
+              </template>
+              <span>replying</span>
+            </v-tooltip>
           </v-row>
           <v-row class="mb-2">
             <v-textarea
@@ -50,6 +52,7 @@
               prepend-inner-icon="mdi-comment-account-outline"
               :rules="[inputRules.required, inputRules.maxCharacters(20)]"
               label="Enter your name..."
+              clearable
               :counter="20"
             />
           </v-row>
@@ -59,7 +62,7 @@
               type="submit"
               :disabled="!newComment.valid"
               depressed
-              class="grey grey--text text--lighten-5"
+              class="primary grey--text text--lighten-5"
             >
               COMMENT
             </v-btn>
@@ -75,7 +78,7 @@
           <span>{{ commentAmount }}</span>
         </template>
         <h2 class="headline mb-4">
-          <v-icon color="grey" large>mdi-comment-text-multiple</v-icon>
+          <v-icon color="grey" large>mdi-comment-text-multiple-outline</v-icon>
           Comments
         </h2>
       </v-badge>
@@ -86,7 +89,7 @@
           v-for="comment in comments"
           :id="`comment-${comment.id}`"
           :key="comment.id"
-          class="flex-nowrap mb-2"
+          class="flex-nowrap mb-4"
         >
           <v-avatar width="48" class="mr-4" :color="comment.user.avatar">
             <v-icon dark>mdi-account-circle</v-icon>
@@ -102,6 +105,12 @@
               <span class="font-weight-medium mr-2">
                 {{ comment.user.username }}
               </span>
+              <span>
+                <v-icon small>mdi-clock</v-icon>
+                <span class="body-2 verticalalign-bottom">
+                  {{ $moment(comment.createDate).fromNow() }}
+                </span>
+              </span>
             </section>
             <section>
               <p class="mb-1">
@@ -114,7 +123,7 @@
                   @mouseenter="showPopup(comment.id)"
                   @mouseout="hidePopup(comment.id)"
                 >
-                  <v-icon x-small>mdi-at</v-icon>
+                  <v-icon small>mdi-at</v-icon>
                   {{ comment.replyComment.username }}
                 </v-chip>
                 {{ comment.content }}
@@ -184,26 +193,20 @@
                   >REPLY</v-btn
                 >
               </section>
-              <section class="d-inline-block">
-                <v-icon small class="verticalalign-text-bottom"
-                  >mdi-clock</v-icon
-                >
-                <span class="body-2 verticalalign-bottom">
-                  {{ $moment(comment.createDate).fromNow() }}
-                </span>
-              </section>
             </section>
           </section>
         </v-row>
       </v-container>
-      <span
+      <v-btn
         v-show="!isLoddingComents && !(totalPages === pageNumber)"
-        class="more-comments mt-1"
+        text
+        depressed
+        class="more-comments text-capitalize"
         @click="loadComments()"
       >
         <v-icon>mdi-menu-down</v-icon>
         More Comments
-      </span>
+      </v-btn>
       <div v-show="isLoddingComents" class="text-center">
         <v-progress-circular indeterminate color="primary" />
       </div>
@@ -249,7 +252,7 @@ export default {
         offset: 100
       },
       newComment: {
-        valid: true,
+        valid: false,
         username: null,
         replyCommentId: null,
         replyUsername: null,
@@ -389,16 +392,6 @@ export default {
 .comment-footer {
   .thumb-number {
     min-width: 4.4rem;
-  }
-}
-
-.more-comments {
-  cursor: pointer;
-  font-weight: 500;
-  color: map-get($grey, darken-3);
-
-  &:hover {
-    color: var(---info-base);
   }
 }
 
