@@ -16,24 +16,20 @@
           @submit.prevent="submitComment"
         >
           <v-row>
-            <v-alert
-              id="reply-mark"
-              dense
-              :show="showReplyAlert"
-              dismissible
-              fade
-              @dismissed="replyAlertDismissed"
+            <v-chip
+              v-show="showReplyAlert"
+              small
+              color="primary"
+              close
+              @click:close="replyAlertDismissed"
+              @click="commentHint(newComment.replyCommentId)"
             >
-              <v-chip x-small color="red" text-color="white" link
-                >Replying
-              </v-chip>
-              <v-chip
-                color="blue"
-                x-small
-                @click="commentHint(newComment.replyCommentId)"
-                >@{{ newComment.replyUsername }}
-              </v-chip>
-            </v-alert>
+              <v-avatar left>
+                <v-icon small>mdi-reply-circle</v-icon>
+              </v-avatar>
+              <v-icon x-small>mdi-at</v-icon>
+              {{ newComment.replyUsername }}
+            </v-chip>
           </v-row>
           <v-row>
             <v-textarea
@@ -410,14 +406,5 @@ export default {
 .comment-input-icon {
   position: absolute;
   height: calc(100% - 2px);
-}
-
-#reply-mark {
-  display: inline-block;
-  padding: 6px 40px 6px 10px;
-
-  ::v-deep .close {
-    padding: 6px 10px;
-  }
 }
 </style>

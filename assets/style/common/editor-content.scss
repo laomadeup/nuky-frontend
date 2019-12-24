@@ -8,6 +8,16 @@
 
     &[class*="language-"] {
       box-shadow: none;
+      font-weight: normal;
+      font-size: 1rem;
+
+      &::before {
+        content: none;
+      }
+
+      &::after {
+        content: none;
+      }
     }
   }
 
