@@ -1,14 +1,14 @@
 <template>
   <span>
     <v-chip
-      v-for="tag in tags"
-      :key="tag.id"
+      v-for="(tag, index) in tags"
+      :key="index"
       small
       :to="{ name: 'search-tag-id', params: { id: tag.id } }"
       :color="getRamdomTagColor() + ' darken-2'"
       link
       dark
-      class="app-chip ml-1 font-weight-medium"
+      class="app-chip mr-1 font-weight-medium"
     >
       {{ tag.name }}
     </v-chip>
