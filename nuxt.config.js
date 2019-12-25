@@ -132,15 +132,7 @@ export default {
   /**
    * router config
    */
-  router: {
-    extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'index',
-        path: '/',
-        component: '@/pages/articles/page/_number.vue'
-      })
-    }
-  },
+  router: {},
   render: {
     resourceHints: false
   },
