@@ -216,6 +216,7 @@
 
 <script>
 import { formatPrefix } from 'd3-format'
+import { required, maxCharacters } from '@/assets/utils/validation-rules'
 
 const keyframes = (() => {
   const fr = []
@@ -259,15 +260,8 @@ export default {
         content: ''
       },
       inputRules: {
-        required: (value) => !!value || 'Required.',
-        maxCharacters: (maxCharacters) => {
-          return (value) => {
-            return (
-              (value || '').length <= maxCharacters ||
-              `Max ${maxCharacters} characters`
-            )
-          }
-        }
+        required,
+        maxCharacters
       }
     }
   },

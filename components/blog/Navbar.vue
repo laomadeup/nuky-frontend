@@ -2,41 +2,42 @@
   <nav>
     <v-app-bar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
+      :hide-on-scroll="$vuetify.breakpoint.smAndDown"
       color="primary"
-      hide-on-scroll
       app
     >
-      <v-app-bar-nav-icon
-        v-show="$vuetify.breakpoint.mdAndDown"
-        @click.stop="toggleLeftDrawer"
-      />
+      <v-btn text icon color="white" @click.stop="$router.back()">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
 
       <v-toolbar-title class="white--text mx-2 px-4">
         <span>Kyun's Blog</span>
       </v-toolbar-title>
       <v-spacer />
-      <v-row style="max-width: 500px;">
-        <v-col cols="8">
-          <v-text-field
-            dense
-            flat
-            dark
-            rounded
-            solo-inverted
-            hide-details
-            single-line
-            prepend-inner-icon="mdi-magnify"
-            label="Search"
-            class="hidden-sm-and-down"
-            color="primary"
-          />
-        </v-col>
-        <v-col cols="4">
-          <v-btn class="hidden-sm-and-down" rounded color="grey lighten-3">
-            Search</v-btn
-          >
-        </v-col>
-      </v-row>
+      <v-text-field
+        style="max-width: 300px;"
+        dense
+        flat
+        dark
+        rounded
+        solo-inverted
+        hide-details
+        single-line
+        clearable
+        label="Search"
+        class="hidden-sm-and-down"
+        color="primary"
+        prepend-inner-icon="mdi-magnify"
+        append-icon="mdi-arrow-right"
+        :error="!searchInputState"
+        @blur="searchInputState = true"
+        @click:append="searchByKeyword()"
+      />
+      <v-app-bar-nav-icon
+        v-show="$vuetify.breakpoint.mdAndDown"
+        color="white"
+        @click.stop="toggleLeftDrawer"
+      />
     </v-app-bar>
 
     <v-navigation-drawer
@@ -81,6 +82,7 @@
             :key="i"
             :to="{ name: menu.router }"
             :exact="menu.exact"
+            :class="menu.aliesActiceClasses($route.name)"
           >
             <v-list-item-icon>
               <v-icon v-text="menu.icon" />
@@ -96,24 +98,47 @@
 </template>
 
 <script>
+import { required } from '@/assets/utils/validation-rules'
+
 export default {
   name: 'Navbar',
   data: () => ({
     keyword: '',
-    searchInputState: null,
+    searchInputState: true,
     menu: 1,
     menus: [
-      { router: 'index', name: 'Home', exact: true, icon: 'mdi-home' },
-      { router: 'about', name: 'About', exact: false, icon: 'mdi-help-circle' }
+      {
+        router: 'index',
+        name: 'Home',
+        exact: true,
+        icon: 'mdi-home',
+        aliesActiceClasses(routeName) {
+          return routeName === 'articles-page-number'
+            ? 'v-list-item--active'
+            : ''
+        }
+      },
+      {
+        router: 'about',
+        name: 'About',
+        exact: false,
+        icon: 'mdi-help-circle',
+        aliesActiceClasses() {
+          return ''
+        }
+      }
     ],
-    leftDrawer: null
+    leftDrawer: null,
+    inputRules: {
+      required
+    }
   }),
   methods: {
     toggleLeftDrawer() {
       this.leftDrawer = !this.leftDrawer
     },
     searchByKeyword() {
-      if (this.keyword == null || this.keyword === '') {
+      if (required(this.keyword) !== true) {
         this.searchInputState = false
       } else {
         this.$router.push({
