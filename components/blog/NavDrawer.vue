@@ -1,10 +1,12 @@
 <template>
-  <nav>
+  <aside>
     <v-navigation-drawer
       v-if="$vuetify.breakpoint.smAndDown"
       v-model="appDrawer"
       clipped
       color="grey lighten-4"
+      temporary
+      floating
       app
     >
       <header
@@ -14,42 +16,21 @@
       </header>
 
       <info />
-
-      <v-divider class="my-4" />
-
-      <v-list nav shaped>
-        <v-list-item-group v-model="menu" color="primary">
-          <v-list-item
-            v-for="(menu, i) in menus"
-            :key="i"
-            :to="{ name: menu.router }"
-            :exact="menu.exact"
-            :class="menu.aliesActiceClasses($route.name)"
-          >
-            <v-list-item-icon>
-              <v-icon v-text="menu.icon" />
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title v-text="menu.name" />
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
     </v-navigation-drawer>
-
     <v-btn
       v-show="$vuetify.breakpoint.smAndDown"
+      small
       dark
       fab
       fixed
       right
       bottom
-      color="info"
+      color="primary"
       @click.stop="toggleAppDrawer"
     >
       <v-icon>mdi-menu</v-icon>
     </v-btn>
-  </nav>
+  </aside>
 </template>
 
 <script>
@@ -62,29 +43,6 @@ export default {
     Info
   },
   data: () => ({
-    menu: 1,
-    menus: [
-      {
-        router: 'index',
-        name: 'Home',
-        exact: true,
-        icon: 'mdi-home',
-        aliesActiceClasses(routeName) {
-          return routeName === 'articles-page-number'
-            ? 'v-list-item--active'
-            : ''
-        }
-      },
-      {
-        router: 'about',
-        name: 'About',
-        exact: false,
-        icon: 'mdi-help-circle',
-        aliesActiceClasses() {
-          return ''
-        }
-      }
-    ],
     appDrawer: false,
     inputRules: {
       required
