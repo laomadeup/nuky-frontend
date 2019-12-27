@@ -48,7 +48,6 @@ const articles = (() => {
       content: buildArticleConente(),
       commentAmount: faker.random.number({ min: 25, max: 40 }),
       views: faker.random.number({ min: 0, max: 10000 }),
-      likes: faker.random.number({ min: 0, max: 10000 }),
       tags: genRamdomTags(),
       category: { id: category.id, name: category.name },
       comments: []

@@ -1,9 +1,6 @@
 <template>
   <div>
-    <h3>
-      <v-icon class="verticalalign-text-bottom" color="red">mdi-fire</v-icon>
-      Popular
-    </h3>
+    <h3>Popular</h3>
     <div
       v-for="(article, index) in this.$store.state.article.popularArticles"
       :key="index"

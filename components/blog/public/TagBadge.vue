@@ -8,6 +8,7 @@
       :color="getRamdomTagColor() + ' darken-2'"
       link
       dark
+      outlined
       class="app-chip mr-1 font-weight-medium"
     >
       {{ tag.name }}

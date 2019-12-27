@@ -1,11 +1,6 @@
 <template>
   <div>
-    <h3>
-      <v-icon class="verticalalign-text-bottom" color="light-blue"
-        >mdi-tag-multiple</v-icon
-      >
-      Tags
-    </h3>
+    <h3>Tags</h3>
     <v-divider class="my-2" />
     <div class="p-2 content-area">
       <tag-badge :tags="this.$store.state.article.tags" />

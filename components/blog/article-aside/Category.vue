@@ -1,11 +1,6 @@
 <template>
   <div>
-    <h3>
-      <v-icon class="verticalalign-text-bottom" color="green"
-        >mdi-folder-multiple</v-icon
-      >
-      Categories
-    </h3>
+    <h3>Categories</h3>
     <v-divider class="my-2" />
     <div class="p-2">
       <category-item

@@ -1,15 +1,15 @@
 <template>
   <v-app>
-    <app-header-nav />
+    <app-nav-drawer />
     <v-content>
-      <v-container class="app-container px-xl-12 px-lg-8 px-4">
+      <v-container class="app-container">
         <v-row>
-          <v-col sx="12" md="8">
+          <v-col cols="12" md="8">
             <nuxt />
           </v-col>
           <v-col md="4" class="hidden-sm-and-down">
             <v-divider vertical class="float-left" />
-            <article-aside class="pl-5" />
+            <app-aside class="pl-5" />
           </v-col>
         </v-row>
       </v-container>
@@ -19,21 +19,21 @@
 </template>
 
 <script>
-import Navbar from '@/components/blog/Navbar'
+import NavDrawer from '@/components/blog/NavDrawer'
 import Footer from '@/components/blog/Footer'
-import ArticleAside from '@/components/blog/ArticleAside'
+import Aside from '@/components/blog/Aside'
 
 export default {
   components: {
-    appHeaderNav: Navbar,
+    appNavDrawer: NavDrawer,
     appFooter: Footer,
-    ArticleAside
+    appAside: Aside
   }
 }
 </script>
 
 <style scoped lang="scss">
 .app-container {
-  max-width: 100%;
+  max-width: 1185px !important;
 }
 </style>

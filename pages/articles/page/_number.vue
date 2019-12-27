@@ -29,48 +29,38 @@
         <section class="artcile-footer my-2">
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
-              <span v-on="on">
-                <v-icon small>mdi-calendar</v-icon>
-                <time class="verticalalign-middle">
+              <section class="d-inline-block mr-4" v-on="on">
+                <v-icon small>mdi-calendar-text-outline</v-icon>
+                <time class="d-inline-flex verticalalign-middle ml-1">
                   {{ $moment(article.postDate).format('YYYY-MM-DD') }}
                 </time>
-              </span>
+              </section>
             </template>
-            <span>Post Time</span>
+            <span>post time</span>
           </v-tooltip>
 
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
-              <span v-on="on">
-                <v-icon small class="yellow--text text--darken-2"
-                  >mdi-star</v-icon
-                >
-                <span class="verticalalign-middle">{{ article.likes }}</span>
-              </span>
+              <section class="d-inline-block mr-4" v-on="on">
+                <v-icon small>mdi-book-open</v-icon>
+                <span class="d-inline-flex verticalalign-middle ml-1">
+                  {{ article.views }}
+                </span>
+              </section>
             </template>
-            <span>Likes</span>
+            <span>views</span>
           </v-tooltip>
 
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
-              <span v-on="on">
-                <v-icon small>mdi-book-open-page-variant</v-icon>
-                <span class="verticalalign-middle">{{ article.views }}</span>
-              </span>
-            </template>
-            <span>Views</span>
-          </v-tooltip>
-
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-              <span v-on="on">
+              <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small>mdi-comment-multiple</v-icon>
-                <span class="verticalalign-middle">{{
-                  article.commentAmount
-                }}</span>
-              </span>
+                <span class="d-inline-flex verticalalign-middle ml-1">
+                  {{ article.commentAmount }}
+                </span>
+              </section>
             </template>
-            <span>Comments</span>
+            <span>comments</span>
           </v-tooltip>
         </section>
         <v-divider class="mt-4" />
