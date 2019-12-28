@@ -78,7 +78,7 @@ export default {
   components: {
     ArticleInfo
   },
-  async asyncData({ params, store, $axios }) {
+  async asyncData({ params, $axios }) {
     // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
     const { content, totalPages, pageable } = await $axios.$get(

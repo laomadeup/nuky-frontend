@@ -21,7 +21,10 @@
     </v-row>
     <v-row class="mb-4" justify="center">
       <v-avatar size="80">
-        <img src="/avatar.jpg" alt="Kyun" />
+        <img
+          src="https://avatars0.githubusercontent.com/u/22534302?s=80"
+          alt="Kyun"
+        />
       </v-avatar>
     </v-row>
     <v-row align-content="center" justify="center">
@@ -39,7 +42,7 @@
 import { required } from 'assets/utils/validation-rules'
 
 export default {
-  name: 'Header',
+  name: 'Info',
   data: () => ({
     keyword: '',
     searchInputFocus: false,

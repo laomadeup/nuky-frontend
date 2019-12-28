@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import NavDrawer from '@/components/blog/NavDrawer'
-import Footer from '@/components/blog/Footer'
+import NavDrawer from '@/components/blog/public/NavDrawer'
+import Footer from '@/components/blog/public/Footer'
 
 export default {
   components: {
