@@ -1,5 +1,5 @@
 <template>
-  <aside v-if="showDarwer">
+  <aside v-show="this.$vuetify.breakpoint.smAndDown">
     <v-navigation-drawer
       v-model="appDrawer"
       clipped
@@ -46,11 +46,6 @@ export default {
       required
     }
   }),
-  computed: {
-    showDarwer() {
-      return !!this.$vuetify.breakpoint.smAndDown
-    }
-  },
   methods: {
     toggleAppDrawer() {
       this.appDrawer = !this.appDrawer
