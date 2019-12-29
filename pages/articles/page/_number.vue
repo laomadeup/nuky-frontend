@@ -36,7 +36,7 @@
                 </time>
               </section>
             </template>
-            <span>post time</span>
+            <span>post date</span>
           </v-tooltip>
 
           <v-tooltip bottom>
