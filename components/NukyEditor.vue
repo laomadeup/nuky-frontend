@@ -30,13 +30,11 @@ export default {
       default: ''
     }
   },
-  data() {
-    return {
-      editor: ClassicEditor,
-      editorData: this.value,
-      editorConfig: defaultConfig
-    }
-  },
+  data: () => ({
+    editor: ClassicEditor,
+    editorData: this.value,
+    editorConfig: defaultConfig
+  }),
   methods: {
     save() {
       console.log(this.editorData)

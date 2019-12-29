@@ -1,6 +1,6 @@
 <template>
   <v-row class="mx-0">
-    <v-col cols="12" md="4" sm="4" class="pa-0">
+    <v-col cols="12" sm="4" class="pa-0">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <span class="category mr-3" v-on="on">
@@ -21,7 +21,7 @@
         <span>Category</span>
       </v-tooltip>
     </v-col>
-    <v-col cols="12" md="8" sm="8" class="pa-0">
+    <v-col cols="12" sm="8" class="pa-0">
       <tag-badge class="float-none float-sm-right" :tags="tags" />
     </v-col>
   </v-row>
@@ -43,9 +43,7 @@ export default {
       default: null
     }
   },
-  data() {
-    return { icon: 'mdi-folder' }
-  },
+  data: () => ({ icon: 'mdi-folder' }),
   methods: {
     mouseoverIcon() {
       this.icon = 'mdi-folder-open'

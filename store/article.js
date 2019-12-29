@@ -1,7 +1,7 @@
 export const state = () => ({
-  popularArticles: [],
-  categories: [],
-  tags: []
+  popularArticles: null,
+  categories: null,
+  tags: null
 })
 
 export const mutations = {

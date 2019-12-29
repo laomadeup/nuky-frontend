@@ -241,30 +241,28 @@ export default {
       default: 0
     }
   },
-  data() {
-    return {
-      pageNumber: 0,
-      totalPages: 0,
-      comments: [],
-      isLoddingComents: false,
-      scrollOptions: {
-        duration: 500,
-        easing: 'linear',
-        offset: 100
-      },
-      newComment: {
-        valid: false,
-        username: null,
-        replyCommentId: null,
-        replyUsername: null,
-        content: ''
-      },
-      inputRules: {
-        required,
-        maxCharacters
-      }
+  data: () => ({
+    pageNumber: 0,
+    totalPages: 0,
+    comments: [],
+    isLoddingComents: false,
+    scrollOptions: {
+      duration: 500,
+      easing: 'linear',
+      offset: 100
+    },
+    newComment: {
+      valid: false,
+      username: null,
+      replyCommentId: null,
+      replyUsername: null,
+      content: ''
+    },
+    inputRules: {
+      required,
+      maxCharacters
     }
-  },
+  }),
   computed: {
     showReplyChip() {
       return this.newComment.replyCommentId != null

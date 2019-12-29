@@ -1,8 +1,6 @@
 <template>
-  <v-app>
-    <banner />
-    <app-nav-drawer />
-    <v-content>
+  <app-blog>
+    <template v-slot:content>
       <div
         class="app-container ma-auto py-2 py-sm-5 py-md-10 px-5 px-sm-10 px-md-10 px-lg-0"
       >
@@ -16,22 +14,17 @@
           </v-col>
         </v-row>
       </div>
-    </v-content>
-    <app-footer />
-  </v-app>
+    </template>
+  </app-blog>
 </template>
 
 <script>
-import Banner from '@/components/blog/public/Banner'
-import NavDrawer from '@/components/blog/public/NavDrawer'
+import AppBlog from '@/layouts/AppBlog'
 import Aside from '@/components/blog/public/Aside'
-import Footer from '@/components/blog/public/Footer'
 
 export default {
   components: {
-    Banner,
-    appNavDrawer: NavDrawer,
-    appFooter: Footer,
+    AppBlog,
     appAside: Aside
   }
 }

@@ -1,17 +1,22 @@
 <template>
   <div>
     <h3>Categories</h3>
-    <v-divider class="my-2" />
-    <div class="p-2">
-      <category-item
-        v-for="category in this.$store.state.article.categories"
-        :key="category.id"
-        :item="category"
-        :depth="0"
-      >
-      </category-item>
-    </div>
-    <v-divider class="my-2" />
+    <v-skeleton-loader
+      :loading="!this.$store.state.article.categories"
+      type="list-item-three-line,list-item-three-line,list-item-three-line"
+    >
+      <v-divider class="my-2" />
+      <div class="p-2">
+        <category-item
+          v-for="category in this.$store.state.article.categories"
+          :key="category.id"
+          :item="category"
+          :depth="0"
+        >
+        </category-item>
+      </div>
+      <v-divider class="my-2" />
+    </v-skeleton-loader>
   </div>
 </template>
 
@@ -19,9 +24,6 @@
 import CategoryItem from '@/components/blog/article-aside/CategoryItem'
 export default {
   name: 'Category',
-  components: { CategoryItem },
-  data() {
-    return {}
-  }
+  components: { CategoryItem }
 }
 </script>

@@ -93,13 +93,11 @@ export default {
       pageNumber: pageable.pageNumber + 1
     }
   },
-  data() {
-    return {
-      pageNumber: 1,
-      totalPages: 0,
-      articles: []
-    }
-  },
+  data: () => ({
+    pageNumber: 1,
+    totalPages: 0,
+    articles: []
+  }),
   methods: {
     toPage() {
       this.$router.push({

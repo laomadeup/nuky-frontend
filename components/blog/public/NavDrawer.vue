@@ -1,7 +1,6 @@
 <template>
-  <aside>
+  <aside v-if="showDarwer">
     <v-navigation-drawer
-      v-if="$vuetify.breakpoint.smAndDown"
       v-model="appDrawer"
       clipped
       color="grey lighten-4"
@@ -18,7 +17,6 @@
       <info />
     </v-navigation-drawer>
     <v-btn
-      v-show="$vuetify.breakpoint.smAndDown"
       small
       dark
       fab
@@ -48,6 +46,11 @@ export default {
       required
     }
   }),
+  computed: {
+    showDarwer() {
+      return !!this.$vuetify.breakpoint.smAndDown
+    }
+  },
   methods: {
     toggleAppDrawer() {
       this.appDrawer = !this.appDrawer

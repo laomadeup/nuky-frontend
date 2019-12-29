@@ -46,11 +46,9 @@ export default {
     const data = await $axios.$get(`/api/article-api/article/${params.id}`)
     return { article: data }
   },
-  data() {
-    return {
-      article: null
-    }
-  },
+  data: () => ({
+    article: null
+  }),
   head() {
     return {
       title: this.article.title,
@@ -63,10 +61,8 @@ export default {
       ]
     }
   },
-  validate({ params }) {
-    // params.id must be number
-    return /^\d+$/.test(params.id)
-  }
+  // params.id must be number
+  validate: ({ params }) => /^\d+$/.test(params.id)
 }
 </script>
 
