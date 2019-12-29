@@ -14,7 +14,7 @@
         Kyun's Blog
       </header>
 
-      <info />
+      <intro />
     </v-navigation-drawer>
     <v-btn
       small
@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import Info from '@/components/blog/article-aside/Info'
+import Intro from '@/components/blog/article-aside/Intro'
 import { required } from '@/assets/utils/validation-rules'
 
 export default {
   name: 'Navbar',
   components: {
-    Info
+    Intro
   },
   data: () => ({
     appDrawer: false,

@@ -63,7 +63,7 @@ const popularArticles = (() => {
   return articles
     .filter((value, index) => index < 10)
     .map((value) => {
-      return { id: value.id, title: value.title }
+      return { id: value.id, title: value.title, postDate: value.postDate }
     })
 })()
 

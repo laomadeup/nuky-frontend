@@ -12,7 +12,7 @@
       >
         <v-divider class="my-2" />
         <nuxt-link
-          class="px-2 my-1 popular-item"
+          class="px-2 my-0 popular-item body-2"
           tag="p"
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
@@ -35,14 +35,11 @@ export default {
 
 .popular-item {
   cursor: pointer;
-  line-height: 1.4rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+  line-height: 1.1rem;
 
-.popular-item:hover {
-  color: map-get($blue, lighten-1);
-  text-decoration-line: none;
+  &:hover {
+    color: map-get($blue, lighten-1);
+    text-decoration-line: none;
+  }
 }
 </style>

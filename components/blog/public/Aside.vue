@@ -1,6 +1,6 @@
 <template>
   <div>
-    <info />
+    <intro />
     <popular class="mt-10" />
     <category class="mt-10" />
     <tag class="mt-10" />
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Info from '@/components/blog/article-aside/Info'
+import Intro from '@/components/blog/article-aside/Intro'
 import Popular from '@/components/blog/article-aside/Popular'
 import Category from '@/components/blog/article-aside/Category'
 import Tag from '@/components/blog/article-aside/Tag'
@@ -18,7 +18,7 @@ export default {
     Popular,
     Category,
     Tag,
-    Info
+    Intro
   },
   mounted() {
     this.$store.dispatch('article/getPopularArticles')

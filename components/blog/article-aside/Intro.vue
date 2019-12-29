@@ -37,12 +37,32 @@
         </nuxt-link>
       </v-row>
       <v-row align-content="center" justify="center">
-        <v-btn title="Github" icon href="https://github.com/iamkyun">
-          <v-icon>mdi-github-circle</v-icon>
-        </v-btn>
-        <v-btn tag="Email" icon href="mailto:admin@iamkyun.com">
-          <v-icon>mdi-email</v-icon>
-        </v-btn>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn icon href="https://github.com/iamkyun" v-on="on">
+              <v-icon>mdi-github-circle</v-icon>
+            </v-btn>
+          </template>
+          <span>Github</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn icon href="mailto:admin@iamkyun.com" v-on="on">
+              <v-icon>mdi-email</v-icon>
+            </v-btn>
+          </template>
+          <span>Email</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn icon :to="{ name: 'about' }" v-on="on">
+              <v-icon>mdi-information</v-icon>
+            </v-btn>
+          </template>
+          <span>About</span>
+        </v-tooltip>
       </v-row>
     </v-container>
   </v-skeleton-loader>
