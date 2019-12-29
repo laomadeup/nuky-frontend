@@ -1,6 +1,6 @@
 <template>
   <header>
-    <v-sheet tile color="grey lighten-3">
+    <v-sheet tile color="grey lighten-4">
       <section class="app-banner ma-auto grey--text text--darken-1">
         <h3
           class="font-weight-medium banner-title px-5 px-sm-10 px-md-10 px-lg-0"
