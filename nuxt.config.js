@@ -45,8 +45,6 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module',
     // Doc: https://www.npmjs.com/package/@nuxtjs/moment
     '@nuxtjs/moment',
     '@nuxtjs/vuetify'
@@ -60,9 +58,6 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
-  stylelint: {
-    fix: true
-  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

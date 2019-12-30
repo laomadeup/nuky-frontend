@@ -73,7 +73,7 @@
 
     <!-- Comments -->
     <div class="mt-5">
-      <v-badge color="red">
+      <v-badge color="deep-orange accent-3">
         <template v-slot:badge>
           <span>{{ commentAmount }}</span>
         </template>
