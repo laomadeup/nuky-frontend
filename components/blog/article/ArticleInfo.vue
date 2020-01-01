@@ -43,7 +43,9 @@ export default {
       default: null
     }
   },
-  data: () => ({ icon: 'mdi-folder' }),
+  data() {
+    return { icon: 'mdi-folder' }
+  },
   methods: {
     mouseoverIcon() {
       this.icon = 'mdi-folder-open'

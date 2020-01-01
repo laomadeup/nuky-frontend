@@ -46,9 +46,11 @@ export default {
     const data = await $axios.$get(`/api/article-api/article/${params.id}`)
     return { article: data }
   },
-  data: () => ({
-    article: null
-  }),
+  data() {
+    return {
+      article: null
+    }
+  },
   head() {
     return {
       title: this.article.title,

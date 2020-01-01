@@ -216,6 +216,7 @@
 
 <script>
 import { formatPrefix } from 'd3-format'
+import anime from 'animejs/lib/anime.es.js'
 import { required, maxCharacters } from '@/assets/utils/validation-rules'
 
 const keyframes = (() => {
@@ -241,28 +242,30 @@ export default {
       default: 0
     }
   },
-  data: () => ({
-    pageNumber: 0,
-    totalPages: 0,
-    comments: [],
-    isLoddingComents: false,
-    scrollOptions: {
-      duration: 500,
-      easing: 'linear',
-      offset: 100
-    },
-    newComment: {
-      valid: false,
-      username: null,
-      replyCommentId: null,
-      replyUsername: null,
-      content: ''
-    },
-    inputRules: {
-      required,
-      maxCharacters
+  data() {
+    return {
+      pageNumber: 0,
+      totalPages: 0,
+      comments: [],
+      isLoddingComents: false,
+      scrollOptions: {
+        duration: 500,
+        easing: 'linear',
+        offset: 100
+      },
+      newComment: {
+        valid: false,
+        username: null,
+        replyCommentId: null,
+        replyUsername: null,
+        content: ''
+      },
+      inputRules: {
+        required,
+        maxCharacters
+      }
     }
-  }),
+  },
   computed: {
     showReplyChip() {
       return this.newComment.replyCommentId != null
@@ -288,10 +291,9 @@ export default {
     },
     commentHint(id) {
       // scroll to target
-      const $$anime = this.$anime
       this.$vuetify.goTo(`#comment-${id}`, this.scrollOptions).then(function() {
         // anime
-        $$anime({
+        anime({
           targets: [document.querySelector(`#comment-${id}`)],
           easing: 'easeInOutSine',
           keyframes,
@@ -307,7 +309,7 @@ export default {
     showPopup(id) {
       const el = document.querySelector(`#comment-${id} .reply-popup`)
       el.classList.remove('hide')
-      this.$anime({
+      anime({
         targets: [el],
         opacity: 1,
         duration: 300,

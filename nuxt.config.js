@@ -1,6 +1,8 @@
 import path from 'path'
 import CKEditorWebpackPlugin from '@ckeditor/ckeditor5-dev-webpack-plugin'
 import { styles } from '@ckeditor/ckeditor5-dev-utils'
+import TerserPlugin from 'terser-webpack-plugin'
+import OptimizeCssAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin'
 
 require('dotenv').config()
 
@@ -35,10 +37,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/vue-inject.js',
-    { src: '~/plugins/nuky-editor', mode: 'client' }
-  ],
+  plugins: [{ src: '~/plugins/nuky-editor', mode: 'client' }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -70,7 +69,7 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/style/variables.scss']
+    // customVariables: ['~/assets/style/variables.scss']
   },
   proxy: {
     '/api/': 'http://localhost:8080/'
@@ -79,8 +78,27 @@ export default {
    ** Build configuration
    */
   build: {
+    analyze: true,
     extractCSS: true,
-    transpile: [/ckeditor5-[^/\\]+[/\\]src[/\\].+\.js$/],
+    optimizeCSS: true,
+    // transpile: [/ckeditor5-[^/\\]+[/\\]src[/\\].+\.js$/],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true, // Must be set to true if using source-maps in production
+          terserOptions: {
+            // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+          }
+        }),
+        new OptimizeCssAssetsWebpackPlugin({})
+      ]
+    },
+    splitChunks: {
+      layouts: true
+    },
     plugins: [
       new CKEditorWebpackPlugin({
         language: 'en'

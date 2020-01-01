@@ -27,14 +27,12 @@
         />
       </v-row>
       <v-row class="mb-4" justify="center">
-        <nuxt-link :to="{ name: 'about' }">
-          <v-avatar size="80">
-            <v-img
-              src="https://avatars0.githubusercontent.com/u/22534302?s=80"
-              alt="Kyun"
-            />
-          </v-avatar>
-        </nuxt-link>
+        <v-avatar size="80">
+          <v-img
+            src="https://avatars0.githubusercontent.com/u/22534302?s=80"
+            alt="Kyun"
+          />
+        </v-avatar>
       </v-row>
       <v-row align-content="center" justify="center">
         <v-tooltip bottom>
@@ -73,12 +71,14 @@ import { required } from 'assets/utils/validation-rules'
 
 export default {
   name: 'Info',
-  data: () => ({
-    loading: true,
-    keyword: '',
-    searchInputFocus: false,
-    searchInputState: true
-  }),
+  data() {
+    return {
+      loading: true,
+      keyword: '',
+      searchInputFocus: false,
+      searchInputState: true
+    }
+  },
   mounted() {
     this.loading = false
   },

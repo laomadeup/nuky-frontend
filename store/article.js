@@ -17,16 +17,15 @@ export const mutations = {
 }
 
 export const actions = {
-  async getPopularArticles({ commit }) {
-    const data = await this.$axios.$get('/api/article-api/articles/popular')
-    commit('setPopularArticles', data)
-  },
-  async getCategories({ commit }) {
-    const data = await this.$axios.$get('/api/article-api/categories')
-    commit('setCategories', data)
-  },
-  async getTags({ commit }) {
-    const data = await this.$axios.$get('/api/article-api/tags')
-    commit('setTags', data)
+  async getArticleAside({ commit }) {
+    const [popular, categories, tags] = await Promise.all([
+      this.$axios.$get('/api/article-api/articles/popular'),
+      this.$axios.$get('/api/article-api/categories'),
+      this.$axios.$get('/api/article-api/tags')
+    ])
+
+    commit('setPopularArticles', popular)
+    commit('setTags', categories)
+    commit('setCategories', tags)
   }
 }

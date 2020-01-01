@@ -40,12 +40,14 @@ export default {
   components: {
     Intro
   },
-  data: () => ({
-    appDrawer: false,
-    inputRules: {
-      required
+  data() {
+    return {
+      appDrawer: false,
+      inputRules: {
+        required
+      }
     }
-  }),
+  },
   methods: {
     toggleAppDrawer() {
       this.appDrawer = !this.appDrawer

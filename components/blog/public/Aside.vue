@@ -21,9 +21,7 @@ export default {
     Intro
   },
   mounted() {
-    this.$store.dispatch('article/getPopularArticles')
-    this.$store.dispatch('article/getCategories')
-    this.$store.dispatch('article/getTags')
+    this.$store.dispatch('article/getArticleAside')
   }
 }
 </script>
