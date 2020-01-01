@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="editor-content">
-      <ckeditor v-model="editorData" :editor="editor" :config="editorConfig" />
+      <!--      <ckeditor v-model="editorData" :editor="editor" :config="editorConfig" />-->
     </div>
 
     <v-container class="mt-2">
@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import CKEditor from '@ckeditor/ckeditor5-vue'
-import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
-import defaultConfig from '@/assets/config/editor-config'
+// import CKEditor from '@ckeditor/ckeditor5-vue'
+// import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
+// import defaultConfig from '@/assets/config/editor-config'
 
 export default {
   name: 'NukyEditor',
   components: {
-    ckeditor: CKEditor.component
+    // ckeditor: CKEditor.component
   },
   props: {
     value: {
@@ -32,9 +32,9 @@ export default {
   },
   data() {
     return {
-      editor: ClassicEditor,
-      editorData: this.value,
-      editorConfig: defaultConfig
+      // editor: ClassicEditor,
+      // editorConfig: defaultConfig,
+      editorData: this.value
     }
   },
   methods: {

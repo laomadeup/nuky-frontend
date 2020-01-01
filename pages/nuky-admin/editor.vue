@@ -7,8 +7,11 @@
 </template>
 
 <script>
+import NukyEditor from '@/components/NukyEditor'
+
 export default {
-  layout: 'AppBlog',
+  layout: 'empty',
+  components: { NukyEditor },
   data() {
     return { content: '' }
   },
