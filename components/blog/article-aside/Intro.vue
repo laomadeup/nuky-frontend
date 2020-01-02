@@ -70,7 +70,6 @@
 import { required } from 'assets/utils/validation-rules'
 
 export default {
-  name: 'Info',
   data() {
     return {
       loading: true,

@@ -37,7 +37,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/nuky-editor', mode: 'client' }],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
@@ -81,7 +81,6 @@ export default {
     analyze: true,
     extractCSS: true,
     optimizeCSS: true,
-    // transpile: [/ckeditor5-[^/\\]+[/\\]src[/\\].+\.js$/],
     optimization: {
       minimize: true,
       minimizer: [
@@ -154,6 +153,6 @@ export default {
    */
   moment: {
     defaultLocale: 'en',
-    locales: ['zh-hk', 'zh-tw', 'ja', 'zh-cn']
+    locales: ['zh-cn']
   }
 }

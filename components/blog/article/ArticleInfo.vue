@@ -31,7 +31,6 @@
 import TagBadge from '@/components/blog/public/TagBadge'
 
 export default {
-  name: 'ArticleTags',
   components: { TagBadge },
   props: {
     tags: {

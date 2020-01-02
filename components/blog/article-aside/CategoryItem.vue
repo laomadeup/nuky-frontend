@@ -25,7 +25,6 @@
 import CategoryItem from '@/components/blog/article-aside/CategoryItem'
 
 export default {
-  name: 'CategoryItem',
   components: { CategoryItem },
   props: {
     item: {

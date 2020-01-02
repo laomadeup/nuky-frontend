@@ -1,16 +1,16 @@
 <template>
   <div>
-    <client-only>
+    <client-only placeholder="Loading Editor ...">
       <nuky-editor v-model="content" />
     </client-only>
   </div>
 </template>
 
 <script>
-import NukyEditor from '@/components/NukyEditor'
+import NukyEditor from '@/components/admin/public/NukyEditor'
 
 export default {
-  layout: 'empty',
+  layout: 'AppBlog',
   components: { NukyEditor },
   data() {
     return { content: '' }

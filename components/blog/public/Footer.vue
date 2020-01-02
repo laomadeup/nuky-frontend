@@ -10,7 +10,5 @@
 </template>
 
 <script>
-export default {
-  name: 'Footer'
-}
+export default {}
 </script>

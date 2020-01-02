@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="editor-content">
-      <!--      <ckeditor v-model="editorData" :editor="editor" :config="editorConfig" />-->
+      <ckeditor v-model="editorData" :editor="editor" :config="editorConfig" />
     </div>
 
     <v-container class="mt-2">
       <v-row>
         <v-col cols="2" offset="5">
-          <v-btn variant="primary" block @click="save()">Save</v-btn>
+          <v-btn color="primary" block @click="save()">Save</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -15,14 +15,20 @@
 </template>
 
 <script>
-// import CKEditor from '@ckeditor/ckeditor5-vue'
-// import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
-// import defaultConfig from '@/assets/config/editor-config'
+let CKEditor = { component: '' }
+let ClassicEditor = {}
+let defaultConfig = {}
+
+if (process.client) {
+  CKEditor = require('@ckeditor/ckeditor5-vue')
+  ClassicEditor = require('@ckeditor/ckeditor5-editor-classic/src/classiceditor')
+    .default
+  defaultConfig = require('@/assets/config/editor-config').default
+}
 
 export default {
-  name: 'NukyEditor',
   components: {
-    // ckeditor: CKEditor.component
+    ckeditor: CKEditor.component
   },
   props: {
     value: {
@@ -32,8 +38,8 @@ export default {
   },
   data() {
     return {
-      // editor: ClassicEditor,
-      // editorConfig: defaultConfig,
+      editor: ClassicEditor,
+      editorConfig: defaultConfig,
       editorData: this.value
     }
   },
