@@ -74,7 +74,7 @@
 import ArticleInfo from '@/components/blog/article/ArticleInfo'
 
 export default {
-  layout: 'AppBlogArticle',
+  layout: 'BlogAside',
   components: {
     ArticleInfo
   },

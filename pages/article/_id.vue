@@ -36,7 +36,7 @@ import ArticleContent from '@/components/blog/article/ArticleContent'
 import ArticleInfo from '@/components/blog/article/ArticleInfo'
 
 export default {
-  layout: 'AppBlogArticle',
+  layout: 'BlogAside',
   components: {
     ArticleComment,
     ArticleContent,

@@ -1,5 +1,5 @@
 <template>
-  <app-blog>
+  <blog>
     <template v-slot:content>
       <div
         class="app-container ma-auto py-2 py-sm-5 py-md-10 px-5 px-sm-10 px-md-10 px-lg-0"
@@ -15,16 +15,16 @@
         </v-row>
       </div>
     </template>
-  </app-blog>
+  </blog>
 </template>
 
 <script>
-import AppBlog from '@/layouts/AppBlog'
+import Blog from '@/layouts/Blog'
 import Aside from '@/components/blog/public/Aside'
 
 export default {
   components: {
-    AppBlog,
+    Blog,
     appAside: Aside
   }
 }

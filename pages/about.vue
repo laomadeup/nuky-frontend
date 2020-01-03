@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  layout: 'AppBlog',
+  layout: 'Blog',
   head() {
     return {
       title: 'About',

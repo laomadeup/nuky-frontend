@@ -10,7 +10,7 @@
 import NukyEditor from '@/components/admin/public/NukyEditor'
 
 export default {
-  layout: 'AppBlog',
+  layout: 'Admin',
   components: { NukyEditor },
   data() {
     return { content: '' }
