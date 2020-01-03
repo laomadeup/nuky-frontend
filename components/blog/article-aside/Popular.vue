@@ -25,7 +25,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'Popular'
+}
 </script>
 
 <style scoped lang="scss">

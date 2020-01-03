@@ -13,6 +13,7 @@ import Popular from '@/components/blog/article-aside/Popular'
 import Category from '@/components/blog/article-aside/Category'
 import Tag from '@/components/blog/article-aside/Tag'
 export default {
+  name: 'Aside',
   components: {
     Popular,
     Category,

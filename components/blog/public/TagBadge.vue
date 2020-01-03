@@ -29,6 +29,7 @@ const tagColors = [
   'brown'
 ]
 export default {
+  name: 'TagBadge',
   props: {
     tags: {
       type: Array,

@@ -37,6 +37,7 @@ import '@ckeditor/ckeditor5-widget/theme/widget.css'
 import '@ckeditor/ckeditor5-widget/theme/widgetresize.css'
 
 export default {
+  name: 'ArticleContent',
   props: {
     content: {
       type: String,

@@ -228,6 +228,7 @@ const keyframes = (() => {
 })()
 
 export default {
+  name: 'ArticleComment',
   props: {
     articleId: {
       type: Number,

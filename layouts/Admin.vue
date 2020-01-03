@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  components: {}
+  name: 'Admin'
 }
 </script>

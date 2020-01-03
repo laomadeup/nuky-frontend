@@ -25,7 +25,7 @@ export const actions = {
     ])
 
     commit('setPopularArticles', popular)
-    commit('setTags', categories)
-    commit('setCategories', tags)
+    commit('setTags', tags)
+    commit('setCategories', categories)
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="category-item pb-1 pt-1" :style="categoryIndent">
+    <div :class="'category-item pb-1 pt-1 pl-' + (depth * 3 + 1)">
       <nuxt-link
         class="category-name pb-1 ml-1"
         tag="span"
@@ -25,6 +25,7 @@
 import CategoryItem from '@/components/blog/article-aside/CategoryItem'
 
 export default {
+  name: 'CategoryItem',
   components: { CategoryItem },
   props: {
     item: {
@@ -34,11 +35,6 @@ export default {
     depth: {
       type: Number,
       default: 0
-    }
-  },
-  computed: {
-    categoryIndent() {
-      return `padding-left:${this.depth * 20}px`
     }
   }
 }

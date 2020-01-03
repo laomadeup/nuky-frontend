@@ -23,6 +23,7 @@ import Blog from '@/layouts/Blog'
 import Aside from '@/components/blog/public/Aside'
 
 export default {
+  name: 'BlogAside',
   components: {
     Blog,
     appAside: Aside

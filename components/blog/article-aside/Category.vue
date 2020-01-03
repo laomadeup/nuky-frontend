@@ -23,6 +23,7 @@
 <script>
 import CategoryItem from '@/components/blog/article-aside/CategoryItem'
 export default {
+  name: 'Category',
   components: { CategoryItem }
 }
 </script>

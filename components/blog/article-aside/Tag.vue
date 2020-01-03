@@ -19,6 +19,7 @@
 import TagBadge from '@/components/blog/public/TagBadge'
 
 export default {
+  name: 'Tag',
   components: { TagBadge }
 }
 </script>

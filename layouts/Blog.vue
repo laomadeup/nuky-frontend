@@ -17,6 +17,7 @@ import NavDrawer from '@/components/blog/public/NavDrawer'
 import Footer from '@/components/blog/public/Footer'
 
 export default {
+  name: 'Blog',
   components: {
     Banner,
     appNavDrawer: NavDrawer,

@@ -36,6 +36,7 @@ import Intro from '@/components/blog/article-aside/Intro'
 import { required } from '@/assets/utils/validation-rules'
 
 export default {
+  name: 'NavDrawer',
   components: {
     Intro
   },

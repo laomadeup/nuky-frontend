@@ -27,6 +27,7 @@ if (process.client) {
 }
 
 export default {
+  name: 'NukyEditor',
   components: {
     ckeditor: CKEditor.component
   },
