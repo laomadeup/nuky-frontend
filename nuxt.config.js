@@ -141,10 +141,6 @@ export default {
       })
     }
   },
-  /**
-   * router config
-   */
-  router: {},
   render: {
     resourceHints: false
   },
