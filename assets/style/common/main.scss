@@ -54,12 +54,3 @@ html {
 .verticalalign-bottom {
   vertical-align: bottom !important;
 }
-
-.app-chip.v-chip.v-size--small {
-  height: 18px;
-  line-height: 18px;
-}
-
-.app-chip.v-chip.v-size--small:hover {
-  filter: brightness(130%);
-}

@@ -37,7 +37,12 @@
       <v-row align-content="center" justify="center">
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn icon href="https://github.com/iamkyun" v-on="on">
+            <v-btn
+              icon
+              href="https://github.com/iamkyun"
+              title="github"
+              v-on="on"
+            >
               <v-icon>mdi-github-circle</v-icon>
             </v-btn>
           </template>
@@ -46,7 +51,7 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn icon href="mailto:admin@iamkyun.com" v-on="on">
+            <v-btn icon href="mailto:admin@iamkyun.com" title="email" v-on="on">
               <v-icon>mdi-email</v-icon>
             </v-btn>
           </template>
@@ -55,7 +60,7 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn icon :to="{ name: 'about' }" v-on="on">
+            <v-btn icon :to="{ name: 'about' }" title="about" v-on="on">
               <v-icon>mdi-information</v-icon>
             </v-btn>
           </template>

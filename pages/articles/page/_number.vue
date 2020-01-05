@@ -65,7 +65,12 @@
         </section>
         <v-divider class="mt-4" />
       </article>
-      <v-pagination v-model="pageNumber" :length="totalPages" @input="toPage" />
+      <v-pagination
+        v-model="pageNumber"
+        :length="totalPages"
+        color="info"
+        @input="toPage"
+      />
     </div>
   </div>
 </template>

@@ -3,13 +3,10 @@
     <v-chip
       v-for="(tag, index) in tags"
       :key="index"
-      small
+      x-small
       :to="{ name: 'search-tag-id', params: { id: tag.id } }"
-      :color="getRamdomTagColor() + ' darken-2'"
       link
-      dark
-      outlined
-      class="app-chip mr-1 font-weight-medium"
+      class="mr-1"
     >
       {{ tag.name }}
     </v-chip>
@@ -17,28 +14,12 @@
 </template>
 
 <script>
-const tagColors = [
-  'pink',
-  'purple',
-  'indigo',
-  'cyan',
-  'teal',
-  'green',
-  'lime',
-  'orange',
-  'brown'
-]
 export default {
   name: 'TagBadge',
   props: {
     tags: {
       type: Array,
       default: null
-    }
-  },
-  methods: {
-    getRamdomTagColor() {
-      return tagColors[Math.floor(Math.random() * tagColors.length)]
     }
   }
 }

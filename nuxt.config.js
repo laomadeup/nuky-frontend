@@ -15,6 +15,9 @@ export default {
     titleTemplate: (title) =>
       title ? `${title} - ${process.env.APP_TITLE}` : process.env.APP_TITLE,
     title: process.env.APP_TITLE,
+    htmlAttrs: {
+      lang: 'en-us'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -29,7 +32,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#33aaff' },
+  loading: { color: '#3af' },
   /*
    ** Global CSS
    */
@@ -142,7 +145,13 @@ export default {
     }
   },
   render: {
-    resourceHints: false
+    resourceHints: false,
+    http2: {
+      push: true
+    }
+  },
+  router: {
+    prefetchLinks: false
   },
   /**
    * moment.js config
