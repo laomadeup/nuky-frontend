@@ -147,12 +147,8 @@ export default {
     }
 
     &:hover {
-      .article-description {
-        color: map-get($grey, darken-1);
-      }
-
       .title {
-        color: map-get($blue, lighten-1) !important;
+        color: map-get($blue, darken-2) !important;
         text-decoration: underline !important;
       }
     }

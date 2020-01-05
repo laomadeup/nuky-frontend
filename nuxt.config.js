@@ -118,15 +118,19 @@ export default {
           'prismjs',
           {
             languages: ['javascript', 'css', 'markup', 'java', 'bash', 'sql'],
-            plugins: ['line-numbers', 'copy-to-clipboard', 'show-language'],
+            plugins: [
+              'line-numbers',
+              'copy-to-clipboard',
+              'show-language',
+              'match-braces'
+            ],
             css: true
           }
         ]
       ]
     },
     extend(config, { isClient }) {
-      config.devtool = isClient ? 'eval-source-map' : 'inline-source-map'
-
+      // config.devtool = isClient ? 'eval-source-map' : 'inline-source-map'
       const filesRuleIndex = config.module.rules.findIndex((item) => {
         return `${item.test}` === '/\\.(png|jpe?g|gif|svg|webp)$/i'
       })
