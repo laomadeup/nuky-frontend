@@ -72,7 +72,17 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    // customVariables: ['~/assets/style/variables.scss']
+    customVariables: ['~/assets/style/variables.scss'],
+    defaultAssets: {
+      font: {
+        family: 'Roboto, Arial, sans-serif'
+      },
+      icons: 'mdiSvg'
+    },
+    treeShake: true,
+    options: {
+      customProperties: true
+    }
   },
   proxy: {
     '/api/': 'http://localhost:8080/'

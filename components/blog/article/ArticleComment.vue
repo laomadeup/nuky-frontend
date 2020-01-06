@@ -3,7 +3,7 @@
     <!-- comment addition area -->
     <div class="mt-5">
       <h2 id="scroll-mark" class="headline">
-        <v-icon color="grey" large>mdi-draw</v-icon>
+        <v-icon color="grey" large>{{ mdiDraw }}</v-icon>
         Add a Comment
       </h2>
       <v-container class="px-0">
@@ -26,7 +26,7 @@
                   @click="commentHint(newComment.replyCommentId)"
                   v-on="on"
                 >
-                  <v-icon small>mdi-at</v-icon>
+                  <v-icon small>{{ mdiAt }}</v-icon>
                   {{ newComment.replyUsername }}
                 </v-chip>
               </template>
@@ -42,19 +42,25 @@
               auto-grow
               clearable
               :counter="500"
-              prepend-inner-icon="mdi-comment-text-outline"
               :rules="[inputRules.required, inputRules.maxCharacters(500)]"
-            ></v-textarea>
+            >
+              <template v-slot:prepend-inner>
+                <v-icon>{{ mdiCommentTextOutline }}</v-icon>
+              </template>
+            </v-textarea>
           </v-row>
           <v-row class="mb-2">
             <v-text-field
               v-model="newComment.username"
-              prepend-inner-icon="mdi-comment-account-outline"
               :rules="[inputRules.required, inputRules.maxCharacters(20)]"
               label="Enter your name..."
               clearable
               :counter="20"
-            />
+            >
+              <template v-slot:prepend-inner>
+                <v-icon>{{ mdiCommentAccountOutline }}</v-icon>
+              </template>
+            </v-text-field>
           </v-row>
           <v-row justify="end" class="mt-2">
             <v-btn
@@ -78,7 +84,9 @@
           <span>{{ commentAmount }}</span>
         </template>
         <h2 class="headline mb-4">
-          <v-icon color="grey" large>mdi-comment-text-multiple-outline</v-icon>
+          <v-icon color="grey" large>{{
+            mdiCommentTextMultipleOutline
+          }}</v-icon>
           Comments
         </h2>
       </v-badge>
@@ -92,7 +100,7 @@
           class="flex-nowrap mb-4"
         >
           <v-avatar width="48" class="mr-4" :color="comment.user.avatar">
-            <v-icon dark>mdi-account-circle</v-icon>
+            <v-icon dark>{{ mdiAccountCircle }}</v-icon>
           </v-avatar>
           <section class="comment-main">
             <section class="comment-header">
@@ -106,7 +114,7 @@
                 {{ comment.user.username }}
               </span>
               <span>
-                <v-icon small>mdi-clock</v-icon>
+                <v-icon small>{{ mdiClock }}</v-icon>
                 <span class="body-2 verticalalign-bottom">
                   {{ $moment(comment.createDate).fromNow() }}
                 </span>
@@ -123,7 +131,7 @@
                   @mouseenter="showPopup(comment.id)"
                   @mouseout="hidePopup(comment.id)"
                 >
-                  <v-icon small>mdi-at</v-icon>
+                  <v-icon small>{{ mdiAt }}</v-icon>
                   {{ comment.replyComment.username }}
                 </v-chip>
                 {{ comment.content }}
@@ -145,7 +153,7 @@
                         v-on="on"
                         @click="like(comment.id)"
                       >
-                        <v-icon small>mdi-thumb-up</v-icon>
+                        <v-icon small>{{ mdiThumbUp }}</v-icon>
                       </v-btn>
                     </template>
                     <span>like</span>
@@ -170,7 +178,7 @@
                         @click="dislike(comment.id)"
                         v-on="on"
                       >
-                        <v-icon small>mdi-thumb-down</v-icon>
+                        <v-icon small>{{ mdiThumbDown }}</v-icon>
                       </v-btn>
                     </template>
                     <span>dislike</span>
@@ -204,7 +212,7 @@
         class="more-comments text-capitalize"
         @click="loadComments()"
       >
-        <v-icon>mdi-menu-down</v-icon>
+        <v-icon>{{ mdiMenuDown }}</v-icon>
         More Comments
       </v-btn>
       <div v-show="isLoddingComents" class="text-center">
@@ -217,8 +225,19 @@
 <script>
 import { formatPrefix } from 'd3-format'
 import anime from 'animejs/lib/anime.es.js'
+import {
+  mdiDraw,
+  mdiAt,
+  mdiCommentTextOutline,
+  mdiCommentAccountOutline,
+  mdiCommentTextMultipleOutline,
+  mdiAccountCircle,
+  mdiClock,
+  mdiThumbUp,
+  mdiThumbDown,
+  mdiMenuDown
+} from '@mdi/js'
 import { required, maxCharacters } from '@/assets/utils/validation-rules'
-
 const keyframes = (() => {
   const fr = []
   for (let i = 0; i <= 10; i++) {
@@ -244,6 +263,16 @@ export default {
   },
   data() {
     return {
+      mdiDraw,
+      mdiAt,
+      mdiCommentTextOutline,
+      mdiCommentAccountOutline,
+      mdiCommentTextMultipleOutline,
+      mdiAccountCircle,
+      mdiClock,
+      mdiThumbUp,
+      mdiThumbDown,
+      mdiMenuDown,
       pageNumber: 0,
       totalPages: 0,
       comments: [],

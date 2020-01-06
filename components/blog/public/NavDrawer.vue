@@ -26,12 +26,13 @@
       color="primary"
       @click.stop="toggleAppDrawer"
     >
-      <v-icon>mdi-menu</v-icon>
+      <v-icon>{{ mdiMenu }}</v-icon>
     </v-btn>
   </aside>
 </template>
 
 <script>
+import { mdiMenu } from '@mdi/js'
 import Intro from '@/components/blog/article-aside/Intro'
 import { required } from '@/assets/utils/validation-rules'
 
@@ -42,6 +43,7 @@ export default {
   },
   data() {
     return {
+      mdiMenu,
       appDrawer: false,
       inputRules: {
         required

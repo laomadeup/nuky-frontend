@@ -17,15 +17,20 @@
           clearable
           label="Search"
           color="info"
-          prepend-inner-icon="mdi-magnify"
-          :append-icon="searchInputFocus ? 'mdi-arrow-right' : ''"
           aria-label="search"
           :error="!searchInputState"
           @blur="clearInputError"
           @focusin="setInputFocusState(true)"
           @focusout="setInputFocusState(false)"
           @click:append="searchByKeyword()"
-        />
+        >
+          <template v-slot:prepend-inner>
+            <v-icon>{{ mdiMagnify }}</v-icon>
+          </template>
+          <template v-if="searchInputFocus" v-slot:append>
+            <v-icon>{{ mdiArrowRight }}</v-icon>
+          </template>
+        </v-text-field>
       </v-row>
       <v-row class="mb-4" justify="center">
         <v-avatar size="80">
@@ -45,7 +50,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>mdi-github-circle</v-icon>
+              <v-icon>{{ mdiGithubCircle }}</v-icon>
             </v-btn>
           </template>
           <span>Github</span>
@@ -59,7 +64,7 @@
               aria-label="email"
               v-on="on"
             >
-              <v-icon>mdi-email</v-icon>
+              <v-icon>{{ mdiEmail }}</v-icon>
             </v-btn>
           </template>
           <span>Email</span>
@@ -68,7 +73,7 @@
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
             <v-btn icon :to="{ name: 'about' }" aria-label="about" v-on="on">
-              <v-icon>mdi-information</v-icon>
+              <v-icon>{{ mdiInformation }}</v-icon>
             </v-btn>
           </template>
           <span>About</span>
@@ -80,11 +85,23 @@
 
 <script>
 import { required } from 'assets/utils/validation-rules'
+import {
+  mdiGithubCircle,
+  mdiEmail,
+  mdiInformation,
+  mdiMagnify,
+  mdiArrowRight
+} from '@mdi/js'
 
 export default {
   name: 'Intro',
   data() {
     return {
+      mdiGithubCircle,
+      mdiEmail,
+      mdiInformation,
+      mdiMagnify,
+      mdiArrowRight,
       loading: true,
       keyword: '',
       searchInputFocus: false,

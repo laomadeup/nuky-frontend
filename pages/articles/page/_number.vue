@@ -30,7 +30,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
-                <v-icon small>mdi-calendar-text-outline</v-icon>
+                <v-icon small>{{ mdiCalendarTextOutline }}</v-icon>
                 <time class="d-inline-flex verticalalign-middle ml-1">
                   {{ $moment(article.postDate).format('YYYY-MM-DD') }}
                 </time>
@@ -42,7 +42,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
-                <v-icon small>mdi-book-open</v-icon>
+                <v-icon small>{{ mdiBookOpen }}</v-icon>
                 <span class="d-inline-flex verticalalign-middle ml-1">
                   {{ article.views }}
                 </span>
@@ -54,7 +54,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
-                <v-icon small>mdi-comment-multiple</v-icon>
+                <v-icon small>{{ mdiCommentMultiple }}</v-icon>
                 <span class="d-inline-flex verticalalign-middle ml-1">
                   {{ article.commentAmount }}
                 </span>
@@ -76,8 +76,12 @@
 </template>
 
 <script>
+import {
+  mdiCalendarTextOutline,
+  mdiBookOpen,
+  mdiCommentMultiple
+} from '@mdi/js'
 import ArticleInfo from '@/components/blog/article/ArticleInfo'
-
 export default {
   layout: 'BlogAside',
   components: {
@@ -100,6 +104,9 @@ export default {
   },
   data() {
     return {
+      mdiCalendarTextOutline,
+      mdiBookOpen,
+      mdiCommentMultiple,
       pageNumber: 1,
       totalPages: 0,
       articles: []

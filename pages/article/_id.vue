@@ -11,7 +11,7 @@
             :category="article.category"
           />
           <section>
-            <v-icon>mdi-calendar</v-icon>
+            <v-icon>{{ mdiCalendar }}</v-icon>
             <time class="verticalalign-text-top">
               {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
             </time>
@@ -31,10 +31,10 @@
 </template>
 
 <script>
+import { mdiCalendar } from '@mdi/js'
 import ArticleComment from '@/components/blog/article/ArticleComment'
 import ArticleContent from '@/components/blog/article/ArticleContent'
 import ArticleInfo from '@/components/blog/article/ArticleInfo'
-
 export default {
   layout: 'BlogAside',
   components: {
@@ -48,6 +48,7 @@ export default {
   },
   data() {
     return {
+      mdiCalendar,
       article: null
     }
   },

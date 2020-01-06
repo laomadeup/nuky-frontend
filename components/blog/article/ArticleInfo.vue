@@ -28,8 +28,8 @@
 </template>
 
 <script>
+import { mdiFolder, mdiFolderOpen } from '@mdi/js'
 import TagBadge from '@/components/blog/public/TagBadge'
-
 export default {
   name: 'ArticleInfo',
   components: { TagBadge },
@@ -44,14 +44,14 @@ export default {
     }
   },
   data() {
-    return { icon: 'mdi-folder' }
+    return { mdiFolder, mdiFolderOpen, icon: mdiFolder }
   },
   methods: {
     mouseoverIcon() {
-      this.icon = 'mdi-folder-open'
+      this.icon = this.mdiFolderOpen
     },
     mouseleaveIcon() {
-      this.icon = 'mdi-folder'
+      this.icon = this.mdiFolder
     }
   }
 }
