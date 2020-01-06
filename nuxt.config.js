@@ -73,15 +73,9 @@ export default {
    */
   vuetify: {
     customVariables: ['~/assets/style/variables.scss'],
-    defaultAssets: {
-      font: {
-        family: 'Roboto, Arial, sans-serif'
-      },
-      icons: 'mdiSvg'
-    },
-    treeShake: true,
-    options: {
-      customProperties: true
+    defaultAssets: false,
+    icons: {
+      iconfont: 'mdiSvg'
     }
   },
   proxy: {
