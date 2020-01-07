@@ -35,7 +35,7 @@
       <v-row class="mb-4" justify="center">
         <v-avatar size="80">
           <v-img
-            src="https://avatars0.githubusercontent.com/u/22534302?s=80"
+            src="https://iamkyun-profile-img.oss-cn-shenzhen.aliyuncs.com/avatar.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_80/quality,q_100"
             alt="Kyun"
           />
         </v-avatar>
