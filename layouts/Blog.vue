@@ -3,9 +3,13 @@
     <banner />
     <app-nav-drawer />
     <v-content>
-      <slot name="content">
-        <nuxt />
-      </slot>
+      <div
+        class="app-container ma-auto py-2 py-sm-5 py-md-10 px-5 px-sm-10 px-md-10 px-lg-0"
+      >
+        <slot name="content">
+          <nuxt />
+        </slot>
+      </div>
     </v-content>
     <app-footer />
   </v-app>
@@ -25,3 +29,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.app-container {
+  max-width: 1200px !important;
+}
+</style>

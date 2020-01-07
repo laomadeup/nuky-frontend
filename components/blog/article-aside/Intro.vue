@@ -19,17 +19,13 @@
           color="info"
           aria-label="search"
           :error="!searchInputState"
+          :prepend-inner-icon="mdiMagnify"
+          :append-icon="searchInputFocus ? mdiArrowRight : ''"
           @blur="clearInputError"
           @focusin="setInputFocusState(true)"
           @focusout="setInputFocusState(false)"
           @click:append="searchByKeyword()"
         >
-          <template v-slot:prepend-inner>
-            <v-icon>{{ mdiMagnify }}</v-icon>
-          </template>
-          <template v-if="searchInputFocus" v-slot:append>
-            <v-icon>{{ mdiArrowRight }}</v-icon>
-          </template>
         </v-text-field>
       </v-row>
       <v-row class="mb-4" justify="center">

@@ -1,9 +1,7 @@
 <template>
   <blog>
     <template v-slot:content>
-      <div
-        class="app-container ma-auto py-2 py-sm-5 py-md-10 px-5 px-sm-10 px-md-10 px-lg-0"
-      >
+      <div>
         <v-row>
           <v-col cols="12" md="8">
             <nuxt />
@@ -30,9 +28,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.app-container {
-  max-width: 1200px !important;
-}
-</style>
