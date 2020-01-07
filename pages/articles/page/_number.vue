@@ -31,7 +31,7 @@
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small>{{ mdiCalendarTextOutline }}</v-icon>
-                <time class="d-inline-flex verticalalign-middle ml-1">
+                <time class="verticalalign-middle">
                   {{ $moment(article.postDate).format('YYYY-MM-DD') }}
                 </time>
               </section>
@@ -43,7 +43,7 @@
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small>{{ mdiBookOpen }}</v-icon>
-                <span class="d-inline-flex verticalalign-middle ml-1">
+                <span class="verticalalign-middle">
                   {{ article.views }}
                 </span>
               </section>
@@ -55,7 +55,7 @@
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small>{{ mdiCommentMultiple }}</v-icon>
-                <span class="d-inline-flex verticalalign-middle ml-1">
+                <span class="verticalalign-middle">
                   {{ article.commentAmount }}
                 </span>
               </section>
@@ -65,12 +65,7 @@
         </section>
         <v-divider class="mt-4" />
       </article>
-      <v-pagination
-        v-model="pageNumber"
-        :length="totalPages"
-        color="info"
-        @input="toPage"
-      />
+      <v-pagination v-model="pageNumber" :length="totalPages" @input="toPage" />
     </div>
   </div>
 </template>
@@ -165,7 +160,7 @@ export default {
     font-size: 0.85rem;
 
     span {
-      margin-right: 10px;
+      margin-right: 6px;
     }
   }
 }

@@ -79,14 +79,11 @@
 
     <!-- Comments -->
     <div class="mt-5">
-      <v-badge color="deep-orange accent-3">
-        <template v-slot:badge>
-          <span>{{ commentAmount }}</span>
-        </template>
+      <v-badge color="info" :content="commentAmount">
         <h2 class="headline mb-4">
-          <v-icon color="grey" large>{{
-            mdiCommentTextMultipleOutline
-          }}</v-icon>
+          <v-icon color="grey darken-1" large
+            >{{ mdiCommentTextMultipleOutline }}
+          </v-icon>
           Comments
         </h2>
       </v-badge>
@@ -104,12 +101,6 @@
           </v-avatar>
           <section class="comment-main">
             <section class="comment-header">
-              <span
-                v-if="comment.replyComment"
-                class="reply-popup blue-grey lighten-5 hide py-2 px-4"
-              >
-                {{ comment.replyComment.content }}
-              </span>
               <span class="font-weight-medium mr-2">
                 {{ comment.user.username }}
               </span>
@@ -122,18 +113,23 @@
             </section>
             <section>
               <p class="mb-1">
-                <v-chip
-                  v-if="comment.replyComment"
-                  small
-                  class="app-chip verticalalign-text-top"
-                  color="primary"
-                  @click="commentHint(comment.replyComment.id)"
-                  @mouseenter="showPopup(comment.id)"
-                  @mouseout="hidePopup(comment.id)"
-                >
-                  <v-icon small>{{ mdiAt }}</v-icon>
-                  {{ comment.replyComment.username }}
-                </v-chip>
+                <span v-if="comment.replyComment" class="reply-block">
+                  <v-chip
+                    x-small
+                    class="app-chip verticalalign-text-top"
+                    color="primary"
+                    @click="commentHint(comment.replyComment.id)"
+                  >
+                    <v-icon small>{{ mdiAt }}</v-icon>
+                    {{ comment.replyComment.username }}
+                  </v-chip>
+                  <span
+                    v-if="comment.replyComment"
+                    class="reply-popup blue-grey lighten-4 py-2 px-4"
+                  >
+                    {{ comment.replyComment.content }}
+                  </span>
+                </span>
                 {{ comment.content }}
               </p>
             </section>
@@ -335,21 +331,6 @@ export default {
         })
       })
     },
-    showPopup(id) {
-      const el = document.querySelector(`#comment-${id} .reply-popup`)
-      el.classList.remove('hide')
-      anime({
-        targets: [el],
-        opacity: 1,
-        duration: 300,
-        easing: 'easeOutCirc'
-      })
-    },
-    hidePopup(id) {
-      const el = document.querySelector(`#comment-${id} .reply-popup`)
-      el.classList.add('hide')
-      el.style.opacity = 0
-    },
     submitComment() {
       if (this.$refs.form.validate()) {
         console.log(`submit comment =>`)
@@ -393,21 +374,30 @@ export default {
   min-height: 48px;
 }
 
-.comment-header {
+.reply-block {
   position: relative;
+  display: inline-block;
+  line-height: 0;
 
   .reply-popup {
-    opacity: 0;
+    line-height: 20px;
     border-radius: 5px;
+    width: max-content;
     max-width: 500px;
     border: 1px solid map-get($blue-grey, lighten-3) !important;
     position: absolute;
-    bottom: 0;
+    bottom: 24px;
     left: 0;
+    visibility: hidden;
     display: block;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
 
-    &.hide {
-      display: none;
+  &:hover {
+    .reply-popup {
+      visibility: visible;
+      opacity: 1;
     }
   }
 }
