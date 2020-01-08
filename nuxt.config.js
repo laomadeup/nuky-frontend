@@ -1,8 +1,6 @@
 import path from 'path'
 import CKEditorWebpackPlugin from '@ckeditor/ckeditor5-dev-webpack-plugin'
 import { styles } from '@ckeditor/ckeditor5-dev-utils'
-import TerserPlugin from 'terser-webpack-plugin'
-import OptimizeCssAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin'
 
 require('dotenv').config()
 
@@ -90,20 +88,6 @@ export default {
     analyze: true,
     extractCSS: true,
     optimizeCSS: true,
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          cache: true,
-          parallel: true,
-          sourceMap: true, // Must be set to true if using source-maps in production
-          terserOptions: {
-            // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
-          }
-        }),
-        new OptimizeCssAssetsWebpackPlugin({})
-      ]
-    },
     splitChunks: {
       layouts: true
     },

@@ -1,6 +1,7 @@
 <template>
   <div class="search-field mx-auto">
     <v-text-field
+      ref="searchInput"
       v-model="keyword"
       outlined
       rounded
@@ -9,10 +10,12 @@
       label="Search"
       color="info"
       aria-label="search"
-      @click:append-outer="searchByKeyword()"
+      :error="!searchInputState"
+      :error-messages="searchInputState ? '' : 'Require.'"
+      @focus="searchInputState = true"
     >
       <template v-slot:append-outer>
-        <v-btn rounded depressed color="primary">
+        <v-btn rounded depressed color="primary" @click="searchByKeyword()">
           <v-icon>{{ mdiMagnify }}</v-icon>
           search
         </v-btn>
@@ -29,6 +32,8 @@ export default {
   layout: 'Blog',
   data() {
     return {
+      searchInputState: true,
+      inputRules: [required],
       mdiMagnify,
       keyword: this.$route.params.keyword
     }
@@ -56,7 +61,8 @@ export default {
 
   &::v-deep {
     .v-input__append-outer {
-      margin-top: 0 !important;
+      margin-top: 2px !important;
+      margin-bottom: 2px !important;
     }
   }
 }
