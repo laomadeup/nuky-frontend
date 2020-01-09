@@ -20,10 +20,8 @@
           aria-label="search"
           :error="!searchInputState"
           :prepend-inner-icon="mdiMagnify"
-          :append-icon="searchInputFocus ? mdiArrowRight : ''"
+          :append-icon="!!keyword ? mdiArrowRight : ''"
           @blur="clearInputError"
-          @focusin="setInputFocusState(true)"
-          @focusout="setInputFocusState(false)"
           @click:append="searchByKeyword()"
         >
         </v-text-field>
@@ -100,7 +98,6 @@ export default {
       mdiArrowRight,
       loading: true,
       keyword: '',
-      searchInputFocus: false,
       searchInputState: true
     }
   },
@@ -122,9 +119,6 @@ export default {
     },
     clearInputError() {
       this.searchInputState = true
-    },
-    setInputFocusState(state) {
-      this.searchInputFocus = state
     }
   }
 }

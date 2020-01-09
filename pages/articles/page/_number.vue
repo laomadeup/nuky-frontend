@@ -84,7 +84,7 @@ export default {
   },
   async asyncData({ params, $axios }) {
     // paged query ariticle list
-    const pageNumber = params.number ? params.number : 1
+    const pageNumber = params.pageNumber ? params.pageNumber : 1
     const { content, totalPages, pageable } = await $axios.$get(
       `/api/article-api/articles/page/${pageNumber}`
     )
@@ -111,7 +111,7 @@ export default {
     toPage() {
       this.$router.push({
         name: 'articles-page-number',
-        params: { number: this.pageNumber }
+        params: { pageNumber: this.pageNumber }
       })
     }
   },
