@@ -66,6 +66,13 @@
         <v-divider class="mt-4" />
       </article>
       <v-pagination v-model="pageNumber" :length="totalPages" @input="toPage" />
+      <v-overlay :value="overlay">
+        <v-progress-circular
+          color="primary"
+          indeterminate
+          size="48"
+        ></v-progress-circular>
+      </v-overlay>
     </div>
   </div>
 </template>
@@ -84,7 +91,7 @@ export default {
   },
   async asyncData({ params, $axios }) {
     // paged query ariticle list
-    const pageNumber = params.pageNumber ? params.pageNumber : 1
+    const pageNumber = params.number ? params.number : 1
     const { content, totalPages, pageable } = await $axios.$get(
       `/api/article-api/articles/page/${pageNumber}`
     )
@@ -99,6 +106,7 @@ export default {
   },
   data() {
     return {
+      overlay: false,
       mdiCalendarTextOutline,
       mdiBookOpen,
       mdiCommentMultiple,
@@ -109,9 +117,10 @@ export default {
   },
   methods: {
     toPage() {
+      this.overlay = true
       this.$router.push({
         name: 'articles-page-number',
-        params: { pageNumber: this.pageNumber }
+        params: { number: this.pageNumber }
       })
     }
   },
