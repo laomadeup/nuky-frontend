@@ -25,9 +25,7 @@
     </div>
     <div v-for="article in articles" :key="article.id">
       <!--  eslint-disable-next-line -->
-      <nuxt-link :to="{ name: 'article-id', params: { id: article.id } }"
-        v-html="article.title"
-      ></nuxt-link>
+      <nuxt-link v-html="article.title" :to="{ name: 'article-id', params: { id: article.id } }" />
       <!--  eslint-disable-next-line -->
       <p v-html="article.content"></p>
     </div>
