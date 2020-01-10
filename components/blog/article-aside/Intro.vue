@@ -80,11 +80,11 @@
 <script>
 import { required } from 'assets/utils/validation-rules'
 import {
-  mdiGithubCircle,
+  mdiArrowRight,
   mdiEmail,
+  mdiGithubCircle,
   mdiInformation,
-  mdiMagnify,
-  mdiArrowRight
+  mdiMagnify
 } from '@mdi/js'
 
 export default {

@@ -1,6 +1,7 @@
 <template>
+  <!-- eslint-disable vue/no-v-html -->
   <div class="content mx-auto">
-    <div class="search-field mx-auto">
+    <section class="search-field mx-auto">
       <v-text-field
         ref="searchInput"
         v-model="keyword"
@@ -22,13 +23,54 @@
           </v-btn>
         </template>
       </v-text-field>
-    </div>
-    <div v-for="article in articles" :key="article.id">
-      <!--  eslint-disable-next-line -->
-      <nuxt-link v-html="article.title" :to="{ name: 'article-id', params: { id: article.id } }" />
-      <!--  eslint-disable-next-line -->
-      <p v-html="article.content"></p>
-    </div>
+    </section>
+    <section class="sort mb-4">
+      <v-btn
+        id="sort-text"
+        x-small
+        text
+        disabled
+        color="grey--text text--darken-4"
+        >SORT BY :
+      </v-btn>
+      <v-btn-toggle v-model="sortBy" mandatory>
+        <v-btn x-small>
+          POST DATE
+          <v-icon right small>{{ mdiSortAscending }}</v-icon>
+        </v-btn>
+        <v-btn x-small>
+          POST DATE
+          <v-icon right small>{{ mdiSortDescending }}</v-icon>
+        </v-btn>
+      </v-btn-toggle>
+    </section>
+    <section
+      v-for="article in articles"
+      :key="article.id"
+      class=" article-body mb-8"
+    >
+      <nuxt-link
+        tag="h4"
+        class="title grey--text text--darken-4"
+        :to="{ name: 'article-id', params: { id: article.id } }"
+        v-html="article.title"
+      >
+      </nuxt-link>
+      <p class="article-description my-2" v-html="article.content"></p>
+      <section class="artcile-footer my-2">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <section class="d-inline-block mr-4" v-on="on">
+              <v-icon small>{{ mdiCalendarTextOutline }}</v-icon>
+              <time class="verticalalign-middle">
+                {{ $moment(article.postDate).format('YYYY-MM-DD') }}
+              </time>
+            </section>
+          </template>
+          <span>post date</span>
+        </v-tooltip>
+      </section>
+    </section>
     <v-pagination v-model="pageNumber" :length="totalPages" @input="toPage" />
     <v-overlay :value="overlay">
       <v-progress-circular
@@ -41,7 +83,13 @@
 </template>
 
 <script>
-import { mdiMagnify } from '@mdi/js'
+import {
+  mdiCalendarTextOutline,
+  mdiMagnify,
+  mdiSort,
+  mdiSortAscending,
+  mdiSortDescending
+} from '@mdi/js'
 import { required } from 'assets/utils/validation-rules'
 
 export default {
@@ -49,7 +97,12 @@ export default {
   watchQuery: ['pageNumber', 'keyword'],
   data() {
     return {
+      sortBy: 0,
       overlay: false,
+      mdiCalendarTextOutline,
+      mdiSortAscending,
+      mdiSortDescending,
+      mdiSort,
       articles: null,
       pageNumber: 0,
       totalPages: 0,
@@ -95,8 +148,43 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '~vuetify/src/styles/styles';
+
 .content {
   max-width: 1000px;
+}
+
+.article-body {
+  .title {
+    cursor: pointer;
+    display: inline-block;
+
+    &:hover {
+      color: map-get($blue, darken-2) !important;
+      text-decoration: underline !important;
+    }
+  }
+
+  .article-description {
+    height: 3rem;
+    line-height: 1.5rem;
+    overflow: hidden;
+    color: map-get($grey, darken-3);
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .artcile-footer {
+    font-size: 0.85rem;
+  }
+}
+
+::v-deep mark {
+  background: map-get($pink, 'lighten-3');
+  font-weight: 500;
+  border-radius: 5px;
 }
 
 .search-field {
@@ -108,5 +196,9 @@ export default {
       margin-bottom: 2px !important;
     }
   }
+}
+
+#sort-text {
+  color: map-get($grey, 'darken-3') !important;
 }
 </style>

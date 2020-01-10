@@ -18,11 +18,9 @@
           class="article-body"
           :to="{ name: 'article-id', params: { id: article.id } }"
         >
-          <header>
-            <h4 class="title grey--text text--darken-4">
-              {{ article.title }}
-            </h4>
-          </header>
+          <h4 class="title grey--text text--darken-4">
+            {{ article.title }}
+          </h4>
           <p class="article-description my-2">{{ article.description }}</p>
         </nuxt-link>
         <article-info :tags="article.tags" :category="article.category" />
