@@ -269,7 +269,7 @@ export default {
       mdiThumbUp,
       mdiThumbDown,
       mdiMenuDown,
-      pageNumber: 0,
+      pageNumber: 1,
       totalPages: 0,
       comments: [],
       isLoddingComents: false,

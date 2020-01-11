@@ -7,7 +7,9 @@
         class="app-container ma-auto py-2 py-sm-5 py-md-10 px-5 px-sm-10 px-md-10 px-lg-0"
       >
         <slot name="content">
-          <nuxt />
+          <div class="content mx-auto">
+            <nuxt />
+          </div>
         </slot>
       </div>
     </v-content>
@@ -33,5 +35,9 @@ export default {
 <style scoped lang="scss">
 .app-container {
   max-width: 1200px !important;
+}
+
+.content {
+  max-width: 1000px;
 }
 </style>
