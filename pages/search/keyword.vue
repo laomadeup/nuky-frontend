@@ -95,13 +95,15 @@ export default {
     async query(keyword, pageNumber) {
       this.overlay = true
       // query by keyword
-      const { content, totalPages, pageable } = await this.$axios.$post(
+      const { content, totalPages, pageable } = await this.$axios.$get(
         '/api/article-api/articles/search/keyword',
         {
-          keyword,
-          pageNumber,
-          sort: this.sort.field,
-          order: this.sort.order
+          params: {
+            keyword,
+            page: pageNumber,
+            sort: this.sort.field,
+            order: this.sort.order
+          }
         }
       )
       this.articles = content
