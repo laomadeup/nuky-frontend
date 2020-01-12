@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-chip color="primary">
-      <v-icon left>{{ mdiTag }}</v-icon>
+      <v-icon left v-text="mdiTag" />
       {{ tag.name }}
     </v-chip>
     <app-sort class="my-4" :sort.sync="sort" @change="query" />

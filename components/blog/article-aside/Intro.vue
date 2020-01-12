@@ -44,7 +44,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>{{ mdiGithubCircle }}</v-icon>
+              <v-icon v-text="mdiGithubCircle" />
             </v-btn>
           </template>
           <span>Github</span>
@@ -58,7 +58,7 @@
               aria-label="email"
               v-on="on"
             >
-              <v-icon>{{ mdiEmail }}</v-icon>
+              <v-icon v-text="mdiEmail" />
             </v-btn>
           </template>
           <span>Email</span>
@@ -67,7 +67,7 @@
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
             <v-btn icon :to="{ name: 'about' }" aria-label="about" v-on="on">
-              <v-icon>{{ mdiInformation }}</v-icon>
+              <v-icon v-text="mdiInformation" />
             </v-btn>
           </template>
           <span>About</span>

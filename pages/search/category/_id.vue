@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-chip outlined label>
-      <v-icon color="primary" left>{{ mdiFolderOpen }}</v-icon>
+      <v-icon color="primary" left v-text="mdiFolderOpen" />
       {{ category.name }}
     </v-chip>
     <app-sort class="my-4" :sort.sync="sort" @change="query" />

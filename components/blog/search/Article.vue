@@ -14,7 +14,7 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <section class="d-inline-block mr-4" v-on="on">
-            <v-icon small>{{ mdiCalendarTextOutline }}</v-icon>
+            <v-icon small v-text="mdiCalendarTextOutline" />
             <time class="verticalalign-middle">
               <slot name="date"></slot>
             </time>

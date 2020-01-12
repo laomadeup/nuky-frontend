@@ -4,11 +4,11 @@
     <v-btn-toggle v-model="sortIndex" mandatory @change="sortChange">
       <v-btn x-small>
         POST DATE
-        <v-icon right small>{{ mdiSortDescending }}</v-icon>
+        <v-icon right small v-text="mdiSortDescending" />
       </v-btn>
       <v-btn x-small>
         POST DATE
-        <v-icon right small>{{ mdiSortAscending }}</v-icon>
+        <v-icon right small v-text="mdiSortAscending" />
       </v-btn>
     </v-btn-toggle>
   </section>

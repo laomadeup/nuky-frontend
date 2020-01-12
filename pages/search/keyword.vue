@@ -18,7 +18,7 @@
       >
         <template v-slot:append-outer>
           <v-btn rounded depressed color="primary" @click="searchByKeyword()">
-            <v-icon>{{ mdiMagnify }}</v-icon>
+            <v-icon v-text="mdiMagnify" />
             search
           </v-btn>
         </template>

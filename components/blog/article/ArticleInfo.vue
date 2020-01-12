@@ -4,7 +4,7 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <span class="category mr-3" v-on="on">
-            <v-icon color="grey">{{ icon }}</v-icon>
+            <v-icon color="grey" v-text="icon" />
             <span @mouseover="mouseoverIcon" @mouseleave="mouseleaveIcon">
               <nuxt-link
                 class="category-name mx-1"

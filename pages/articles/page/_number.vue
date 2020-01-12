@@ -28,7 +28,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
-                <v-icon small>{{ mdiCalendarTextOutline }}</v-icon>
+                <v-icon small v-text="mdiCalendarTextOutline" />
                 <time class="verticalalign-middle">
                   {{ $moment(article.postDate).format('YYYY-MM-DD') }}
                 </time>
@@ -40,7 +40,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
-                <v-icon small>{{ mdiBookOpen }}</v-icon>
+                <v-icon small v-text="mdiBookOpen" />
                 <span class="verticalalign-middle">
                   {{ article.views }}
                 </span>
@@ -52,7 +52,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
-                <v-icon small>{{ mdiCommentMultiple }}</v-icon>
+                <v-icon small v-text="mdiCommentMultiple" />
                 <span class="verticalalign-middle">
                   {{ article.commentAmount }}
                 </span>

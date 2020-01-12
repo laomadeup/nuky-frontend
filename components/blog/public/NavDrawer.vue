@@ -26,7 +26,7 @@
       color="primary"
       @click.stop="toggleAppDrawer"
     >
-      <v-icon>{{ mdiMenu }}</v-icon>
+      <v-icon v-text="mdiMenu" />
     </v-btn>
   </aside>
 </template>

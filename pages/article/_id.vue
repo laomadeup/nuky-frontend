@@ -11,7 +11,7 @@
             :category="article.category"
           />
           <section>
-            <v-icon>{{ mdiCalendar }}</v-icon>
+            <v-icon v-text="mdiCalendar" />
             <time class="verticalalign-text-top">
               {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
             </time>

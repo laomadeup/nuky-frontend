@@ -3,10 +3,10 @@
     <!-- comment addition area -->
     <div class="mt-5">
       <h2 id="scroll-mark" class="headline">
-        <v-icon color="grey" large>{{ mdiDraw }}</v-icon>
+        <v-icon color="grey" large v-text="mdiDraw" />
         Add a Comment
       </h2>
-      <v-container class="px-0">
+      <v-container fluid class="px-0">
         <v-form
           id="comment-form"
           ref="form"
@@ -26,7 +26,7 @@
                   @click="commentHint(newComment.replyCommentId)"
                   v-on="on"
                 >
-                  <v-icon small>{{ mdiAt }}</v-icon>
+                  <v-icon small v-text="mdiAt" />
                   {{ newComment.replyUsername }}
                 </v-chip>
               </template>
@@ -45,7 +45,7 @@
               :rules="[inputRules.required, inputRules.maxCharacters(500)]"
             >
               <template v-slot:prepend-inner>
-                <v-icon>{{ mdiCommentTextOutline }}</v-icon>
+                <v-icon v-text="mdiCommentTextOutline" />
               </template>
             </v-textarea>
           </v-row>
@@ -58,7 +58,7 @@
               :counter="20"
             >
               <template v-slot:prepend-inner>
-                <v-icon>{{ mdiCommentAccountOutline }}</v-icon>
+                <v-icon v-text="mdiCommentAccountOutline" />
               </template>
             </v-text-field>
           </v-row>
@@ -81,15 +81,17 @@
     <div class="mt-5">
       <v-badge color="info" :content="commentAmount">
         <h2 class="headline mb-4">
-          <v-icon color="grey darken-1" large
-            >{{ mdiCommentTextMultipleOutline }}
-          </v-icon>
+          <v-icon
+            color="grey darken-1"
+            large
+            v-text="mdiCommentTextMultipleOutline"
+          />
           Comments
         </h2>
       </v-badge>
 
       <div v-if="comments.length === 0">No one commented yet</div>
-      <v-container class="py-0">
+      <v-container fluid class="py-0">
         <v-row
           v-for="comment in comments"
           :id="`comment-${comment.id}`"
@@ -97,7 +99,7 @@
           class="flex-nowrap mb-4"
         >
           <v-avatar width="48" class="mr-4" :color="comment.user.avatar">
-            <v-icon dark>{{ mdiAccountCircle }}</v-icon>
+            <v-icon dark v-text="mdiAccountCircle" />
           </v-avatar>
           <section class="comment-main">
             <section class="comment-header">
@@ -105,7 +107,7 @@
                 {{ comment.user.username }}
               </span>
               <span>
-                <v-icon small>{{ mdiClock }}</v-icon>
+                <v-icon small v-text="mdiClock" />
                 <span class="body-2 verticalalign-bottom">
                   {{ $moment(comment.createDate).fromNow() }}
                 </span>
@@ -120,7 +122,7 @@
                     color="primary"
                     @click="commentHint(comment.replyComment.id)"
                   >
-                    <v-icon small>{{ mdiAt }}</v-icon>
+                    <v-icon small v-text="mdiAt" />
                     {{ comment.replyComment.username }}
                   </v-chip>
                   <span
@@ -149,7 +151,7 @@
                         v-on="on"
                         @click="like(comment.id)"
                       >
-                        <v-icon small>{{ mdiThumbUp }}</v-icon>
+                        <v-icon small v-text="mdiThumbUp" />
                       </v-btn>
                     </template>
                     <span>like</span>
@@ -174,7 +176,7 @@
                         @click="dislike(comment.id)"
                         v-on="on"
                       >
-                        <v-icon small>{{ mdiThumbDown }}</v-icon>
+                        <v-icon small v-text="mdiThumbDown" />
                       </v-btn>
                     </template>
                     <span>dislike</span>
@@ -208,7 +210,7 @@
         class="more-comments text-capitalize"
         @click="loadComments()"
       >
-        <v-icon>{{ mdiMenuDown }}</v-icon>
+        <v-icon v-text="mdiMenuDown" />
         More Comments
       </v-btn>
       <div v-show="isLoddingComents" class="text-center">
