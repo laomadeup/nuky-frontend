@@ -37,11 +37,7 @@
     </v-navigation-drawer>
 
     <v-content>
-      <v-container fluid>
-        <v-row align="start" justify="center">
-          <nuxt />
-        </v-row>
-      </v-container>
+      <nuxt />
     </v-content>
   </v-app>
 </template>
