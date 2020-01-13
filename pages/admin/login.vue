@@ -1,13 +1,13 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" lg="4">
-            <v-card class="elevation-12">
-              <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Admin Login</v-toolbar-title>
-              </v-toolbar>
+          <v-col>
+            <v-card class="elevation-12 mx-auto" max-width="500">
+              <v-card-title class="primary white--text">
+                Admin Login
+              </v-card-title>
               <v-card-text>
                 <v-form>
                   <v-text-field
@@ -49,7 +49,6 @@ import { mdiAccount, mdiLock } from '@mdi/js'
 
 export default {
   name: 'Login',
-  layout: 'Admin',
   data() {
     return { mdiAccount, mdiLock, source: '1' }
   },

@@ -37,7 +37,7 @@
             <v-textarea
               id="comment-content-textarea"
               v-model="newComment.content"
-              label="Enter your comment..."
+              label="Enter your comment"
               rows="1"
               auto-grow
               clearable
@@ -53,7 +53,7 @@
             <v-text-field
               v-model="newComment.username"
               :rules="[inputRules.required, inputRules.maxCharacters(20)]"
-              label="Enter your name..."
+              label="Enter your name"
               clearable
               :counter="20"
             >
@@ -217,6 +217,13 @@
         <v-progress-circular indeterminate color="primary" />
       </div>
     </div>
+    <v-snackbar v-model="snackbar" color="success" right>
+      {{ newComment.content }}
+      {{ newComment.username }}
+      <v-btn text @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -290,7 +297,8 @@ export default {
       inputRules: {
         required,
         maxCharacters
-      }
+      },
+      snackbar: false
     }
   },
   computed: {
@@ -348,6 +356,7 @@ export default {
           `replyUsername\t : %c ${this.newComment.username}`,
           'color:#9E9D24;'
         )
+        this.snackbar = true
       }
     },
     reply(id, username) {
