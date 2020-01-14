@@ -2,13 +2,13 @@
   <div>
     <h3>Categories</h3>
     <v-skeleton-loader
-      :loading="!categories"
+      :loading="!this.$store.state.article.categoryList"
       type="list-item-three-line,list-item-three-line,list-item-three-line"
     >
       <v-divider class="my-2" />
       <div class="p-2">
         <div
-          v-for="category in categories"
+          v-for="category in this.$store.state.article.categoryList"
           :key="category.id"
           :class="`category-item pb-1 pt-1 pl-${category.layer * 4}`"
         >
@@ -28,31 +28,7 @@
 
 <script>
 export default {
-  name: 'Category',
-  data() {
-    return {
-      categories: []
-    }
-  },
-  mounted() {
-    const storeCategories = this.$store.state.article.categories || []
-    this.pushData(storeCategories, 0)
-  },
-  methods: {
-    pushData(storeCategories, layer) {
-      for (const category of storeCategories) {
-        this.categories.push({
-          id: category.id,
-          name: category.name,
-          layer,
-          amount: category.amount
-        })
-        if (category.subCategories && category.subCategories.length > 0) {
-          this.pushData(category.subCategories, layer + 1)
-        }
-      }
-    }
-  }
+  name: 'Category'
 }
 </script>
 
