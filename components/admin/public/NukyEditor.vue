@@ -1,16 +1,11 @@
 <template>
-  <div>
-    <div class="editor-content">
-      <ckeditor v-model="editorData" :editor="editor" :config="editorConfig" />
-    </div>
-
-    <v-container class="mt-2">
-      <v-row>
-        <v-col cols="2" offset="5">
-          <v-btn color="primary" block @click="save()">Save</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
+  <div class="editor-content">
+    <ckeditor
+      v-model="editorData"
+      :editor="editor"
+      :config="editorConfig"
+      @input="emitContent"
+    />
   </div>
 </template>
 
@@ -32,7 +27,7 @@ export default {
     ckeditor: CKEditor.component
   },
   props: {
-    value: {
+    content: {
       type: String,
       default: ''
     }
@@ -41,12 +36,12 @@ export default {
     return {
       editor: ClassicEditor,
       editorConfig: defaultConfig,
-      editorData: this.value
+      editorData: this.content
     }
   },
   methods: {
-    save() {
-      console.log(this.editorData)
+    emitContent() {
+      this.$emit('update:content', this.editorData)
     }
   }
 }

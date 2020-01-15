@@ -1,5 +1,6 @@
 <template>
   <v-select
+    :prepend-icon="mdiFolderOpen"
     :items="this.$store.state.article.categoryList || []"
     hide-details
     label="Category"
@@ -14,10 +15,15 @@
 </template>
 
 <script>
+import { mdiFolderOpen } from '@mdi/js'
+
 export default {
   name: 'CategorySelect',
   props: {
     chosen: { type: Number, default: null }
+  },
+  data() {
+    return { mdiFolderOpen }
   },
   mounted() {
     this.$store.dispatch('article/getCategories')

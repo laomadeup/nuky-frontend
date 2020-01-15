@@ -2,17 +2,66 @@
   <div>
     <v-card class="elevation-1 mx-8 my-8">
       <v-card-title>
-        <v-text-field
-          v-model="search.text"
-          :append-icon="mdiMagnify"
-          label="Search"
-          hide-details
-          class="search-input"
-        />
-        <category-select
-          :chosen.sync="search.category"
-          class="ml-4 search-input"
-        />
+        <v-container fluid>
+          <v-row justify="start">
+            <v-col cols="12" sm="6" md="3" xl="2">
+              <v-text-field
+                v-model="search.text"
+                :prepend-icon="mdiMagnify"
+                label="Search"
+                hide-details
+              />
+            </v-col>
+
+            <v-col cols="12" sm="6" md="3" xl="2">
+              <category-select :chosen.sync="search.category" />
+            </v-col>
+
+            <v-col cols="12" sm="6" md="3" xl="2" align-self="end">
+              <v-menu
+                ref="menu"
+                v-model="menu"
+                :close-on-content-click="false"
+                :return-value.sync="search.postDate"
+                transition="scale-transition"
+                offset-y
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="dateRangeText"
+                    label="Post Date"
+                    :prepend-icon="mdiCalendar"
+                    readonly
+                    hide-details
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="search.postDate"
+                  type="month"
+                  color="primary"
+                  range
+                  no-title
+                  scrollable
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="menu = false"
+                    >Cancel</v-btn
+                  >
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.menu.save(search.postDate)"
+                    >OK</v-btn
+                  >
+                </v-date-picker>
+              </v-menu>
+            </v-col>
+            <v-col cols="12" md="3" lg="2" xl="1" align-self="end">
+              <v-btn small @click="query">Search</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-card-title>
       <v-divider />
       <v-data-table
@@ -69,7 +118,8 @@ import {
   mdiPencil,
   mdiChartBar,
   mdiMessageReply,
-  mdiMagnify
+  mdiMagnify,
+  mdiCalendar
 } from '@mdi/js'
 import CategorySelect from '@/components/admin/article/CategorySelect'
 
@@ -84,7 +134,8 @@ export default {
       mdiChartBar,
       mdiMessageReply,
       mdiMagnify,
-      search: { text: null, category: null },
+      mdiCalendar,
+      search: { text: null, category: null, postDate: [] },
       total: 0,
       articles: [],
       loading: true,
@@ -108,6 +159,11 @@ export default {
         { text: 'Comments', value: 'commentAmount', width: 120 },
         { text: 'Post Date', value: 'postDate', align: 'center', width: 120 }
       ]
+    }
+  },
+  computed: {
+    dateRangeText() {
+      return this.search.postDate.join(' ~ ')
     }
   },
   watch: {
@@ -142,7 +198,8 @@ export default {
     },
     deleteItem(id) {
       console.log(`delete:${id}`)
-    }
+    },
+    query() {}
   },
   head() {
     return {

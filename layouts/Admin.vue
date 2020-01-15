@@ -46,10 +46,10 @@
 import {
   mdiBookPlus,
   mdiFolderOpen,
+  mdiSettings,
   mdiSpeedometer,
   mdiTag,
-  mdiViewList,
-  mdiSettings
+  mdiViewList
 } from '@mdi/js'
 
 export default {
@@ -63,20 +63,20 @@ export default {
       },
       {
         icon: mdiViewList,
-        text: 'All Articles',
-        route: 'admin-article-list'
+        text: 'Articles',
+        route: 'admin-articles'
       },
       {
         icon: mdiBookPlus,
         text: 'Post Article',
-        route: 'admin-article-edit'
+        route: 'admin-article'
       },
       {
         icon: mdiFolderOpen,
         text: 'Category',
-        route: 'admin-article-category'
+        route: 'admin-category'
       },
-      { icon: mdiTag, text: 'Tag', route: 'admin-article-tag' },
+      { icon: mdiTag, text: 'Tag', route: 'admin-tag' },
       { icon: mdiSettings, text: 'Settings', route: 'admin-settings' }
     ]
   })
