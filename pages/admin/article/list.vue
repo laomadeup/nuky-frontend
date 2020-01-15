@@ -3,13 +3,16 @@
     <v-card class="elevation-1 mx-8 my-8">
       <v-card-title>
         <v-text-field
-          v-model="search"
+          v-model="search.text"
           :append-icon="mdiMagnify"
           label="Search"
           hide-details
           class="search-input"
         />
-        <category-select class="ml-4 search-input" />
+        <category-select
+          :chosen.sync="search.category"
+          class="ml-4 search-input"
+        />
       </v-card-title>
       <v-divider />
       <v-data-table
@@ -81,7 +84,7 @@ export default {
       mdiChartBar,
       mdiMessageReply,
       mdiMagnify,
-      search: null,
+      search: { text: null, category: null },
       total: 0,
       articles: [],
       loading: true,

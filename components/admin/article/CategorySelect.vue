@@ -1,11 +1,11 @@
 <template>
   <v-select
-    v-model="chosen"
     :items="this.$store.state.article.categoryList || []"
     hide-details
     label="Category"
     item-value="id"
     item-text="name"
+    @input="select"
   >
     <template v-slot:item="{ item }">
       <span :class="`pl-${item.layer * 4}`">{{ item.name }}</span>
@@ -16,17 +16,15 @@
 <script>
 export default {
   name: 'CategorySelect',
-  data() {
-    return {
-      chosen: null
-    }
+  props: {
+    chosen: { type: Number, default: null }
   },
   mounted() {
     this.$store.dispatch('article/getCategories')
   },
   methods: {
-    save() {
-      console.log(this.editorData)
+    select(value) {
+      this.$emit('update:chosen', value)
     }
   }
 }
