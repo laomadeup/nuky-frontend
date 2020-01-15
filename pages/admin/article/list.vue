@@ -2,16 +2,16 @@
   <div>
     <v-card class="elevation-1 mx-8 my-8">
       <v-card-title>
-        <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
           :append-icon="mdiMagnify"
           label="Search"
-          single-line
           hide-details
-          style="max-width: 300px;"
-        ></v-text-field>
+          class="search-input"
+        />
+        <category-select class="ml-4 search-input" />
       </v-card-title>
+      <v-divider />
       <v-data-table
         :headers="headers"
         :items="articles"
@@ -68,10 +68,12 @@ import {
   mdiMessageReply,
   mdiMagnify
 } from '@mdi/js'
+import CategorySelect from '@/components/admin/article/CategorySelect'
 
 export default {
   name: 'List',
   layout: 'Admin',
+  components: { CategorySelect },
   data() {
     return {
       mdiPencil,
@@ -79,6 +81,7 @@ export default {
       mdiChartBar,
       mdiMessageReply,
       mdiMagnify,
+      search: null,
       total: 0,
       articles: [],
       loading: true,
@@ -152,3 +155,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.search-input {
+  max-width: 300px;
+}
+</style>
