@@ -33,23 +33,4 @@
     }
   }
 
-  .ck {
-    .ck-insert-table-dropdown__label {
-      text-align: center !important;
-    }
-
-    .ck-insert-table-dropdown__grid {
-      width: calc(var(--ck-insert-table-dropdown-box-width) * 10 + var(--ck-insert-table-dropdown-box-margin) * 20 + var(--ck-insert-table-dropdown-padding) * 2) !important;
-      padding: var(--ck-insert-table-dropdown-padding) var(--ck-insert-table-dropdown-padding) 0 !important;
-    }
-
-    .ck-insert-table-dropdown-grid-box {
-      width: var(--ck-insert-table-dropdown-box-width) !important;
-      height: var(--ck-insert-table-dropdown-box-height) !important;;
-      margin: var(--ck-insert-table-dropdown-box-margin) !important;;
-      border: 1px solid var(--ck-color-base-border) !important;;
-      border-radius: 1px !important;
-    }
-
-  }
 }
