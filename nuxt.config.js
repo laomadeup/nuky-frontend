@@ -88,9 +88,9 @@ export default {
     analyze: true,
     extractCSS: process.env.NODE_ENV === 'production',
     optimizeCSS: true,
-    /* splitChunks: {
+    splitChunks: {
       layouts: true
-    }, */
+    },
     plugins: [
       new CKEditorWebpackPlugin({
         language: 'en'

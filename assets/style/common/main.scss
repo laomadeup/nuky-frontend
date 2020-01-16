@@ -1,5 +1,5 @@
 html {
-  overflow-y: auto;
+  overflow-y: auto !important;
 
   &::-webkit-scrollbar {
     width: 7px !important;

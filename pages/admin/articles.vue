@@ -10,6 +10,7 @@
                 :prepend-icon="mdiMagnify"
                 label="Search"
                 hide-details
+                clearable
               />
             </v-col>
 
@@ -33,6 +34,7 @@
                     :prepend-icon="mdiCalendar"
                     readonly
                     hide-details
+                    clearable
                     v-on="on"
                   ></v-text-field>
                 </template>
@@ -135,6 +137,7 @@ export default {
       mdiMessageReply,
       mdiMagnify,
       mdiCalendar,
+      menu: false,
       search: { text: null, category: null, postDate: [] },
       total: 0,
       articles: [],
@@ -162,8 +165,13 @@ export default {
     }
   },
   computed: {
-    dateRangeText() {
-      return this.search.postDate.join(' ~ ')
+    dateRangeText: {
+      get() {
+        return this.search.postDate.join(' ~ ')
+      },
+      set(value) {
+        this.search.postDate = value || []
+      }
     }
   },
   watch: {
@@ -198,6 +206,9 @@ export default {
     },
     deleteItem(id) {
       console.log(`delete:${id}`)
+    },
+    setDateRangeText(v) {
+      this.search.postDate = v
     },
     query() {}
   },

@@ -6,6 +6,7 @@
     label="Category"
     item-value="id"
     item-text="name"
+    clearable
     @input="select"
   >
     <template v-slot:item="{ item }">
