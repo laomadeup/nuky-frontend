@@ -7,7 +7,7 @@
             <v-col cols="12" sm="6" md="3" xl="2">
               <v-text-field
                 v-model="search.text"
-                :prepend-icon="mdiMagnify"
+                :prepend-inner-icon="mdiMagnify"
                 label="Search"
                 hide-details
                 clearable
@@ -31,7 +31,7 @@
                   <v-text-field
                     v-model="dateRangeText"
                     label="Post Date"
-                    :prepend-icon="mdiCalendar"
+                    :prepend-inner-icon="mdiCalendar"
                     readonly
                     hide-details
                     clearable

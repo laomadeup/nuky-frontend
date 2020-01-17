@@ -1,8 +1,9 @@
 <template>
   <v-select
-    :prepend-icon="mdiFolderOpen"
+    :prepend-inner-icon="mdiFolderOpen"
     :items="this.$store.state.article.categoryList || []"
     hide-details
+    :outlined="outlined"
     label="Category"
     item-value="id"
     item-text="name"
@@ -21,6 +22,7 @@ import { mdiFolderOpen } from '@mdi/js'
 export default {
   name: 'CategorySelect',
   props: {
+    outlined: { type: Boolean, default: false },
     chosen: { type: Number, default: null }
   },
   data() {

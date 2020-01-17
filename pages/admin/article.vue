@@ -1,15 +1,37 @@
 <template>
   <div>
-    <section class="ma-4">
-      <client-only placeholder="Loading Editor ...">
-        <nuky-editor ref="editor" :content.sync="content" />
-      </client-only>
-    </section>
-
     <v-container>
       <v-row>
-        <v-col cols="2" offset="5">
-          <v-btn color="primary" block @click="save()">Save</v-btn>
+        <v-col cols="8">
+          <section>
+            <client-only placeholder="Loading Editor ...">
+              <nuky-editor ref="editor" :content.sync="content" />
+            </client-only>
+          </section>
+        </v-col>
+        <v-col cols="4">
+          <v-text-field
+            :prepend-inner-icon="mdiFormatTitle"
+            dense
+            outlined
+            label="Title"
+          />
+          <v-textarea
+            :prepend-inner-icon="mdiSubtitlesOutline"
+            auto-grow
+            outlined
+            :counter="220"
+            label="Description"
+          />
+          <category-select :outlined="true" :chosen.sync="category" />
+        </v-col>
+      </v-row>
+
+      <v-row align="center">
+        <v-col cols="12" class="text-center">
+          <v-btn :loading="saving" color="primary" @click="save()">
+            <v-icon left v-text="mdiContentSave" />Save
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -17,18 +39,31 @@
 </template>
 
 <script>
+import { mdiContentSave, mdiFormatTitle, mdiSubtitlesOutline } from '@mdi/js'
 import NukyEditor from '@/components/admin/public/NukyEditor'
+import CategorySelect from '@/components/admin/article/CategorySelect'
 
 export default {
   name: 'Edit',
   layout: 'Admin',
-  components: { NukyEditor },
+  components: { NukyEditor, CategorySelect },
   data() {
-    return { content: null }
+    return {
+      mdiContentSave,
+      mdiFormatTitle,
+      mdiSubtitlesOutline,
+      saving: false,
+      category: null,
+      content: null
+    }
   },
   methods: {
     save() {
+      this.saving = true
       console.log(this.content)
+      setTimeout(() => {
+        this.saving = false
+      }, 1000)
     }
   },
   head() {
