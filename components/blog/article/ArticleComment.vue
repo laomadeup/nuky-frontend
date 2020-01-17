@@ -15,7 +15,7 @@
           @submit.prevent="submitComment"
         >
           <v-row class="mb-2">
-            <v-tooltip right>
+            <v-tooltip right content-class="py-0 caption info">
               <template v-slot:activator="{ on }">
                 <v-chip
                   v-show="showReplyChip"
@@ -140,7 +140,7 @@
             >
               <section class="d-inline-block thumb-number">
                 <span>
-                  <v-tooltip bottom>
+                  <v-tooltip bottom content-class="py-0 caption info">
                     <template v-slot:activator="{ on }">
                       <v-btn
                         text
@@ -163,9 +163,9 @@
                   v-text="formatWithSIPrefix(comment.like)"
                 />
               </section>
-              <section class="d-inline-block thumb-number">
+              <section class="d-inline-block thumb-number ">
                 <span>
-                  <v-tooltip bottom>
+                  <v-tooltip bottom content-class="py-0 caption red">
                     <template v-slot:activator="{ on }">
                       <v-btn
                         text

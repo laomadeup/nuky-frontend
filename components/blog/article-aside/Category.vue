@@ -13,9 +13,9 @@
           :class="`category-item pb-1 pt-1 pl-${category.layer * 4}`"
         >
           <nuxt-link
-            class="category-name pb-1 ml-1"
+            class="category pb-1 ml-1"
             tag="span"
-            :to="{ name: 'search-category-id', params: { id: category.id } }"
+            :to="{ name: 'category-id', params: { id: category.id } }"
             >{{ category.name }}
           </nuxt-link>
           <span>({{ category.amount }})</span>
@@ -38,7 +38,7 @@ export default {
 .category-item {
   line-height: 1.4rem;
 
-  .category-name {
+  .category {
     cursor: pointer;
     transition: border-bottom 0.25s;
     border-bottom: 2px solid map-get($grey, lighten-5);

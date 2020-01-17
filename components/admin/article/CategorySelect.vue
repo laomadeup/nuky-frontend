@@ -8,6 +8,7 @@
     item-value="id"
     item-text="name"
     clearable
+    :dense="dense"
     @input="select"
   >
     <template v-slot:item="{ item }">
@@ -22,6 +23,7 @@ import { mdiFolderOpen } from '@mdi/js'
 export default {
   name: 'CategorySelect',
   props: {
+    dense: { type: Boolean, default: false },
     outlined: { type: Boolean, default: false },
     chosen: { type: Number, default: null }
   },

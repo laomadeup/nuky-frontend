@@ -23,9 +23,9 @@
           </h4>
           <p class="article-description my-2">{{ article.description }}</p>
         </nuxt-link>
-        <article-info :tags="article.tags" :category="article.category" />
+        <article-info :tags="article.tags" :categories="article.categories" />
         <section class="artcile-footer my-2">
-          <v-tooltip bottom>
+          <v-tooltip bottom content-class="py-0 caption">
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small v-text="mdiCalendarTextOutline" />
@@ -37,7 +37,7 @@
             <span>post date</span>
           </v-tooltip>
 
-          <v-tooltip bottom>
+          <v-tooltip bottom content-class="py-0 caption">
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small v-text="mdiBookOpen" />
@@ -49,7 +49,7 @@
             <span>views</span>
           </v-tooltip>
 
-          <v-tooltip bottom>
+          <v-tooltip bottom content-class="py-0 caption">
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small v-text="mdiCommentMultiple" />

@@ -2,14 +2,14 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="8">
+        <v-col cols="8" xl="9">
           <section>
             <client-only placeholder="Loading Editor ...">
               <nuky-editor ref="editor" :content.sync="content" />
             </client-only>
           </section>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="4" xl="3">
           <v-text-field
             :prepend-inner-icon="mdiFormatTitle"
             dense
@@ -23,7 +23,15 @@
             :counter="220"
             label="Description"
           />
-          <category-select :outlined="true" :chosen.sync="category" />
+          <category-select dense outlined :chosen.sync="category" />
+          <v-chip-group>
+            <v-chip
+              v-for="item in this.$store.state.article.tags"
+              :key="item.id"
+            >
+              {{ item.name }}
+            </v-chip>
+          </v-chip-group>
         </v-col>
       </v-row>
 
@@ -56,6 +64,9 @@ export default {
       category: null,
       content: null
     }
+  },
+  mounted() {
+    this.$store.dispatch('article/getTags')
   },
   methods: {
     save() {

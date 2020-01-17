@@ -8,7 +8,7 @@
           <article-info
             class="my-2"
             :tags="article.tags"
-            :category="article.category"
+            :categories="article.categories"
           />
           <section>
             <v-icon v-text="mdiCalendar" />

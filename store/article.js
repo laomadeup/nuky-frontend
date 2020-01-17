@@ -34,6 +34,10 @@ export const actions = {
   async getCategories({ commit }) {
     const data = await this.$axios.$get('/api/article-api/categories')
     commit('setCategories', data)
+  },
+  async getTags({ commit }) {
+    const data = await this.$axios.$get('/api/article-api/tags')
+    commit('setTags', data)
   }
 }
 

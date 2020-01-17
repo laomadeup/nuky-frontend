@@ -44,7 +44,7 @@ export default {
     searchArticle: Article
   },
   async asyncData({ params, $axios }) {
-    const tag = await $axios.$get(`/api/article-api/tag/${params.id}`)
+    const tag = await $axios.$get(`/api/article-api/tag/${params.name}`)
     return { tag }
   },
   data() {
@@ -65,7 +65,7 @@ export default {
     async query() {
       this.overlay = true
       const { content, totalPages, pageable } = await this.$axios.$get(
-        `/api/article-api/articles/tag/${this.tag.id}`,
+        `/api/article-api/articles/tag/${this.tag.name}`,
         {
           params: {
             page: this.pageNumber,

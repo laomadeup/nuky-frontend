@@ -4,7 +4,7 @@
       v-for="(tag, index) in tags"
       :key="index"
       x-small
-      :to="{ name: 'search-tag-id', params: { id: tag.id } }"
+      :to="{ name: 'tag-name', params: { name: tag.name } }"
       link
       class="mr-1"
     >
