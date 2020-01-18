@@ -15,7 +15,7 @@
         <span v-text="article.title"></span>
       </template>
       <template v-slot:content>
-        <section v-text="article.description"></section>
+        <section v-text="article.excerpt"></section>
       </template>
       <template v-slot:date>
         {{ $moment(article.postDate).format('YYYY-MM-DD') }}
@@ -44,7 +44,9 @@ export default {
     searchArticle: Article
   },
   async asyncData({ params, $axios }) {
-    const category = await $axios.$get(`/api/article-api/category/${params.id}`)
+    const category = await $axios.$get(
+      `/api/article-api/category/${params.name}`
+    )
     return { category }
   },
   data() {
@@ -65,7 +67,7 @@ export default {
     async query() {
       this.overlay = true
       const { content, totalPages, pageable } = await this.$axios.$get(
-        `/api/article-api/articles/category/${this.category.id}`,
+        `/api/article-api/articles/category/${this.category.name}`,
         {
           params: {
             page: this.pageNumber,

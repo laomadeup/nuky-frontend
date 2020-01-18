@@ -11,13 +11,13 @@
                 :key="index"
                 class="categories"
               >
-                <span v-if="index > 0" class="separator">/</span>
+                <span v-if="index > 0" class="separator">,</span>
                 <nuxt-link
                   class="category mr-1"
                   tag="span"
                   :to="{
-                    name: 'category-id',
-                    params: { id: category.id }
+                    name: 'category-name',
+                    params: { name: category.name }
                   }"
                   >{{ category.name }}</nuxt-link
                 >

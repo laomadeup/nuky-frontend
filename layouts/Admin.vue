@@ -69,7 +69,7 @@ export default {
       {
         icon: mdiBookPlus,
         text: 'Post Article',
-        route: 'admin-article'
+        route: 'admin-article-new'
       },
       {
         icon: mdiFolderOpen,

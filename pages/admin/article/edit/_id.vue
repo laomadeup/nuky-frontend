@@ -21,7 +21,7 @@
             auto-grow
             outlined
             :counter="220"
-            label="Description"
+            label="Excerpt"
           />
           <category-select dense outlined :chosen.sync="category" />
           <v-chip-group>

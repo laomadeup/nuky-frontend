@@ -2,13 +2,15 @@
   <v-select
     :prepend-inner-icon="mdiFolderOpen"
     :items="this.$store.state.article.categoryList || []"
-    hide-details
+    :hide-details="hideDetails"
     :outlined="outlined"
     label="Category"
     item-value="id"
     item-text="name"
+    :multiple="multiple"
     clearable
     :dense="dense"
+    :value="value"
     @input="select"
   >
     <template v-slot:item="{ item }">
@@ -24,8 +26,10 @@ export default {
   name: 'CategorySelect',
   props: {
     dense: { type: Boolean, default: false },
+    multiple: { type: Boolean, default: false },
+    hideDetails: { type: Boolean, default: false },
     outlined: { type: Boolean, default: false },
-    chosen: { type: Number, default: null }
+    value: { type: [Array, Number], default: null }
   },
   data() {
     return { mdiFolderOpen }
@@ -35,7 +39,7 @@ export default {
   },
   methods: {
     select(value) {
-      this.$emit('update:chosen', value)
+      this.$emit('update:value', value)
     }
   }
 }

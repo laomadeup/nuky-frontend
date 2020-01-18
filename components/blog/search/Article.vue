@@ -7,7 +7,7 @@
     >
       <slot name="title"></slot>
     </nuxt-link>
-    <p class="article-description my-2">
+    <p class="article-excerpt my-2">
       <slot name="content"></slot>
     </p>
     <section class="artcile-footer my-2">
@@ -59,7 +59,7 @@ export default {
     }
   }
 
-  .article-description {
+  .article-excerpt {
     height: 3rem;
     line-height: 1.5rem;
     overflow: hidden;

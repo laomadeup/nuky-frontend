@@ -110,7 +110,7 @@ export default {
         this.searchInputState = false
       } else {
         this.$router.push({
-          name: 'search-keyword',
+          name: 'search',
           params: {
             keyword: this.keyword
           }

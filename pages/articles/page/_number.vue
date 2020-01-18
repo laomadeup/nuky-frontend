@@ -21,7 +21,7 @@
           <h4 class="title grey--text text--darken-4">
             {{ article.title }}
           </h4>
-          <p class="article-description my-2">{{ article.description }}</p>
+          <p class="article-excerpt my-2">{{ article.excerpt }}</p>
         </nuxt-link>
         <article-info :tags="article.tags" :categories="article.categories" />
         <section class="artcile-footer my-2">
@@ -144,7 +144,7 @@ export default {
   .article-body {
     cursor: pointer;
 
-    .article-description {
+    .article-excerpt {
       height: 3rem;
       line-height: 1.5rem;
       overflow: hidden;

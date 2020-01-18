@@ -15,7 +15,7 @@
         <span v-text="article.title"></span>
       </template>
       <template v-slot:content>
-        <section v-text="article.description"></section>
+        <section v-text="article.excerpt"></section>
       </template>
       <template v-slot:date>
         {{ $moment(article.postDate).format('YYYY-MM-DD') }}
