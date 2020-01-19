@@ -1,5 +1,5 @@
 <template>
-  <div>Article Category</div>
+  <div>Post Category</div>
 </template>
 
 <script>
@@ -8,12 +8,12 @@ export default {
   layout: 'Admin',
   head() {
     return {
-      title: 'Article Category',
+      title: 'Post Category',
       meta: [
         {
-          hid: 'Article Category',
-          name: 'Article Category',
-          content: 'Article Category'
+          hid: 'Post Category',
+          name: 'Post Category',
+          content: 'Post Category'
         }
       ]
     }

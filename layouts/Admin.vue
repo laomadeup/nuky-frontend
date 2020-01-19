@@ -63,13 +63,13 @@ export default {
       },
       {
         icon: mdiViewList,
-        text: 'Articles',
-        route: 'admin-articles'
+        text: 'Posts',
+        route: 'admin-posts'
       },
       {
         icon: mdiBookPlus,
-        text: 'Post Article',
-        route: 'admin-article-new'
+        text: 'New Post',
+        route: 'admin-post-new'
       },
       {
         icon: mdiFolderOpen,

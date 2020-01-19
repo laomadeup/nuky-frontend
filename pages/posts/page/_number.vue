@@ -1,36 +1,48 @@
 <template>
   <div>
-    <div v-if="articles.length === 0">
+    <div v-if="posts.length === 0">
       Nothing here...
       <br />
       <nuxt-link :to="{ name: 'index' }">back to home page>></nuxt-link>
     </div>
     <div v-else>
       <article
-        v-for="(article, index) in articles"
+        v-for="(post, index) in posts"
         :key="index"
-        ref="articleBox"
-        class="article-page-item mb-4 pb-2"
+        ref="postBox"
+        class="post-page-item mb-4 pb-2"
         :index="index"
       >
+        <v-tooltip left content-class="py-0 caption">
+          <template v-slot:activator="{ on }">
+            <v-icon
+              v-if="post.isSticky"
+              class="sticky verticalalign-middle"
+              v-on="on"
+              v-text="mdiPin"
+            />
+          </template>
+          <span>Pinned</span>
+        </v-tooltip>
+
         <nuxt-link
           tag="section"
-          class="article-body"
-          :to="{ name: 'article-id', params: { id: article.id } }"
+          class="post-body"
+          :to="{ name: 'post-id', params: { id: post.id } }"
         >
           <h4 class="title grey--text text--darken-4">
-            {{ article.title }}
+            {{ post.title }}
           </h4>
-          <p class="article-excerpt my-2">{{ article.excerpt }}</p>
+          <p class="post-excerpt my-2">{{ post.excerpt }}</p>
         </nuxt-link>
-        <article-info :tags="article.tags" :categories="article.categories" />
+        <post-info :tags="post.tags" :categories="post.categories" />
         <section class="artcile-footer my-2">
           <v-tooltip bottom content-class="py-0 caption">
             <template v-slot:activator="{ on }">
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small v-text="mdiCalendarTextOutline" />
                 <time class="verticalalign-middle">
-                  {{ $moment(article.postDate).format('YYYY-MM-DD') }}
+                  {{ $moment(post.publishDate).format('YYYY-MM-DD') }}
                 </time>
               </section>
             </template>
@@ -42,7 +54,7 @@
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small v-text="mdiBookOpen" />
                 <span class="verticalalign-middle">
-                  {{ article.views }}
+                  {{ post.views }}
                 </span>
               </section>
             </template>
@@ -54,7 +66,7 @@
               <section class="d-inline-block mr-4" v-on="on">
                 <v-icon small v-text="mdiCommentMultiple" />
                 <span class="verticalalign-middle">
-                  {{ article.commentAmount }}
+                  {{ post.commentAmount }}
                 </span>
               </section>
             </template>
@@ -79,25 +91,26 @@
 import {
   mdiCalendarTextOutline,
   mdiBookOpen,
-  mdiCommentMultiple
+  mdiCommentMultiple,
+  mdiPin
 } from '@mdi/js'
-import ArticleInfo from '@/components/blog/article/ArticleInfo'
+import PostInfo from '@/components/blog/post/PostInfo'
 export default {
   layout: 'BlogAside',
   components: {
-    ArticleInfo
+    PostInfo
   },
   async asyncData({ params, $axios }) {
     // paged query ariticle list
     const pageNumber = params.number ? params.number : 1
     const { content, totalPages, pageable } = await $axios.$get(
-      `/api/article-api/articles/page/${pageNumber}`
+      `/api/post-api/posts/page/${pageNumber}`
     )
     for (const item of content) {
       item.showMore = false
     }
     return {
-      articles: content,
+      posts: content,
       totalPages,
       pageNumber: pageable.pageNumber + 1
     }
@@ -108,28 +121,29 @@ export default {
       mdiCalendarTextOutline,
       mdiBookOpen,
       mdiCommentMultiple,
+      mdiPin,
       pageNumber: 1,
       totalPages: 0,
-      articles: []
+      posts: []
     }
   },
   methods: {
     toPage() {
       this.overlay = true
       this.$router.push({
-        name: 'articles-page-number',
+        name: 'posts-page-number',
         params: { number: this.pageNumber }
       })
     }
   },
   head() {
     return {
-      title: this.pageNumber === 1 ? 'Home' : 'Articles',
+      title: this.pageNumber === 1 ? 'Home' : 'Posts',
       meta: [
         {
-          hid: 'Articles',
-          name: 'Articles',
-          content: 'Articles'
+          hid: 'Posts',
+          name: 'Posts',
+          content: 'Posts'
         }
       ]
     }
@@ -140,11 +154,19 @@ export default {
 <style scoped lang="scss">
 @import '~vuetify/src/styles/styles';
 
-.article-page-item {
-  .article-body {
+.post-page-item {
+  position: relative;
+
+  .sticky {
+    position: absolute;
+    left: -2rem;
+    top: 0.3rem;
+  }
+
+  .post-body {
     cursor: pointer;
 
-    .article-excerpt {
+    .post-excerpt {
       height: 3rem;
       line-height: 1.5rem;
       overflow: hidden;

@@ -1,13 +1,13 @@
 export const state = () => ({
-  popularArticles: null,
+  popularPosts: null,
   categories: null,
   categoryList: null,
   tags: null
 })
 
 export const mutations = {
-  setPopularArticles(state, data) {
-    state.popularArticles = data
+  setPopularPosts(state, data) {
+    state.popularPosts = data
   },
   setCategories(state, data) {
     state.categories = data
@@ -20,23 +20,23 @@ export const mutations = {
 }
 
 export const actions = {
-  async getArticleAside({ commit }) {
+  async getPostAside({ commit }) {
     const [popular, categories, tags] = await Promise.all([
-      this.$axios.$get('/api/article-api/articles/popular'),
-      this.$axios.$get('/api/article-api/categories'),
-      this.$axios.$get('/api/article-api/tags')
+      this.$axios.$get('/api/post-api/posts/popular'),
+      this.$axios.$get('/api/post-api/categories'),
+      this.$axios.$get('/api/post-api/tags')
     ])
 
-    commit('setPopularArticles', popular)
+    commit('setPopularPosts', popular)
     commit('setTags', tags)
     commit('setCategories', categories)
   },
   async getCategories({ commit }) {
-    const data = await this.$axios.$get('/api/article-api/categories')
+    const data = await this.$axios.$get('/api/post-api/categories')
     commit('setCategories', data)
   },
   async getTags({ commit }) {
-    const data = await this.$axios.$get('/api/article-api/tags')
+    const data = await this.$axios.$get('/api/post-api/tags')
     commit('setTags', data)
   }
 }

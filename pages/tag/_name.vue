@@ -5,22 +5,22 @@
       {{ tag.name }}
     </v-chip>
     <app-sort class="my-4" :sort.sync="sort" @change="query" />
-    <search-article
-      v-for="article in articles"
-      :id="article.id"
-      :key="article.id"
+    <search-post
+      v-for="post in posts"
+      :id="post.id"
+      :key="post.id"
       class=" mb-8"
     >
       <template v-slot:title>
-        <span v-text="article.title"></span>
+        <span v-text="post.title"></span>
       </template>
       <template v-slot:content>
-        <section v-text="article.excerpt"></section>
+        <section v-text="post.excerpt"></section>
       </template>
       <template v-slot:date>
-        {{ $moment(article.postDate).format('YYYY-MM-DD') }}
+        {{ $moment(post.publishDate).format('YYYY-MM-DD') }}
       </template>
-    </search-article>
+    </search-post>
     <v-pagination v-model="pageNumber" :length="totalPages" @input="query" />
     <v-overlay :value="overlay">
       <v-progress-circular
@@ -35,16 +35,16 @@
 <script>
 import { mdiTag } from '@mdi/js'
 import Sort from '@/components/blog/search/Sort'
-import Article from '@/components/blog/search/Article'
+import Post from '@/components/blog/search/Post'
 
 export default {
   layout: 'Blog',
   components: {
     appSort: Sort,
-    searchArticle: Article
+    searchPost: Post
   },
   async asyncData({ params, $axios }) {
-    const tag = await $axios.$get(`/api/article-api/tag/${params.name}`)
+    const tag = await $axios.$get(`/api/post-api/tag/${params.name}`)
     return { tag }
   },
   data() {
@@ -52,7 +52,7 @@ export default {
       sort: null,
       tag: null,
       overlay: false,
-      articles: [],
+      posts: [],
       pageNumber: 1,
       totalPages: 0,
       mdiTag
@@ -65,7 +65,7 @@ export default {
     async query() {
       this.overlay = true
       const { content, totalPages, pageable } = await this.$axios.$get(
-        `/api/article-api/articles/tag/${this.tag.name}`,
+        `/api/post-api/posts/tag/${this.tag.name}`,
         {
           params: {
             page: this.pageNumber,
@@ -74,7 +74,7 @@ export default {
           }
         }
       )
-      this.articles = content
+      this.posts = content
       this.totalPages = totalPages
       this.pageNumber = pageable.pageNumber + 1
       this.overlay = false

@@ -25,22 +25,22 @@
       </v-text-field>
     </section>
     <app-sort class="mb-4" :sort.sync="sort" @change="toPage" />
-    <search-article
-      v-for="article in articles"
-      :id="article.id"
-      :key="article.id"
+    <search-post
+      v-for="post in posts"
+      :id="post.id"
+      :key="post.id"
       class=" mb-8"
     >
       <template v-slot:title>
-        <span v-html="article.title"></span>
+        <span v-html="post.title"></span>
       </template>
       <template v-slot:content>
-        <section v-html="article.content"></section>
+        <section v-html="post.content"></section>
       </template>
       <template v-slot:date>
-        {{ $moment(article.postDate).format('YYYY-MM-DD') }}
+        {{ $moment(post.publishDate).format('YYYY-MM-DD') }}
       </template>
-    </search-article>
+    </search-post>
     <v-pagination v-model="pageNumber" :length="totalPages" @input="toPage" />
     <v-overlay :value="overlay">
       <v-progress-circular
@@ -56,20 +56,20 @@
 import { mdiMagnify } from '@mdi/js'
 import { required } from 'assets/utils/validation-rules'
 import Sort from '@/components/blog/search/Sort'
-import Article from '@/components/blog/search/Article'
+import Post from '@/components/blog/search/Post'
 
 export default {
   layout: 'Blog',
   watchQuery: ['pageNumber', 'keyword'],
   components: {
     appSort: Sort,
-    searchArticle: Article
+    searchPost: Post
   },
   data() {
     return {
       sort: null,
       overlay: false,
-      articles: null,
+      posts: null,
       pageNumber: 1,
       totalPages: 0,
       searchInputState: true,
@@ -96,7 +96,7 @@ export default {
       this.overlay = true
       // query by keyword
       const { content, totalPages, pageable } = await this.$axios.$get(
-        '/api/article-api/articles/search/keyword',
+        '/api/post-api/posts/search/keyword',
         {
           params: {
             keyword,
@@ -106,7 +106,7 @@ export default {
           }
         }
       )
-      this.articles = content
+      this.posts = content
       this.totalPages = totalPages
       this.pageNumber = pageable.pageNumber + 1
       this.overlay = false

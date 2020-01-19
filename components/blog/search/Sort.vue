@@ -18,9 +18,9 @@
 import { mdiSortAscending, mdiSortDescending } from '@mdi/js'
 
 const sort = [
-  { field: 'postDate', order: 'desc' },
+  { field: 'publishDate', order: 'desc' },
   {
-    field: 'postDate',
+    field: 'publishDate',
     order: 'asc'
   }
 ]

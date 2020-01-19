@@ -1,65 +1,62 @@
 <template>
   <div>
-    <div v-if="article.id == null">Article Not Found</div>
+    <div v-if="post.id == null">Post Not Found</div>
     <div v-else>
       <article>
         <header class="mb-4">
-          <h2>{{ article.title }}</h2>
-          <article-info
+          <h2>{{ post.title }}</h2>
+          <post-info
             class="my-2"
-            :tags="article.tags"
-            :categories="article.categories"
+            :tags="post.tags"
+            :categories="post.categories"
           />
           <section>
             <v-icon v-text="mdiCalendar" />
             <time class="verticalalign-text-top">
-              {{ $moment(article.postDate).format('YYYY-MM-DD HH:mm') }}
+              {{ $moment(post.publishDate).format('YYYY-MM-DD HH:mm') }}
             </time>
           </section>
         </header>
-        <article-content :content="article.content" />
+        <post-content :content="post.content" />
       </article>
       <div class="divider my-12 mx-5">
         <span class="px-6">END</span>
       </div>
-      <article-comment
-        :article-id="article.id"
-        :comment-amount="article.commentAmount"
-      />
+      <post-comment :post-id="post.id" :comment-amount="post.commentAmount" />
     </div>
   </div>
 </template>
 
 <script>
 import { mdiCalendar } from '@mdi/js'
-import ArticleComment from '@/components/blog/article/ArticleComment'
-import ArticleContent from '@/components/blog/article/ArticleContent'
-import ArticleInfo from '@/components/blog/article/ArticleInfo'
+import PostComment from '@/components/blog/post/PostComment'
+import PostContent from '@/components/blog/post/PostContent'
+import PostInfo from '@/components/blog/post/PostInfo'
 export default {
   layout: 'BlogAside',
   components: {
-    ArticleComment,
-    ArticleContent,
-    ArticleInfo
+    PostComment,
+    PostContent,
+    PostInfo
   },
   async asyncData({ params, $axios }) {
-    const data = await $axios.$get(`/api/article-api/article/${params.id}`)
-    return { article: data }
+    const data = await $axios.$get(`/api/post-api/post/${params.id}`)
+    return { post: data }
   },
   data() {
     return {
       mdiCalendar,
-      article: null
+      post: null
     }
   },
   head() {
     return {
-      title: this.article.title,
+      title: this.post.title,
       meta: [
         {
-          hid: 'Article',
-          name: 'Article',
-          content: this.article.title
+          hid: 'Post',
+          name: 'Post',
+          content: this.post.title
         }
       ]
     }

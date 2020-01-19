@@ -1,13 +1,13 @@
 <template>
-  <section class=" article-body mb-8">
+  <section class=" post-body mb-8">
     <nuxt-link
       tag="h4"
       class="title grey--text text--darken-4"
-      :to="{ name: 'article-id', params: { id: id } }"
+      :to="{ name: 'post-id', params: { id: id } }"
     >
       <slot name="title"></slot>
     </nuxt-link>
-    <p class="article-excerpt my-2">
+    <p class="post-excerpt my-2">
       <slot name="content"></slot>
     </p>
     <section class="artcile-footer my-2">
@@ -30,7 +30,7 @@
 import { mdiCalendarTextOutline } from '@mdi/js'
 
 export default {
-  name: 'Article',
+  name: 'Post',
   props: {
     id: {
       type: Number,
@@ -48,7 +48,7 @@ export default {
 <style scoped lang="scss">
 @import '~vuetify/src/styles/styles';
 
-.article-body {
+.post-body {
   .title {
     cursor: pointer;
     display: inline-block;
@@ -59,7 +59,7 @@ export default {
     }
   }
 
-  .article-excerpt {
+  .post-excerpt {
     height: 3rem;
     line-height: 1.5rem;
     overflow: hidden;

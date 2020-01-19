@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import Intro from '@/components/blog/article-aside/Intro'
-import Popular from '@/components/blog/article-aside/Popular'
-import Category from '@/components/blog/article-aside/Category'
-import Tag from '@/components/blog/article-aside/Tag'
+import Intro from '@/components/blog/post-aside/Intro'
+import Popular from '@/components/blog/post-aside/Popular'
+import Category from '@/components/blog/post-aside/Category'
+import Tag from '@/components/blog/post-aside/Tag'
 export default {
   name: 'Aside',
   components: {
@@ -21,7 +21,7 @@ export default {
     Intro
   },
   mounted() {
-    this.$store.dispatch('article/getArticleAside')
+    this.$store.dispatch('post/getPostAside')
   }
 }
 </script>

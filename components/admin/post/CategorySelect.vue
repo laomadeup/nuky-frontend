@@ -36,11 +36,11 @@ export default {
   },
   computed: {
     items() {
-      return this.$store.state.article.categoryList || []
+      return this.$store.state.post.categoryList || []
     }
   },
   mounted() {
-    this.$store.dispatch('article/getCategories')
+    this.$store.dispatch('post/getCategories')
   },
   methods: {
     select(value) {

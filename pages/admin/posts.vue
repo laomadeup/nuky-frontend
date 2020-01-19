@@ -23,7 +23,7 @@
                 ref="menu"
                 v-model="menu"
                 :close-on-content-click="false"
-                :return-value.sync="search.postDate"
+                :return-value.sync="search.publishDate"
                 transition="scale-transition"
                 offset-y
               >
@@ -39,7 +39,7 @@
                   ></v-text-field>
                 </template>
                 <v-date-picker
-                  v-model="search.postDate"
+                  v-model="search.publishDate"
                   type="month"
                   color="primary"
                   range
@@ -53,7 +53,7 @@
                   <v-btn
                     text
                     color="primary"
-                    @click="$refs.menu.save(search.postDate)"
+                    @click="$refs.menu.save(search.publishDate)"
                     >OK</v-btn
                   >
                 </v-date-picker>
@@ -68,7 +68,7 @@
       <v-divider />
       <v-data-table
         :headers="headers"
-        :items="articles"
+        :items="posts"
         :options.sync="options"
         :server-items-length="total"
         :loading="loading"
@@ -90,9 +90,11 @@
             {{ tag.name }}
           </v-chip>
         </template>
-        <template v-slot:item.postDate="{ item }">
-          <span :title="$moment(item.postDate).format('YYYY-MM-DD HH:mm:ss')">
-            {{ $moment(item.postDate).format('YYYY-MM-DD') }}
+        <template v-slot:item.publishDate="{ item }">
+          <span
+            :title="$moment(item.publishDate).format('YYYY-MM-DD HH:mm:ss')"
+          >
+            {{ $moment(item.publishDate).format('YYYY-MM-DD') }}
           </span>
         </template>
         <template v-slot:item.action="{ item }">
@@ -123,7 +125,7 @@ import {
   mdiMagnify,
   mdiCalendar
 } from '@mdi/js'
-import CategorySelect from '@/components/admin/article/CategorySelect'
+import CategorySelect from '@/components/admin/post/CategorySelect'
 
 export default {
   name: 'List',
@@ -138,9 +140,9 @@ export default {
       mdiMagnify,
       mdiCalendar,
       menu: false,
-      search: { text: null, category: null, postDate: [] },
+      search: { text: null, category: null, publishDate: [] },
       total: 0,
-      articles: [],
+      posts: [],
       loading: true,
       options: {},
       headers: [
@@ -160,17 +162,17 @@ export default {
         { text: 'Tags', value: 'tags', sortable: false, width: '20%' },
         { text: 'Views', value: 'views', width: 90 },
         { text: 'Comments', value: 'commentAmount', width: 120 },
-        { text: 'Post Date', value: 'postDate', align: 'center', width: 120 }
+        { text: 'Post Date', value: 'publishDate', align: 'center', width: 120 }
       ]
     }
   },
   computed: {
     dateRangeText: {
       get() {
-        return this.search.postDate.join(' ~ ')
+        return this.search.publishDate.join(' ~ ')
       },
       set(value) {
-        this.search.postDate = value || []
+        this.search.publishDate = value || []
       }
     }
   },
@@ -189,12 +191,12 @@ export default {
     async getData() {
       this.loading = true
       const { content, totalElements } = await this.$axios.$get(
-        '/api/article-api/admin/articles',
+        '/api/post-api/admin/posts',
         {
           params: this.options
         }
       )
-      this.articles = content
+      this.posts = content
       this.total = totalElements
       this.loading = false
     },
@@ -208,18 +210,18 @@ export default {
       console.log(`delete:${id}`)
     },
     setDateRangeText(v) {
-      this.search.postDate = v
+      this.search.publishDate = v
     },
     query() {}
   },
   head() {
     return {
-      title: 'Article List',
+      title: 'Post List',
       meta: [
         {
-          hid: 'Article List',
-          name: 'Article List',
-          content: 'Article List'
+          hid: 'Post List',
+          name: 'Post List',
+          content: 'Post List'
         }
       ]
     }

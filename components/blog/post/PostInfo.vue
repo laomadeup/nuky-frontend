@@ -48,7 +48,7 @@
 import { mdiFolder, mdiFolderOpen, mdiTagMultiple } from '@mdi/js'
 import TagBadge from '@/components/blog/public/TagBadge'
 export default {
-  name: 'ArticleInfo',
+  name: 'PostInfo',
   components: { TagBadge },
   props: {
     tags: {

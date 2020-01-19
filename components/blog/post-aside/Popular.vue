@@ -2,21 +2,21 @@
   <div>
     <h3>Popular</h3>
     <v-skeleton-loader
-      :loading="!this.$store.state.article.popularArticles"
+      :loading="!this.$store.state.post.popularPosts"
       type="list-item-three-line,list-item-three-line,list-item-three-line"
     >
       <div
-        v-for="(article, index) in this.$store.state.article.popularArticles"
+        v-for="(post, index) in this.$store.state.post.popularPosts"
         :key="index"
-        :title="article.title"
+        :title="post.title"
       >
         <v-divider class="my-2" />
         <nuxt-link
           class="px-2 my-0 popular-item body-2"
           tag="p"
-          :to="{ name: 'article-id', params: { id: article.id } }"
+          :to="{ name: 'post-id', params: { id: post.id } }"
         >
-          {{ article.title }}
+          {{ post.title }}
         </nuxt-link>
       </div>
       <v-divider class="my-2" />

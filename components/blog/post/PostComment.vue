@@ -252,9 +252,9 @@ const keyframes = (() => {
 })()
 
 export default {
-  name: 'ArticleComment',
+  name: 'PostComment',
   props: {
-    articleId: {
+    postId: {
       type: Number,
       default: null,
       isValid(value) {
@@ -313,7 +313,7 @@ export default {
     async loadComments() {
       this.isLoddingComents = true
       const { content, pageable, totalPages } = await this.$axios.$get(
-        `/api/article-api/comment/articleComments/${this.articleId}/page/${this
+        `/api/post-api/comment/postComments/${this.postId}/page/${this
           .pageNumber + 1}`
       )
       this.comments.push(...content)

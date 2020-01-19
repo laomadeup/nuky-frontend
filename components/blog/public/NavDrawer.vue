@@ -33,7 +33,7 @@
 
 <script>
 import { mdiMenu } from '@mdi/js'
-import Intro from '@/components/blog/article-aside/Intro'
+import Intro from '@/components/blog/post-aside/Intro'
 import { required } from '@/assets/utils/validation-rules'
 
 export default {

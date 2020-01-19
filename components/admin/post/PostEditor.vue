@@ -1,23 +1,24 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="8" xl="9">
+      <v-col cols="12" sm="8" xl="9">
         <section>
           <client-only placeholder="Loading Editor ...">
-            <nuky-editor ref="editor" :content.sync="article.content" />
+            <nuky-editor ref="editor" :content.sync="post.content" />
           </client-only>
         </section>
       </v-col>
-      <v-col cols="4" xl="3">
+      <v-col cols="12" sm="4" xl="3">
         <v-text-field
-          v-model="article.title"
+          v-model="post.title"
           :prepend-inner-icon="mdiFormatTitle"
           dense
           outlined
+          :counter="100"
           label="Title"
         />
         <v-textarea
-          v-model="article.excerpt"
+          v-model="post.excerpt"
           :prepend-inner-icon="mdiSubtitlesOutline"
           auto-grow
           outlined
@@ -30,33 +31,35 @@
           dense
           outlined
           multiple
-          :value.sync="article.categories"
+          :value.sync="post.categories"
         />
-        <tag-select class="mt-2" dense outlined :value.sync="article.tags" />
-      </v-col>
-    </v-row>
+        <tag-select class="mt-2" dense outlined :value.sync="post.tags" />
 
-    <v-row align="center">
-      <v-col cols="12" class="text-center">
-        <v-btn :loading="saving" color="primary" @click="save()">
-          <v-icon left v-text="mdiContentSave" />Save
-        </v-btn>
+        <v-row class="mt-2">
+          <v-col class="text-right">
+            <v-btn color="success">
+              <v-icon left v-text="mdiCardSearch" />
+              Preview
+            </v-btn>
+            <slot name="action" />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mdiContentSave, mdiFormatTitle, mdiSubtitlesOutline } from '@mdi/js'
+import { mdiFormatTitle, mdiSubtitlesOutline, mdiCardSearch } from '@mdi/js'
 import NukyEditor from '@/components/admin/public/NukyEditor'
-import CategorySelect from '@/components/admin/article/CategorySelect'
-import TagSelect from '@/components/admin/article/TagSelect'
+import CategorySelect from '@/components/admin/post/CategorySelect'
+import TagSelect from '@/components/admin/post/TagSelect'
 
 export default {
-  name: 'ArticleEditor',
+  name: 'PostEditor',
   components: { NukyEditor, CategorySelect, TagSelect },
   props: {
-    article: {
+    post: {
       type: Object,
       default() {
         return {
@@ -71,20 +74,16 @@ export default {
   },
   data() {
     return {
-      mdiContentSave,
       mdiFormatTitle,
       mdiSubtitlesOutline,
-      saving: false
+      mdiCardSearch
     }
   },
-  methods: {
-    save() {
-      this.saving = true
-
-      setTimeout(() => {
-        this.saving = false
-      }, 1000)
+  watch: {
+    post(value) {
+      this.$emit('update:post', value)
     }
-  }
+  },
+  methods: {}
 }
 </script>

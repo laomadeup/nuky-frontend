@@ -1,5 +1,5 @@
 <template>
-  <div>Article Tag</div>
+  <div>Post Tag</div>
 </template>
 
 <script>
@@ -8,12 +8,12 @@ export default {
   layout: 'Admin',
   head() {
     return {
-      title: 'Article Tag',
+      title: 'Post Tag',
       meta: [
         {
-          hid: 'Article Tag',
-          name: 'Article Tag',
-          content: 'Article Tag'
+          hid: 'Post Tag',
+          name: 'Post Tag',
+          content: 'Post Tag'
         }
       ]
     }

@@ -1,4 +1,4 @@
 <script>
-import Articles from '@/pages/articles/page/_number.vue'
-export default Articles
+import Posts from '@/pages/posts/page/_number.vue'
+export default Posts
 </script>

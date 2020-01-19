@@ -30,15 +30,14 @@
         :input-value="selected"
         small
         close
+        :color="item.isNew ? 'info' : ''"
         @click:close="parent.selectItem(item)"
       >
-        <span class="pr-2">
-          {{ item.name }}
-        </span>
+        {{ item.name }}
       </v-chip>
     </template>
     <template v-slot:item="{ item }">
-      <v-chip small :color="item.isNew ? 'info' : ''">
+      <v-chip small>
         {{ item.name }}
       </v-chip>
     </template>
@@ -62,12 +61,12 @@ export default {
   computed: {
     items() {
       return [{ header: 'Select a tag or create one' }].concat(
-        this.$store.state.article.tags
+        this.$store.state.post.tags
       )
     }
   },
   mounted() {
-    this.$store.dispatch('article/getTags')
+    this.$store.dispatch('post/getTags')
   },
   methods: {
     select(tags) {
