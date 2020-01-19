@@ -1,7 +1,7 @@
 <template>
   <v-select
     :prepend-inner-icon="mdiFolderOpen"
-    :items="this.$store.state.article.categoryList || []"
+    :items="items"
     :hide-details="hideDetails"
     :outlined="outlined"
     label="Category"
@@ -33,6 +33,11 @@ export default {
   },
   data() {
     return { mdiFolderOpen }
+  },
+  computed: {
+    items() {
+      return this.$store.state.article.categoryList || []
+    }
   },
   mounted() {
     this.$store.dispatch('article/getCategories')
