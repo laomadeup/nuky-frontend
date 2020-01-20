@@ -30,7 +30,8 @@ export default {
         title: null,
         excerpt: null,
         categories: null,
-        tags: null
+        tags: null,
+        isSticky: false
       }
     }
   },

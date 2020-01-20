@@ -15,7 +15,11 @@
             </v-col>
 
             <v-col cols="12" sm="6" md="3" xl="2">
-              <category-select hide-details :value.sync="search.category" />
+              <category-select
+                icon
+                hide-details
+                :value.sync="search.category"
+              />
             </v-col>
 
             <v-col cols="12" sm="6" md="3" xl="2" align-self="end">

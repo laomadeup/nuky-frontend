@@ -1,10 +1,10 @@
 <template>
   <v-select
-    :prepend-inner-icon="mdiFolderOpen"
+    :prepend-inner-icon="icon ? mdiFolderOpen : ''"
     :items="items"
     :hide-details="hideDetails"
     :outlined="outlined"
-    label="Category"
+    :label="label"
     item-value="id"
     item-text="name"
     :multiple="multiple"
@@ -29,7 +29,9 @@ export default {
     multiple: { type: Boolean, default: false },
     hideDetails: { type: Boolean, default: false },
     outlined: { type: Boolean, default: false },
-    value: { type: [Array, Number], default: null }
+    icon: { type: Boolean, default: false },
+    value: { type: [Array, Number], default: null },
+    label: { type: String, default: 'Category' }
   },
   data() {
     return { mdiFolderOpen }
