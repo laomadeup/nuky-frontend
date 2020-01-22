@@ -204,9 +204,6 @@ export default {
       this.total = totalElements
       this.loading = false
     },
-    getDesserts() {
-      return []
-    },
     edit(id) {
       console.log(`edit:${id}`)
     },

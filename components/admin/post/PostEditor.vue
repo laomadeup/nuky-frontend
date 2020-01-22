@@ -89,6 +89,7 @@
 
         <v-checkbox
           v-model="post.isSticky"
+          color="primary"
           label="Stick to the top of the blog"
         />
 
