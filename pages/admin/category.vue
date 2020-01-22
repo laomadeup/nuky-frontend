@@ -19,61 +19,42 @@
       </v-container>
     </v-card-title>
     <v-divider />
-    <v-data-table
-      :headers="headers"
-      :items="posts"
-      :options.sync="options"
-      :server-items-length="total"
-      :loading="loading"
-      show-select
+    <v-treeview
+      :open="open"
+      :items="items"
+      item-key="name"
+      selectable
+      selected-color="primary"
+      hoverable
+      open-all
+      selection-type="independent"
     >
-      <template v-slot:item.action="{ item }">
-        <v-icon
-          small
-          class="mr-2"
-          title="edit"
-          @click="edit(item.id)"
-          v-text="mdiPencil"
-        />
-        <v-icon
-          small
-          title="delete"
-          @click="deleteItem(item.id)"
-          v-text="mdiDelete"
-        />
-      </template> </v-data-table
-  ></v-card>
+      <template v-slot:prepend="{ item, open }">
+        <v-icon v-if="!item.file">
+          {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
+        </v-icon>
+        <v-icon v-else>
+          {{ files[item.file] }}
+        </v-icon>
+      </template>
+    </v-treeview>
+  </v-card>
 </template>
 
 <script>
-import { mdiDelete, mdiPencil, mdiMagnify } from '@mdi/js'
+import { mdiMagnify } from '@mdi/js'
 
 export default {
   name: 'Category',
   layout: 'Admin',
+  async asyncData({ $axios }) {
+    return { items: await $axios.$get('/api/post-api/admin/categories') }
+  },
   data() {
     return {
-      mdiPencil,
-      mdiDelete,
       mdiMagnify,
-      menu: false,
-      search: { text: null },
-      total: 0,
-      posts: [],
-      loading: true,
-      options: {},
-      headers: [
-        {
-          text: 'Actions',
-          value: 'action',
-          sortable: false,
-          width: 80
-        },
-        { text: 'Name', value: 'name' },
-        { text: 'Description', value: 'description' },
-        { text: 'Slug', value: 'slug' },
-        { text: 'Count', value: 'count' }
-      ]
+      items: [],
+      search: { text: null }
     }
   },
   watch: {
@@ -89,16 +70,7 @@ export default {
   },
   methods: {
     async getData() {
-      this.loading = true
-      const { content, totalElements } = await this.$axios.$get(
-        '/api/post-api/admin/categories',
-        {
-          params: this.options
-        }
-      )
-      this.posts = content
-      this.total = totalElements
-      this.loading = false
+      this.items = await this.$axios.$get('/api/post-api/admin/categories')
     },
     edit(id) {
       console.log(`edit:${id}`)

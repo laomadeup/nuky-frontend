@@ -49,8 +49,8 @@ function pushData(categoryList, storeCategories, layer) {
       layer,
       amount: category.amount
     })
-    if (category.subCategories && category.subCategories.length > 0) {
-      pushData(categoryList, category.subCategories, layer + 1)
+    if (category.children && category.children.length > 0) {
+      pushData(categoryList, category.children, layer + 1)
     }
   }
 }
