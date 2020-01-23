@@ -115,8 +115,9 @@
             @click="deleteItem(item.id)"
             v-text="mdiDelete"
           />
-        </template> </v-data-table
-    ></v-card>
+        </template>
+      </v-data-table>
+    </v-card>
   </div>
 </template>
 

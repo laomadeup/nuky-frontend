@@ -73,10 +73,10 @@ export default {
       },
       {
         icon: mdiFolderOpen,
-        text: 'Category',
-        route: 'admin-category'
+        text: 'Categories',
+        route: 'admin-categories'
       },
-      { icon: mdiTag, text: 'Tag', route: 'admin-tag' },
+      { icon: mdiTag, text: 'Tag', route: 'admin-tags' },
       { icon: mdiSettings, text: 'Settings', route: 'admin-settings' }
     ]
   })

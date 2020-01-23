@@ -35,55 +35,7 @@
           multiple
           :value.sync="post.categories"
         />
-
-        <v-dialog v-model="addCateogryDialog" persistent max-width="300">
-          <template v-slot:activator="{ on }">
-            <v-btn
-              small
-              color="primary"
-              text
-              class="mt-1 px-1"
-              @click="addCategory"
-              v-on="on"
-            >
-              Add New Category
-            </v-btn>
-          </template>
-          <v-card>
-            <v-card-title>
-              <span class="headline">Add New Category</span>
-            </v-card-title>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="newCategories.name"
-                      label="New Category Name"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <category-select
-                      class="mt-2"
-                      label="Parent Category"
-                      :value.sync="newCategories.parent"
-                    />
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" text @click="addCateogryDialog = false">
-                Close
-              </v-btn>
-              <v-btn color="primary" text @click="addCateogryDialog = false">
-                Save
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+        <new-category-btn btn-text></new-category-btn>
 
         <tag-select class="mt-4" dense outlined :value.sync="post.tags" />
 
@@ -112,10 +64,11 @@ import { mdiCardSearch, mdiFormatTitle, mdiSubtitlesOutline } from '@mdi/js'
 import NukyEditor from '@/components/admin/public/NukyEditor'
 import CategorySelect from '@/components/admin/post/CategorySelect'
 import TagSelect from '@/components/admin/post/TagSelect'
+import NewCategoryBtn from '@/components/admin/public/NewCategoryBtn'
 
 export default {
   name: 'PostEditor',
-  components: { NukyEditor, CategorySelect, TagSelect },
+  components: { NukyEditor, CategorySelect, TagSelect, NewCategoryBtn },
   props: {
     post: {
       type: Object,
@@ -135,19 +88,12 @@ export default {
     return {
       mdiFormatTitle,
       mdiSubtitlesOutline,
-      mdiCardSearch,
-      addCateogryDialog: null,
-      newCategories: { name: null, parent: null }
+      mdiCardSearch
     }
   },
   watch: {
     post(value) {
       this.$emit('update:post', value)
-    }
-  },
-  methods: {
-    addCategory() {
-      this.newCategories = { name: null, parent: null }
     }
   }
 }
