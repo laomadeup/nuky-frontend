@@ -42,6 +42,12 @@
           v-text="mdiDelete"
         />
       </template>
+      <template v-slot:item.name="{ item }">
+        <span>
+          <span v-for="(i, index) in item.layer - 1" :key="index">—</span>
+          <span>{{ item.name }}</span>
+        </span>
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -73,7 +79,6 @@ export default {
           width: 80
         },
         { text: 'Name', value: 'name' },
-        { text: 'Parent', value: 'parent.name' },
         { text: 'Slug', value: 'slug' },
         { text: 'Count', value: 'count' }
       ]
