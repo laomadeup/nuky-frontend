@@ -57,7 +57,7 @@ import { mdiDelete, mdiMagnify, mdiPencil } from '@mdi/js'
 import NewCategoryBtn from '@/components/admin/public/NewCategoryBtn'
 
 export default {
-  name: 'Category',
+  name: 'Categories',
   layout: 'Admin',
   components: { NewCategoryBtn },
   async asyncData({ $axios }) {
@@ -97,12 +97,12 @@ export default {
   },
   head() {
     return {
-      title: 'Category',
+      title: 'Categories',
       meta: [
         {
-          hid: 'Category',
-          name: 'Category',
-          content: 'Category'
+          hid: 'Categories',
+          name: 'Categories',
+          content: 'Categories'
         }
       ]
     }

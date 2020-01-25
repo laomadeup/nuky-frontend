@@ -13,7 +13,7 @@
             />
           </v-col>
           <v-col class="py-0" cols="auto" align-self="end">
-            <new-tag-btn></new-tag-btn>
+            <new-category-btn></new-category-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -42,20 +42,26 @@
           v-text="mdiDelete"
         />
       </template>
+      <template v-slot:item.name="{ item }">
+        <span>
+          <span v-for="(i, index) in item.layer - 1" :key="index">—</span>
+          <span>{{ item.name }}</span>
+        </span>
+      </template>
     </v-data-table>
   </v-card>
 </template>
 
 <script>
 import { mdiDelete, mdiMagnify, mdiPencil } from '@mdi/js'
-import NewTagBtn from '@/components/admin/public/NewTagBtn'
+import NewCategoryBtn from '@/components/admin/public/NewCategoryBtn'
 
 export default {
-  name: 'Tags',
+  name: 'Comments',
   layout: 'Admin',
-  components: { NewTagBtn },
+  components: { NewCategoryBtn },
   async asyncData({ $axios }) {
-    return { items: await $axios.$get('/api/post-api/admin/tags') }
+    return { items: await $axios.$get('/api/post-api/admin/categories') }
   },
   data() {
     return {
@@ -80,7 +86,7 @@ export default {
   },
   methods: {
     async getData() {
-      this.items = await this.$axios.$get('/api/post-api/admin/tags')
+      this.items = await this.$axios.$get('/api/post-api/admin/categories')
     },
     edit(id) {
       console.log(`edit:${id}`)
@@ -91,12 +97,12 @@ export default {
   },
   head() {
     return {
-      title: 'Tags',
+      title: 'Comments',
       meta: [
         {
-          hid: 'Tags',
-          name: 'Tags',
-          content: 'Tags'
+          hid: 'Comments',
+          name: 'Comments',
+          content: 'Comments'
         }
       ]
     }

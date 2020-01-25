@@ -47,9 +47,10 @@ import {
   mdiBookPlus,
   mdiFolderOpen,
   mdiSettings,
-  mdiSpeedometer,
+  mdiChartLine,
   mdiTag,
-  mdiViewList
+  mdiBookshelf,
+  mdiCommentTextMultiple
 } from '@mdi/js'
 
 export default {
@@ -57,12 +58,12 @@ export default {
     mini: false,
     items: [
       {
-        icon: mdiSpeedometer,
+        icon: mdiChartLine,
         text: 'Dashboard',
         route: 'admin-dashboard'
       },
       {
-        icon: mdiViewList,
+        icon: mdiBookshelf,
         text: 'Posts',
         route: 'admin-posts'
       },
@@ -77,6 +78,11 @@ export default {
         route: 'admin-categories'
       },
       { icon: mdiTag, text: 'Tag', route: 'admin-tags' },
+      {
+        icon: mdiCommentTextMultiple,
+        text: 'Comments',
+        route: 'admin-comments'
+      },
       { icon: mdiSettings, text: 'Settings', route: 'admin-settings' }
     ]
   })
