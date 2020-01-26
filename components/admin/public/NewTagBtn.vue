@@ -13,15 +13,21 @@
         <v-text-field
           v-model="newTag.name"
           label="Name"
+          hint="The name is how it appears on your site."
+          persistent-hint
           outlined
           dense
           required
+          clss="my-1"
         ></v-text-field>
         <v-text-field
           v-model="newTag.slug"
           label="Slug"
+          hint="The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
+          persistent-hint
           outlined
           dense
+          clss="my-1"
         ></v-text-field>
       </v-card-text>
       <v-card-actions>

@@ -7,6 +7,8 @@
     :label="label"
     item-value="id"
     item-text="name"
+    :hint="hint"
+    :persistent-hint="persistentHint"
     :multiple="multiple"
     clearable
     :dense="dense"
@@ -28,6 +30,8 @@ export default {
     dense: { type: Boolean, default: false },
     multiple: { type: Boolean, default: false },
     hideDetails: { type: Boolean, default: false },
+    hint: { type: String, default: null },
+    persistentHint: { type: Boolean, default: false },
     outlined: { type: Boolean, default: false },
     icon: { type: Boolean, default: false },
     value: { type: [Array, Number], default: null },
