@@ -102,9 +102,9 @@ export default {
   },
   async asyncData({ params, $axios }) {
     // paged query ariticle list
-    const pageNumber = params.number ? params.number : 1
-    const { content, totalPages, pageable } = await $axios.$get(
-      `/api/post-api/posts/page/${pageNumber}`
+    const number = params.number ? params.number : 1
+    const { content, totalPages, pageNumber } = await $axios.$get(
+      `/api/post-api/posts/page/${number}`
     )
     for (const item of content) {
       item.showMore = false
@@ -112,7 +112,7 @@ export default {
     return {
       posts: content,
       totalPages,
-      pageNumber: pageable.pageNumber + 1
+      pageNumber
     }
   },
   data() {

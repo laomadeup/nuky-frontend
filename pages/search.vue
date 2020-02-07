@@ -92,15 +92,15 @@ export default {
     toPage() {
       this.query(this.$route.params.keyword, this.pageNumber)
     },
-    async query(keyword, pageNumber) {
+    async query(keyword, queryPageNumber) {
       this.overlay = true
       // query by keyword
-      const { content, totalPages, pageable } = await this.$axios.$get(
+      const { content, totalPages, pageNumber } = await this.$axios.$get(
         '/api/post-api/posts/search/keyword',
         {
           params: {
             keyword,
-            page: pageNumber,
+            page: queryPageNumber,
             sort: this.sort.field,
             order: this.sort.order
           }
@@ -108,7 +108,7 @@ export default {
       )
       this.posts = content
       this.totalPages = totalPages
-      this.pageNumber = pageable.pageNumber + 1
+      this.pageNumber = pageNumber
       this.overlay = false
     }
   }

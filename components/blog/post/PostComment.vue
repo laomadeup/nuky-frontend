@@ -312,13 +312,13 @@ export default {
   methods: {
     async loadComments() {
       this.isLoddingComents = true
-      const { content, pageable, totalPages } = await this.$axios.$get(
+      const { content, totalPages, pageNumber } = await this.$axios.$get(
         `/api/post-api/comment/postComments/${this.postId}/page/${this
           .pageNumber + 1}`
       )
       this.comments.push(...content)
-      this.pageNumber = pageable.pageNumber + 1
       this.totalPages = totalPages
+      this.pageNumber = pageNumber
       this.isLoddingComents = false
     },
     formatWithSIPrefix(number) {

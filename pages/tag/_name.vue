@@ -64,7 +64,7 @@ export default {
   methods: {
     async query() {
       this.overlay = true
-      const { content, totalPages, pageable } = await this.$axios.$get(
+      const { content, totalPages, pageNumber } = await this.$axios.$get(
         `/api/post-api/posts/tag/${this.tag.name}`,
         {
           params: {
@@ -76,7 +76,7 @@ export default {
       )
       this.posts = content
       this.totalPages = totalPages
-      this.pageNumber = pageable.pageNumber + 1
+      this.pageNumber = pageNumber
       this.overlay = false
     }
   }
