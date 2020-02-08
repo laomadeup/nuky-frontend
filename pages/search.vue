@@ -96,7 +96,7 @@ export default {
       this.overlay = true
       // query by keyword
       const { content, totalPages, pageNumber } = await this.$axios.$get(
-        '/api/post-api/posts/search/keyword',
+        '/api/post-api/posts/search',
         {
           params: {
             keyword,

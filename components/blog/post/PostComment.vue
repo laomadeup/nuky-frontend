@@ -196,8 +196,8 @@
                   color="grey darken-1"
                   class="body-2 font-weight-medium"
                   @click="reply(comment.id, comment.user.username)"
-                  >REPLY</v-btn
-                >
+                  >REPLY
+                </v-btn>
               </section>
             </section>
           </section>
@@ -231,18 +231,19 @@
 import { formatPrefix } from 'd3-format'
 import anime from 'animejs/lib/anime.es.js'
 import {
-  mdiDraw,
+  mdiAccountCircle,
   mdiAt,
-  mdiCommentTextOutline,
+  mdiClock,
   mdiCommentAccountOutline,
   mdiCommentTextMultipleOutline,
-  mdiAccountCircle,
-  mdiClock,
-  mdiThumbUp,
+  mdiCommentTextOutline,
+  mdiDraw,
+  mdiMenuDown,
   mdiThumbDown,
-  mdiMenuDown
+  mdiThumbUp
 } from '@mdi/js'
-import { required, maxCharacters } from '@/assets/utils/validation-rules'
+import { maxCharacters, required } from '@/assets/utils/validation-rules'
+
 const keyframes = (() => {
   const fr = []
   for (let i = 0; i <= 10; i++) {
@@ -313,8 +314,7 @@ export default {
     async loadComments() {
       this.isLoddingComents = true
       const { content, totalPages, pageNumber } = await this.$axios.$get(
-        `/api/post-api/comment/postComments/${this.postId}/page/${this
-          .pageNumber + 1}`
+        `/api/comment-api/comments/${this.postId}/page/${this.pageNumber + 1}`
       )
       this.comments.push(...content)
       this.totalPages = totalPages
