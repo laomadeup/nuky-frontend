@@ -89,26 +89,29 @@
 
 <script>
 import {
-  mdiCalendarTextOutline,
   mdiBookOpen,
+  mdiCalendarTextOutline,
   mdiCommentMultiple,
   mdiPin
 } from '@mdi/js'
 import PostInfo from '@/components/blog/post/PostInfo'
+
 export default {
   layout: 'BlogAside',
   components: {
     PostInfo
   },
-  async asyncData({ params, $axios }) {
+  async asyncData({ query, $axios }) {
     // paged query ariticle list
-    const number = params.number ? params.number : 1
+    const page = query.page ? query.page : 1
     const { content, totalPages, pageNumber } = await $axios.$get(
-      `/api/post-api/posts/page/${number}`
+      `/api/post-api/posts`,
+      {
+        params: {
+          page
+        }
+      }
     )
-    for (const item of content) {
-      item.showMore = false
-    }
     return {
       posts: content,
       totalPages,
@@ -128,12 +131,20 @@ export default {
     }
   },
   methods: {
-    toPage() {
+    async toPage() {
       this.overlay = true
-      this.$router.push({
-        name: 'posts-page-number',
-        params: { number: this.pageNumber }
-      })
+      const { content, totalPages, pageNumber } = await this.$axios.$get(
+        `/api/post-api/posts`,
+        {
+          params: {
+            page: this.pageNumber
+          }
+        }
+      )
+      this.posts = content
+      this.totalPages = totalPages
+      this.pageNumber = pageNumber
+      this.overlay = false
     }
   },
   head() {

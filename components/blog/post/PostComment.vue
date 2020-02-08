@@ -314,7 +314,12 @@ export default {
     async loadComments() {
       this.isLoddingComents = true
       const { content, totalPages, pageNumber } = await this.$axios.$get(
-        `/api/comment-api/comments/${this.postId}/page/${this.pageNumber + 1}`
+        `/api/comment-api/post/${this.postId}/comments`,
+        {
+          params: {
+            page: this.pageNumber + 1
+          }
+        }
       )
       this.comments.push(...content)
       this.totalPages = totalPages
