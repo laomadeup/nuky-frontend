@@ -59,10 +59,10 @@ export default {
         {
           hid: 'login',
           name: 'login',
-          content: 'admin login'
-        }
-      ]
+          content: 'admin login',
+        },
+      ],
     }
-  }
+  },
 }
 </script>

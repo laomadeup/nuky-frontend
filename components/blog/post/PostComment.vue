@@ -163,7 +163,7 @@
                   v-text="formatWithSIPrefix(comment.like)"
                 />
               </section>
-              <section class="d-inline-block thumb-number ">
+              <section class="d-inline-block thumb-number">
                 <span>
                   <v-tooltip bottom content-class="py-0 caption red">
                     <template v-slot:activator="{ on }">
@@ -240,7 +240,7 @@ import {
   mdiDraw,
   mdiMenuDown,
   mdiThumbDown,
-  mdiThumbUp
+  mdiThumbUp,
 } from '@mdi/js'
 import { maxCharacters, required } from '@/assets/utils/validation-rules'
 
@@ -260,12 +260,12 @@ export default {
       default: null,
       isValid(value) {
         return value != null
-      }
+      },
     },
     commentAmount: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
@@ -286,26 +286,26 @@ export default {
       scrollOptions: {
         duration: 500,
         easing: 'linear',
-        offset: 100
+        offset: 100,
       },
       newComment: {
         valid: false,
         username: null,
         replyCommentId: null,
         replyUsername: null,
-        content: ''
+        content: '',
       },
       inputRules: {
         required,
-        maxCharacters
+        maxCharacters,
       },
-      snackbar: false
+      snackbar: false,
     }
   },
   computed: {
     showReplyChip() {
       return this.newComment.replyCommentId != null
-    }
+    },
   },
   async mounted() {
     await this.loadComments()
@@ -317,8 +317,8 @@ export default {
         `/api/comment-api/post/${this.postId}/comments`,
         {
           params: {
-            page: this.pageNumber + 1
-          }
+            page: this.pageNumber + 1,
+          },
         }
       )
       this.comments.push(...content)
@@ -331,20 +331,22 @@ export default {
     },
     commentHint(id) {
       // scroll to target
-      this.$vuetify.goTo(`#comment-${id}`, this.scrollOptions).then(function() {
-        // anime
-        anime({
-          targets: [document.querySelector(`#comment-${id}`)],
-          easing: 'easeInOutSine',
-          keyframes,
-          direction: 'alternate',
-          loop: 4,
-          duration: 320,
-          complete() {
-            document.querySelector(`#comment-${id}`).style.opacity = 1
-          }
+      this.$vuetify
+        .goTo(`#comment-${id}`, this.scrollOptions)
+        .then(function () {
+          // anime
+          anime({
+            targets: [document.querySelector(`#comment-${id}`)],
+            easing: 'easeInOutSine',
+            keyframes,
+            direction: 'alternate',
+            loop: 4,
+            duration: 320,
+            complete() {
+              document.querySelector(`#comment-${id}`).style.opacity = 1
+            },
+          })
         })
-      })
     },
     submitComment() {
       if (this.$refs.form.validate()) {
@@ -378,8 +380,8 @@ export default {
     },
     dislike(id) {
       console.log(`dislike comment : %c ${id}`, 'color:#f0f;')
-    }
-  }
+    },
+  },
 }
 </script>
 

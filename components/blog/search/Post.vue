@@ -1,9 +1,9 @@
 <template>
-  <section class=" post-body mb-8">
+  <section class="post-body mb-8">
     <nuxt-link
       tag="h4"
       class="title grey--text text--darken-4"
-      :to="{ name: 'post-id', params: { id: id } }"
+      :to="{ name: 'posts-id', params: { id: id } }"
     >
       <slot name="title"></slot>
     </nuxt-link>
@@ -34,14 +34,14 @@ export default {
   props: {
     id: {
       type: Number,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      mdiCalendarTextOutline
+      mdiCalendarTextOutline,
     }
-  }
+  },
 }
 </script>
 

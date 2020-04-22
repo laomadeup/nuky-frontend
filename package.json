@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt --inspect node_modules/.bin/nuxt --hostname 0.0.0.0 --port 80",
+    "mock": "nodemon --exec babel-node mock/server.js",
     "build": "nuxt build",
     "start": "nuxt start --hostname 0.0.0.0 --port 80",
     "generate": "nuxt generate --port 80",
@@ -59,6 +60,14 @@
     "prettier": "^2.0.4",
     "raw-loader": "^4.0.1",
     "sass": "^1.26.3",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "faker": "^4.1.0",
+    "json-server": "^0.15.1",
+    "moment": "^2.10.0",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "nodemon": "^2.0.2"
   }
 }

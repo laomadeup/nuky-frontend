@@ -2,7 +2,7 @@ export const state = () => ({
   popularPosts: null,
   categories: null,
   categoryList: null,
-  tags: null
+  tags: null,
 })
 
 export const mutations = {
@@ -16,7 +16,7 @@ export const mutations = {
   },
   setTags(state, data) {
     state.tags = data
-  }
+  },
 }
 
 export const actions = {
@@ -24,7 +24,7 @@ export const actions = {
     const [popular, categories, tags] = await Promise.all([
       this.$axios.$get('/api/post-api/posts/popular'),
       this.$axios.$get('/api/post-api/categories'),
-      this.$axios.$get('/api/post-api/tags')
+      this.$axios.$get('/api/post-api/tags'),
     ])
 
     commit('setPopularPosts', popular)
@@ -38,7 +38,7 @@ export const actions = {
   async getTags({ commit }) {
     const data = await this.$axios.$get('/api/post-api/tags')
     commit('setTags', data)
-  }
+  },
 }
 
 function pushData(categoryList, storeCategories, layer) {
@@ -47,7 +47,7 @@ function pushData(categoryList, storeCategories, layer) {
       id: category.id,
       name: category.name,
       layer,
-      amount: category.amount
+      amount: category.amount,
     })
     if (category.children && category.children.length > 0) {
       pushData(categoryList, category.children, layer + 1)

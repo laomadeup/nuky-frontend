@@ -35,7 +35,7 @@ export default {
     outlined: { type: Boolean, default: false },
     icon: { type: Boolean, default: false },
     value: { type: [Array, Number], default: null },
-    label: { type: String, default: 'Category' }
+    label: { type: String, default: 'Category' },
   },
   data() {
     return { mdiFolderOpen }
@@ -43,7 +43,7 @@ export default {
   computed: {
     items() {
       return this.$store.state.post.categoryList || []
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('post/getCategories')
@@ -51,7 +51,7 @@ export default {
   methods: {
     select(value) {
       this.$emit('update:value', value)
-    }
-  }
+    },
+  },
 }
 </script>

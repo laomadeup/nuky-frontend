@@ -67,19 +67,19 @@ export default {
   components: { CategorySelect },
 
   props: {
-    btnText: { type: Boolean, default: false }
+    btnText: { type: Boolean, default: false },
   },
   data() {
     return {
       newCategories: { name: null, slug: null, parent: null },
-      addCateogryDialog: null
+      addCateogryDialog: null,
     }
   },
   methods: {
     addCategory() {
       this.newCategories = { name: null, parent: null }
-    }
-  }
+    },
+  },
 }
 </script>
 

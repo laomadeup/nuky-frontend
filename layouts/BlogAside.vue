@@ -24,7 +24,7 @@ export default {
   name: 'BlogAside',
   components: {
     Blog,
-    appAside: Aside
-  }
+    appAside: Aside,
+  },
 }
 </script>

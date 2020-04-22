@@ -19,7 +19,7 @@ export default {
   name: 'New',
   layout: 'Admin',
   components: {
-    PostEditor
+    PostEditor,
   },
   data() {
     return {
@@ -31,8 +31,8 @@ export default {
         excerpt: null,
         categories: null,
         tags: null,
-        isSticky: false
-      }
+        isSticky: false,
+      },
     }
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
       setTimeout(() => {
         this.saving = false
       }, 1000)
-    }
+    },
   },
   head() {
     return {
@@ -50,10 +50,10 @@ export default {
         {
           hid: 'Post New Post',
           name: 'Post New Post',
-          content: 'Post New Post'
-        }
-      ]
+          content: 'Post New Post',
+        },
+      ],
     }
-  }
+  },
 }
 </script>

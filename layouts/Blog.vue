@@ -27,8 +27,8 @@ export default {
   components: {
     Banner,
     appNavDrawer: NavDrawer,
-    appFooter: Footer
-  }
+    appFooter: Footer,
+  },
 }
 </script>
 

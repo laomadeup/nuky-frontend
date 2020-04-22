@@ -18,10 +18,10 @@ export default {
     Popular,
     Category,
     Tag,
-    Intro
+    Intro,
   },
   mounted() {
     this.$store.dispatch('post/getPostAside')
-  }
+  },
 }
 </script>

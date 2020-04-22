@@ -54,7 +54,7 @@ const defaultConfig = {
     CodeBlock,
     Highlight,
     Table,
-    TableToolbar
+    TableToolbar,
   ],
   toolbar: {
     items: [
@@ -85,47 +85,52 @@ const defaultConfig = {
       'codeBlock',
       '|',
       'undo',
-      'redo'
-    ]
+      'redo',
+    ],
   },
   image: {
-    toolbar: ['imageStyle:full', 'imageStyle:side', '|', 'imageTextAlternative']
+    toolbar: [
+      'imageStyle:full',
+      'imageStyle:side',
+      '|',
+      'imageTextAlternative',
+    ],
   },
   codeBlock: {
     languages: [
       {
         language: 'plaintext',
-        label: 'Plain text'
+        label: 'Plain text',
       },
       {
         language: 'java',
-        label: 'Java'
+        label: 'Java',
       },
       {
         language: 'javascript',
-        label: 'JavaScript'
+        label: 'JavaScript',
       },
       {
         language: 'Markup',
-        label: 'HTML/XML'
+        label: 'HTML/XML',
       },
       {
         language: 'sql',
-        label: 'Sql'
+        label: 'Sql',
       },
       {
         language: 'bash',
-        label: 'Bash'
+        label: 'Bash',
       },
       {
         language: 'css',
-        label: 'CSS'
-      }
-    ]
+        label: 'CSS',
+      },
+    ],
   },
   table: {
-    contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-  }
+    contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+  },
 }
 
 export default defaultConfig

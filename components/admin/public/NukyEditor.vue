@@ -24,26 +24,26 @@ if (process.client) {
 export default {
   name: 'NukyEditor',
   components: {
-    ckeditor: CKEditor.component
+    ckeditor: CKEditor.component,
   },
   props: {
     content: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
       editor: ClassicEditor,
       editorConfig: defaultConfig,
-      editorData: this.content
+      editorData: this.content,
     }
   },
   methods: {
     emitContent() {
       this.$emit('update:content', this.editorData)
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -14,7 +14,7 @@
         <nuxt-link
           class="px-2 my-0 popular-item body-2"
           tag="p"
-          :to="{ name: 'post-id', params: { id: post.id } }"
+          :to="{ name: 'posts-id', params: { id: post.id } }"
         >
           {{ post.title }}
         </nuxt-link>
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'Popular'
+  name: 'Popular',
 }
 </script>
 

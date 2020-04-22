@@ -50,12 +50,12 @@ import { mdiTagMultiple } from '@mdi/js'
 export default {
   name: 'TagSelect',
   props: {
-    value: { type: Array, default: null }
+    value: { type: Array, default: null },
   },
   data() {
     return {
       mdiTagMultiple,
-      search: null
+      search: null,
     }
   },
   computed: {
@@ -63,7 +63,7 @@ export default {
       return [{ header: 'Select a tag or create one' }].concat(
         this.$store.state.post.tags
       )
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('post/getTags')
@@ -88,7 +88,7 @@ export default {
         .toString()
         .toLowerCase()
         .includes(query.toString().toLowerCase())
-    }
-  }
+    },
+  },
 }
 </script>

@@ -9,7 +9,7 @@
       v-for="post in posts"
       :id="post.id"
       :key="post.id"
-      class=" mb-8"
+      class="mb-8"
     >
       <template v-slot:title>
         <span v-text="post.title"></span>
@@ -41,7 +41,7 @@ export default {
   layout: 'Blog',
   components: {
     appSort: Sort,
-    searchPost: Post
+    searchPost: Post,
   },
   async asyncData({ params, $axios }) {
     const tag = await $axios.$get(`/api/post-api/tag/${params.name}`)
@@ -55,7 +55,7 @@ export default {
       posts: [],
       pageNumber: 1,
       totalPages: 0,
-      mdiTag
+      mdiTag,
     }
   },
   mounted() {
@@ -70,15 +70,15 @@ export default {
           params: {
             page: this.pageNumber,
             sort: this.sort.field,
-            order: this.sort.order
-          }
+            order: this.sort.order,
+          },
         }
       )
       this.posts = content
       this.totalPages = totalPages
       this.pageNumber = pageNumber
       this.overlay = false
-    }
-  }
+    },
+  },
 }
 </script>

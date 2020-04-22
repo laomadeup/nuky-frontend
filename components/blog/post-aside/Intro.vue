@@ -44,7 +44,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon v-text="mdiGithubCircle" />
+              <v-icon v-text="mdiGithub" />
             </v-btn>
           </template>
           <span>Github</span>
@@ -82,23 +82,23 @@ import { required } from 'assets/utils/validation-rules'
 import {
   mdiArrowRight,
   mdiEmail,
-  mdiGithubCircle,
+  mdiGithub,
   mdiInformation,
-  mdiMagnify
+  mdiMagnify,
 } from '@mdi/js'
 
 export default {
   name: 'Intro',
   data() {
     return {
-      mdiGithubCircle,
+      mdiGithub,
       mdiEmail,
       mdiInformation,
       mdiMagnify,
       mdiArrowRight,
       loading: true,
       keyword: '',
-      searchInputState: true
+      searchInputState: true,
     }
   },
   mounted() {
@@ -112,14 +112,14 @@ export default {
         this.$router.push({
           name: 'search',
           params: {
-            keyword: this.keyword
-          }
+            keyword: this.keyword,
+          },
         })
       }
     },
     clearInputError() {
       this.searchInputState = true
-    }
-  }
+    },
+  },
 }
 </script>

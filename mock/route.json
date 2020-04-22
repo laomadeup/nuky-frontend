@@ -1,0 +1,16 @@
+{
+  "/api/post-api/posts?page=:pageNumber": "/posts?_page=:pageNumber&_limit=8",
+  "/api/post-api/post/:id": "/posts/:id",
+  "/api/post-api/posts/popular": "/popularPosts",
+  "/api/post-api/posts/category/:name?page=:page&sort=:sort&order=:order": "/posts?_page=:page&_sort=:sort&_order=:order&_limit=10",
+  "/api/post-api/posts/tag/:name?page=:page&sort=:sort&order=:order": "/posts?_page=:page&_sort=:sort&_order=:order&_limit=10",
+  "/api/comment-api/post/:postId/comments?page=:pageNumber": "/postComments?postId=:postId&_page=:pageNumber&_limit=10",
+  "/api/post-api/categories": "/categories",
+  "/api/post-api/category/:name": "/allCategories?name=:name&_singular=1",
+  "/api/post-api/tags": "/tags",
+  "/api/post-api/tag/:name": "/tags?name=:name&_singular=1",
+  "/api/post-api/posts/search?keyword=:keyword&page=:pageNumber&sort=:sort&order=:order": "/searchResult?_page=:pageNumber&_sort=:sort&_order=:order&_limit=10",
+  "/api/post-api/admin/posts?page=:pageNumber&pageSize=:limit": "/posts?_page=:pageNumber&_limit=:limit",
+  "/api/post-api/admin/categories": "/AllCategories",
+  "/api/post-api/admin/tags": "/tags"
+}

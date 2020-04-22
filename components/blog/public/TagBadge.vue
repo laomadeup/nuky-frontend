@@ -4,7 +4,7 @@
       v-for="(tag, index) in tags"
       :key="index"
       x-small
-      :to="{ name: 'tag-name', params: { name: tag.name } }"
+      :to="{ name: 'tags-name', params: { name: tag.name } }"
       link
       class="mr-1"
     >
@@ -19,8 +19,8 @@ export default {
   props: {
     tags: {
       type: Array,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
