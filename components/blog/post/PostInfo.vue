@@ -16,8 +16,8 @@
                   class="category mr-1"
                   tag="span"
                   :to="{
-                    name: 'categories-name',
-                    params: { name: category.name },
+                    name: 'category-name',
+                    params: { name: category.name }
                   }"
                   >{{ category.name }}</nuxt-link
                 >
@@ -53,16 +53,16 @@ export default {
   props: {
     tags: {
       type: Array,
-      default: null,
+      default: null
     },
     categories: {
       type: Array,
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return { mdiFolder, mdiFolderOpen, mdiTagMultiple, icon: mdiFolder }
-  },
+  }
 }
 </script>
 

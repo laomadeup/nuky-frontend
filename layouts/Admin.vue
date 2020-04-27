@@ -7,7 +7,7 @@
       dark
       :mini-variant.sync="mini"
     >
-      <v-toolbar-title style="width: 300px;" class="ml-0 pl-4">
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span>Kyun's Blog</span>
       </v-toolbar-title>
     </v-app-bar>
@@ -46,11 +46,11 @@
 import {
   mdiBookPlus,
   mdiFolderOpen,
-  mdiCog,
+  mdiSettings,
   mdiChartLine,
   mdiTag,
   mdiBookshelf,
-  mdiCommentTextMultiple,
+  mdiCommentTextMultiple
 } from '@mdi/js'
 
 export default {
@@ -60,31 +60,31 @@ export default {
       {
         icon: mdiChartLine,
         text: 'Dashboard',
-        route: 'admin-dashboard',
+        route: 'admin-dashboard'
       },
       {
         icon: mdiBookshelf,
         text: 'Posts',
-        route: 'admin-posts',
+        route: 'admin-posts'
       },
       {
         icon: mdiBookPlus,
         text: 'New Post',
-        route: 'admin-post-new',
+        route: 'admin-post-new'
       },
       {
         icon: mdiFolderOpen,
         text: 'Categories',
-        route: 'admin-categories',
+        route: 'admin-categories'
       },
       { icon: mdiTag, text: 'Tag', route: 'admin-tags' },
       {
         icon: mdiCommentTextMultiple,
         text: 'Comments',
-        route: 'admin-comments',
+        route: 'admin-comments'
       },
-      { icon: mdiCog, text: 'Settings', route: 'admin-settings' },
-    ],
-  }),
+      { icon: mdiSettings, text: 'Settings', route: 'admin-settings' }
+    ]
+  })
 }
 </script>

@@ -21,8 +21,8 @@ const sort = [
   { field: 'publishDate', order: 'desc' },
   {
     field: 'publishDate',
-    order: 'asc',
-  },
+    order: 'asc'
+  }
 ]
 
 export default {
@@ -30,8 +30,8 @@ export default {
   props: {
     sort: {
       type: Object,
-      default: sort[0],
-    },
+      default: sort[0]
+    }
   },
   data() {
     return { mdiSortAscending, mdiSortDescending, sortIndex: 0 }
@@ -45,8 +45,8 @@ export default {
     sortChange() {
       this.$emit('update:sort', sort[this.sortIndex])
       this.$emit('change')
-    },
-  },
+    }
+  }
 }
 </script>
 

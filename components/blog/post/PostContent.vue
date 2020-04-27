@@ -41,15 +41,15 @@ export default {
   props: {
     content: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   mounted() {
     // add classes for Prism : line-numbers match-braces rainbow-braces
     this.addClassesForElements('code[class*="language-"]', [
       'line-numbers',
       'match-braces',
-      'rainbow-braces',
+      'rainbow-braces'
     ])
     Prism.highlightAll()
   },
@@ -59,8 +59,8 @@ export default {
       for (const codeEle of codeEles) {
         codeEle.classList.add(...classes)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

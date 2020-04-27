@@ -19,7 +19,7 @@ export default {
   name: 'Edit',
   layout: 'Admin',
   components: {
-    PostEditor,
+    PostEditor
   },
   data() {
     return {
@@ -30,8 +30,8 @@ export default {
         title: null,
         excerpt: null,
         categories: null,
-        tags: null,
-      },
+        tags: null
+      }
     }
   },
   methods: {
@@ -40,7 +40,7 @@ export default {
       setTimeout(() => {
         this.saving = false
       }, 1000)
-    },
+    }
   },
   head() {
     return {
@@ -49,10 +49,10 @@ export default {
         {
           hid: 'Edit Post',
           name: 'Edit Post',
-          content: 'Edit Post',
-        },
-      ],
+          content: 'Edit Post'
+        }
+      ]
     }
-  },
+  }
 }
 </script>

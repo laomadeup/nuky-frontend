@@ -37,7 +37,7 @@ export default {
   components: {
     PostComment,
     PostContent,
-    PostInfo,
+    PostInfo
   },
   async asyncData({ params, $axios }) {
     const data = await $axios.$get(`/api/post-api/post/${params.id}`)
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       mdiCalendar,
-      post: null,
+      post: null
     }
   },
   head() {
@@ -56,13 +56,13 @@ export default {
         {
           hid: 'Post',
           name: 'Post',
-          content: this.post.title,
-        },
-      ],
+          content: this.post.title
+        }
+      ]
     }
   },
   // params.id must be number
-  validate: ({ params }) => /^\d+$/.test(params.id),
+  validate: ({ params }) => /^\d+$/.test(params.id)
 }
 </script>
 

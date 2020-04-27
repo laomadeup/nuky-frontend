@@ -49,14 +49,14 @@ export default {
   data() {
     return {
       newTag: { name: null, slug: null, parent: null },
-      dialog: null,
+      dialog: null
     }
   },
   methods: {
     addTag() {
       this.newTag = { name: null, parent: null }
-    },
-  },
+    }
+  }
 }
 </script>
 

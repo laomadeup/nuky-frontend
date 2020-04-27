@@ -28,7 +28,7 @@
         <nuxt-link
           tag="section"
           class="post-body"
-          :to="{ name: 'posts-id', params: { id: post.id } }"
+          :to="{ name: 'post-id', params: { id: post.id } }"
         >
           <h4 class="title grey--text text--darken-4">
             {{ post.title }}
@@ -92,14 +92,14 @@ import {
   mdiBookOpen,
   mdiCalendarTextOutline,
   mdiCommentMultiple,
-  mdiPin,
+  mdiPin
 } from '@mdi/js'
 import PostInfo from '@/components/blog/post/PostInfo'
 
 export default {
   layout: 'BlogAside',
   components: {
-    PostInfo,
+    PostInfo
   },
   async asyncData({ query, $axios }) {
     // paged query ariticle list
@@ -108,14 +108,14 @@ export default {
       `/api/post-api/posts`,
       {
         params: {
-          page,
-        },
+          page
+        }
       }
     )
     return {
       posts: content,
       totalPages,
-      pageNumber,
+      pageNumber
     }
   },
   data() {
@@ -127,7 +127,7 @@ export default {
       mdiPin,
       pageNumber: 1,
       totalPages: 0,
-      posts: [],
+      posts: []
     }
   },
   methods: {
@@ -137,15 +137,15 @@ export default {
         `/api/post-api/posts`,
         {
           params: {
-            page: this.pageNumber,
-          },
+            page: this.pageNumber
+          }
         }
       )
       this.posts = content
       this.totalPages = totalPages
       this.pageNumber = pageNumber
       this.overlay = false
-    },
+    }
   },
   head() {
     return {
@@ -154,11 +154,11 @@ export default {
         {
           hid: 'Posts',
           name: 'Posts',
-          content: 'Posts',
-        },
-      ],
+          content: 'Posts'
+        }
+      ]
     }
-  },
+  }
 }
 </script>
 

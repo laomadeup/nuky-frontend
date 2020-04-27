@@ -128,7 +128,7 @@ import {
   mdiChartBar,
   mdiMessageReply,
   mdiMagnify,
-  mdiCalendar,
+  mdiCalendar
 } from '@mdi/js'
 import CategorySelect from '@/components/admin/post/CategorySelect'
 
@@ -155,25 +155,20 @@ export default {
           text: 'Actions',
           value: 'action',
           sortable: false,
-          width: 80,
+          width: 80
         },
         { text: 'Title', value: 'title' },
         {
           text: 'Category',
           value: 'category.name',
           sortable: false,
-          width: 110,
+          width: 110
         },
         { text: 'Tags', value: 'tags', sortable: false, width: '20%' },
         { text: 'Views', value: 'views', width: 90 },
         { text: 'Comments', value: 'commentAmount', width: 120 },
-        {
-          text: 'Post Date',
-          value: 'publishDate',
-          align: 'center',
-          width: 120,
-        },
-      ],
+        { text: 'Post Date', value: 'publishDate', align: 'center', width: 120 }
+      ]
     }
   },
   computed: {
@@ -183,16 +178,16 @@ export default {
       },
       set(value) {
         this.search.publishDate = value || []
-      },
-    },
+      }
+    }
   },
   watch: {
     options: {
       handler() {
         this.getData()
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   mounted() {
     this.getData()
@@ -203,7 +198,7 @@ export default {
       const { content, totalElements } = await this.$axios.$get(
         '/api/post-api/admin/posts',
         {
-          params: this.options,
+          params: this.options
         }
       )
       this.posts = content
@@ -219,7 +214,7 @@ export default {
     setDateRangeText(v) {
       this.search.publishDate = v
     },
-    query() {},
+    query() {}
   },
   head() {
     return {
@@ -228,11 +223,11 @@ export default {
         {
           hid: 'Post List',
           name: 'Post List',
-          content: 'Post List',
-        },
-      ],
+          content: 'Post List'
+        }
+      ]
     }
-  },
+  }
 }
 </script>
 

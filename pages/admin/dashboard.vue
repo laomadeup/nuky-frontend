@@ -14,10 +14,10 @@ export default {
         {
           hid: 'dashboard',
           name: 'dashboard',
-          content: 'dashboard',
-        },
-      ],
+          content: 'dashboard'
+        }
+      ]
     }
-  },
+  }
 }
 </script>

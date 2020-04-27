@@ -25,10 +25,10 @@ export default {
         {
           hid: 'About',
           name: 'About',
-          content: 'About',
-        },
-      ],
+          content: 'About'
+        }
+      ]
     }
-  },
+  }
 }
 </script>

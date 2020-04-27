@@ -15,7 +15,7 @@
           <nuxt-link
             class="category pb-1 ml-1"
             tag="span"
-            :to="{ name: 'categories-name', params: { name: category.name } }"
+            :to="{ name: 'category-name', params: { name: category.name } }"
             >{{ category.name }}
           </nuxt-link>
           <span>({{ category.amount }})</span>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'Category',
+  name: 'Category'
 }
 </script>
 

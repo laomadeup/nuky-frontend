@@ -13,10 +13,10 @@ export default {
         {
           hid: 'Settings',
           name: 'Settings',
-          content: 'Settings',
-        },
-      ],
+          content: 'Settings'
+        }
+      ]
     }
-  },
+  }
 }
 </script>

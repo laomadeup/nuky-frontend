@@ -76,12 +76,12 @@ export default {
           text: 'Actions',
           value: 'action',
           sortable: false,
-          width: 80,
+          width: 80
         },
         { text: 'Name', value: 'name' },
         { text: 'Slug', value: 'slug' },
-        { text: 'Count', value: 'count' },
-      ],
+        { text: 'Count', value: 'count' }
+      ]
     }
   },
   methods: {
@@ -93,7 +93,7 @@ export default {
     },
     deleteItem(id) {
       console.log(`delete:${id}`)
-    },
+    }
   },
   head() {
     return {
@@ -102,11 +102,11 @@ export default {
         {
           hid: 'Categories',
           name: 'Categories',
-          content: 'Categories',
-        },
-      ],
+          content: 'Categories'
+        }
+      ]
     }
-  },
+  }
 }
 </script>
 

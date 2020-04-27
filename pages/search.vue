@@ -29,7 +29,7 @@
       v-for="post in posts"
       :id="post.id"
       :key="post.id"
-      class="mb-8"
+      class=" mb-8"
     >
       <template v-slot:title>
         <span v-html="post.title"></span>
@@ -63,7 +63,7 @@ export default {
   watchQuery: ['pageNumber', 'keyword'],
   components: {
     appSort: Sort,
-    searchPost: Post,
+    searchPost: Post
   },
   data() {
     return {
@@ -75,7 +75,7 @@ export default {
       searchInputState: true,
       inputRules: [required],
       mdiMagnify,
-      keyword: this.$route.params.keyword,
+      keyword: this.$route.params.keyword
     }
   },
   mounted() {
@@ -102,16 +102,16 @@ export default {
             keyword,
             page: queryPageNumber,
             sort: this.sort.field,
-            order: this.sort.order,
-          },
+            order: this.sort.order
+          }
         }
       )
       this.posts = content
       this.totalPages = totalPages
       this.pageNumber = pageNumber
       this.overlay = false
-    },
-  },
+    }
+  }
 }
 </script>
 

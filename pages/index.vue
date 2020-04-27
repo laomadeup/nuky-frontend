@@ -1,4 +1,4 @@
 <script>
-import Posts from '@/pages/posts/index'
+import Posts from '@/pages/posts'
 export default Posts
 </script>

@@ -39,15 +39,15 @@ import { required } from '@/assets/utils/validation-rules'
 export default {
   name: 'NavDrawer',
   components: {
-    Intro,
+    Intro
   },
   data() {
     return {
       mdiMenu,
       appDrawer: false,
       inputRules: {
-        required,
-      },
+        required
+      }
     }
   },
   methods: {
@@ -61,11 +61,11 @@ export default {
         this.$router.push({
           name: 'search',
           params: {
-            keyword: this.keyword,
-          },
+            keyword: this.keyword
+          }
         })
       }
-    },
-  },
+    }
+  }
 }
 </script>

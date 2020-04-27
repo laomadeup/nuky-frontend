@@ -79,22 +79,22 @@ export default {
           excerpt: null,
           categories: null,
           tags: null,
-          isSticky: false,
+          isSticky: false
         }
-      },
-    },
+      }
+    }
   },
   data() {
     return {
       mdiFormatTitle,
       mdiSubtitlesOutline,
-      mdiCardSearch,
+      mdiCardSearch
     }
   },
   watch: {
     post(value) {
       this.$emit('update:post', value)
-    },
-  },
+    }
+  }
 }
 </script>
