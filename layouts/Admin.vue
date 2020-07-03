@@ -7,7 +7,7 @@
       dark
       :mini-variant.sync="mini"
     >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+      <v-toolbar-title style="width: 300px;" class="ml-0 pl-4">
         <span>Kyun's Blog</span>
       </v-toolbar-title>
     </v-app-bar>
@@ -46,7 +46,7 @@
 import {
   mdiBookPlus,
   mdiFolderOpen,
-  mdiSettings,
+  mdiCogOutline,
   mdiChartLine,
   mdiTag,
   mdiBookshelf,
@@ -83,7 +83,7 @@ export default {
         text: 'Comments',
         route: 'admin-comments'
       },
-      { icon: mdiSettings, text: 'Settings', route: 'admin-settings' }
+      { icon: mdiCogOutline, text: 'Settings', route: 'admin-settings' }
     ]
   })
 }

@@ -1,5 +1,5 @@
 <template>
-  <section class=" post-body mb-8">
+  <section class="post-body mb-8">
     <nuxt-link
       tag="h4"
       class="title grey--text text--darken-4"

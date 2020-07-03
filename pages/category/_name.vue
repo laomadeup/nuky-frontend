@@ -9,7 +9,7 @@
       v-for="post in posts"
       :id="post.id"
       :key="post.id"
-      class=" mb-8"
+      class="mb-8"
     >
       <template v-slot:title>
         <span v-text="post.title"></span>

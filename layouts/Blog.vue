@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background: #fafafa;">
     <banner />
     <app-nav-drawer />
     <v-content>
