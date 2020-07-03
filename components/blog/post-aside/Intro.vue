@@ -44,7 +44,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon v-text="mdiGithubCircle" />
+              <v-icon v-text="mdiGithub" />
             </v-btn>
           </template>
           <span>Github</span>
@@ -82,7 +82,7 @@ import { required } from 'assets/utils/validation-rules'
 import {
   mdiArrowRight,
   mdiEmail,
-  mdiGithubCircle,
+  mdiGithub,
   mdiInformation,
   mdiMagnify
 } from '@mdi/js'
@@ -91,7 +91,7 @@ export default {
   name: 'Intro',
   data() {
     return {
-      mdiGithubCircle,
+      mdiGithub,
       mdiEmail,
       mdiInformation,
       mdiMagnify,

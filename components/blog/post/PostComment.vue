@@ -163,7 +163,7 @@
                   v-text="formatWithSIPrefix(comment.like)"
                 />
               </section>
-              <section class="d-inline-block thumb-number ">
+              <section class="d-inline-block thumb-number">
                 <span>
                   <v-tooltip bottom content-class="py-0 caption red">
                     <template v-slot:activator="{ on }">
@@ -331,20 +331,22 @@ export default {
     },
     commentHint(id) {
       // scroll to target
-      this.$vuetify.goTo(`#comment-${id}`, this.scrollOptions).then(function() {
-        // anime
-        anime({
-          targets: [document.querySelector(`#comment-${id}`)],
-          easing: 'easeInOutSine',
-          keyframes,
-          direction: 'alternate',
-          loop: 4,
-          duration: 320,
-          complete() {
-            document.querySelector(`#comment-${id}`).style.opacity = 1
-          }
+      this.$vuetify
+        .goTo(`#comment-${id}`, this.scrollOptions)
+        .then(function () {
+          // anime
+          anime({
+            targets: [document.querySelector(`#comment-${id}`)],
+            easing: 'easeInOutSine',
+            keyframes,
+            direction: 'alternate',
+            loop: 4,
+            duration: 320,
+            complete() {
+              document.querySelector(`#comment-${id}`).style.opacity = 1
+            }
+          })
         })
-      })
     },
     submitComment() {
       if (this.$refs.form.validate()) {
